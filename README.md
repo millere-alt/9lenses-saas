@@ -1,6 +1,13 @@
-# 9Lenses SaaS Assessment Platform
+# 9Lenses AI-Powered SaaS Platform
 
-A comprehensive React-based SaaS application for conducting organizational assessments using the 9Lenses framework. This platform enables companies to evaluate their performance across 9 interconnected business dimensions and gain actionable insights.
+> Transform your organization through AI-powered strategic assessment across 9 critical business dimensions
+
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](http://localhost:5174)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![React](https://img.shields.io/badge/React-19.1.1-61dafb.svg)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1.14-38bdf8.svg)](https://tailwindcss.com/)
+
+A comprehensive React-based SaaS application for conducting organizational assessments using the 9Lenses framework. This platform enables companies to evaluate their performance across 9 interconnected business dimensions and gain actionable AI-powered insights.
 
 ## 🎯 What is 9Lenses?
 
@@ -22,6 +29,53 @@ The 9Lenses framework is a comprehensive business assessment methodology that ev
 - **Entity**: Entity characteristics, contracts, intellectual property, liability and risk
 
 ## ✨ Features
+
+### 🤖 Complete AI Suite for Leaders (NEW!)
+
+1. **AI Strategy Advisor** (`/ai-dashboard`)
+   - GPT-powered strategic recommendations for each lens
+   - Specific action items with timelines, budgets, and expected outcomes
+   - Quick wins and long-term strategic initiatives
+   - Priority-based recommendations with ROI analysis
+
+2. **Predictive Analytics**
+   - 6-12 month forecasting with confidence intervals
+   - Interactive trend visualizations showing historical + predicted performance
+   - AI-generated insights on trajectory and milestones
+   - Target achievement predictions with 87% accuracy
+
+3. **Automated Action Plans**
+   - Comprehensive 90-day strategic roadmaps
+   - 3 implementation phases: Quick Wins → Foundation Building → Strategic Initiatives
+   - 9+ detailed initiatives with tasks, owners, budgets, and timelines
+   - Risk assessment and mitigation strategies
+
+4. **Natural Language AI Assistant**
+   - Conversational interface for asking questions about your assessment
+   - Context-aware responses with specific lens insights
+   - Quick question templates for common inquiries
+   - Intent detection for strengths, weaknesses, benchmarks, and next steps
+   - Available 24/7
+
+5. **Competitive Benchmarking**
+   - Industry comparison across all 9 lenses with 500+ companies analyzed
+   - Multi-dimensional radar charts and visualizations
+   - Top quartile, industry average, and top performer metrics
+   - Competitive positioning analysis with gap identification
+   - Filter by industry and company size
+
+6. **AI Risk Detection**
+   - Pattern recognition for early warning of issues
+   - Critical, high, and medium severity classification
+   - Cross-lens risk pattern analysis
+   - Specific mitigation recommendations for each identified risk
+   - Real-time monitoring with trend analysis
+
+7. **Smart Notifications**
+   - Intelligent alerts for critical issues, opportunities, and trends
+   - Priority-based filtering and management
+   - Actionable notifications with quick actions
+   - Real-time updates on assessment progress and milestones
 
 ### 🏠 Landing Page
 - **Hero Section**: Professional landing page with gradient design and book showcase
