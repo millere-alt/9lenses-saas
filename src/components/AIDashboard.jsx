@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Sparkles, TrendingUp, Target, Shield, Bell, MessageCircle, BarChart3 } from 'lucide-react';
+import { Brain, Sparkles, TrendingUp, Target, Shield, Bell, MessageCircle, BarChart3, Network } from 'lucide-react';
 import AIStrategyAdvisor from './AIStrategyAdvisor';
 import PredictiveAnalytics from './PredictiveAnalytics';
 import ActionPlanGenerator from './ActionPlanGenerator';
@@ -7,6 +7,7 @@ import AIAssistant from './AIAssistant';
 import CompetitiveBenchmarking from './CompetitiveBenchmarking';
 import RiskDetection from './RiskDetection';
 import SmartNotifications from './SmartNotifications';
+import MetastructureInterconnections from './MetastructureInterconnections';
 
 function AIDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -40,7 +41,8 @@ function AIDashboard() {
     { id: 'assistant', label: 'AI Assistant', icon: MessageCircle },
     { id: 'benchmark', label: 'Benchmarking', icon: BarChart3 },
     { id: 'risks', label: 'Risk Detection', icon: Shield },
-    { id: 'notifications', label: 'Smart Alerts', icon: Bell }
+    { id: 'notifications', label: 'Smart Alerts', icon: Bell },
+    { id: 'metastructure', label: 'Metastructure', icon: Network }
   ];
 
   const aiFeatures = [
@@ -99,6 +101,14 @@ function AIDashboard() {
       icon: Bell,
       color: 'from-orange-500 to-yellow-500',
       stats: { label: 'Active Alerts', value: notifications.length }
+    },
+    {
+      id: 'metastructure',
+      title: 'Metastructure Interconnections',
+      description: 'Visualize the patented mathematical framework showing how all 9 lenses interconnect and influence each other.',
+      icon: Network,
+      color: 'from-primary-600 to-secondary-600',
+      stats: { label: 'Connections', value: '81' }
     }
   ];
 
@@ -238,6 +248,7 @@ function AIDashboard() {
         {activeTab === 'benchmark' && <CompetitiveBenchmarking lensScores={lensScores} />}
         {activeTab === 'risks' && <RiskDetection lensScores={lensScores} assessmentData={assessmentData} />}
         {activeTab === 'notifications' && <SmartNotifications lensScores={lensScores} assessmentData={assessmentData} />}
+        {activeTab === 'metastructure' && <MetastructureInterconnections lensScores={lensScores} />}
       </div>
     </div>
   );
