@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Plus, X, Send, Info } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { ArrowRight, Plus, X, Send, Info, Upload, Award } from 'lucide-react';
 import PageInstructions from './PageInstructions';
 
 function LaunchAssessment() {
@@ -192,6 +192,46 @@ function LaunchAssessment() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Advanced Features */}
+        <div className="border-t-2 border-gray-100 pt-8">
+          <h3 className="text-2xl font-bold text-neutral-900 mb-4">Optional: Enhanced Data Collection</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link
+              to="/assessment/data-sources"
+              className="group p-6 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl border-2 border-primary-200 hover:border-primary-400 hover:shadow-lg transition-all"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Upload className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-neutral-900 mb-1">Add Data Sources</h4>
+                  <p className="text-sm text-neutral-600">
+                    Upload documents, connect databases, or integrate APIs for richer insights
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            <Link
+              to="/assessment/expertise"
+              className="group p-6 bg-gradient-to-br from-orange-50 to-primary-50 rounded-xl border-2 border-orange-200 hover:border-orange-400 hover:shadow-lg transition-all"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-primary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-neutral-900 mb-1">Identify Experts</h4>
+                  <p className="text-sm text-neutral-600">
+                    Tag participants as experts in specific lenses for weighted scoring
+                  </p>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 

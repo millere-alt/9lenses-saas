@@ -18,6 +18,8 @@ import LaunchAssessment from './components/LaunchAssessment';
 import CEODashboard from './components/CEODashboard';
 import LearnNineLenses from './components/LearnNineLenses';
 import AIOnboardingAssistant from './components/AIOnboardingAssistant';
+import DataSourceManager from './components/DataSourceManager';
+import ExpertIdentificationSystem from './components/ExpertIdentificationSystem';
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
             <Route path="/assessment/create" element={<NewMultiParticipantAssessment />} />
             <Route path="/assessment/take/:id" element={<SurveyTakingPage />} />
             <Route path="/assessment/take" element={<SurveyTakingPage />} />
+            <Route path="/assessment/data-sources" element={<DataSourceManager />} />
+            <Route path="/assessment/expertise" element={<ExpertIdentificationSystem />} />
 
             {/* Upload Portal */}
             <Route path="/upload" element={<CEOPortal />} />
