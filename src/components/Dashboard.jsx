@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import {
   BarChart3, TrendingUp, Users, FileText, Award, AlertCircle,
   Sparkles, Target, Zap, ArrowUp, ArrowDown, Download,
-  Share2, RefreshCw, ChevronRight, TrendingDown, Activity
+  Share2, RefreshCw, ChevronRight, TrendingDown, Activity, Info
 } from 'lucide-react';
+import PageInstructions from './PageInstructions';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -131,12 +132,21 @@ function Dashboard() {
                   Live Assessment Results
                 </span>
               </div>
-              <h1 className="text-5xl font-black bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent mb-2">
+              <h1 className="text-5xl font-black bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 bg-clip-text text-transparent mb-2">
                 Results & Analytics
               </h1>
-              <p className="text-xl text-gray-600 font-medium">
+              <p className="text-xl text-gray-600 font-medium mb-3">
                 {assessmentData.name} • {assessmentData.company}
               </p>
+              {/* Simple Guide */}
+              <div className="bg-secondary-50 border-l-4 border-secondary-500 rounded-lg p-3 max-w-2xl">
+                <div className="flex items-center gap-2">
+                  <Info className="w-4 h-4 text-secondary-600" />
+                  <p className="text-sm text-secondary-800">
+                    <span className="font-semibold">Your Overall Score: {assessmentData.overallScore}/9.0</span> - Scroll down to see scores for each lens and AI-powered insights
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="flex gap-3">
