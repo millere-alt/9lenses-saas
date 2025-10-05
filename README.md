@@ -30,7 +30,18 @@ The 9Lenses framework is a comprehensive business assessment methodology that ev
 
 ## ✨ Features
 
-### 🤖 Complete AI Suite for Leaders (NEW!)
+### 👤 User-Friendly Design (NEW!)
+
+Every page now includes intuitive help and guidance:
+
+- **🎯 Floating Help Button**: Click the help icon (bottom-right) on any page for step-by-step instructions
+- **📋 Quick Start Guides**: Inline guides show you exactly what to do on complex pages
+- **💡 Helpful Tips**: Best practices and pro tips on every feature
+- **📊 Score Interpretation**: Clear explanations of what scores mean (7.5+ excellent, 6.5-7.5 good, etc.)
+- **🔍 Interactive Walkthroughs**: Detailed modal guides for each major feature
+- **🤖 AI Onboarding Assistant**: Chat with AI to learn the platform (`/ai-assistant`)
+
+### 🤖 Complete AI Suite for Leaders
 
 1. **AI Strategy Advisor** (`/ai-dashboard`)
    - GPT-powered strategic recommendations for each lens
