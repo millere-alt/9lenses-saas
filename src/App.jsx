@@ -20,6 +20,7 @@ import LearnNineLenses from './components/LearnNineLenses';
 import AIOnboardingAssistant from './components/AIOnboardingAssistant';
 import DataSourceManager from './components/DataSourceManager';
 import ExpertIdentificationSystem from './components/ExpertIdentificationSystem';
+import Review360Demo from './components/Review360Demo';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/about" element={<About9Lenses />} />
             <Route path="/learn" element={<LearnNineLenses />} />
             <Route path="/ai-assistant" element={<AIOnboardingAssistant />} />
+            <Route path="/demo" element={<Review360Demo />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/resources" element={<BooksPage />} />
             <Route path="/dashboard" element={<Dashboard />} />

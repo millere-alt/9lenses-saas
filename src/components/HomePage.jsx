@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight, Target, TrendingUp, Zap, CheckCircle, BarChart3,
-  Users, FileInput, Sparkles, Grid3x3, Lightbulb, Award, Bot, MessageCircle
+  Users, FileInput, Sparkles, Grid3x3, Lightbulb, Award, Bot, MessageCircle, Eye, Play
 } from 'lucide-react';
 
 function HomePage() {
@@ -79,8 +79,39 @@ function HomePage() {
         </div>
       </div>
 
-      {/* AI Assistant CTA Banner */}
-      <div className="mb-12">
+      {/* CTA Banners */}
+      <div className="mb-12 space-y-6">
+        {/* 360 Demo Banner */}
+        <div className="relative overflow-hidden bg-gradient-to-r from-orange-600 via-primary-600 to-secondary-600 rounded-2xl p-8 shadow-xl">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+          </div>
+          <div className="relative flex items-center justify-between">
+            <div className="flex items-center gap-6">
+              <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0">
+                <Eye className="w-10 h-10 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-display font-bold text-white mb-2">
+                  See 360° Review in Action
+                </h3>
+                <p className="text-white/90 text-lg">
+                  Watch a complete workflow demo - from setup to results in 8 interactive steps
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => navigate('/demo')}
+              className="bg-white hover:bg-neutral-100 text-orange-700 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-2xl transition-all flex items-center gap-3 group"
+            >
+              <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              <span>Watch Demo</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+
+        {/* AI Assistant Banner */}
         <div className="relative overflow-hidden bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 rounded-2xl p-8 shadow-xl">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
