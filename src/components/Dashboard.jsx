@@ -347,6 +347,26 @@ function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Help Instructions */}
+      <PageInstructions
+        title="Understanding Your Dashboard"
+        steps={[
+          "Review your Overall Score (out of 9.0) at the top - this is the average across all 9 lenses",
+          "Check the 4 summary cards showing your overall score, number of participants, highest scoring lens, and priority area",
+          "Scroll down to see individual scores for each of the 9 lenses organized by category (Assets, Processes, Structures)",
+          "Look for green arrows (↑) showing improvements and red arrows (↓) showing areas that declined",
+          "Read the Key Insights section to see AI-generated strengths and opportunities",
+          "Click 'View AI Dashboard' to get detailed recommendations and predictive analytics"
+        ]}
+        tips={[
+          "Scores of 7.5+ are excellent (green), 6.5-7.5 are good (blue), 5.5-6.5 need attention (yellow), below 5.5 are critical (red)",
+          "Focus on your lowest-scoring lens first - improvements here will have the biggest impact",
+          "Compare participant completion rate - higher participation gives more accurate results",
+          "Click 'Export Report' to download a PDF summary for sharing with stakeholders",
+          "Use the AI Dashboard for personalized action plans and strategic recommendations"
+        ]}
+      />
     </div>
   );
 }

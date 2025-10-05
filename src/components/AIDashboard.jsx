@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Sparkles, TrendingUp, Target, Shield, Bell, MessageCircle, BarChart3, Network } from 'lucide-react';
+import { Brain, Sparkles, TrendingUp, Target, Shield, Bell, MessageCircle, BarChart3, Network, Info } from 'lucide-react';
 import AIStrategyAdvisor from './AIStrategyAdvisor';
 import PredictiveAnalytics from './PredictiveAnalytics';
 import ActionPlanGenerator from './ActionPlanGenerator';
@@ -8,6 +8,7 @@ import CompetitiveBenchmarking from './CompetitiveBenchmarking';
 import RiskDetection from './RiskDetection';
 import SmartNotifications from './SmartNotifications';
 import MetastructureInterconnections from './MetastructureInterconnections';
+import PageInstructions from './PageInstructions';
 
 function AIDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -138,9 +139,18 @@ function AIDashboard() {
                 AI-Powered Intelligence
                 <Sparkles className="w-8 h-8 animate-pulse" />
               </h1>
-              <p className="text-xl text-white/90 mt-1">
+              <p className="text-xl text-white/90 mt-1 mb-3">
                 Advanced analytics and strategic guidance for {assessmentData.company}
               </p>
+              {/* Quick Guide */}
+              <div className="bg-white/10 backdrop-blur-sm border-l-4 border-white rounded-lg p-3">
+                <div className="flex items-center gap-2">
+                  <Info className="w-4 h-4 text-white" />
+                  <p className="text-sm text-white/90">
+                    <span className="font-semibold">Choose a tab below</span> to access different AI features - each provides unique insights and recommendations
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -250,6 +260,31 @@ function AIDashboard() {
         {activeTab === 'notifications' && <SmartNotifications lensScores={lensScores} assessmentData={assessmentData} />}
         {activeTab === 'metastructure' && <MetastructureInterconnections lensScores={lensScores} />}
       </div>
+
+      {/* Help Instructions */}
+      <PageInstructions
+        title="AI Dashboard Guide"
+        steps={[
+          "Start with the 'AI Overview' tab to see all 8 AI features available to you",
+          "Click on any feature card or tab to explore that specific AI capability",
+          "Strategy Advisor provides GPT-powered recommendations for each lens",
+          "Predictive Analytics shows 6-12 month forecasts for your scores",
+          "Action Plans generates comprehensive 90-day roadmaps with specific initiatives",
+          "AI Assistant lets you ask questions in natural language about your assessment",
+          "Benchmarking compares your performance against industry peers",
+          "Risk Detection identifies potential issues early with AI pattern recognition",
+          "Smart Notifications shows priority alerts and opportunities",
+          "Metastructure shows how the 9 lenses interconnect (based on US Patent 9,489,419 B2)"
+        ]}
+        tips={[
+          "Each feature uses your actual assessment data to generate personalized insights",
+          "Start with Strategy Advisor for quick wins and immediate action items",
+          "Use Predictive Analytics to forecast where you'll be in 6-12 months",
+          "Action Plans are perfect for planning quarterly initiatives",
+          "The AI Assistant can answer questions like 'What's my weakest area?' or 'How do I improve Finance?'",
+          "Metastructure visualization shows how improving one lens affects others"
+        ]}
+      />
     </div>
   );
 }
