@@ -16,6 +16,8 @@ import SurveyTakingPage from './components/SurveyTakingPage';
 import CEOPortal from './components/CEOPortal';
 import LaunchAssessment from './components/LaunchAssessment';
 import CEODashboard from './components/CEODashboard';
+import LearnNineLenses from './components/LearnNineLenses';
+import AIOnboardingAssistant from './components/AIOnboardingAssistant';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             {/* Main Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<About9Lenses />} />
+            <Route path="/learn" element={<LearnNineLenses />} />
+            <Route path="/ai-assistant" element={<AIOnboardingAssistant />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/resources" element={<BooksPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
