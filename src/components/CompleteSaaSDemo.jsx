@@ -502,7 +502,7 @@ function CompleteSaaSDemo() {
                   const colorClasses = {
                     primary: 'bg-primary-100 text-primary-700 border-primary-300',
                     secondary: 'bg-secondary-100 text-secondary-700 border-secondary-300',
-                    orange: 'bg-blue-100 text-blue-700 border-blue-300',
+                    blue: 'bg-blue-100 text-blue-700 border-blue-300',
                     red: 'bg-red-100 text-red-700 border-red-300'
                   };
 
