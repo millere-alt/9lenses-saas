@@ -90,7 +90,7 @@ function HomePage() {
           <div className="relative">
             {/* Featured Badge */}
             <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
-              ⭐ FEATURED DEMO
+              ⭐ FEATURED DEMO ⭐
             </div>
 
             <div className="flex items-center justify-between">
