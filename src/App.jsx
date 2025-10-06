@@ -31,6 +31,7 @@ import FullSaaSDemo from './components/FullSaaSDemo';
 import DocumentHub from './components/DocumentHub';
 import DocumentDissector from './components/DocumentDissector';
 import SettingsPage from './components/SettingsPage';
+import About9LensesSimple from './components/About9LensesSimple';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               {/* Main Routes */}
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<About9Lenses />} />
+              <Route path="/what-is-9lenses" element={<About9LensesSimple />} />
               <Route path="/learn" element={<LearnNineLenses />} />
               <Route path="/ai-assistant" element={<AIOnboardingAssistant />} />
               <Route path="/demo" element={<Review360Demo />} />
