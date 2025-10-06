@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight, Target, TrendingUp, Zap, CheckCircle, BarChart3,
-  Users, FileInput, Sparkles, Grid3x3, Lightbulb, Award, Bot, MessageCircle, Eye, Play, BookOpen
+  Users, FileInput, Sparkles, Grid3x3, Lightbulb, Award, Bot, MessageCircle, Eye, Play, BookOpen, MonitorPlay
 } from 'lucide-react';
 
 function HomePage() {
@@ -81,6 +81,47 @@ function HomePage() {
 
       {/* CTA Banners */}
       <div className="mb-12 space-y-6">
+        {/* Complete SaaS Demo Banner - TOP PRIORITY */}
+        <div className="relative overflow-hidden bg-gradient-to-r from-primary-700 via-orange-700 to-secondary-700 rounded-2xl p-10 shadow-2xl border-4 border-orange-400">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          </div>
+          <div className="relative">
+            {/* Featured Badge */}
+            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
+              ⭐ FEATURED DEMO
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl">
+                  <MonitorPlay className="w-12 h-12 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-display font-bold text-white mb-2">
+                    Complete SaaS Workflow Demo
+                  </h3>
+                  <p className="text-white/90 text-xl mb-1">
+                    Watch the entire journey: Intake → Analysis → Insights → Business Impact
+                  </p>
+                  <p className="text-white/80 text-sm">
+                    9 interactive steps • Real company data • Measurable ROI outcomes
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => navigate('/complete-demo')}
+                className="bg-white hover:bg-orange-50 text-orange-700 font-bold py-5 px-10 rounded-xl shadow-2xl hover:shadow-3xl transition-all flex items-center gap-3 group hover:scale-105"
+              >
+                <Play className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <span className="text-lg">Watch Full Demo</span>
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Books & Resources Banner */}
         <div className="relative overflow-hidden bg-gradient-to-r from-secondary-700 via-primary-700 to-orange-700 rounded-2xl p-8 shadow-xl">
           <div className="absolute inset-0 opacity-10">
