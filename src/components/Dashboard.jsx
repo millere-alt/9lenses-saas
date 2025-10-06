@@ -60,7 +60,7 @@ function Dashboard() {
       title: 'Financial Optimization Required',
       description: 'Critical need to improve capital allocation, cash flow management, and financial planning processes.',
       score: 5.8,
-      gradient: 'from-orange-400 to-red-500',
+      gradient: 'from-green-400 to-red-500',
       icon: AlertCircle
     },
   ];
@@ -68,8 +68,8 @@ function Dashboard() {
   const getScoreColor = (score) => {
     if (score >= 7.5) return 'from-emerald-500 to-teal-600';
     if (score >= 6.5) return 'from-blue-500 to-indigo-600';
-    if (score >= 5.5) return 'from-yellow-400 to-orange-500';
-    return 'from-orange-500 to-red-600';
+    if (score >= 5.5) return 'from-yellow-400 to-green-500';
+    return 'from-green-500 to-red-600';
   };
 
   const stats = [
@@ -102,7 +102,7 @@ function Dashboard() {
       value: '5.8',
       subtitle: 'Financial',
       icon: AlertCircle,
-      gradient: 'from-orange-400 via-orange-500 to-red-500',
+      gradient: 'from-green-400 via-green-500 to-red-500',
       change: 'Needs attention'
     },
   ];
@@ -132,7 +132,7 @@ function Dashboard() {
                   Live Assessment Results
                 </span>
               </div>
-              <h1 className="text-5xl font-black bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 bg-clip-text text-transparent mb-2">
+              <h1 className="text-5xl font-black bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 bg-clip-text text-transparent mb-2">
                 Results & Analytics
               </h1>
               <p className="text-xl text-gray-600 font-medium mb-3">

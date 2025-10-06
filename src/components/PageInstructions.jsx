@@ -9,7 +9,7 @@ const PageInstructions = ({ title, steps, tips = [] }) => {
       {/* Help Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-primary-600 to-orange-600 text-white rounded-full shadow-2xl hover:shadow-3xl hover:scale-110 transition-all flex items-center justify-center group"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-primary-600 to-green-600 text-white rounded-full shadow-2xl hover:shadow-3xl hover:scale-110 transition-all flex items-center justify-center group"
         aria-label="Show page instructions"
       >
         <HelpCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
@@ -20,7 +20,7 @@ const PageInstructions = ({ title, steps, tips = [] }) => {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 text-white p-6 rounded-t-2xl">
+            <div className="sticky top-0 bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 text-white p-6 rounded-t-2xl">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
@@ -45,7 +45,7 @@ const PageInstructions = ({ title, steps, tips = [] }) => {
                 <div className="space-y-4">
                   {steps.map((step, index) => (
                     <div key={index} className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-orange-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
+                      <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-green-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
                         {index + 1}
                       </div>
                       <div className="flex-1 pt-1">
@@ -77,7 +77,7 @@ const PageInstructions = ({ title, steps, tips = [] }) => {
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full py-3 bg-gradient-to-r from-primary-600 to-orange-600 text-white rounded-xl font-bold hover:shadow-lg transition-all"
+                className="w-full py-3 bg-gradient-to-r from-primary-600 to-green-600 text-white rounded-xl font-bold hover:shadow-lg transition-all"
               >
                 Got it!
               </button>

@@ -383,7 +383,7 @@ const DocumentDissector = () => {
                     <div className="text-sm opacity-90">Overall Completeness</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white">
+                  <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
                     <div className="text-4xl font-bold mb-2">{dissectionResults.extractionQuality}%</div>
                     <div className="text-sm opacity-90">Extraction Quality</div>
                   </div>
@@ -414,7 +414,7 @@ const DocumentDissector = () => {
                       <span className="text-sm text-gray-600 block mb-2">Needs More Coverage:</span>
                       <div className="flex flex-wrap gap-2">
                         {dissectionResults.summary.weakestLenses.map(lens => (
-                          <span key={lens} className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">
+                          <span key={lens} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
                             {lens}
                           </span>
                         ))}
@@ -477,14 +477,14 @@ const DocumentDissector = () => {
                                         item.type === 'strength'
                                           ? 'bg-green-50 border-green-500'
                                           : item.type === 'gap'
-                                            ? 'bg-orange-50 border-orange-500'
+                                            ? 'bg-blue-50 border-blue-500'
                                             : 'bg-blue-50 border-blue-500'
                                       }`}
                                     >
                                       <div className="flex items-start justify-between">
                                         <div className="flex items-start space-x-2 flex-1">
                                           {item.type === 'strength' && <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />}
-                                          {item.type === 'gap' && <AlertCircle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />}
+                                          {item.type === 'gap' && <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />}
                                           {item.type === 'insight' && <Sparkles className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />}
                                           <span className="text-sm text-gray-800">{item.text}</span>
                                         </div>

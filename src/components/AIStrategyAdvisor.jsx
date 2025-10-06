@@ -178,8 +178,8 @@ function AIStrategyAdvisor({ assessmentData, lensScores }) {
 
   const getPriorityColor = (priority) => {
     if (priority === 'Critical') return 'from-red-500 to-red-600';
-    if (priority === 'High') return 'from-orange-500 to-orange-600';
-    if (priority === 'Medium-High') return 'from-orange-400 to-yellow-500';
+    if (priority === 'High') return 'from-green-500 to-green-600';
+    if (priority === 'Medium-High') return 'from-green-400 to-yellow-500';
     if (priority === 'Medium') return 'from-yellow-400 to-yellow-500';
     return 'from-primary-500 to-primary-600';
   };
@@ -187,7 +187,7 @@ function AIStrategyAdvisor({ assessmentData, lensScores }) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-br from-primary-600 via-orange-500 to-secondary-600 rounded-3xl p-8 text-white shadow-2xl">
+      <div className="bg-gradient-to-br from-primary-600 via-green-500 to-secondary-600 rounded-3xl p-8 text-white shadow-2xl">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
             <Brain className="w-8 h-8 text-white" />
@@ -212,8 +212,8 @@ function AIStrategyAdvisor({ assessmentData, lensScores }) {
               onClick={() => handleGenerateAdvice(lens.name)}
               className={`group relative p-6 rounded-2xl border-2 transition-all duration-300 text-left ${
                 selectedLens === lens.name
-                  ? 'border-orange-500 bg-orange-50 shadow-lg'
-                  : 'border-gray-200 bg-white hover:border-orange-300 hover:shadow-md'
+                  ? 'border-blue-500 bg-blue-50 shadow-lg'
+                  : 'border-gray-200 bg-white hover:border-blue-300 hover:shadow-md'
               }`}
             >
               <div className="flex items-start justify-between mb-3">
@@ -225,7 +225,7 @@ function AIStrategyAdvisor({ assessmentData, lensScores }) {
                   {lens.score}
                 </div>
               </div>
-              <ArrowRight className={`w-5 h-5 ${selectedLens === lens.name ? 'text-orange-600' : 'text-gray-400 group-hover:text-orange-500'} transition-colors`} />
+              <ArrowRight className={`w-5 h-5 ${selectedLens === lens.name ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-500'} transition-colors`} />
             </button>
           ))}
         </div>
@@ -236,7 +236,7 @@ function AIStrategyAdvisor({ assessmentData, lensScores }) {
         <div className="space-y-6 animate-slideUp">
           {isGenerating ? (
             <div className="bg-white rounded-2xl p-12 text-center shadow-lg">
-              <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-secondary-600 rounded-full mx-auto mb-4 flex items-center justify-center animate-pulse">
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-secondary-600 rounded-full mx-auto mb-4 flex items-center justify-center animate-pulse">
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
               <p className="text-xl font-semibold text-gray-900">AI analyzing {selectedLens}...</p>
@@ -252,7 +252,7 @@ function AIStrategyAdvisor({ assessmentData, lensScores }) {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
                         <div className="flex items-center gap-3 mb-2">
-                          <AlertTriangle className="w-6 h-6 text-orange-600" />
+                          <AlertTriangle className="w-6 h-6 text-blue-600" />
                           <h4 className="font-bold text-gray-900">Priority Level</h4>
                         </div>
                         <div className={`inline-block px-4 py-2 rounded-lg bg-gradient-to-r ${getPriorityColor(advice.priority)} text-white font-bold`}>
@@ -278,9 +278,9 @@ function AIStrategyAdvisor({ assessmentData, lensScores }) {
                     </div>
 
                     {/* Strategic Recommendations */}
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 shadow-lg border-2 border-orange-200">
+                    <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 shadow-lg border-2 border-blue-200">
                       <div className="flex items-center gap-3 mb-6">
-                        <div className="w-12 h-12 bg-orange-600 rounded-xl flex items-center justify-center">
+                        <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
                           <Lightbulb className="w-6 h-6 text-white" />
                         </div>
                         <h3 className="text-2xl font-bold text-gray-900">Strategic Recommendations</h3>
@@ -288,7 +288,7 @@ function AIStrategyAdvisor({ assessmentData, lensScores }) {
                       <div className="space-y-3">
                         {advice.recommendations.map((rec, idx) => (
                           <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl">
-                            <div className="w-8 h-8 bg-orange-500 text-white rounded-lg flex items-center justify-center font-bold flex-shrink-0">
+                            <div className="w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold flex-shrink-0">
                               {idx + 1}
                             </div>
                             <p className="text-gray-800 leading-relaxed">{rec}</p>

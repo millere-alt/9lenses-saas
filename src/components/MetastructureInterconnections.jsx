@@ -58,7 +58,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
   const getConnectionColor = (strength) => {
     if (strength >= 0.8) return 'bg-primary-600';
     if (strength >= 0.6) return 'bg-primary-500';
-    if (strength >= 0.4) return 'bg-orange-500';
+    if (strength >= 0.4) return 'bg-blue-500';
     if (strength >= 0.2) return 'bg-secondary-400';
     return 'bg-neutral-300';
   };
@@ -67,7 +67,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
   const getImpactColor = (impact) => {
     const absImpact = Math.abs(impact);
     if (absImpact >= 0.5) return impact > 0 ? 'text-primary-600' : 'text-red-600';
-    if (absImpact >= 0.3) return impact > 0 ? 'text-primary-500' : 'text-orange-600';
+    if (absImpact >= 0.3) return impact > 0 ? 'text-primary-500' : 'text-blue-600';
     return 'text-neutral-500';
   };
 
@@ -82,7 +82,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-orange-600 rounded-2xl p-8 text-white">
+      <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-green-600 rounded-2xl p-8 text-white">
         <div className="flex items-center gap-3 mb-4">
           <Network className="w-8 h-8" />
           <h2 className="text-3xl font-display font-bold">Metastructure Interconnections</h2>
@@ -167,7 +167,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
             <span className="text-xs text-neutral-600">Strong (0.6-0.8)</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-orange-500"></div>
+            <div className="w-4 h-4 rounded bg-blue-500"></div>
             <span className="text-xs text-neutral-600">Moderate (0.4-0.6)</span>
           </div>
           <div className="flex items-center gap-2">
@@ -185,13 +185,13 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
       {showImpacts && selectedLens && (
         <div className="bg-white rounded-2xl shadow-lg p-8">
           <div className="flex items-center gap-3 mb-6">
-            <Zap className="w-6 h-6 text-orange-600" />
+            <Zap className="w-6 h-6 text-blue-600" />
             <h3 className="text-2xl font-display font-bold text-neutral-900">
               Cross-Lens Impact Simulation
             </h3>
           </div>
 
-          <div className="mb-6 p-6 bg-gradient-to-r from-orange-50 to-primary-50 rounded-xl border border-orange-200">
+          <div className="mb-6 p-6 bg-gradient-to-r from-green-50 to-primary-50 rounded-xl border border-blue-200">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-sm font-medium text-neutral-600 mb-1">Selected Lens</p>
@@ -212,7 +212,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
                     onChange={(e) => setSimulationDelta(parseFloat(e.target.value))}
                     className="w-40"
                   />
-                  <span className="text-2xl font-bold text-orange-600">+{simulationDelta.toFixed(1)}</span>
+                  <span className="text-2xl font-bold text-blue-600">+{simulationDelta.toFixed(1)}</span>
                 </div>
               </div>
             </div>
@@ -243,9 +243,9 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
                 </div>
                 <div className="ml-4">
                   {Math.abs(impact) >= 0.5 ? (
-                    <AlertTriangle className="w-5 h-5 text-orange-500" />
+                    <AlertTriangle className="w-5 h-5 text-blue-500" />
                   ) : Math.abs(impact) >= 0.3 ? (
-                    <TrendingUp className={`w-5 h-5 ${impact > 0 ? 'text-primary-500' : 'text-orange-500'}`} />
+                    <TrendingUp className={`w-5 h-5 ${impact > 0 ? 'text-primary-500' : 'text-blue-500'}`} />
                   ) : null}
                 </div>
               </div>
@@ -285,10 +285,10 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
             {optimalPath.map((step, index) => (
               <div key={index} className="relative">
                 {index < optimalPath.length - 1 && (
-                  <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gradient-to-b from-primary-400 to-orange-400"></div>
+                  <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gradient-to-b from-primary-400 to-green-400"></div>
                 )}
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary-600 to-orange-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary-600 to-green-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
                     {index + 1}
                   </div>
                   <div className="flex-1 p-6 bg-gradient-to-r from-neutral-50 to-white rounded-xl border border-neutral-200 hover:border-primary-300 transition-colors">
@@ -318,7 +318,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
             ))}
           </div>
 
-          <div className="mt-8 p-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 rounded-xl text-white">
+          <div className="mt-8 p-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 rounded-xl text-white">
             <h4 className="font-display font-bold text-xl mb-3">Strategic Implementation Roadmap</h4>
             <p className="text-white/90 text-sm mb-4">
               Following this sequence leverages the metastructure's interconnections to create

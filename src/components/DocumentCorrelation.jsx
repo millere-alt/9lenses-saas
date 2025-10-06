@@ -162,7 +162,7 @@ const DocumentCorrelation = ({ documents, assessmentData }) => {
   const getSeverityColor = (severity) => {
     switch (severity) {
       case 'high': return 'text-red-600 bg-red-50 border-red-200';
-      case 'medium': return 'text-orange-600 bg-orange-50 border-orange-200';
+      case 'medium': return 'text-blue-600 bg-blue-50 border-blue-200';
       case 'low': return 'text-green-600 bg-green-50 border-green-200';
       default: return 'text-blue-600 bg-blue-50 border-blue-200';
     }

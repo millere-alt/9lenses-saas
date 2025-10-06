@@ -218,7 +218,7 @@ const Review360Demo = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-secondary-600 to-orange-600 rounded-3xl p-8 text-white shadow-2xl">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-secondary-600 to-green-600 rounded-3xl p-8 text-white shadow-2xl">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-300 rounded-full blur-3xl"></div>
@@ -300,7 +300,7 @@ const Review360Demo = () => {
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
               currentStep === workflowSteps.length - 1 || isPlaying
                 ? 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-primary-600 to-orange-600 text-white hover:shadow-lg'
+                : 'bg-gradient-to-r from-primary-600 to-green-600 text-white hover:shadow-lg'
             }`}
           >
             Next →
@@ -390,7 +390,7 @@ const Review360Demo = () => {
                 ))}
               </div>
 
-              <div className="mt-6 p-6 bg-gradient-to-r from-primary-50 to-orange-50 rounded-xl border-l-4 border-primary-600">
+              <div className="mt-6 p-6 bg-gradient-to-r from-primary-50 to-green-50 rounded-xl border-l-4 border-primary-600">
                 <h4 className="font-bold text-neutral-900 mb-3 flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-primary-600" />
                   AI Processing
@@ -413,7 +413,7 @@ const Review360Demo = () => {
               <h3 className="text-xl font-bold text-neutral-900 mb-4">Expert Distribution by Lens</h3>
               <div className="grid md:grid-cols-3 gap-4">
                 {step.expertBreakdown.map((lens, idx) => (
-                  <div key={idx} className="p-4 bg-orange-50 rounded-xl border-2 border-orange-200">
+                  <div key={idx} className="p-4 bg-blue-50 rounded-xl border-2 border-blue-200">
                     <h4 className="font-bold text-neutral-900 mb-3">{lens.lens}</h4>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
@@ -424,10 +424,10 @@ const Review360Demo = () => {
                         <span className="text-neutral-600">⭐ Proficient:</span>
                         <span className="font-bold text-neutral-900">{lens.proficient}</span>
                       </div>
-                      <div className="pt-2 mt-2 border-t border-orange-300">
+                      <div className="pt-2 mt-2 border-t border-blue-300">
                         <div className="flex items-center justify-between text-sm">
                           <span className="text-neutral-600">Avg Weight:</span>
-                          <span className="font-bold text-orange-700">{lens.weight}</span>
+                          <span className="font-bold text-blue-700">{lens.weight}</span>
                         </div>
                       </div>
                     </div>
@@ -453,9 +453,9 @@ const Review360Demo = () => {
                   <p className="text-sm font-semibold text-neutral-600 mb-2">Completion Rate</p>
                   <p className="text-4xl font-bold text-secondary-700">{step.completionStats.rate}</p>
                 </div>
-                <div className="p-6 bg-orange-50 rounded-xl border-2 border-orange-200 text-center">
+                <div className="p-6 bg-blue-50 rounded-xl border-2 border-blue-200 text-center">
                   <p className="text-sm font-semibold text-neutral-600 mb-2">Avg Time</p>
-                  <p className="text-4xl font-bold text-orange-700">{step.completionStats.avgTime}</p>
+                  <p className="text-4xl font-bold text-blue-700">{step.completionStats.avgTime}</p>
                 </div>
               </div>
 
@@ -497,7 +497,7 @@ const Review360Demo = () => {
                 ))}
               </div>
 
-              <div className="p-6 bg-gradient-to-r from-primary-50 to-orange-50 rounded-xl border-l-4 border-primary-600">
+              <div className="p-6 bg-gradient-to-r from-primary-50 to-green-50 rounded-xl border-l-4 border-primary-600">
                 <h4 className="font-bold text-neutral-900 mb-4 flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-primary-600" />
                   AI Processing Steps
@@ -521,7 +521,7 @@ const Review360Demo = () => {
             <div className="space-y-6">
               <div className="text-center mb-6">
                 <p className="text-sm font-semibold text-neutral-600 mb-2">Overall Score</p>
-                <p className="text-6xl font-bold bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
+                <p className="text-6xl font-bold bg-gradient-to-r from-primary-600 to-green-600 bg-clip-text text-transparent">
                   {step.overallScore.toFixed(1)}
                 </p>
                 <p className="text-neutral-600">out of 9.0</p>
@@ -536,7 +536,7 @@ const Review360Demo = () => {
                     <PolarAngleAxis dataKey="lens" tick={{ fill: '#6b7280', fontSize: 12 }} />
                     <PolarRadiusAxis angle={90} domain={[0, 9]} tick={{ fill: '#6b7280' }} />
                     <Radar name="Current Score" dataKey="score" stroke="#10b981" fill="#10b981" fillOpacity={0.6} />
-                    <Radar name="Target" dataKey="target" stroke="#f97316" fill="#f97316" fillOpacity={0.2} />
+                    <Radar name="Target" dataKey="target" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.2} />
                     <Legend />
                   </RadarChart>
                 </ResponsiveContainer>
@@ -575,13 +575,13 @@ const Review360Demo = () => {
                 {step.insights.map((insight, idx) => (
                   <div key={idx} className={`p-6 rounded-xl border-2 ${
                     insight.type === 'Strength' ? 'bg-green-50 border-green-200' :
-                    insight.type === 'Opportunity' ? 'bg-orange-50 border-orange-200' :
+                    insight.type === 'Opportunity' ? 'bg-blue-50 border-blue-200' :
                     'bg-blue-50 border-blue-200'
                   }`}>
                     <div className="flex items-start gap-4">
                       <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
                         insight.type === 'Strength' ? 'bg-green-600' :
-                        insight.type === 'Opportunity' ? 'bg-orange-600' :
+                        insight.type === 'Opportunity' ? 'bg-blue-600' :
                         'bg-blue-600'
                       }`}>
                         {insight.type === 'Strength' ? <Star className="w-6 h-6 text-white" /> :
@@ -592,7 +592,7 @@ const Review360Demo = () => {
                         <div className="flex items-center gap-2 mb-2">
                           <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                             insight.type === 'Strength' ? 'bg-green-600 text-white' :
-                            insight.type === 'Opportunity' ? 'bg-orange-600 text-white' :
+                            insight.type === 'Opportunity' ? 'bg-blue-600 text-white' :
                             'bg-blue-600 text-white'
                           }`}>
                             {insight.type}
@@ -619,7 +619,7 @@ const Review360Demo = () => {
                   <div key={idx} className="flex items-center gap-4 p-4 bg-neutral-50 rounded-lg border-2 border-neutral-200">
                     <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                       rec.priority === 'High' ? 'bg-red-600 text-white' :
-                      rec.priority === 'Medium' ? 'bg-orange-600 text-white' :
+                      rec.priority === 'Medium' ? 'bg-blue-600 text-white' :
                       'bg-blue-600 text-white'
                     }`}>
                       {rec.priority}
@@ -660,7 +660,7 @@ const Review360Demo = () => {
                 ))}
               </div>
 
-              <div className="mt-8 p-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 rounded-xl text-white">
+              <div className="mt-8 p-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 rounded-xl text-white">
                 <h4 className="text-2xl font-bold mb-3">✅ 360° Review Complete!</h4>
                 <p className="text-lg text-white/90 mb-4">
                   TechVentures Inc. now has a comprehensive view of their organization across all 9 dimensions, with:

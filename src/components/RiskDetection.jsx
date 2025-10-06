@@ -164,7 +164,7 @@ function RiskDetection({ lensScores, assessmentData }) {
   const getSeverityColor = (severity) => {
     switch (severity) {
       case 'critical': return { bg: 'from-red-500 to-red-600', text: 'text-red-700', badge: 'bg-red-100 text-red-700 border-red-300' };
-      case 'high': return { bg: 'from-orange-500 to-orange-600', text: 'text-orange-700', badge: 'bg-orange-100 text-orange-700 border-orange-300' };
+      case 'high': return { bg: 'from-green-500 to-green-600', text: 'text-blue-700', badge: 'bg-blue-100 text-blue-700 border-blue-300' };
       case 'medium': return { bg: 'from-yellow-500 to-yellow-600', text: 'text-yellow-700', badge: 'bg-yellow-100 text-yellow-700 border-yellow-300' };
       default: return { bg: 'from-blue-500 to-blue-600', text: 'text-blue-700', badge: 'bg-blue-100 text-blue-700 border-blue-300' };
     }
@@ -181,7 +181,7 @@ function RiskDetection({ lensScores, assessmentData }) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-br from-red-600 via-orange-600 to-yellow-600 rounded-3xl p-8 text-white shadow-2xl">
+      <div className="bg-gradient-to-br from-red-600 via-green-600 to-yellow-600 rounded-3xl p-8 text-white shadow-2xl">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
             <Shield className="w-8 h-8 text-white" />
@@ -216,12 +216,12 @@ function RiskDetection({ lensScores, assessmentData }) {
           <p className="text-sm text-gray-600 mt-1">Immediate action</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border-2 border-orange-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border-2 border-blue-200">
           <div className="flex items-center gap-2 mb-2">
-            <AlertTriangle className="w-6 h-6 text-orange-600" />
+            <AlertTriangle className="w-6 h-6 text-blue-600" />
             <h4 className="font-bold text-gray-900">High Priority</h4>
           </div>
-          <p className="text-3xl font-bold text-orange-700">{riskSummary.high}</p>
+          <p className="text-3xl font-bold text-blue-700">{riskSummary.high}</p>
           <p className="text-sm text-gray-600 mt-1">60-90 day focus</p>
         </div>
 
@@ -244,7 +244,7 @@ function RiskDetection({ lensScores, assessmentData }) {
               onClick={() => setSelectedSeverity(level.value)}
               className={`px-6 py-3 rounded-xl font-semibold transition-all ${
                 selectedSeverity === level.value
-                  ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -321,15 +321,15 @@ function RiskDetection({ lensScores, assessmentData }) {
                       </div>
                     )}
 
-                    <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-lg">
+                    <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
                       <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
-                        <Target className="w-4 h-4 text-orange-600" />
+                        <Target className="w-4 h-4 text-blue-600" />
                         Recommended Actions:
                       </h4>
                       <ul className="space-y-1">
                         {risk.recommendations.map((rec, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                            <span className="text-orange-600 font-bold">•</span>
+                            <span className="text-blue-600 font-bold">•</span>
                             <span>{rec}</span>
                           </li>
                         ))}

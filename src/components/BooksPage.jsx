@@ -90,7 +90,7 @@ function BooksPage() {
   const getColorClasses = (color) => {
     const colors = {
       primary: 'bg-primary-600',
-      orange: 'bg-orange-600',
+      orange: 'bg-blue-600',
       secondary: 'bg-secondary-600'
     };
     return colors[color] || 'bg-primary-600';
@@ -119,7 +119,7 @@ function BooksPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-secondary-700 via-primary-700 to-orange-700 rounded-3xl p-12 text-white shadow-2xl">
+      <div className="relative overflow-hidden bg-gradient-to-r from-secondary-700 via-primary-700 to-green-700 rounded-3xl p-12 text-white shadow-2xl">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
         </div>
@@ -161,11 +161,11 @@ function BooksPage() {
               <div
                 key={book.id}
                 className={`relative bg-white rounded-2xl shadow-xl border-2 transition-all hover:shadow-2xl ${
-                  book.isBestValue ? 'border-orange-400' : 'border-gray-200'
+                  book.isBestValue ? 'border-blue-400' : 'border-gray-200'
                 }`}
               >
                 {book.isBestValue && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-orange-600 to-orange-500 text-white px-6 py-1 rounded-full text-sm font-bold shadow-lg">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-600 to-green-500 text-white px-6 py-1 rounded-full text-sm font-bold shadow-lg">
                     BEST VALUE
                   </div>
                 )}
@@ -227,7 +227,7 @@ function BooksPage() {
                         className={`w-full font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-3 group ${
                           isProcessingThis
                             ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white shadow-lg hover:shadow-xl'
+                            : 'bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white shadow-lg hover:shadow-xl'
                         }`}
                       >
                         {isProcessingThis ? (
@@ -315,8 +315,8 @@ function BooksPage() {
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-              <Check className="w-5 h-5 text-orange-600" />
+            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Check className="w-5 h-5 text-blue-600" />
             </div>
             <div>
               <h4 className="font-bold text-gray-900 mb-1">Lifetime Access</h4>

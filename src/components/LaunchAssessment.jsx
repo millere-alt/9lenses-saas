@@ -71,7 +71,7 @@ function LaunchAssessment() {
       </div>
 
       <div>
-        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 bg-clip-text text-transparent mb-3">
+        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 bg-clip-text text-transparent mb-3">
           Launch New Assessment
         </h1>
         <p className="text-lg text-gray-600 mb-4">Create and send a 9Lenses assessment to your team</p>
@@ -218,10 +218,10 @@ function LaunchAssessment() {
 
             <Link
               to="/assessment/expertise"
-              className="group p-6 bg-gradient-to-br from-orange-50 to-primary-50 rounded-xl border-2 border-orange-200 hover:border-orange-400 hover:shadow-lg transition-all"
+              className="group p-6 bg-gradient-to-br from-green-50 to-primary-50 rounded-xl border-2 border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all"
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-primary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-primary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                   <Award className="w-6 h-6 text-white" />
                 </div>
                 <div>

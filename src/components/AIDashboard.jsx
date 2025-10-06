@@ -26,9 +26,9 @@ function AIDashboard() {
     { name: 'Customers', score: 7.2, category: 'Assets', gradient: 'from-primary-400 to-primary-500', change: 5 },
     { name: 'Financials', score: 5.8, category: 'Assets', gradient: 'from-primary-500 to-primary-600', change: -2 },
     { name: 'Human Resources', score: 6.5, category: 'Assets', gradient: 'from-primary-400 to-primary-500', change: 3 },
-    { name: 'Strategy', score: 7.0, category: 'Processes', gradient: 'from-orange-400 to-orange-500', change: 4 },
-    { name: 'Sales & Marketing', score: 6.2, category: 'Processes', gradient: 'from-orange-500 to-orange-600', change: 0 },
-    { name: 'Operations', score: 6.5, category: 'Processes', gradient: 'from-orange-400 to-orange-500', change: 1 },
+    { name: 'Strategy', score: 7.0, category: 'Processes', gradient: 'from-green-400 to-green-500', change: 4 },
+    { name: 'Sales & Marketing', score: 6.2, category: 'Processes', gradient: 'from-green-500 to-green-600', change: 0 },
+    { name: 'Operations', score: 6.5, category: 'Processes', gradient: 'from-green-400 to-green-500', change: 1 },
     { name: 'Sustainability', score: 7.5, category: 'Structures', gradient: 'from-secondary-500 to-secondary-600', change: 6 },
     { name: 'Systems & Processes', score: 7.8, category: 'Structures', gradient: 'from-secondary-400 to-secondary-500', change: 7 },
     { name: 'Organizational', score: 6.9, category: 'Structures', gradient: 'from-secondary-600 to-secondary-700', change: 2 },
@@ -68,7 +68,7 @@ function AIDashboard() {
       title: 'Action Plan Generator',
       description: 'Automatically generate comprehensive 90-day roadmaps with specific initiatives, budgets, timelines, and success criteria.',
       icon: Target,
-      color: 'from-orange-500 to-orange-600',
+      color: 'from-green-500 to-green-600',
       stats: { label: 'Action Items', value: '9' }
     },
     {
@@ -92,7 +92,7 @@ function AIDashboard() {
       title: 'Risk Detection',
       description: 'AI pattern recognition identifies potential risks early, categorizes by severity, and provides mitigation strategies.',
       icon: Shield,
-      color: 'from-red-500 to-orange-600',
+      color: 'from-red-500 to-green-600',
       stats: { label: 'Risks Monitored', value: '15+' }
     },
     {
@@ -100,7 +100,7 @@ function AIDashboard() {
       title: 'Smart Notifications',
       description: 'Intelligent alerts notify you of critical issues, opportunities, milestones, and trends that require attention.',
       icon: Bell,
-      color: 'from-orange-500 to-yellow-500',
+      color: 'from-green-500 to-yellow-500',
       stats: { label: 'Active Alerts', value: notifications.length }
     },
     {
@@ -123,7 +123,7 @@ function AIDashboard() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-orange-500 to-secondary-600 rounded-3xl p-8 text-white shadow-2xl">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-green-500 to-secondary-600 rounded-3xl p-8 text-white shadow-2xl">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-300 rounded-full blur-3xl"></div>
@@ -186,7 +186,7 @@ function AIDashboard() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -222,14 +222,14 @@ function AIDashboard() {
                   <button
                     key={feature.id}
                     onClick={() => setActiveTab(feature.id)}
-                    className="group bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 hover:border-orange-300 hover:shadow-2xl transition-all duration-300 text-left"
+                    className="group bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 hover:border-blue-300 hover:shadow-2xl transition-all duration-300 text-left"
                   >
                     <div className="flex items-start gap-6">
                       <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg`}>
                         <Icon className="w-8 h-8 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                           {feature.title}
                         </h3>
                         <p className="text-gray-600 leading-relaxed mb-4">{feature.description}</p>
@@ -238,7 +238,7 @@ function AIDashboard() {
                             <p className="text-xs font-semibold text-gray-600">{feature.stats.label}</p>
                             <p className="text-lg font-bold text-gray-900">{feature.stats.value}</p>
                           </div>
-                          <span className="text-orange-600 font-semibold group-hover:translate-x-2 transition-transform">
+                          <span className="text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
                             Explore →
                           </span>
                         </div>

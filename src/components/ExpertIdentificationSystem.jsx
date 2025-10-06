@@ -173,7 +173,7 @@ const ExpertIdentificationSystem = ({ participant, onSave }) => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-5xl font-display font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 bg-clip-text text-transparent mb-3">
+        <h1 className="text-5xl font-display font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 bg-clip-text text-transparent mb-3">
           Identify Your Expertise
         </h1>
         <p className="text-lg text-neutral-600 mb-4">
@@ -181,12 +181,12 @@ const ExpertIdentificationSystem = ({ participant, onSave }) => {
         </p>
 
         {/* Quick Guide */}
-        <div className="bg-gradient-to-r from-orange-50 to-primary-50 border-l-4 border-orange-500 rounded-lg p-4 max-w-4xl">
+        <div className="bg-gradient-to-r from-green-50 to-primary-50 border-l-4 border-blue-500 rounded-lg p-4 max-w-4xl">
           <div className="flex items-start gap-3">
-            <Award className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+            <Award className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-bold text-orange-900 mb-1">Why This Matters:</h3>
-              <p className="text-sm text-orange-800">
+              <h3 className="font-bold text-blue-900 mb-1">Why This Matters:</h3>
+              <p className="text-sm text-blue-800">
                 <span className="font-semibold">Expert opinions are weighted more heavily!</span> If you're an expert in Finance, your Finance scores will count 1.5x more than non-experts. This ensures accurate, expertise-driven assessments.
               </p>
             </div>
@@ -198,7 +198,7 @@ const ExpertIdentificationSystem = ({ participant, onSave }) => {
       <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-primary-200">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
               <Award className="w-8 h-8 text-white" />
             </div>
             <div>
@@ -315,7 +315,7 @@ const ExpertIdentificationSystem = ({ participant, onSave }) => {
           disabled={getSelectedCount() === 0}
           className={`px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all flex items-center gap-3 ${
             getSelectedCount() > 0
-              ? 'bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 text-white hover:shadow-2xl hover:scale-105'
+              ? 'bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 text-white hover:shadow-2xl hover:scale-105'
               : 'bg-neutral-300 text-neutral-500 cursor-not-allowed'
           }`}
         >

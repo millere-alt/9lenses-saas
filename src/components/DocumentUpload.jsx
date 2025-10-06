@@ -73,7 +73,7 @@ const DocumentUpload = ({ onUpload, selectedLens = null, selectedSubLens = null 
     if (['pdf'].includes(ext)) return <FileText className="w-5 h-5 text-red-500" />;
     if (['doc', 'docx'].includes(ext)) return <FileText className="w-5 h-5 text-blue-500" />;
     if (['xls', 'xlsx', 'csv'].includes(ext)) return <DollarSign className="w-5 h-5 text-green-500" />;
-    if (['ppt', 'pptx'].includes(ext)) return <TrendingUp className="w-5 h-5 text-orange-500" />;
+    if (['ppt', 'pptx'].includes(ext)) return <TrendingUp className="w-5 h-5 text-blue-500" />;
     return <File className="w-5 h-5 text-gray-500" />;
   };
 

@@ -22,7 +22,7 @@ const DataSourceManager = () => {
       name: 'Survey Responses',
       icon: Users,
       description: 'Collect input from team members',
-      color: 'from-orange-500 to-orange-600',
+      color: 'from-green-500 to-green-600',
       examples: ['Employee assessments', 'Customer feedback', 'Board input', 'Stakeholder surveys']
     },
     {
@@ -107,7 +107,7 @@ const DataSourceManager = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-5xl font-display font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-orange-600 bg-clip-text text-transparent mb-3">
+        <h1 className="text-5xl font-display font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 bg-clip-text text-transparent mb-3">
           Data Source Manager
         </h1>
         <p className="text-lg text-neutral-600 mb-4">

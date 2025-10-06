@@ -91,10 +91,10 @@ const LearnNineLenses = () => {
       name: 'Processes',
       description: 'Social Design Phase',
       purpose: 'Build & Align',
-      color: 'from-orange-500 to-orange-600',
-      borderColor: 'border-orange-500',
-      bgColor: 'bg-orange-50',
-      textColor: 'text-orange-900',
+      color: 'from-green-500 to-green-600',
+      borderColor: 'border-blue-500',
+      bgColor: 'bg-blue-50',
+      textColor: 'text-blue-900',
       icon: Cog,
       lenses: [
         {
@@ -280,7 +280,7 @@ const LearnNineLenses = () => {
             </div>
             <Link
               to="/assessment"
-              className="px-6 py-2 bg-gradient-to-r from-primary-600 to-orange-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all flex items-center gap-2"
+              className="px-6 py-2 bg-gradient-to-r from-primary-600 to-green-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all flex items-center gap-2"
             >
               Start Assessment
               <ArrowRight className="w-4 h-4" />
@@ -291,7 +291,7 @@ const LearnNineLenses = () => {
 
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-orange-600 rounded-3xl p-12 text-white shadow-2xl mb-12">
+        <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-green-600 rounded-3xl p-12 text-white shadow-2xl mb-12">
           <div className="max-w-4xl">
             <h2 className="text-5xl font-display font-bold mb-6">
               The 9Lenses Framework
@@ -486,7 +486,7 @@ const LearnNineLenses = () => {
           <div className="mt-12 text-center">
             <Link
               to="/assessment"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-600 to-orange-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-600 to-green-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all"
             >
               Start Your 9Lenses Assessment
               <ArrowRight className="w-5 h-5" />

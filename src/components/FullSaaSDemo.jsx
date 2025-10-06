@@ -179,7 +179,7 @@ const FullSaaSDemo = () => {
                       <div className="font-semibold">Board Members</div>
                       <div className="text-sm text-gray-600">Governance & oversight</div>
                     </div>
-                    <div className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
+                    <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
                       3 invited
                     </div>
                   </div>
@@ -222,7 +222,7 @@ const FullSaaSDemo = () => {
       title: "Step 3: Document Upload & Data Integration",
       subtitle: "Enrich Assessment with Real Business Documents",
       icon: Upload,
-      color: "from-orange-600 to-amber-600",
+      color: "from-green-600 to-amber-600",
       content: (
         <div className="py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -261,18 +261,18 @@ const FullSaaSDemo = () => {
                   <CheckCircle className="w-5 h-5 text-purple-600" />
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 bg-orange-50 border border-orange-200 rounded-lg">
-                  <FileText className="w-8 h-8 text-orange-600" />
+                <div className="flex items-center space-x-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <FileText className="w-8 h-8 text-blue-600" />
                   <div className="flex-1">
                     <div className="font-semibold text-sm">Operations Manual</div>
                     <div className="text-xs text-gray-600">Processes • Systems • Procedures</div>
                   </div>
-                  <CheckCircle className="w-5 h-5 text-orange-600" />
+                  <CheckCircle className="w-5 h-5 text-blue-600" />
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-8 rounded-xl border-2 border-orange-200">
+            <div className="bg-gradient-to-br from-green-50 to-amber-50 p-8 rounded-xl border-2 border-blue-200">
               <h4 className="font-bold text-lg mb-4">Automatic Categorization</h4>
 
               <div className="bg-white rounded-lg p-6 mb-4">
@@ -311,7 +311,7 @@ const FullSaaSDemo = () => {
                     <span className="font-bold">4 docs</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-orange-500 h-2 rounded-full" style={{width: '17%'}}></div>
+                    <div className="bg-blue-500 h-2 rounded-full" style={{width: '17%'}}></div>
                   </div>
                 </div>
               </div>
@@ -351,7 +351,7 @@ const FullSaaSDemo = () => {
                 <div className="text-sm opacity-90">Strong Areas (7+ score)</div>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-xl p-6 text-white">
+              <div className="bg-gradient-to-br from-green-500 to-red-600 rounded-xl p-6 text-white">
                 <div className="text-5xl font-bold mb-2">4</div>
                 <div className="text-sm opacity-90">Areas for Improvement</div>
               </div>
@@ -400,13 +400,13 @@ const FullSaaSDemo = () => {
                   <p className="text-xs text-gray-600 mt-2">IP protection and contract management gaps</p>
                 </div>
 
-                <div className="bg-orange-50 border-2 border-orange-200 rounded-lg p-4">
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-semibold">Financial</span>
-                    <span className="text-2xl font-bold text-orange-600">5.7</span>
+                    <span className="text-2xl font-bold text-blue-600">5.7</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-orange-500 h-2 rounded-full" style={{width: '57%'}}></div>
+                    <div className="bg-blue-500 h-2 rounded-full" style={{width: '57%'}}></div>
                   </div>
                   <p className="text-xs text-gray-600 mt-2">Forecasting and capital structure concerns</p>
                 </div>
@@ -491,10 +491,10 @@ const FullSaaSDemo = () => {
                   <div>
                     <div className="flex justify-between text-sm mb-2">
                       <span>If current trajectory continues...</span>
-                      <span className="font-bold text-orange-600">5.9</span>
+                      <span className="font-bold text-blue-600">5.9</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-3">
-                      <div className="bg-orange-500 h-3 rounded-full" style={{width: '59%'}}></div>
+                      <div className="bg-blue-500 h-3 rounded-full" style={{width: '59%'}}></div>
                     </div>
                   </div>
 
@@ -550,7 +550,7 @@ const FullSaaSDemo = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-200 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-red-50 to-green-50 border-2 border-red-200 rounded-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-bold text-lg">Days 1-30</h4>
                 <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold">HIGH PRIORITY</span>
@@ -566,7 +566,7 @@ const FullSaaSDemo = () => {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg p-3 border-l-4 border-orange-500">
+                <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
                   <div className="font-semibold text-sm mb-1">Financial Dashboard</div>
                   <div className="text-xs text-gray-600 mb-2">Target: Financial Lens → 6.2+</div>
                   <div className="text-xs">
@@ -711,18 +711,18 @@ const FullSaaSDemo = () => {
                   </ul>
                 </div>
 
-                <div className="bg-orange-50 border-2 border-orange-200 rounded-lg p-4">
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-semibold">Improvement Opportunities:</span>
                   </div>
                   <ul className="space-y-1 text-sm">
                     <li className="flex justify-between">
                       <span>Entity & IP Protection</span>
-                      <span className="font-bold text-orange-600">Bottom 40%</span>
+                      <span className="font-bold text-blue-600">Bottom 40%</span>
                     </li>
                     <li className="flex justify-between">
                       <span>Financial Forecasting</span>
-                      <span className="font-bold text-orange-600">Bottom 35%</span>
+                      <span className="font-bold text-blue-600">Bottom 35%</span>
                     </li>
                   </ul>
                 </div>
@@ -773,7 +773,7 @@ const FullSaaSDemo = () => {
                         <span className="font-bold">4.2 - 5.7</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-gradient-to-r from-orange-400 to-red-600 h-2 rounded-full" style={{width: '50%'}}></div>
+                        <div className="bg-gradient-to-r from-green-400 to-red-600 h-2 rounded-full" style={{width: '50%'}}></div>
                       </div>
                     </div>
                   </div>
@@ -885,7 +885,7 @@ const FullSaaSDemo = () => {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
+                <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="font-semibold text-sm mb-1">⚠️ Risk Alert</div>
@@ -932,7 +932,7 @@ const FullSaaSDemo = () => {
       title: "Ready to Transform Your Organization?",
       subtitle: "Start Your 9Lenses Journey Today",
       icon: Zap,
-      color: "from-orange-600 to-red-600",
+      color: "from-green-600 to-red-600",
       content: (
         <div className="text-center py-12">
           <div className="max-w-4xl mx-auto">
@@ -963,20 +963,20 @@ const FullSaaSDemo = () => {
                 <div className="text-sm text-gray-600">90-day roadmaps</div>
               </div>
 
-              <div className="bg-orange-50 rounded-xl p-6">
-                <TrendingUp className="w-12 h-12 text-orange-600 mx-auto mb-3" />
+              <div className="bg-blue-50 rounded-xl p-6">
+                <TrendingUp className="w-12 h-12 text-blue-600 mx-auto mb-3" />
                 <div className="font-bold text-lg mb-1">ROI Tracking</div>
                 <div className="text-sm text-gray-600">Measurable results</div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-12 text-white mb-8">
+            <div className="bg-gradient-to-r from-green-600 to-red-600 rounded-2xl p-12 text-white mb-8">
               <h3 className="text-3xl font-bold mb-4">Special Launch Offer</h3>
               <p className="text-xl mb-6 opacity-90">
                 First 100 organizations get lifetime access to all premium features
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button className="bg-white text-orange-600 font-bold py-4 px-10 rounded-xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 text-lg">
+                <button className="bg-white text-blue-600 font-bold py-4 px-10 rounded-xl shadow-2xl hover:shadow-3xl transition-all hover:scale-105 text-lg">
                   Start Free Assessment
                 </button>
                 <button className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-semibold py-4 px-10 rounded-xl border-2 border-white/50 transition-all text-lg">

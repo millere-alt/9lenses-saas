@@ -65,7 +65,7 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
 
       insights.push({
         icon: AlertTriangle,
-        color: 'text-orange-600',
+        color: 'text-blue-600',
         title: 'Cash Flow Concerns',
         description: 'Operating cash flow showing pressure due to rapid expansion - monitor closely'
       });
