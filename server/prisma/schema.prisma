@@ -1,0 +1,270 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  ORG_OWNER
+  MANAGER
+  PARTICIPANT
+}
+
+enum SubscriptionTier {
+  FREE
+  BASIC
+  PRO
+  ENTERPRISE
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  TRIALING
+}
+
+enum AssessmentStatus {
+  DRAFT
+  IN_PROGRESS
+  COMPLETED
+  ARCHIVED
+}
+
+model User {
+  id                String              @id @default(cuid())
+  email             String              @unique
+  password          String
+  firstName         String?
+  lastName          String?
+  role              UserRole            @default(PARTICIPANT)
+  organizationId    String?
+  organization      Organization?       @relation(fields: [organizationId], references: [id])
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  lastLoginAt       DateTime?
+  isEmailVerified   Boolean             @default(false)
+  emailVerifyToken  String?
+  resetPasswordToken String?
+  resetPasswordExpires DateTime?
+
+  // Relations
+  assessmentsCreated Assessment[]       @relation("CreatedBy")
+  assessmentResponses AssessmentResponse[]
+  documents         Document[]
+  notifications     Notification[]
+  activities        Activity[]
+  comments          Comment[]
+
+  @@index([email])
+  @@index([organizationId])
+}
+
+model Organization {
+  id                String              @id @default(cuid())
+  name              String
+  domain            String?             @unique
+  subscriptionTier  SubscriptionTier    @default(FREE)
+  subscriptionStatus SubscriptionStatus?
+  stripeCustomerId  String?             @unique
+  stripeSubscriptionId String?          @unique
+  trialEndsAt       DateTime?
+  subscriptionEndsAt DateTime?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  // Usage limits
+  maxUsers          Int                 @default(5)
+  maxAssessments    Int                 @default(3)
+  maxAIRequests     Int                 @default(100)
+  usedAIRequests    Int                 @default(0)
+
+  // Relations
+  users             User[]
+  assessments       Assessment[]
+  documents         Document[]
+
+  @@index([stripeCustomerId])
+}
+
+model Assessment {
+  id                String              @id @default(cuid())
+  title             String
+  description       String?
+  status            AssessmentStatus    @default(DRAFT)
+  organizationId    String
+  organization      Organization        @relation(fields: [organizationId], references: [id])
+  createdById       String
+  createdBy         User                @relation("CreatedBy", fields: [createdById], references: [id])
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  startDate         DateTime?
+  endDate           DateTime?
+
+  // Assessment configuration
+  participantEmails String[]
+  lensesIncluded    String[]            // JSON array of lens IDs
+  questions         Json                // JSON structure of questions
+
+  // Relations
+  responses         AssessmentResponse[]
+  aiAnalyses        AIAnalysis[]
+  reports           Report[]
+
+  @@index([organizationId])
+  @@index([createdById])
+  @@index([status])
+}
+
+model AssessmentResponse {
+  id                String              @id @default(cuid())
+  assessmentId      String
+  assessment        Assessment          @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  participantId     String
+  participant       User                @relation(fields: [participantId], references: [id])
+  answers           Json                // JSON structure of answers
+  completedAt       DateTime?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  @@unique([assessmentId, participantId])
+  @@index([assessmentId])
+  @@index([participantId])
+}
+
+model Document {
+  id                String              @id @default(cuid())
+  title             String
+  fileName          String
+  fileSize          Int
+  mimeType          String
+  fileUrl           String
+  organizationId    String
+  organization      Organization        @relation(fields: [organizationId], references: [id])
+  uploadedById      String
+  uploadedBy        User                @relation(fields: [uploadedById], references: [id])
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  // Document metadata
+  category          String?
+  tags              String[]
+  description       String?
+
+  // AI Analysis
+  aiAnalyses        AIAnalysis[]
+  correlations      DocumentCorrelation[] @relation("SourceDocument")
+  correlatedWith    DocumentCorrelation[] @relation("TargetDocument")
+
+  @@index([organizationId])
+  @@index([uploadedById])
+}
+
+model DocumentCorrelation {
+  id                String              @id @default(cuid())
+  sourceDocumentId  String
+  sourceDocument    Document            @relation("SourceDocument", fields: [sourceDocumentId], references: [id], onDelete: Cascade)
+  targetDocumentId  String
+  targetDocument    Document            @relation("TargetDocument", fields: [targetDocumentId], references: [id], onDelete: Cascade)
+  correlationScore  Float
+  insights          String?
+  createdAt         DateTime            @default(now())
+
+  @@unique([sourceDocumentId, targetDocumentId])
+  @@index([sourceDocumentId])
+  @@index([targetDocumentId])
+}
+
+model AIAnalysis {
+  id                String              @id @default(cuid())
+  type              String              // strategy_advisor, predictive, risk_detection, etc.
+  assessmentId      String?
+  assessment        Assessment?         @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  documentId        String?
+  document          Document?           @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  prompt            String              @db.Text
+  response          String              @db.Text
+  metadata          Json?               // Additional analysis data
+  tokensUsed        Int?
+  createdAt         DateTime            @default(now())
+
+  @@index([assessmentId])
+  @@index([documentId])
+  @@index([type])
+}
+
+model Report {
+  id                String              @id @default(cuid())
+  assessmentId      String
+  assessment        Assessment          @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  type              String              // pdf, excel, summary
+  fileName          String
+  fileUrl           String?
+  generatedAt       DateTime            @default(now())
+
+  @@index([assessmentId])
+}
+
+model Notification {
+  id                String              @id @default(cuid())
+  userId            String
+  user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type              String              // assessment_invite, report_ready, ai_insight, etc.
+  title             String
+  message           String              @db.Text
+  actionUrl         String?
+  isRead            Boolean             @default(false)
+  createdAt         DateTime            @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+}
+
+model Activity {
+  id                String              @id @default(cuid())
+  userId            String
+  user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action            String              // created_assessment, uploaded_document, etc.
+  entityType        String?             // assessment, document, etc.
+  entityId          String?
+  metadata          Json?
+  createdAt         DateTime            @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Comment {
+  id                String              @id @default(cuid())
+  content           String              @db.Text
+  entityType        String              // assessment, document, report
+  entityId          String
+  authorId          String
+  author            User                @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  mentions          String[]            // User IDs mentioned in comment
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  @@index([entityType, entityId])
+  @@index([authorId])
+}
+
+model AnalyticsEvent {
+  id                String              @id @default(cuid())
+  eventName         String
+  userId            String?
+  sessionId         String?
+  properties        Json?
+  createdAt         DateTime            @default(now())
+
+  @@index([eventName])
+  @@index([userId])
+  @@index([createdAt])
+}
