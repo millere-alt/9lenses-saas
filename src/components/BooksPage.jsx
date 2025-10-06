@@ -32,7 +32,7 @@ function BooksPage() {
       subtitle: 'Touch, Volume, Margin Framework',
       description: 'Revolutionary approach to business model analysis using the Snapshot9 framework. Understand how Touch, Volume, and Margin drive business success.',
       icon: Zap,
-      color: 'orange',
+      color: 'blue',
       type: 'eBook',
       price: 39.99,
       stripeLink: 'https://buy.stripe.com/test_snapshot9_book', // Replace with actual Stripe link
@@ -90,7 +90,7 @@ function BooksPage() {
   const getColorClasses = (color) => {
     const colors = {
       primary: 'bg-primary-600',
-      orange: 'bg-blue-600',
+      blue: 'bg-blue-600',
       secondary: 'bg-secondary-600'
     };
     return colors[color] || 'bg-primary-600';

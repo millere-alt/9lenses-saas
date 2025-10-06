@@ -137,7 +137,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
                       <td
                         key={colLens}
                         className={`p-2 border border-neutral-200 text-center cursor-pointer transition-all ${
-                          isSelected ? 'ring-2 ring-orange-500' : ''
+                          isSelected ? 'ring-2 ring-blue-500' : ''
                         }`}
                         onClick={() => handleLensClick(rowLens)}
                       >

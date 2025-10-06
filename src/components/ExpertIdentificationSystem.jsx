@@ -49,7 +49,7 @@ const ExpertIdentificationSystem = ({ participant, onSave }) => {
       lens: 'Strategy',
       icon: '💡',
       category: 'Processes',
-      color: 'orange',
+      color: 'blue',
       sublenses: [
         { id: 'delivery-outlets', name: 'Delivery Outlets', description: 'Channels, distribution, partnerships' },
         { id: 'general-strategy', name: 'General Strategy', description: 'Strategic direction, objectives, priorities' },
@@ -62,7 +62,7 @@ const ExpertIdentificationSystem = ({ participant, onSave }) => {
       lens: 'Operations',
       icon: '⚙️',
       category: 'Processes',
-      color: 'orange',
+      color: 'blue',
       sublenses: [
         { id: 'general-operations', name: 'General Operations', description: 'Day-to-day operations, efficiency' },
         { id: 'infrastructure', name: 'Infrastructure', description: 'Facilities, equipment, technology' },
@@ -74,7 +74,7 @@ const ExpertIdentificationSystem = ({ participant, onSave }) => {
       lens: 'Execution',
       icon: '📈',
       category: 'Processes',
-      color: 'orange',
+      color: 'blue',
       sublenses: [
         { id: 'measurement', name: 'Measurement', description: 'KPIs, metrics, dashboards' },
         { id: 'performance-tracking', name: 'Performance Tracking', description: 'Monitoring, reporting, analysis' }

@@ -48,9 +48,9 @@ const DataSourceManager = () => {
     { lens: 'Market', sublenses: ['Market Characteristics', 'Competition', 'Customer', 'Positioning', 'Timing'], color: 'primary' },
     { lens: 'People', sublenses: ['Employee Characteristics', 'Culture', 'Leadership', 'Organizational Design'], color: 'primary' },
     { lens: 'Finance', sublenses: ['Accounting', 'Capital Structure', 'Financial Model', 'Forecasting', 'Historical Performance'], color: 'primary' },
-    { lens: 'Strategy', sublenses: ['Delivery Outlets', 'General Strategy', 'Offerings', 'Pricing', 'Promotion'], color: 'orange' },
-    { lens: 'Operations', sublenses: ['General Operations', 'Infrastructure', 'Processes', 'Systems'], color: 'orange' },
-    { lens: 'Execution', sublenses: ['Measurement', 'Performance Tracking'], color: 'orange' },
+    { lens: 'Strategy', sublenses: ['Delivery Outlets', 'General Strategy', 'Offerings', 'Pricing', 'Promotion'], color: 'green' },
+    { lens: 'Operations', sublenses: ['General Operations', 'Infrastructure', 'Processes', 'Systems'], color: 'green' },
+    { lens: 'Execution', sublenses: ['Measurement', 'Performance Tracking'], color: 'green' },
     { lens: 'Expectation', sublenses: ['Stakeholder Management', 'Communication', 'Alignment'], color: 'secondary' },
     { lens: 'Governance', sublenses: ['Principles', 'Structure', 'Practices'], color: 'secondary' },
     { lens: 'Entity', sublenses: ['Entity Characteristics', 'Contracts', 'Intellectual Property', 'Liability and Risk'], color: 'secondary' }

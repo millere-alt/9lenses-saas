@@ -59,7 +59,7 @@ const Review360Demo = () => {
       title: 'Expert Identification',
       description: 'Participants identify their areas of expertise',
       icon: Award,
-      color: 'orange',
+      color: 'green',
       expertBreakdown: [
         { lens: 'Market', experts: 2, proficient: 3, weight: '1.35x avg' },
         { lens: 'People', experts: 1, proficient: 4, weight: '1.25x avg' },
@@ -116,7 +116,7 @@ const Review360Demo = () => {
       title: 'Results: 360-Degree View',
       description: 'Comprehensive results across all 9 lenses',
       icon: BarChart3,
-      color: 'orange',
+      color: 'green',
       scores: [
         { lens: 'Market', score: 7.2, change: +5, category: 'Assets' },
         { lens: 'People', score: 6.5, change: +3, category: 'Assets' },
@@ -545,7 +545,7 @@ const Review360Demo = () => {
               {/* Scores Grid */}
               <div className="grid md:grid-cols-3 gap-4">
                 {step.scores.map((score, idx) => (
-                  <div key={idx} className={`p-4 bg-${score.category === 'Assets' ? 'primary' : score.category === 'Processes' ? 'orange' : 'secondary'}-50 rounded-lg border-2 border-${score.category === 'Assets' ? 'primary' : score.category === 'Processes' ? 'orange' : 'secondary'}-200`}>
+                  <div key={idx} className={`p-4 bg-${score.category === 'Assets' ? 'primary' : score.category === 'Processes' ? 'green' : 'secondary'}-50 rounded-lg border-2 border-${score.category === 'Assets' ? 'primary' : score.category === 'Processes' ? 'green' : 'secondary'}-200`}>
                     <div className="flex items-center justify-between mb-2">
                       <h5 className="font-bold text-neutral-900">{score.lens}</h5>
                       <span className={`flex items-center gap-1 text-sm font-bold ${score.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -555,7 +555,7 @@ const Review360Demo = () => {
                     <div className="flex items-center gap-2">
                       <div className="flex-1 bg-neutral-200 rounded-full h-2">
                         <div
-                          className={`bg-gradient-to-r from-${score.category === 'Assets' ? 'primary' : score.category === 'Processes' ? 'orange' : 'secondary'}-500 to-${score.category === 'Assets' ? 'primary' : score.category === 'Processes' ? 'orange' : 'secondary'}-600 h-2 rounded-full`}
+                          className={`bg-gradient-to-r from-${score.category === 'Assets' ? 'primary' : score.category === 'Processes' ? 'green' : 'secondary'}-500 to-${score.category === 'Assets' ? 'primary' : score.category === 'Processes' ? 'green' : 'secondary'}-600 h-2 rounded-full`}
                           style={{ width: `${(score.score / 9) * 100}%` }}
                         />
                       </div>
