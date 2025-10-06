@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, LayoutDashboard, PlayCircle, BarChart3, Upload, BookOpen, Info, Lightbulb } from 'lucide-react';
+import { Home, LayoutDashboard, PlayCircle, BarChart3, Upload, BookOpen, Info, Lightbulb, FileText } from 'lucide-react';
 
 function AppLayout({ children }) {
   const navigate = useNavigate();
@@ -13,6 +13,7 @@ function AppLayout({ children }) {
     { label: 'Launch Assessment', href: '/assessment/launch', icon: PlayCircle },
     { label: 'Dashboard', href: '/ceo-dashboard', icon: LayoutDashboard },
     { label: 'Results', href: '/dashboard', icon: BarChart3 },
+    { label: 'Documents', href: '/documents', icon: FileText },
     { label: 'Upload Files', href: '/upload', icon: Upload },
     { label: 'Resources', href: '/resources', icon: BookOpen },
   ];

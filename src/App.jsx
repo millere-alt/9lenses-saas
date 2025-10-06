@@ -22,6 +22,9 @@ import DataSourceManager from './components/DataSourceManager';
 import ExpertIdentificationSystem from './components/ExpertIdentificationSystem';
 import Review360Demo from './components/Review360Demo';
 import CompleteSaaSDemo from './components/CompleteSaaSDemo';
+import FullSaaSDemo from './components/FullSaaSDemo';
+import DocumentHub from './components/DocumentHub';
+import DocumentDissector from './components/DocumentDissector';
 
 function App() {
   return (
@@ -36,6 +39,7 @@ function App() {
             <Route path="/ai-assistant" element={<AIOnboardingAssistant />} />
             <Route path="/demo" element={<Review360Demo />} />
             <Route path="/complete-demo" element={<CompleteSaaSDemo />} />
+            <Route path="/full-demo" element={<FullSaaSDemo />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/resources" element={<BooksPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -52,6 +56,10 @@ function App() {
 
             {/* Upload Portal */}
             <Route path="/upload" element={<CEOPortal />} />
+
+            {/* Document Management Routes */}
+            <Route path="/documents" element={<DocumentHub />} />
+            <Route path="/documents/dissect" element={<DocumentDissector />} />
 
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />

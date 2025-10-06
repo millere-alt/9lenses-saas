@@ -44,6 +44,15 @@ function HomePage() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
+              onClick={() => navigate('/full-demo')}
+              className="group relative overflow-hidden bg-white text-primary-700 font-bold py-4 px-8 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 flex items-center space-x-3 animate-pulse"
+            >
+              <MonitorPlay size={20} className="group-hover:scale-110 transition-transform" />
+              <span className="text-lg">Watch Full Platform Demo</span>
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            <button
               onClick={() => navigate('/assessment/launch')}
               className="group relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 flex items-center space-x-3"
             >
