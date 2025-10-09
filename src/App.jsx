@@ -1,7 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { AICoachingProvider } from './contexts/AICoachingContext';
+import { GuidedTourProvider } from './contexts/GuidedTourContext';
 import AppLayout from './components/AppLayout';
+import AICoach from './components/AICoach';
+import GuidedTour from './components/GuidedTour';
 
 // Pages
 import HomePage from './components/HomePage';
@@ -20,32 +24,42 @@ import CEODashboard from './components/CEODashboard';
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <AppLayout>
-          <Routes>
-            {/* Main Routes */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<About9Lenses />} />
-            <Route path="/how-it-works" element={<HowItWorks />} />
-            <Route path="/resources" element={<BooksPage />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/ai-dashboard" element={<AIDashboard />} />
-            <Route path="/ceo-dashboard" element={<CEODashboard />} />
+      <AICoachingProvider>
+        <GuidedTourProvider>
+          <Router>
+            <AppLayout>
+              <Routes>
+                {/* Main Routes */}
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<About9Lenses />} />
+                <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path="/resources" element={<BooksPage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/ai-dashboard" element={<AIDashboard />} />
+                <Route path="/ceo-dashboard" element={<CEODashboard />} />
 
-            {/* Assessment Routes */}
-            <Route path="/assessment/launch" element={<LaunchAssessment />} />
-            <Route path="/assessment/create" element={<NewMultiParticipantAssessment />} />
-            <Route path="/assessment/take/:id" element={<SurveyTakingPage />} />
-            <Route path="/assessment/take" element={<SurveyTakingPage />} />
+                {/* Assessment Routes */}
+                <Route path="/assessment/launch" element={<LaunchAssessment />} />
+                <Route path="/assessment/create" element={<NewMultiParticipantAssessment />} />
+                <Route path="/assessment/take/:id" element={<SurveyTakingPage />} />
+                <Route path="/assessment/take" element={<SurveyTakingPage />} />
 
-            {/* Upload Portal */}
-            <Route path="/upload" element={<CEOPortal />} />
+                {/* Upload Portal */}
+                <Route path="/upload" element={<CEOPortal />} />
 
-            {/* Catch all - redirect to home */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </AppLayout>
-      </Router>
+                {/* Catch all - redirect to home */}
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+
+              {/* Global AI Coach Widget */}
+              <AICoach />
+
+              {/* Guided Tour Overlay */}
+              <GuidedTour />
+            </AppLayout>
+          </Router>
+        </GuidedTourProvider>
+      </AICoachingProvider>
     </AuthProvider>
   );
 }

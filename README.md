@@ -23,6 +23,16 @@ The 9Lenses framework is a comprehensive business assessment methodology that ev
 
 ## ✨ Features
 
+### 🤖 NEW: AI Coaching System (Agentic AI)
+- **Contextual Intelligence**: AI coach understands all 9 lenses, 44 sub-lenses, and 242+ themes
+- **Proactive Coaching**: Automatic guidance as users navigate assessments
+- **Natural Language Q&A**: Ask questions and get intelligent, specific answers
+- **Multiple Integration Points**: Floating widget, inline coaching, trigger buttons
+- **Workflow-Aware**: Adapts responses based on context (assessment, dashboard, strategy)
+- **Powered by Claude AI**: Using Anthropic's latest Claude 3.5 Sonnet model
+- **Mock Mode**: Works without API key for testing and demos
+- See [AI_COACHING_GUIDE.md](AI_COACHING_GUIDE.md) for detailed documentation
+
 ### 🏠 Landing Page
 - **Hero Section**: Professional landing page with gradient design and book showcase
 - **Book Banner**: Featured 9Lenses and Snapshot9 book covers (placeholder gradients, ready for real images)
@@ -115,15 +125,24 @@ The 9Lenses framework is a comprehensive business assessment methodology that ev
 
 ### Installation
 
-1. **Navigate to project directory**
-   ```bash
-   cd 9lenses-saas
-   ```
-
-2. **Install dependencies**
+1. **Install dependencies**
    ```bash
    npm install
    ```
+
+2. **Configure AI Coaching (Optional)**
+
+   To enable real AI coaching with Claude:
+   ```bash
+   # Copy the example env file
+   cp .env.example .env
+
+   # Edit .env and add your Anthropic API key
+   # Get one at: https://console.anthropic.com/
+   VITE_ANTHROPIC_API_KEY=sk-ant-your-key-here
+   ```
+
+   **Note**: The app works without an API key using mock responses for testing.
 
 3. **Start development server**
    ```bash
@@ -135,32 +154,51 @@ The 9Lenses framework is a comprehensive business assessment methodology that ev
    http://localhost:5173
    ```
 
+### Quick Start with AI Coaching
+
+Once running, try these features:
+
+1. **Click the AI Coach button** (bottom-right) on any page
+2. **Start an assessment** and get real-time coaching for each section
+3. **Ask questions** like "What are my biggest strengths?" or "How can I improve Operations?"
+4. **View the enhanced survey** at `/assessment/take` with inline coaching
+
+See [AI_COACHING_GUIDE.md](AI_COACHING_GUIDE.md) for detailed usage and integration examples.
+
 ## 📁 Project Structure
 
 ```
 9lenses-saas/
 ├── src/
 │   ├── components/
-│   │   ├── HomePage.jsx           # Landing page with book banner and CTAs
-│   │   ├── AssessmentPage.jsx     # Learn & Assess mode with quantitative/qualitative inputs
-│   │   ├── Dashboard.jsx          # Main dashboard with tabs and overview
-│   │   ├── RadarChart.jsx         # 9-lens radar visualization
-│   │   ├── LensCard.jsx           # Individual lens summary cards
-│   │   ├── LensDetail.jsx         # Detailed sub-lens breakdown
-│   │   ├── StakeholderComparison.jsx  # Stakeholder alignment view
-│   │   └── TrendAnalysis.jsx      # Historical trend charts
+│   │   ├── AICoach.jsx                      # 🆕 Floating AI coach widget
+│   │   ├── CoachingTrigger.jsx              # 🆕 Coaching activation components
+│   │   ├── EnhancedSurveyWithCoaching.jsx   # 🆕 Assessment with AI coaching
+│   │   ├── HomePage.jsx                     # Landing page
+│   │   ├── Dashboard.jsx                    # Main dashboard
+│   │   ├── SurveyTakingPage.jsx            # Survey interface
+│   │   ├── RadarChart.jsx                  # 9-lens radar visualization
+│   │   └── ... (30+ other components)
+│   ├── contexts/
+│   │   ├── AICoachingContext.jsx            # 🆕 AI coaching state management
+│   │   └── AuthContext.jsx                  # Authentication context
+│   ├── services/
+│   │   └── aiCoachingAgent.js               # 🆕 AI agent with Claude integration
 │   ├── data/
-│   │   ├── nineLensesSchema.js    # Complete 9Lenses structure (9 lenses, 44 sub-lenses, 242+ themes)
-│   │   └── mockAssessment.js      # Sample assessment data
-│   ├── App.jsx                    # Root component with routing
-│   ├── App.css                    # App styles
-│   └── index.css                  # Global styles with Tailwind
+│   │   ├── nineLensesSchema.js             # Complete 9Lenses structure
+│   │   └── mockAssessment.js               # Sample assessment data
+│   ├── App.jsx                             # Root component with AI provider
+│   └── main.jsx                            # Entry point
 ├── public/
-│   └── books/                     # Book cover images (ready for JPGs)
-├── index.html                     # HTML entry point
-├── vite.config.js                # Vite configuration
-├── tailwind.config.js            # Tailwind configuration
-└── package.json                  # Dependencies and scripts
+│   └── books/                              # Book cover images
+├── .env.example                             # 🆕 Environment variable template
+├── .env                                     # 🆕 Your API keys (gitignored)
+├── AI_COACHING_GUIDE.md                     # 🆕 Comprehensive AI coaching docs
+├── README.md                                # This file
+├── index.html                              # HTML entry point
+├── vite.config.js                          # Vite configuration
+├── tailwind.config.js                      # Tailwind configuration
+└── package.json                            # Dependencies (includes @anthropic-ai/sdk)
 ```
 
 ## 🎨 Tech Stack
@@ -170,6 +208,7 @@ The 9Lenses framework is a comprehensive business assessment methodology that ev
 - **Styling**: TailwindCSS
 - **Charts**: Recharts
 - **Icons**: Lucide React
+- **AI**: Anthropic Claude 3.5 Sonnet (via @anthropic-ai/sdk)
 - **Language**: JavaScript (ES6+)
 
 ## 📊 Data Schema

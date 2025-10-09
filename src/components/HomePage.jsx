@@ -2,8 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight, Target, TrendingUp, Zap, CheckCircle, BarChart3,
-  Users, FileInput, Sparkles, Grid3x3, Lightbulb, Award
+  Users, FileInput, Sparkles, Grid3x3, Lightbulb, Award, GraduationCap
 } from 'lucide-react';
+import { TourMenuButton } from './TourMenu';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -45,12 +46,15 @@ function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={() => navigate('/assessment/launch')}
+              data-tour="cta-button"
               className="group relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 flex items-center space-x-3"
             >
               <Zap size={20} className="group-hover:scale-110 transition-transform" />
               <span className="text-lg">Launch Assessment</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
+
+            <TourMenuButton className="py-4 px-8 text-lg" />
 
             <button
               onClick={() => navigate('/about')}
@@ -80,7 +84,7 @@ function HomePage() {
       </div>
 
       {/* The 9Lenses Framework */}
-      <div className="mb-12">
+      <div className="mb-12" data-tour="framework-overview">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Three Categories. Nine Lenses. Complete Clarity.
@@ -93,7 +97,7 @@ function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Assets - Green */}
-          <div className="group relative">
+          <div className="group relative" data-tour="assets-section">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary-400 to-primary-600 rounded-2xl opacity-25 group-hover:opacity-75 blur transition duration-500"></div>
             <div className="relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-primary-500">
               <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl mb-5 shadow-lg">
@@ -121,7 +125,7 @@ function HomePage() {
           </div>
 
           {/* Processes - Orange */}
-          <div className="group relative">
+          <div className="group relative" data-tour="processes-section">
             <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-2xl opacity-25 group-hover:opacity-75 blur transition duration-500"></div>
             <div className="relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-orange-500">
               <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl mb-5 shadow-lg">
@@ -149,7 +153,7 @@ function HomePage() {
           </div>
 
           {/* Structures - Blue */}
-          <div className="group relative">
+          <div className="group relative" data-tour="structures-section">
             <div className="absolute -inset-1 bg-gradient-to-r from-secondary-400 to-secondary-600 rounded-2xl opacity-25 group-hover:opacity-75 blur transition duration-500"></div>
             <div className="relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-secondary-500">
               <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-secondary-600 to-secondary-700 rounded-xl mb-5 shadow-lg">
