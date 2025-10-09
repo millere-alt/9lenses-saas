@@ -130,9 +130,9 @@ const LensDetail = ({ lens, onBack }) => {
                 </div>
 
                 {subLens.score < 6 && (
-                  <div className="mt-4 flex items-start gap-2 p-3 bg-blue-50 rounded border-l-4 border-blue-400">
-                    <AlertCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-blue-800">
+                  <div className="mt-4 flex items-start gap-2 p-3 bg-orange-50 rounded border-l-4 border-orange-400">
+                    <AlertCircle className="w-4 h-4 text-orange-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-orange-800">
                       This area requires attention to improve overall {lens.lensName} lens performance.
                     </p>
                   </div>

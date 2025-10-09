@@ -296,7 +296,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
                         style={{
                           background: `linear-gradient(to right,
                             #ef4444 0%,
-                            #3b82f6 ${(2/9)*100}%,
+                            #f97316 ${(2/9)*100}%,
                             #eab308 ${(4/9)*100}%,
                             #84cc16 ${(6/9)*100}%,
                             #22c55e ${(7/9)*100}%,

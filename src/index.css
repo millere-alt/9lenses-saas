@@ -7,57 +7,57 @@
   --font-display: 'Lexend', 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', Monaco, 'Courier New', monospace;
 
-  /* Primary - Salesforce Blue (Brand, Trust, Innovation) */
-  --color-primary-50: #e8f4fd;
-  --color-primary-100: #c9e6fa;
-  --color-primary-200: #a0d7f7;
-  --color-primary-300: #76c8f4;
-  --color-primary-400: #56bcf1;
-  --color-primary-500: #32b1ee;
-  --color-primary-600: #0A9EDC;
-  --color-primary-700: #0176D3;
-  --color-primary-800: #0B5CAB;
-  --color-primary-900: #014486;
-  --color-primary-950: #032d60;
+  /* Primary - Deep Emerald Green (Growth, Trust, Stability) */
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1f4e0;
+  --color-primary-200: #9de9c6;
+  --color-primary-300: #5dd9a8;
+  --color-primary-400: #2cbf87;
+  --color-primary-500: #0d9f6e;
+  --color-primary-600: #047857;
+  --color-primary-700: #036147;
+  --color-primary-800: #064e3b;
+  --color-primary-900: #053f31;
+  --color-primary-950: #022c22;
 
-  /* Secondary - Salesforce Cloud Blue (Sky, Enterprise) */
-  --color-secondary-50: #e0f3ff;
-  --color-secondary-100: #b3e0ff;
-  --color-secondary-200: #80cdff;
-  --color-secondary-300: #4dbaff;
-  --color-secondary-400: #26acff;
-  --color-secondary-500: #009EDB;
-  --color-secondary-600: #0A9EDC;
-  --color-secondary-700: #0176D3;
-  --color-secondary-800: #005FB2;
-  --color-secondary-900: #004A8F;
-  --color-secondary-950: #003366;
+  /* Secondary - Deep Navy Blue (Authority, Professionalism) */
+  --color-secondary-50: #eff6ff;
+  --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #93c5fd;
+  --color-secondary-400: #60a5fa;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
+  --color-secondary-800: #1e40af;
+  --color-secondary-900: #1e3a8a;
+  --color-secondary-950: #172554;
 
-  /* Accent - Salesforce Lighter Blue (Actions, Links) */
-  --color-accent-50: #e0f3ff;
-  --color-accent-100: #b3e0ff;
-  --color-accent-200: #80cdff;
-  --color-accent-300: #4dbaff;
-  --color-accent-400: #26acff;
-  --color-accent-500: #0095D9;
-  --color-accent-600: #0176D3;
-  --color-accent-700: #0B5CAB;
-  --color-accent-800: #014486;
-  --color-accent-900: #003366;
-  --color-accent-950: #001f3d;
+  /* Accent - Deep Orange (Energy, Action, Warmth) */
+  --color-accent-50: #fff7ed;
+  --color-accent-100: #ffedd5;
+  --color-accent-200: #fed7aa;
+  --color-accent-300: #fdba74;
+  --color-accent-400: #fb923c;
+  --color-accent-500: #f97316;
+  --color-accent-600: #ea580c;
+  --color-accent-700: #c2410c;
+  --color-accent-800: #9a3412;
+  --color-accent-900: #7c2d12;
+  --color-accent-950: #431407;
 
-  /* Blue - Salesforce Core Blue */
-  --color-blue-50: #e8f4fd;
-  --color-blue-100: #c9e6fa;
-  --color-blue-200: #a0d7f7;
-  --color-blue-300: #76c8f4;
-  --color-blue-400: #56bcf1;
-  --color-blue-500: #0176D3;
-  --color-blue-600: #0B5CAB;
-  --color-blue-700: #014486;
-  --color-blue-800: #003366;
-  --color-blue-900: #001f3d;
-  --color-blue-950: #001233;
+  /* Orange - Vibrant Energy */
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-900: #7c2d12;
+  --color-orange-950: #431407;
 
   /* Neutral - Deep Professional Slate */
   --color-neutral-50: #f8fafc;
@@ -72,17 +72,19 @@
   --color-neutral-900: #0f172a;
   --color-neutral-950: #020617;
 
-  /* Semantic Colors - Salesforce Style */
-  --color-success: #04844B;
-  --color-warning: #FFB75D;
-  --color-danger: #EA001E;
-  --color-info: #0176D3;
+  /* Semantic Colors */
+  --color-success: #047857;
+  --color-warning: #f97316;
+  --color-danger: #dc2626;
+  --color-info: #1d4ed8;
 
-  /* Shadows - Salesforce Style */
-  --shadow-soft: 0 2px 15px -3px rgb(1 118 211 / 0.08), 0 10px 20px -2px rgb(1 118 211 / 0.05);
-  --shadow-medium: 0 4px 25px -4px rgb(1 118 211 / 0.12), 0 12px 30px -3px rgb(1 118 211 / 0.08);
-  --shadow-strong: 0 10px 40px -10px rgb(1 118 211 / 0.18), 0 20px 50px -5px rgb(1 118 211 / 0.12);
-  --shadow-blue: 0 4px 14px 0 rgb(1 118 211 / 0.39);
+  /* Shadows */
+  --shadow-soft: 0 2px 15px -3px rgb(16 185 129 / 0.08), 0 10px 20px -2px rgb(20 184 166 / 0.05);
+  --shadow-medium: 0 4px 25px -4px rgb(16 185 129 / 0.12), 0 12px 30px -3px rgb(20 184 166 / 0.08);
+  --shadow-strong: 0 10px 40px -10px rgb(16 185 129 / 0.18), 0 20px 50px -5px rgb(20 184 166 / 0.12);
+  --shadow-emerald: 0 4px 14px 0 rgb(16 185 129 / 0.39);
+  --shadow-teal: 0 4px 14px 0 rgb(20 184 166 / 0.39);
+  --shadow-blue: 0 4px 14px 0 rgb(59 130 246 / 0.39);
 
   /* Animations */
   --animate-fadeIn: fadeIn 0.5s ease-in;
@@ -236,60 +238,23 @@ input[type="range"]::-moz-range-thumb:active {
   animation: slideDown 0.3s ease-out;
 }
 
-/* Component utilities - Salesforce Style */
+/* Component utilities */
 .btn-primary {
-  @apply bg-[#0176D3] hover:bg-[#014486] text-white font-semibold py-2.5 px-5 rounded border border-[#0176D3] hover:border-[#014486] transition-all duration-200 shadow-md hover:shadow-lg;
+  @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
 }
 
 .btn-secondary {
-  @apply bg-white hover:bg-gray-50 text-[#0176D3] font-semibold py-2.5 px-5 rounded border-2 border-[#0176D3] hover:border-[#014486] transition-all duration-200;
+  @apply bg-primary-200 hover:bg-primary-300 text-primary-800 font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
 }
 
 .card {
-  @apply bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-all duration-200;
+  @apply bg-white rounded-lg shadow-md p-6;
 }
 
 .input-field {
-  @apply w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[#0176D3] focus:border-[#0176D3] transition-all duration-200;
+  @apply w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
 }
 
 .label {
-  @apply block text-sm font-medium text-gray-700 mb-1;
-}
-
-/* Gradient backgrounds - Salesforce Style */
-.bg-gradient-salesforce {
-  @apply bg-gradient-to-br from-[#032d60] via-[#0176D3] to-[#00A1E0];
-}
-
-.bg-gradient-primary {
-  @apply bg-[#0176D3];
-}
-
-.bg-gradient-secondary {
-  @apply bg-gradient-to-r from-[#00A1E0] to-[#0176D3];
-}
-
-/* Text gradients */
-.text-gradient {
-  @apply text-[#0176D3];
-}
-
-/* Hover effects */
-.hover-lift {
-  @apply transition-all duration-200 hover:shadow-lg;
-}
-
-/* Badge styles - Salesforce */
-.badge-blue {
-  @apply bg-[#e8f4fd] text-[#014486] px-3 py-1 rounded-full text-sm font-medium;
-}
-
-.badge-info {
-  @apply bg-[#e8f4fd] text-[#0176D3] px-3 py-1 rounded-full text-sm font-medium border border-[#0176D3];
-}
-
-/* Link styles */
-a {
-  @apply text-[#0176D3] hover:text-[#014486] hover:underline transition-colors duration-200;
+  @apply block text-sm font-medium text-primary-700 mb-1;
 }

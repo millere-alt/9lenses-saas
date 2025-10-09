@@ -39,7 +39,7 @@ function CompetitiveBenchmarking({ lensScores }) {
     if (yourScore >= topQuartile) return { label: 'Top Quartile', color: 'text-primary-600', bg: 'bg-primary-100', icon: ArrowUp };
     if (yourScore >= industryAvg) return { label: 'Above Average', color: 'text-secondary-600', bg: 'bg-secondary-100', icon: TrendingUp };
     if (yourScore >= industryAvg * 0.9) return { label: 'Average', color: 'text-yellow-600', bg: 'bg-yellow-100', icon: Minus };
-    return { label: 'Below Average', color: 'text-blue-600', bg: 'bg-blue-100', icon: ArrowDown };
+    return { label: 'Below Average', color: 'text-orange-600', bg: 'bg-orange-100', icon: ArrowDown };
   };
 
   // Radar chart data
@@ -63,7 +63,7 @@ function CompetitiveBenchmarking({ lensScores }) {
     {
       title: 'Opportunity Areas',
       icon: Target,
-      color: 'from-green-500 to-green-600',
+      color: 'from-orange-500 to-orange-600',
       items: benchmarkData
         .filter(item => item.yourScore < item.industryAvg)
         .map(item => `${item.name}: ${((item.industryAvg - item.yourScore) / item.yourScore * 100).toFixed(0)}% below industry average`)
@@ -152,12 +152,12 @@ function CompetitiveBenchmarking({ lensScores }) {
           <p className="text-sm text-gray-600 mt-1">Market baseline</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border-2 border-blue-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border-2 border-orange-200">
           <div className="flex items-center gap-2 mb-2">
-            <Award className="w-6 h-6 text-blue-600" />
+            <Award className="w-6 h-6 text-orange-600" />
             <h4 className="font-bold text-gray-900">Top Quartile</h4>
           </div>
-          <p className="text-3xl font-bold text-blue-700">
+          <p className="text-3xl font-bold text-orange-700">
             {(benchmarkData.reduce((sum, item) => sum + item.topQuartile, 0) / benchmarkData.length).toFixed(1)}
           </p>
           <p className="text-sm text-gray-600 mt-1">Excellence threshold</p>
@@ -190,7 +190,7 @@ function CompetitiveBenchmarking({ lensScores }) {
             <PolarRadiusAxis domain={[0, 9]} tick={{ fill: '#64748b' }} />
             <Radar name="You" dataKey="You" stroke="#047857" fill="#047857" fillOpacity={0.3} strokeWidth={3} />
             <Radar name="Industry Avg" dataKey="Industry Avg" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.2} strokeWidth={2} />
-            <Radar name="Top Quartile" dataKey="Top Quartile" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.1} strokeWidth={2} strokeDasharray="5 5" />
+            <Radar name="Top Quartile" dataKey="Top Quartile" stroke="#f97316" fill="#f97316" fillOpacity={0.1} strokeWidth={2} strokeDasharray="5 5" />
             <Legend />
           </RadarChart>
         </ResponsiveContainer>
@@ -223,9 +223,9 @@ function CompetitiveBenchmarking({ lensScores }) {
                     <p className="font-semibold text-gray-600">Industry Avg</p>
                     <p className="text-lg font-bold text-gray-800">{item.industryAvg}</p>
                   </div>
-                  <div className="text-center p-2 bg-blue-50 rounded-lg">
-                    <p className="font-semibold text-blue-600">Top Quartile</p>
-                    <p className="text-lg font-bold text-blue-800">{item.topQuartile}</p>
+                  <div className="text-center p-2 bg-orange-50 rounded-lg">
+                    <p className="font-semibold text-orange-600">Top Quartile</p>
+                    <p className="text-lg font-bold text-orange-800">{item.topQuartile}</p>
                   </div>
                   <div className="text-center p-2 bg-secondary-50 rounded-lg">
                     <p className="font-semibold text-secondary-600">Top Performer</p>

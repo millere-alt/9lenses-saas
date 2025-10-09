@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Sparkles, TrendingUp, Target, Shield, Bell, MessageCircle, BarChart3, Network, Info } from 'lucide-react';
+import { Brain, Sparkles, TrendingUp, Target, Shield, Bell, MessageCircle, BarChart3 } from 'lucide-react';
 import AIStrategyAdvisor from './AIStrategyAdvisor';
 import PredictiveAnalytics from './PredictiveAnalytics';
 import ActionPlanGenerator from './ActionPlanGenerator';
@@ -7,8 +7,6 @@ import AIAssistant from './AIAssistant';
 import CompetitiveBenchmarking from './CompetitiveBenchmarking';
 import RiskDetection from './RiskDetection';
 import SmartNotifications from './SmartNotifications';
-import MetastructureInterconnections from './MetastructureInterconnections';
-import PageInstructions from './PageInstructions';
 
 function AIDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -26,9 +24,9 @@ function AIDashboard() {
     { name: 'Customers', score: 7.2, category: 'Assets', gradient: 'from-primary-400 to-primary-500', change: 5 },
     { name: 'Financials', score: 5.8, category: 'Assets', gradient: 'from-primary-500 to-primary-600', change: -2 },
     { name: 'Human Resources', score: 6.5, category: 'Assets', gradient: 'from-primary-400 to-primary-500', change: 3 },
-    { name: 'Strategy', score: 7.0, category: 'Processes', gradient: 'from-green-400 to-green-500', change: 4 },
-    { name: 'Sales & Marketing', score: 6.2, category: 'Processes', gradient: 'from-green-500 to-green-600', change: 0 },
-    { name: 'Operations', score: 6.5, category: 'Processes', gradient: 'from-green-400 to-green-500', change: 1 },
+    { name: 'Strategy', score: 7.0, category: 'Processes', gradient: 'from-orange-400 to-orange-500', change: 4 },
+    { name: 'Sales & Marketing', score: 6.2, category: 'Processes', gradient: 'from-orange-500 to-orange-600', change: 0 },
+    { name: 'Operations', score: 6.5, category: 'Processes', gradient: 'from-orange-400 to-orange-500', change: 1 },
     { name: 'Sustainability', score: 7.5, category: 'Structures', gradient: 'from-secondary-500 to-secondary-600', change: 6 },
     { name: 'Systems & Processes', score: 7.8, category: 'Structures', gradient: 'from-secondary-400 to-secondary-500', change: 7 },
     { name: 'Organizational', score: 6.9, category: 'Structures', gradient: 'from-secondary-600 to-secondary-700', change: 2 },
@@ -42,8 +40,7 @@ function AIDashboard() {
     { id: 'assistant', label: 'AI Assistant', icon: MessageCircle },
     { id: 'benchmark', label: 'Benchmarking', icon: BarChart3 },
     { id: 'risks', label: 'Risk Detection', icon: Shield },
-    { id: 'notifications', label: 'Smart Alerts', icon: Bell },
-    { id: 'metastructure', label: 'Metastructure', icon: Network }
+    { id: 'notifications', label: 'Smart Alerts', icon: Bell }
   ];
 
   const aiFeatures = [
@@ -68,7 +65,7 @@ function AIDashboard() {
       title: 'Action Plan Generator',
       description: 'Automatically generate comprehensive 90-day roadmaps with specific initiatives, budgets, timelines, and success criteria.',
       icon: Target,
-      color: 'from-green-500 to-green-600',
+      color: 'from-orange-500 to-orange-600',
       stats: { label: 'Action Items', value: '9' }
     },
     {
@@ -92,7 +89,7 @@ function AIDashboard() {
       title: 'Risk Detection',
       description: 'AI pattern recognition identifies potential risks early, categorizes by severity, and provides mitigation strategies.',
       icon: Shield,
-      color: 'from-red-500 to-green-600',
+      color: 'from-red-500 to-orange-600',
       stats: { label: 'Risks Monitored', value: '15+' }
     },
     {
@@ -100,16 +97,8 @@ function AIDashboard() {
       title: 'Smart Notifications',
       description: 'Intelligent alerts notify you of critical issues, opportunities, milestones, and trends that require attention.',
       icon: Bell,
-      color: 'from-green-500 to-yellow-500',
+      color: 'from-orange-500 to-yellow-500',
       stats: { label: 'Active Alerts', value: notifications.length }
-    },
-    {
-      id: 'metastructure',
-      title: 'Metastructure Interconnections',
-      description: 'Visualize the patented mathematical framework showing how all 9 lenses interconnect and influence each other.',
-      icon: Network,
-      color: 'from-primary-600 to-secondary-600',
-      stats: { label: 'Connections', value: '81' }
     }
   ];
 
@@ -123,7 +112,7 @@ function AIDashboard() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-green-500 to-secondary-600 rounded-3xl p-8 text-white shadow-2xl">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-orange-500 to-secondary-600 rounded-3xl p-8 text-white shadow-2xl">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-300 rounded-full blur-3xl"></div>
@@ -139,18 +128,9 @@ function AIDashboard() {
                 AI-Powered Intelligence
                 <Sparkles className="w-8 h-8 animate-pulse" />
               </h1>
-              <p className="text-xl text-white/90 mt-1 mb-3">
+              <p className="text-xl text-white/90 mt-1">
                 Advanced analytics and strategic guidance for {assessmentData.company}
               </p>
-              {/* Quick Guide */}
-              <div className="bg-white/10 backdrop-blur-sm border-l-4 border-white rounded-lg p-3">
-                <div className="flex items-center gap-2">
-                  <Info className="w-4 h-4 text-white" />
-                  <p className="text-sm text-white/90">
-                    <span className="font-semibold">Choose a tab below</span> to access different AI features - each provides unique insights and recommendations
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -186,7 +166,7 @@ function AIDashboard() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -222,14 +202,14 @@ function AIDashboard() {
                   <button
                     key={feature.id}
                     onClick={() => setActiveTab(feature.id)}
-                    className="group bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 hover:border-blue-300 hover:shadow-2xl transition-all duration-300 text-left"
+                    className="group bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 hover:border-orange-300 hover:shadow-2xl transition-all duration-300 text-left"
                   >
                     <div className="flex items-start gap-6">
                       <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg`}>
                         <Icon className="w-8 h-8 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
                           {feature.title}
                         </h3>
                         <p className="text-gray-600 leading-relaxed mb-4">{feature.description}</p>
@@ -238,7 +218,7 @@ function AIDashboard() {
                             <p className="text-xs font-semibold text-gray-600">{feature.stats.label}</p>
                             <p className="text-lg font-bold text-gray-900">{feature.stats.value}</p>
                           </div>
-                          <span className="text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
+                          <span className="text-orange-600 font-semibold group-hover:translate-x-2 transition-transform">
                             Explore →
                           </span>
                         </div>
@@ -258,33 +238,7 @@ function AIDashboard() {
         {activeTab === 'benchmark' && <CompetitiveBenchmarking lensScores={lensScores} />}
         {activeTab === 'risks' && <RiskDetection lensScores={lensScores} assessmentData={assessmentData} />}
         {activeTab === 'notifications' && <SmartNotifications lensScores={lensScores} assessmentData={assessmentData} />}
-        {activeTab === 'metastructure' && <MetastructureInterconnections lensScores={lensScores} />}
       </div>
-
-      {/* Help Instructions */}
-      <PageInstructions
-        title="AI Dashboard Guide"
-        steps={[
-          "Start with the 'AI Overview' tab to see all 8 AI features available to you",
-          "Click on any feature card or tab to explore that specific AI capability",
-          "Strategy Advisor provides GPT-powered recommendations for each lens",
-          "Predictive Analytics shows 6-12 month forecasts for your scores",
-          "Action Plans generates comprehensive 90-day roadmaps with specific initiatives",
-          "AI Assistant lets you ask questions in natural language about your assessment",
-          "Benchmarking compares your performance against industry peers",
-          "Risk Detection identifies potential issues early with AI pattern recognition",
-          "Smart Notifications shows priority alerts and opportunities",
-          "Metastructure shows how the 9 lenses interconnect (based on US Patent 9,489,419 B2)"
-        ]}
-        tips={[
-          "Each feature uses your actual assessment data to generate personalized insights",
-          "Start with Strategy Advisor for quick wins and immediate action items",
-          "Use Predictive Analytics to forecast where you'll be in 6-12 months",
-          "Action Plans are perfect for planning quarterly initiatives",
-          "The AI Assistant can answer questions like 'What's my weakest area?' or 'How do I improve Finance?'",
-          "Metastructure visualization shows how improving one lens affects others"
-        ]}
-      />
     </div>
   );
 }
