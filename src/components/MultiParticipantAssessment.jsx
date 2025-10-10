@@ -159,7 +159,7 @@ const MultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard })
                 <Home className="w-4 h-4" />
                 <span className="font-medium">Home</span>
               </button>
-              <h1 className="text-2xl font-bold text-gray-900">Setup 9Lenses Assessment</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Setup 9Vectors Assessment</h1>
               <div className="w-24"></div>
             </div>
           </div>

@@ -5,7 +5,7 @@ import {
   Shield, Server, Lightbulb, ArrowRight, CheckCircle, Star
 } from 'lucide-react';
 
-const About9LensesSimple = () => {
+const About9VectorsSimple = () => {
   const navigate = useNavigate();
 
   const lenses = [
@@ -57,15 +57,15 @@ const About9LensesSimple = () => {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            What is 9Lenses?
+            What is 9Vectors?
           </h1>
           <p className="text-2xl text-gray-600 mb-6">
             A Simple Way to Assess Your Entire Business
           </p>
           <div className="max-w-3xl mx-auto">
             <p className="text-lg text-gray-700 leading-relaxed">
-              Think of 9Lenses as a <span className="font-semibold text-blue-600">health check for your organization</span>.
-              Just like a doctor checks multiple vital signs, 9Lenses evaluates <span className="font-semibold text-green-600">9 critical areas</span> of
+              Think of 9Vectors as a <span className="font-semibold text-blue-600">health check for your organization</span>.
+              Just like a doctor checks multiple vital signs, 9Vectors evaluates <span className="font-semibold text-green-600">9 critical areas</span> of
               your business to show you what's working and what needs attention.
             </p>
           </div>
@@ -161,7 +161,7 @@ const About9LensesSimple = () => {
           <p className="text-center text-gray-600 mb-12 text-lg max-w-3xl mx-auto">
             Most businesses only look at one or two areas (usually just finances).
             That's like only checking your weight when you go to the doctor.
-            9Lenses gives you the complete picture.
+            9Vectors gives you the complete picture.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -184,7 +184,7 @@ const About9LensesSimple = () => {
               </h3>
               <p className="text-gray-700 text-lg leading-relaxed mb-4">
                 A tech company thought their main problem was sales (Business Model).
-                After a 9Lenses assessment, they discovered:
+                After a 9Vectors assessment, they discovered:
               </p>
               <ul className="space-y-3 ml-6">
                 <li className="text-gray-700">
@@ -208,7 +208,7 @@ const About9LensesSimple = () => {
         {/* Who Uses It */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
-            Who Uses 9Lenses?
+            Who Uses 9Vectors?
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -230,7 +230,7 @@ const About9LensesSimple = () => {
             Ready to See the Complete Picture?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Try a demo assessment and see what 9Lenses reveals about your organization
+            Try a demo assessment and see what 9Vectors reveals about your organization
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
@@ -254,4 +254,4 @@ const About9LensesSimple = () => {
   );
 };
 
-export default About9LensesSimple;
+export default About9VectorsSimple;

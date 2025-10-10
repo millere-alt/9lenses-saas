@@ -12,7 +12,7 @@ const FullSaaSDemo = () => {
   const steps = [
     {
       id: 0,
-      title: "Welcome to 9Lenses Complete SaaS Platform",
+      title: "Welcome to 9Vectors Complete SaaS Platform",
       subtitle: "Your End-to-End Business Intelligence Solution",
       icon: Award,
       color: "from-purple-600 to-blue-600",
@@ -20,7 +20,7 @@ const FullSaaSDemo = () => {
         <div className="text-center py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-5xl font-bold text-gray-900 mb-6">
-              The Complete 9Lenses Journey
+              The Complete 9Vectors Journey
             </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               Discover how organizations transform their business using our comprehensive
@@ -930,7 +930,7 @@ const FullSaaSDemo = () => {
     {
       id: 9,
       title: "Ready to Transform Your Organization?",
-      subtitle: "Start Your 9Lenses Journey Today",
+      subtitle: "Start Your 9Vectors Journey Today",
       icon: Zap,
       color: "from-green-600 to-red-600",
       content: (
@@ -940,7 +940,7 @@ const FullSaaSDemo = () => {
               Everything You Need for Business Excellence
             </h2>
             <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-              Join hundreds of organizations using 9Lenses to drive strategic transformation,
+              Join hundreds of organizations using 9Vectors to drive strategic transformation,
               improve performance, and achieve measurable results.
             </p>
 

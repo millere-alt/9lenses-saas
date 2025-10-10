@@ -1,5 +1,5 @@
 /**
- * 9Lenses Metastructure Engine
+ * 9Vectors Metastructure Engine
  * Based on US Patent 9,489,419 B2 (Nov 8, 2016)
  *
  * System and Method for Optimizing Business Performance with Automated Social Discovery
@@ -385,7 +385,7 @@ export class PredictiveEstimationEngine {
 
 /**
  * Schema Conversion Engine (Patent Section 8.1)
- * Converts diverse data inputs into standardized 9Lenses schema
+ * Converts diverse data inputs into standardized 9Vectors schema
  */
 export class SchemaConversionEngine {
   /**

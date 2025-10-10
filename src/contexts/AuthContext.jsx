@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check if user is already logged in (from localStorage)
-    const savedUser = localStorage.getItem('9lenses_user');
+    const savedUser = localStorage.getItem('9Vectors_user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
@@ -28,13 +28,13 @@ export const AuthProvider = ({ children }) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // Check against demo credentials or stored users
-        const storedUsers = JSON.parse(localStorage.getItem('9lenses_users') || '[]');
+        const storedUsers = JSON.parse(localStorage.getItem('9Vectors_users') || '[]');
         const foundUser = storedUsers.find(u => u.email === email && u.password === password);
 
-        if (foundUser || (email === 'demo@9lenses.com' && password === 'demo123')) {
+        if (foundUser || (email === 'demo@9Vectors.com' && password === 'demo123')) {
           const userData = foundUser || {
             id: '1',
-            email: 'demo@9lenses.com',
+            email: 'demo@9Vectors.com',
             name: 'Demo User',
             role: 'admin',
             company: 'Demo Company',
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
           };
 
           setUser(userData);
-          localStorage.setItem('9lenses_user', JSON.stringify(userData));
+          localStorage.setItem('9Vectors_user', JSON.stringify(userData));
           resolve(userData);
         } else {
           reject(new Error('Invalid email or password'));
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     // Simulate API call
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const storedUsers = JSON.parse(localStorage.getItem('9lenses_users') || '[]');
+        const storedUsers = JSON.parse(localStorage.getItem('9Vectors_users') || '[]');
 
         // Check if user already exists
         if (storedUsers.find(u => u.email === email)) {
@@ -74,11 +74,11 @@ export const AuthProvider = ({ children }) => {
         };
 
         storedUsers.push(newUser);
-        localStorage.setItem('9lenses_users', JSON.stringify(storedUsers));
+        localStorage.setItem('9Vectors_users', JSON.stringify(storedUsers));
 
         const { password: _, ...userWithoutPassword } = newUser;
         setUser(userWithoutPassword);
-        localStorage.setItem('9lenses_user', JSON.stringify(userWithoutPassword));
+        localStorage.setItem('9Vectors_user', JSON.stringify(userWithoutPassword));
 
         resolve(userWithoutPassword);
       }, 800);
@@ -87,7 +87,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('9lenses_user');
+    localStorage.removeItem('9Vectors_user');
   };
 
   const value = {

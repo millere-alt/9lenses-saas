@@ -2,7 +2,7 @@
 
 Place your book cover images in this directory:
 
-- `9lenses-book.jpg` - The 9Lenses book cover
+- `9Vectors-book.jpg` - The 9Vectors book cover
 - `snapshot9-book.jpg` - The Snapshot9 book cover
 
 Recommended image specifications:

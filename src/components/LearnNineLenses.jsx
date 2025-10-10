@@ -273,7 +273,7 @@ const LearnNineLenses = () => {
               <div className="flex items-center gap-3">
                 <BookOpen className="w-8 h-8 text-primary-600" />
                 <div>
-                  <h1 className="text-2xl font-display font-bold text-neutral-900">Learn About 9Lenses</h1>
+                  <h1 className="text-2xl font-display font-bold text-neutral-900">Learn About 9Vectors</h1>
                   <p className="text-sm text-neutral-600">Comprehensive Business Assessment Framework</p>
                 </div>
               </div>
@@ -294,7 +294,7 @@ const LearnNineLenses = () => {
         <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-green-600 rounded-3xl p-12 text-white shadow-2xl mb-12">
           <div className="max-w-4xl">
             <h2 className="text-5xl font-display font-bold mb-6">
-              The 9Lenses Framework
+              The 9Vectors Framework
             </h2>
             <p className="text-2xl text-white/90 mb-6 leading-relaxed">
               A comprehensive methodology for assessing and optimizing organizational performance across 9 interconnected dimensions.
@@ -322,7 +322,7 @@ const LearnNineLenses = () => {
             Three Strategic Phases
           </h2>
           <p className="text-xl text-neutral-600 text-center mb-12 max-w-3xl mx-auto">
-            The 9Lenses framework is organized into three interconnected phases, each containing three lenses that work together to drive organizational excellence.
+            The 9Vectors framework is organized into three interconnected phases, each containing three lenses that work together to drive organizational excellence.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -465,7 +465,7 @@ const LearnNineLenses = () => {
             A Holistic, Interconnected Framework
           </h2>
           <p className="text-xl text-white/90 leading-relaxed text-center max-w-4xl mx-auto mb-8">
-            The power of 9Lenses lies in the interconnections between all 9 dimensions. Using our patented mathematical framework
+            The power of 9Vectors lies in the interconnections between all 9 dimensions. Using our patented mathematical framework
             (US Patent 9,489,419 B2), we analyze how improvements in one lens create ripple effects across your entire organization.
           </p>
           <div className="grid md:grid-cols-3 gap-6 mt-8">
@@ -488,7 +488,7 @@ const LearnNineLenses = () => {
               to="/assessment"
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-600 to-green-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all"
             >
-              Start Your 9Lenses Assessment
+              Start Your 9Vectors Assessment
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>

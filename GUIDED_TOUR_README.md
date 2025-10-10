@@ -1,8 +1,8 @@
-# 🎓 9Lenses Guided Tour System
+# 🎓 9Vectors Guided Tour System
 
 ## Overview
 
-The 9Lenses platform includes a comprehensive **Guided Tour System** that provides interactive, AI-enhanced onboarding for first-time visitors and contextual walkthroughs for specific features.
+The 9Vectors platform includes a comprehensive **Guided Tour System** that provides interactive, AI-enhanced onboarding for first-time visitors and contextual walkthroughs for specific features.
 
 ## ✨ Features
 
@@ -21,7 +21,7 @@ The 9Lenses platform includes a comprehensive **Guided Tour System** that provid
 
 ### 📚 Multiple Tour Types
 1. **Welcome Tour** - First-time visitor introduction (auto-starts)
-2. **Framework Deep Dive** - Detailed explanation of 9Lenses
+2. **Framework Deep Dive** - Detailed explanation of 9Vectors
 3. **Assessment Guide** - How to complete assessments
 4. **Dashboard Walkthrough** - Understanding results
 5. **AI Features Tour** - Exploring AI coaching capabilities
@@ -389,7 +389,7 @@ const { resetTourProgress } = useGuidedTour();
 resetTourProgress();
 
 // Or manually clear localStorage
-localStorage.removeItem('9lenses_tour_prefs');
+localStorage.removeItem('9Vectors_tour_prefs');
 ```
 
 ## 🎯 Best Practices

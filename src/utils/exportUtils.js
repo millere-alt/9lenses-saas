@@ -9,7 +9,7 @@ export const exportAssessmentToPDF = (assessment, responses) => {
   // Title
   doc.setFontSize(20);
   doc.setTextColor(37, 99, 235); // Blue
-  doc.text('9Lenses Assessment Report', 20, yPosition);
+  doc.text('9Vectors Assessment Report', 20, yPosition);
   yPosition += 15;
 
   // Assessment Info
@@ -75,12 +75,12 @@ export const exportAssessmentToPDF = (assessment, responses) => {
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(128, 128, 128);
-    doc.text(`9Lenses Report - Page ${i} of ${pageCount}`, 20, 285);
+    doc.text(`9Vectors Report - Page ${i} of ${pageCount}`, 20, 285);
     doc.text(`Generated: ${new Date().toLocaleDateString()}`, 150, 285);
   }
 
   // Save the PDF
-  doc.save(`9Lenses_Assessment_${assessment.id}.pdf`);
+  doc.save(`9Vectors_Assessment_${assessment.id}.pdf`);
 };
 
 // Export Assessment to Excel
@@ -90,7 +90,7 @@ export const exportAssessmentToExcel = (assessment, responses) => {
 
   // Assessment Overview Sheet
   const overviewData = [
-    ['9Lenses Assessment Report'],
+    ['9Vectors Assessment Report'],
     [''],
     ['Assessment Title', assessment.title],
     ['Description', assessment.description || 'N/A'],
@@ -142,7 +142,7 @@ export const exportAssessmentToExcel = (assessment, responses) => {
   }
 
   // Save the file
-  XLSX.writeFile(wb, `9Lenses_Assessment_${assessment.id}.xlsx`);
+  XLSX.writeFile(wb, `9Vectors_Assessment_${assessment.id}.xlsx`);
 };
 
 // Export Dashboard Data to Excel
@@ -151,7 +151,7 @@ export const exportDashboardToExcel = (dashboardData) => {
 
   // Summary Sheet
   const summaryData = [
-    ['9Lenses Dashboard Export'],
+    ['9Vectors Dashboard Export'],
     ['Generated', new Date().toLocaleDateString()],
     [''],
     ['Metric', 'Value']
@@ -184,7 +184,7 @@ export const exportDashboardToExcel = (dashboardData) => {
     XLSX.utils.book_append_sheet(wb, wsAssessments, 'Assessments');
   }
 
-  XLSX.writeFile(wb, `9Lenses_Dashboard_${new Date().toISOString().split('T')[0]}.xlsx`);
+  XLSX.writeFile(wb, `9Vectors_Dashboard_${new Date().toISOString().split('T')[0]}.xlsx`);
 };
 
 // Export Document Analysis to PDF
@@ -195,7 +195,7 @@ export const exportDocumentAnalysisToPDF = (document, analysis) => {
   // Title
   doc.setFontSize(20);
   doc.setTextColor(37, 99, 235);
-  doc.text('9Lenses Document Analysis', 20, yPosition);
+  doc.text('9Vectors Document Analysis', 20, yPosition);
   yPosition += 15;
 
   // Document Info
@@ -235,11 +235,11 @@ export const exportDocumentAnalysisToPDF = (document, analysis) => {
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(128, 128, 128);
-    doc.text(`9Lenses Document Analysis - Page ${i} of ${pageCount}`, 20, 285);
+    doc.text(`9Vectors Document Analysis - Page ${i} of ${pageCount}`, 20, 285);
     doc.text(`Generated: ${new Date().toLocaleDateString()}`, 150, 285);
   }
 
-  doc.save(`9Lenses_Document_Analysis_${document.id}.pdf`);
+  doc.save(`9Vectors_Document_Analysis_${document.id}.pdf`);
 };
 
 // Generic data export to CSV

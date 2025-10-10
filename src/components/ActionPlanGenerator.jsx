@@ -14,7 +14,7 @@ function ActionPlanGenerator({ lensScores }) {
       const plan = {
         title: 'Strategic Improvement Roadmap - Q1 2025',
         generatedDate: new Date().toLocaleDateString(),
-        summary: 'AI-generated 90-day action plan focusing on highest-impact improvements across your 9Lenses assessment.',
+        summary: 'AI-generated 90-day action plan focusing on highest-impact improvements across your 9Vectors assessment.',
         phases: [
           {
             name: 'Phase 1: Quick Wins (Days 1-30)',
@@ -250,7 +250,7 @@ function ActionPlanGenerator({ lensScores }) {
           <Target className="w-20 h-20 text-blue-500 mx-auto mb-6" />
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Generate Your Strategic Action Plan</h3>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Our AI will analyze your 9Lenses assessment results and create a comprehensive 90-day action plan with specific initiatives, timelines, budgets, and success criteria.
+            Our AI will analyze your 9Vectors assessment results and create a comprehensive 90-day action plan with specific initiatives, timelines, budgets, and success criteria.
           </p>
 
           <button

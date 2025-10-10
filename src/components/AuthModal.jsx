@@ -77,7 +77,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                 {mode === 'login' ? 'Welcome Back' : 'Get Started'}
               </h2>
               <p className="text-blue-100 text-sm">
-                {mode === 'login' ? 'Sign in to your account' : 'Create your 9Lenses account'}
+                {mode === 'login' ? 'Sign in to your account' : 'Create your 9Vectors account'}
               </p>
             </div>
           </div>
@@ -87,7 +87,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
         {mode === 'login' && (
           <div className="mx-6 mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
             <p className="text-sm text-blue-800 font-medium">Demo Credentials:</p>
-            <p className="text-xs text-blue-700 mt-1">Email: demo@9lenses.com</p>
+            <p className="text-xs text-blue-700 mt-1">Email: demo@9Vectors.com</p>
             <p className="text-xs text-blue-700">Password: demo123</p>
           </div>
         )}

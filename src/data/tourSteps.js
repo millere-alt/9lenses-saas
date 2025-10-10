@@ -1,7 +1,7 @@
 /**
- * 9Lenses Guided Tour Steps
+ * 9Vectors Guided Tour Steps
  *
- * Comprehensive onboarding tour that explains the 9Lenses framework
+ * Comprehensive onboarding tour that explains the 9Vectors framework
  * and how to use the application, with AI coaching integration
  */
 
@@ -22,14 +22,14 @@ export const FIRST_TIME_TOUR = [
     id: 'welcome',
     target: 'body',
     placement: 'center',
-    title: '👋 Welcome to 9Lenses!',
-    content: `I'm your AI guide, and I'll help you understand the 9Lenses framework and how to use this platform to transform your organization.
+    title: '👋 Welcome to 9Vectors!',
+    content: `I'm your AI guide, and I'll help you understand the 9Vectors framework and how to use this platform to transform your organization.
 
 This tour will take about 3-5 minutes. Ready to get started?`,
     showAICoach: true,
     aiContext: {
       workflow: 'learning',
-      message: 'Welcome! I\'m excited to guide you through the 9Lenses framework.'
+      message: 'Welcome! I\'m excited to guide you through the 9Vectors framework.'
     },
     actions: [
       { label: 'Start Tour', action: 'next', variant: 'primary' },
@@ -37,17 +37,17 @@ This tour will take about 3-5 minutes. Ready to get started?`,
     ]
   },
   {
-    id: 'what-is-9lenses',
+    id: 'what-is-9Vectors',
     target: 'body',
     placement: 'center',
-    title: '🎯 What is 9Lenses?',
-    content: `9Lenses is a comprehensive business assessment framework that evaluates organizations across **9 interconnected dimensions**.
+    title: '🎯 What is 9Vectors?',
+    content: `9Vectors is a comprehensive business assessment framework that evaluates organizations across **9 interconnected dimensions**.
 
 Think of it as a complete health check for your business - examining everything from your market position to your financial health, from your people to your operations.`,
     showAICoach: true,
     aiContext: {
       workflow: 'learning',
-      userQuestion: 'Explain what the 9Lenses framework is and why it matters for organizations'
+      userQuestion: 'Explain what the 9Vectors framework is and why it matters for organizations'
     },
     actions: [
       { label: 'Tell Me More', action: 'next', variant: 'primary' },
@@ -75,7 +75,7 @@ Each phase builds on the previous one to create a complete picture of your organ
     showAICoach: true,
     aiContext: {
       workflow: 'learning',
-      userQuestion: 'Explain the three phases of the 9Lenses framework and how they relate to each other'
+      userQuestion: 'Explain the three phases of the 9Vectors framework and how they relate to each other'
     },
     actions: [
       { label: 'Continue', action: 'next', variant: 'primary' },
@@ -139,7 +139,7 @@ Remember: The AI coach is always here to help. Just click the 🤖 button anytim
     showAICoach: true,
     aiContext: {
       workflow: 'learning',
-      userQuestion: 'Give me personalized next steps for getting started with 9Lenses'
+      userQuestion: 'Give me personalized next steps for getting started with 9Vectors'
     },
     actions: [
       { label: 'Start Assessment', action: 'navigate:/assessment/launch', variant: 'primary' },
@@ -151,15 +151,15 @@ Remember: The AI coach is always here to help. Just click the 🤖 button anytim
 
 /**
  * Framework Deep Dive Tour
- * Detailed explanation of the 9Lenses framework
+ * Detailed explanation of the 9Vectors framework
  */
 export const FRAMEWORK_TOUR = [
   {
     id: 'framework-intro',
     target: 'body',
     placement: 'center',
-    title: '🎓 Understanding 9Lenses',
-    content: `Let's take a deeper look at the 9Lenses framework and how each lens provides unique insights into your organization.`,
+    title: '🎓 Understanding 9Vectors',
+    content: `Let's take a deeper look at the 9Vectors framework and how each lens provides unique insights into your organization.`,
     showAICoach: true,
     aiContext: {
       workflow: 'learning',
@@ -228,7 +228,7 @@ These ensure sustainability and compliance.`,
     target: '[data-tour="lens-diagram"]',
     placement: 'bottom',
     title: '🔗 Everything Connects',
-    content: `The power of 9Lenses is in how the lenses interconnect:
+    content: `The power of 9Vectors is in how the lenses interconnect:
 
 • Weak **People** affects **Operations**
 • Poor **Strategy** impacts **Financial** results
@@ -259,7 +259,7 @@ The assessment covers all 9 lenses, 44 sub-lenses, and 242+ themes.`,
     showAICoach: true,
     aiContext: {
       workflow: 'assessment',
-      userQuestion: 'Help me prepare for taking a 9Lenses assessment. What should I know?'
+      userQuestion: 'Help me prepare for taking a 9Vectors assessment. What should I know?'
     }
   },
   {
@@ -407,7 +407,7 @@ export const AI_FEATURES_TOUR = [
     target: '[data-tour="ai-coach-button"]',
     placement: 'left',
     title: '🤖 AI Coach Capabilities',
-    content: `Your AI coach is powered by Claude and understands the entire 9Lenses framework. Let me show you what it can do!`,
+    content: `Your AI coach is powered by Claude and understands the entire 9Vectors framework. Let me show you what it can do!`,
     highlightElement: '[data-tour="ai-coach-button"]',
     pulseElement: true
   },
@@ -502,7 +502,7 @@ export const AVAILABLE_TOURS = [
   {
     id: TOUR_TYPES.FRAMEWORK,
     name: 'Framework Deep Dive',
-    description: 'Learn about the 9Lenses in detail',
+    description: 'Learn about the 9Vectors in detail',
     duration: '5-7 min',
     icon: '🎓',
     steps: FRAMEWORK_TOUR.length

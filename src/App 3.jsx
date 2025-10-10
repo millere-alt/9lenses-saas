@@ -6,7 +6,7 @@ import AppLayout from './components/AppLayout';
 // Pages
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
-import About9Lenses from './components/About9Lenses';
+import About9Vectors from './components/About9Vectors';
 import HowItWorks from './components/HowItWorks';
 import BooksPage from './components/BooksPage';
 import Dashboard from './components/Dashboard';
@@ -34,7 +34,7 @@ function App() {
           <Routes>
             {/* Main Routes */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<About9Lenses />} />
+            <Route path="/about" element={<About9Vectors />} />
             <Route path="/learn" element={<LearnNineLenses />} />
             <Route path="/ai-assistant" element={<AIOnboardingAssistant />} />
             <Route path="/demo" element={<Review360Demo />} />

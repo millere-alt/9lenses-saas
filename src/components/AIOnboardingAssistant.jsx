@@ -26,9 +26,9 @@ const AIOnboardingAssistant = () => {
   useEffect(() => {
     setTimeout(() => {
       addBotMessage(
-        "👋 Hello! I'm your 9Lenses AI Assistant. I'm here to help you understand and navigate the 9Lenses platform.\n\nI can help you with:\n• Understanding what 9Lenses is\n• Learning about the 9 dimensions\n• Starting your first assessment\n• Exploring AI-powered features\n• Answering any questions\n\nWhat would you like to know first?",
+        "👋 Hello! I'm your 9Vectors AI Assistant. I'm here to help you understand and navigate the 9Vectors platform.\n\nI can help you with:\n• Understanding what 9Vectors is\n• Learning about the 9 dimensions\n• Starting your first assessment\n• Exploring AI-powered features\n• Answering any questions\n\nWhat would you like to know first?",
         [
-          { text: "What is 9Lenses?", action: "explain-9lenses" },
+          { text: "What is 9Vectors?", action: "explain-9Vectors" },
           { text: "Start an Assessment", action: "start-assessment" },
           { text: "Explore AI Features", action: "ai-features" },
           { text: "I have a question", action: "open-chat" }
@@ -61,8 +61,8 @@ const AIOnboardingAssistant = () => {
 
     setTimeout(() => {
       switch (action) {
-        case "explain-9lenses":
-          handleExplain9Lenses();
+        case "explain-9Vectors":
+          handleExplain9Vectors();
           break;
         case "start-assessment":
           handleStartAssessment();
@@ -97,9 +97,9 @@ const AIOnboardingAssistant = () => {
     }, 500);
   };
 
-  const handleExplain9Lenses = () => {
+  const handleExplain9Vectors = () => {
     addBotMessage(
-      "9Lenses is a comprehensive business assessment framework that evaluates organizations across **9 interconnected dimensions**.\n\n🎯 It's organized into 3 categories:\n\n**🌱 Assets** (Green) - Your Resources\n• Market\n• People\n• Finance\n\n**⚙️ Processes** (Orange) - Your Operations\n• Strategy\n• Operations\n• Execution\n\n**🏛️ Structures** (Blue) - Your Governance\n• Expectation\n• Governance\n• Entity\n\nThese 9 dimensions work together to give you a complete picture of your organization's health and performance.",
+      "9Vectors is a comprehensive business assessment framework that evaluates organizations across **9 interconnected dimensions**.\n\n🎯 It's organized into 3 categories:\n\n**🌱 Assets** (Green) - Your Resources\n• Market\n• People\n• Finance\n\n**⚙️ Processes** (Orange) - Your Operations\n• Strategy\n• Operations\n• Execution\n\n**🏛️ Structures** (Blue) - Your Governance\n• Expectation\n• Governance\n• Entity\n\nThese 9 dimensions work together to give you a complete picture of your organization's health and performance.",
       [
         { text: "Learn About Each Lens", action: "learn-lenses" },
         { text: "Start My Assessment", action: "start-assessment" },
@@ -139,7 +139,7 @@ const AIOnboardingAssistant = () => {
       [
         { text: "View AI Dashboard", action: "view-ai-dashboard" },
         { text: "Start Assessment First", action: "start-assessment" },
-        { text: "Learn About 9Lenses", action: "explain-9lenses" }
+        { text: "Learn About 9Vectors", action: "explain-9Vectors" }
       ],
       500
     );
@@ -159,7 +159,7 @@ const AIOnboardingAssistant = () => {
 
   const handleOpenChat = () => {
     addBotMessage(
-      "Of course! Feel free to ask me anything about 9Lenses. I can help with:\n\n• Understanding specific lenses\n• How to interpret results\n• Best practices for assessments\n• AI features and capabilities\n• Navigation tips\n\nWhat would you like to know?",
+      "Of course! Feel free to ask me anything about 9Vectors. I can help with:\n\n• Understanding specific lenses\n• How to interpret results\n• Best practices for assessments\n• AI features and capabilities\n• Navigation tips\n\nWhat would you like to know?",
       null,
       500
     );
@@ -177,8 +177,8 @@ const AIOnboardingAssistant = () => {
     setTimeout(() => {
       const lowerText = userText.toLowerCase();
 
-      if (lowerText.includes('what') && (lowerText.includes('9lenses') || lowerText.includes('nine lenses'))) {
-        handleExplain9Lenses();
+      if (lowerText.includes('what') && (lowerText.includes('9Vectors') || lowerText.includes('nine lenses'))) {
+        handleExplain9Vectors();
       } else if (lowerText.includes('start') || lowerText.includes('begin') || lowerText.includes('assessment')) {
         handleStartAssessment();
       } else if (lowerText.includes('ai') || lowerText.includes('features') || lowerText.includes('intelligent')) {
@@ -225,9 +225,9 @@ const AIOnboardingAssistant = () => {
         );
       } else if (lowerText.includes('help') || lowerText.includes('guide')) {
         addBotMessage(
-          "I'm here to help! Here's what I can do for you:\n\n✅ Explain the 9Lenses framework\n✅ Guide you through starting an assessment\n✅ Show you AI-powered features\n✅ Answer questions about specific lenses\n✅ Help navigate the platform\n\nWhat would you like to explore?",
+          "I'm here to help! Here's what I can do for you:\n\n✅ Explain the 9Vectors framework\n✅ Guide you through starting an assessment\n✅ Show you AI-powered features\n✅ Answer questions about specific lenses\n✅ Help navigate the platform\n\nWhat would you like to explore?",
           [
-            { text: "What is 9Lenses?", action: "explain-9lenses" },
+            { text: "What is 9Vectors?", action: "explain-9Vectors" },
             { text: "Start Assessment", action: "start-assessment" },
             { text: "AI Features", action: "ai-features" },
             { text: "Learn About Lenses", action: "learn-lenses" }
@@ -237,7 +237,7 @@ const AIOnboardingAssistant = () => {
         addBotMessage(
           "That's a great question! Let me help you find what you're looking for.\n\nYou can:\n• Ask about specific lenses (Market, People, Finance, etc.)\n• Learn how to start an assessment\n• Explore our AI features\n• Get navigation help\n\nWhat interests you most?",
           [
-            { text: "Explain 9Lenses", action: "explain-9lenses" },
+            { text: "Explain 9Vectors", action: "explain-9Vectors" },
             { text: "Start Assessment", action: "start-assessment" },
             { text: "AI Features", action: "ai-features" },
             { text: "Learn Lenses", action: "learn-lenses" }
@@ -268,7 +268,7 @@ const AIOnboardingAssistant = () => {
                 </div>
                 <div>
                   <h1 className="text-2xl font-display font-bold text-neutral-900">AI Onboarding Assistant</h1>
-                  <p className="text-sm text-neutral-600">Your guide to 9Lenses</p>
+                  <p className="text-sm text-neutral-600">Your guide to 9Vectors</p>
                 </div>
               </div>
             </div>
@@ -289,7 +289,7 @@ const AIOnboardingAssistant = () => {
               <Bot className="w-8 h-8" />
             </div>
             <div>
-              <h2 className="text-3xl font-display font-bold mb-3">Welcome to 9Lenses! 👋</h2>
+              <h2 className="text-3xl font-display font-bold mb-3">Welcome to 9Vectors! 👋</h2>
               <p className="text-white/90 text-lg leading-relaxed">
                 I'm your AI assistant, here to make your journey simple and intuitive.
                 I'll help you understand the platform, guide you through assessments, and show you how to leverage AI-powered insights.
@@ -301,11 +301,11 @@ const AIOnboardingAssistant = () => {
         {/* Quick Actions */}
         <div className="grid md:grid-cols-4 gap-4 mb-8">
           <button
-            onClick={() => handleQuickReply('explain-9lenses', 'What is 9Lenses?')}
+            onClick={() => handleQuickReply('explain-9Vectors', 'What is 9Vectors?')}
             className="p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all border-2 border-primary-200 hover:border-primary-400 text-left group"
           >
             <Target className="w-8 h-8 text-primary-600 mb-2 group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-neutral-900 mb-1">About 9Lenses</h3>
+            <h3 className="font-bold text-neutral-900 mb-1">About 9Vectors</h3>
             <p className="text-xs text-neutral-600">Learn the framework</p>
           </button>
 
@@ -349,7 +349,7 @@ const AIOnboardingAssistant = () => {
                       <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-green-600 rounded-lg flex items-center justify-center">
                         <Bot className="w-5 h-5 text-white" />
                       </div>
-                      <span className="text-sm font-semibold text-neutral-700">9Lenses AI</span>
+                      <span className="text-sm font-semibold text-neutral-700">9Vectors AI</span>
                     </div>
                   )}
 
@@ -390,7 +390,7 @@ const AIOnboardingAssistant = () => {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask me anything about 9Lenses..."
+                placeholder="Ask me anything about 9Vectors..."
                 className="flex-1 px-4 py-3 rounded-xl border-2 border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
               />
               <button
@@ -402,7 +402,7 @@ const AIOnboardingAssistant = () => {
               </button>
             </div>
             <p className="text-xs text-neutral-500 mt-2">
-              Try asking: "What is 9Lenses?" or "How do I start an assessment?"
+              Try asking: "What is 9Vectors?" or "How do I start an assessment?"
             </p>
           </form>
         </div>

@@ -6,7 +6,7 @@ import {
   Sparkles, CheckCircle2, Eye, Rocket
 } from 'lucide-react';
 
-function About9Lenses() {
+function About9Vectors() {
   const navigate = useNavigate();
   const [activePhase, setActivePhase] = useState(0);
   const [scrollY, setScrollY] = useState(0);
@@ -161,7 +161,7 @@ function About9Lenses() {
           </div>
 
           <h1 className="text-6xl md:text-7xl font-black bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent mb-6 leading-tight">
-            About 9Lenses
+            About 9Vectors
           </h1>
           <p className="text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto font-medium leading-relaxed">
             A comprehensive framework for evaluating organizational health across
@@ -286,7 +286,7 @@ function About9Lenses() {
         {/* Benefits Section */}
         <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl p-16 shadow-2xl">
           <h2 className="text-5xl font-black bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-4 text-center">
-            Why Use 9Lenses?
+            Why Use 9Vectors?
           </h2>
           <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
             Transform your organization with comprehensive insights and actionable intelligence
@@ -331,7 +331,7 @@ function About9Lenses() {
               Ready to Transform Your Organization?
             </h2>
             <p className="text-2xl text-emerald-100 mb-10 max-w-3xl mx-auto">
-              Launch your comprehensive 9Lenses assessment and unlock strategic insights for sustainable excellence
+              Launch your comprehensive 9Vectors assessment and unlock strategic insights for sustainable excellence
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -374,4 +374,4 @@ function About9Lenses() {
   );
 }
 
-export default About9Lenses;
+export default About9Vectors;

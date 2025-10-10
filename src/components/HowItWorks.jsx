@@ -347,7 +347,7 @@ function HowItWorks() {
               Ready to Begin Your Journey?
             </h2>
             <p className="text-2xl text-teal-100 mb-10 max-w-3xl mx-auto">
-              Launch your 9Lenses assessment today and start transforming your organization
+              Launch your 9Vectors assessment today and start transforming your organization
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">

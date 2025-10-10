@@ -29,7 +29,7 @@ function HomePage() {
 
           {/* Main Heading */}
           <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-4 tracking-tight">
-            9Lenses
+            9Vectors
           </h1>
           <div className="text-xl md:text-2xl text-teal-100 font-medium mb-8">
             Transform Your Organization Through Strategic Assessment
@@ -66,7 +66,7 @@ function HomePage() {
               className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl border-2 border-white/30 hover:border-white/50 transition-all duration-300 flex items-center space-x-2"
             >
               <Target size={20} />
-              <span>Learn About 9Lenses</span>
+              <span>Learn About 9Vectors</span>
             </button>
           </div>
 
@@ -143,10 +143,10 @@ function HomePage() {
               </div>
               <div>
                 <h3 className="text-2xl font-display font-bold text-white mb-2">
-                  9Lenses Books & Resources
+                  9Vectors Books & Resources
                 </h3>
                 <p className="text-white/90 text-lg">
-                  Get the complete 9Lenses methodology book and Snapshot9 business model guide
+                  Get the complete 9Vectors methodology book and Snapshot9 business model guide
                 </p>
               </div>
             </div>
@@ -222,7 +222,7 @@ function HomePage() {
         </div>
       </div>
 
-      {/* The 9Lenses Framework */}
+      {/* The 9Vectors Framework */}
       <div className="mb-12">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -230,7 +230,7 @@ function HomePage() {
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Every successful business transformation starts with comprehensive assessment.
-            9Lenses analyzes your organization across three critical categories.
+            9Vectors analyzes your organization across three critical categories.
           </p>
         </div>
 
@@ -412,7 +412,7 @@ function HomePage() {
           </h2>
 
           <p className="text-xl text-green-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Join forward-thinking organizations using 9Lenses to drive strategic excellence
+            Join forward-thinking organizations using 9Vectors to drive strategic excellence
             and sustainable growth.
           </p>
 

@@ -1,13 +1,13 @@
-# 9Lenses AI Coaching System
+# 9Vectors AI Coaching System
 
 ## Overview
 
-The 9Lenses SaaS platform now includes a comprehensive **Agentic AI Coaching System** powered by Claude AI. This system provides intelligent, context-aware coaching throughout all workflows and content in the application.
+The 9Vectors SaaS platform now includes a comprehensive **Agentic AI Coaching System** powered by Claude AI. This system provides intelligent, context-aware coaching throughout all workflows and content in the application.
 
 ## 🎯 Key Features
 
 ### 1. **Contextual Intelligence**
-- Understands the full 9Lenses framework (9 lenses, 44 sub-lenses, 242+ themes)
+- Understands the full 9Vectors framework (9 lenses, 44 sub-lenses, 242+ themes)
 - Provides coaching specific to the user's current context
 - Adapts responses based on workflow (assessment, dashboard, strategy, learning)
 
@@ -36,7 +36,7 @@ The 9Lenses SaaS platform now includes a comprehensive **Agentic AI Coaching Sys
 #### 1. **AI Coaching Agent** (`src/services/aiCoachingAgent.js`)
 The brain of the system. Handles:
 - Communication with Claude AI API
-- Context building from 9Lenses framework
+- Context building from 9Vectors framework
 - Assessment data integration
 - Conversation history management
 - Response generation and parsing
@@ -451,4 +451,4 @@ For issues or questions:
 
 ---
 
-**Built with Claude AI and the 9Lenses Framework**
+**Built with Claude AI and the 9Vectors Framework**

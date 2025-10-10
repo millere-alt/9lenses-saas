@@ -190,7 +190,7 @@ const SettingsPage = () => {
               <div className="space-y-6">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Appearance</h2>
-                  <p className="text-gray-600">Customize how 9Lenses looks for you.</p>
+                  <p className="text-gray-600">Customize how 9Vectors looks for you.</p>
                 </div>
 
                 <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">

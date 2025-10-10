@@ -20,7 +20,7 @@ router.post('/strategy-advisor',
         messages: [
           {
             role: 'system',
-            content: 'You are a strategic business advisor for the 9Lenses framework. Provide actionable insights based on assessment data.'
+            content: 'You are a strategic business advisor for the 9Vectors framework. Provide actionable insights based on assessment data.'
           },
           {
             role: 'user',
@@ -146,7 +146,7 @@ router.post('/assistant',
       const messages = [
         {
           role: 'system',
-          content: 'You are a helpful assistant for the 9Lenses platform. Help users understand their assessments, navigate features, and gain insights from their data.'
+          content: 'You are a helpful assistant for the 9Vectors platform. Help users understand their assessments, navigate features, and gain insights from their data.'
         },
         ...(conversationHistory || []),
         {

@@ -1,7 +1,7 @@
 /**
- * 9Lenses AI Coaching Agent
+ * 9Vectors AI Coaching Agent
  *
- * This agentic AI system provides intelligent coaching across all 9Lenses content and workflows.
+ * This agentic AI system provides intelligent coaching across all 9Vectors content and workflows.
  * It understands the full framework (9 lenses, 44 sub-lenses, 242+ themes) and provides
  * contextual guidance, recommendations, and insights based on user interactions and assessment data.
  */
@@ -26,11 +26,11 @@ const getAnthropicClient = () => {
 };
 
 /**
- * Build comprehensive context about the 9Lenses framework
+ * Build comprehensive context about the 9Vectors framework
  */
-const build9LensesContext = () => {
+const build9VectorsContext = () => {
   const context = {
-    overview: `The 9Lenses framework is a comprehensive business assessment methodology that evaluates organizations across 9 interconnected dimensions, organized into three categories:
+    overview: `The 9Vectors framework is a comprehensive business assessment methodology that evaluates organizations across 9 interconnected dimensions, organized into three categories:
 
     1. ASSETS (Social Discovery Phase): Market, People, Financial
     2. PROCESSES (Social Design Phase): Strategy, Operations, Execution
@@ -102,7 +102,7 @@ export class AICoachingAgent {
   constructor() {
     this.client = getAnthropicClient();
     this.conversationHistory = [];
-    this.systemContext = build9LensesContext();
+    this.systemContext = build9VectorsContext();
   }
 
   /**
@@ -176,9 +176,9 @@ export class AICoachingAgent {
    * Build system prompt based on workflow
    */
   buildSystemPrompt(workflow) {
-    const basePrompt = `You are an expert 9Lenses business assessment coach with deep knowledge of organizational development, strategic planning, and business operations. Your role is to provide intelligent, contextual coaching to help users understand and improve their organization across all 9 lenses.
+    const basePrompt = `You are an expert 9Vectors business assessment coach with deep knowledge of organizational development, strategic planning, and business operations. Your role is to provide intelligent, contextual coaching to help users understand and improve their organization across all 9 lenses.
 
-9LENSES FRAMEWORK KNOWLEDGE:
+9Vectors FRAMEWORK KNOWLEDGE:
 ${this.systemContext}
 
 YOUR COACHING APPROACH:
@@ -219,7 +219,7 @@ RESPONSE FORMAT:
 - Providing implementation guidance
 - Suggesting metrics to track progress`,
 
-      learning: `\n\nCONTEXT: The user is learning about the 9Lenses framework. Focus on:
+      learning: `\n\nCONTEXT: The user is learning about the 9Vectors framework. Focus on:
 - Explaining concepts clearly with examples
 - Showing how lenses interconnect
 - Providing industry-specific context
@@ -262,7 +262,7 @@ RESPONSE FORMAT:
       }
     } else {
       // User asked a specific question
-      prompt += `USER QUESTION: "${userQuestion}"\n\nProvide a helpful, specific answer based on their current context and the 9Lenses framework.`;
+      prompt += `USER QUESTION: "${userQuestion}"\n\nProvide a helpful, specific answer based on their current context and the 9Vectors framework.`;
     }
 
     return prompt;
@@ -297,7 +297,7 @@ RESPONSE FORMAT:
 
     if (userQuestion) {
       return {
-        message: `Great question about "${userQuestion}"! \n\nBased on the 9Lenses framework, here's what you should know:\n\nThis relates to ${currentLens?.name || 'your overall assessment'} and is important because it helps you understand your organization's performance in this critical area. Consider how this connects to your strategic goals and operational excellence.\n\nKey considerations:\n- Assess your current state honestly and objectively\n- Look for evidence and data to support your ratings\n- Consider stakeholder perspectives\n- Think about trends over time\n\nWould you like me to dive deeper into any specific aspect?`,
+        message: `Great question about "${userQuestion}"! \n\nBased on the 9Vectors framework, here's what you should know:\n\nThis relates to ${currentLens?.name || 'your overall assessment'} and is important because it helps you understand your organization's performance in this critical area. Consider how this connects to your strategic goals and operational excellence.\n\nKey considerations:\n- Assess your current state honestly and objectively\n- Look for evidence and data to support your ratings\n- Consider stakeholder perspectives\n- Think about trends over time\n\nWould you like me to dive deeper into any specific aspect?`,
         suggestions: [
           'Review related themes for a complete picture',
           'Gather data from relevant stakeholders',
@@ -322,7 +322,7 @@ RESPONSE FORMAT:
     }
 
     return {
-      message: `Welcome to your ${context.workflow} experience! I'm here to help you get the most value from the 9Lenses framework.\n\nThe 9Lenses assessment provides a comprehensive view of your organization across three key phases: Assets (what you have), Processes (what you do), and Structures (how you're organized).\n\nAs you work through this, remember:\n- Be honest and objective in your assessments\n- Provide specific examples in qualitative responses\n- Consider multiple perspectives (employees, customers, partners)\n- Use data and evidence where possible\n\nI'm here to answer questions, explain concepts, and help you interpret results. Just ask!`,
+      message: `Welcome to your ${context.workflow} experience! I'm here to help you get the most value from the 9Vectors framework.\n\nThe 9Vectors assessment provides a comprehensive view of your organization across three key phases: Assets (what you have), Processes (what you do), and Structures (how you're organized).\n\nAs you work through this, remember:\n- Be honest and objective in your assessments\n- Provide specific examples in qualitative responses\n- Consider multiple perspectives (employees, customers, partners)\n- Use data and evidence where possible\n\nI'm here to answer questions, explain concepts, and help you interpret results. Just ask!`,
       suggestions: [
         'Start with areas you know well to build momentum',
         'Involve other stakeholders for diverse perspectives',

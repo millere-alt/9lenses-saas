@@ -281,7 +281,7 @@ const DocumentDissector = () => {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2 flex items-center">
             <Layers className="w-10 h-10 mr-3 text-indigo-600" />
-            9Lenses Document Dissector
+            9Vectors Document Dissector
           </h1>
           <p className="text-gray-600 text-lg">
             Upload any business document and our AI will analyze it through all 9 lenses,

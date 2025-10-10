@@ -8,15 +8,15 @@ function BooksPage() {
   const books = [
     {
       id: 1,
-      title: '9Lenses: A Framework for Business Success',
+      title: '9Vectors: A Framework for Business Success',
       subtitle: 'The Complete Methodology Book',
-      description: 'Master the complete 9Lenses framework with in-depth analysis of all 9 lenses, 44 sub-lenses, and 242+ themes. Includes case studies, implementation guides, and assessment templates.',
+      description: 'Master the complete 9Vectors framework with in-depth analysis of all 9 lenses, 44 sub-lenses, and 242+ themes. Includes case studies, implementation guides, and assessment templates.',
       icon: Target,
       color: 'primary',
       type: 'eBook',
       price: 49.99,
-      stripeLink: 'https://buy.stripe.com/test_9lenses_book', // Replace with actual Stripe link
-      downloadUrl: '/downloads/9lenses-framework.pdf',
+      stripeLink: 'https://buy.stripe.com/test_9Vectors_book', // Replace with actual Stripe link
+      downloadUrl: '/downloads/9Vectors-framework.pdf',
       features: [
         'Complete framework methodology',
         'All 9 lenses explained in detail',
@@ -48,16 +48,16 @@ function BooksPage() {
     },
     {
       id: 3,
-      title: 'Complete 9Lenses Bundle',
+      title: 'Complete 9Vectors Bundle',
       subtitle: 'Both Books + Bonus Materials',
-      description: 'Get both the 9Lenses Framework and Snapshot9 books plus exclusive bonus materials including assessment templates, strategic planning worksheets, and video tutorials.',
+      description: 'Get both the 9Vectors Framework and Snapshot9 books plus exclusive bonus materials including assessment templates, strategic planning worksheets, and video tutorials.',
       icon: Award,
       color: 'secondary',
       type: 'Bundle',
       price: 79.99,
       originalPrice: 89.98,
-      stripeLink: 'https://buy.stripe.com/test_9lenses_bundle', // Replace with actual Stripe link
-      downloadUrl: '/downloads/9lenses-complete-bundle.zip',
+      stripeLink: 'https://buy.stripe.com/test_9Vectors_bundle', // Replace with actual Stripe link
+      downloadUrl: '/downloads/9Vectors-complete-bundle.zip',
       features: [
         'Both books included',
         'Assessment templates library',
@@ -73,14 +73,14 @@ function BooksPage() {
   const freeResources = [
     {
       title: 'Getting Started Guide',
-      description: 'Quick introduction to 9Lenses methodology and how to get started',
+      description: 'Quick introduction to 9Vectors methodology and how to get started',
       icon: BookOpen,
       type: 'Free PDF',
       downloadUrl: '/downloads/getting-started.pdf'
     },
     {
       title: 'Assessment Template',
-      description: 'Basic assessment template for conducting your first 9Lenses review',
+      description: 'Basic assessment template for conducting your first 9Vectors review',
       icon: TrendingUp,
       type: 'Free Template',
       downloadUrl: '/downloads/assessment-template.xlsx'
@@ -130,7 +130,7 @@ function BooksPage() {
             </div>
             <div>
               <h1 className="text-5xl font-bold">Books & Resources</h1>
-              <p className="text-xl text-white/90 mt-2">Master the 9Lenses methodology with our comprehensive books and guides</p>
+              <p className="text-xl text-white/90 mt-2">Master the 9Vectors methodology with our comprehensive books and guides</p>
             </div>
           </div>
 

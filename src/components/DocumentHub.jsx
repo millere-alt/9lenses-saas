@@ -47,7 +47,7 @@ const DocumentHub = () => {
               <h1 className="text-5xl font-bold mb-4">Document Intelligence Center</h1>
               <p className="text-xl opacity-90 max-w-3xl">
                 Upload financial statements, strategy documents, marketing plans, and operational manuals.
-                Automatically correlate with your 9Lenses assessment for powerful insights.
+                Automatically correlate with your 9Vectors assessment for powerful insights.
               </p>
             </div>
             <button
@@ -226,7 +226,7 @@ const DocumentHub = () => {
               </div>
               <p className="opacity-90">
                 Tag documents by lens and sub-lens. Our system automatically correlates them with your
-                9Lenses assessment scores.
+                9Vectors assessment scores.
               </p>
             </div>
 

@@ -9,7 +9,7 @@ const AIHelpAgent = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: 'Hi! I\'m your 9Lenses AI Assistant. I can help you with:\n\n• Understanding the 9 Lenses framework\n• Navigating the platform\n• Creating and managing assessments\n• Interpreting results and insights\n• Document analysis features\n• Best practices for strategic planning\n\nWhat would you like to know?',
+      content: 'Hi! I\'m your 9Vectors AI Assistant. I can help you with:\n\n• Understanding the 9 Lenses framework\n• Navigating the platform\n• Creating and managing assessments\n• Interpreting results and insights\n• Document analysis features\n• Best practices for strategic planning\n\nWhat would you like to know?',
       timestamp: new Date()
     }
   ]);
@@ -123,7 +123,7 @@ const AIHelpAgent = () => {
             <Bot className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-semibold">9Lenses AI Assistant</h3>
+            <h3 className="font-semibold">9Vectors AI Assistant</h3>
             <p className="text-xs text-blue-100">Always here to help</p>
           </div>
         </div>

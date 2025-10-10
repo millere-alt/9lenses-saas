@@ -16,7 +16,7 @@ const OnboardingTour = () => {
 
   const steps = [
     {
-      title: 'Welcome to 9Lenses! 🎉',
+      title: 'Welcome to 9Vectors! 🎉',
       description: 'Let\'s take a quick tour to help you get started with our platform.',
       action: 'Start Tour',
       highlight: null
@@ -47,7 +47,7 @@ const OnboardingTour = () => {
     },
     {
       title: 'You\'re All Set! ✨',
-      description: 'You\'re ready to start using 9Lenses. Explore the platform and discover powerful insights about your organization.',
+      description: 'You\'re ready to start using 9Vectors. Explore the platform and discover powerful insights about your organization.',
       action: 'Get Started',
       highlight: null
     }
@@ -133,7 +133,7 @@ const OnboardingTour = () => {
                 9L
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">9Lenses Platform</h3>
+                <h3 className="font-semibold text-gray-900">9Vectors Platform</h3>
                 <p className="text-sm text-gray-600">Strategic Business Assessment Tool</p>
               </div>
             </div>

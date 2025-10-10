@@ -96,7 +96,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
             </div>
             <h1 className="text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-brand-green-600 to-brand-blue-600 bg-clip-text text-transparent">
-                9Lenses Assessment
+                9Vectors Assessment
               </span>
             </h1>
             <p className="text-lg text-gray-600">Company Strategic Review</p>
@@ -195,7 +195,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
                 <Layers className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-gray-900">9Lenses Assessment</h1>
+                <h1 className="text-lg font-bold text-gray-900">9Vectors Assessment</h1>
                 <p className="text-sm text-gray-600">
                   {completedSubLenses} of {totalSubLenses} completed ({Math.round(progress)}%)
                 </p>

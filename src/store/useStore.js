@@ -24,7 +24,7 @@ export const useAuthStore = create(
       }
     }),
     {
-      name: '9lenses-auth'
+      name: '9Vectors-auth'
     }
   )
 );
@@ -40,7 +40,7 @@ export const useThemeStore = create(
       setTheme: (theme) => set({ theme })
     }),
     {
-      name: '9lenses-theme'
+      name: '9Vectors-theme'
     }
   )
 );

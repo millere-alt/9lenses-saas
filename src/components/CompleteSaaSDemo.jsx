@@ -47,7 +47,7 @@ function CompleteSaaSDemo() {
       subtitle: 'Company launches organizational assessment',
       icon: FileText,
       color: 'primary',
-      description: 'TechVentures Inc., a $50M B2B SaaS company, initiates a comprehensive 9Lenses assessment to identify growth opportunities and operational improvements.',
+      description: 'TechVentures Inc., a $50M B2B SaaS company, initiates a comprehensive 9Vectors assessment to identify growth opportunities and operational improvements.',
       data: {
         company: 'TechVentures Inc.',
         industry: 'B2B SaaS',
@@ -476,7 +476,7 @@ function CompleteSaaSDemo() {
         return (
           <div className="bg-white rounded-xl p-8 shadow-lg">
             <div className="flex items-center justify-between mb-6">
-              <h4 className="text-xl font-bold text-gray-900">9Lenses Assessment Scores</h4>
+              <h4 className="text-xl font-bold text-gray-900">9Vectors Assessment Scores</h4>
               <div className="text-center">
                 <div className="text-5xl font-bold text-primary-600">{currentStepData.data.overallScore}</div>
                 <div className="text-sm text-gray-600">Overall Score</div>
@@ -710,7 +710,7 @@ function CompleteSaaSDemo() {
           </div>
           <h1 className="text-5xl font-bold mb-4">From Intake to Impact</h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            Watch how organizations transform with 9Lenses - A complete journey through assessment, analysis, insights, and measurable business outcomes
+            Watch how organizations transform with 9Vectors - A complete journey through assessment, analysis, insights, and measurable business outcomes
           </p>
         </div>
       </div>

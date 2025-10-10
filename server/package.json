@@ -1,8 +1,8 @@
 {
-  "name": "9lenses-server",
+  "name": "9Vectors-server",
   "version": "1.0.0",
   "type": "module",
-  "description": "Backend server for 9Lenses SaaS Platform",
+  "description": "Backend server for 9Vectors SaaS Platform",
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",

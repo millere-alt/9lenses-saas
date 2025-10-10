@@ -1,6 +1,6 @@
-# 9Lenses Backend Server
+# 9Vectors Backend Server
 
-Complete backend API for the 9Lenses SaaS Platform with authentication, assessments, AI features, and payment processing.
+Complete backend API for the 9Vectors SaaS Platform with authentication, assessments, AI features, and payment processing.
 
 ## 🚀 Quick Start
 
@@ -22,7 +22,7 @@ npm install
 
 Create a PostgreSQL database:
 ```sql
-CREATE DATABASE 9lenses;
+CREATE DATABASE 9Vectors;
 ```
 
 3. **Configure Environment Variables**
@@ -248,8 +248,8 @@ npm test
 ### Docker Deployment
 
 ```bash
-docker build -t 9lenses-api .
-docker run -p 3001:3001 --env-file .env 9lenses-api
+docker build -t 9Vectors-api .
+docker run -p 3001:3001 --env-file .env 9Vectors-api
 ```
 
 ### Hosting Platforms
@@ -283,7 +283,7 @@ docker run -p 3001:3001 --env-file .env 9lenses-api
 pg_isready
 
 # Verify DATABASE_URL format
-postgresql://user:password@localhost:5432/9lenses
+postgresql://user:password@localhost:5432/9Vectors
 ```
 
 **Port already in use:**
@@ -306,7 +306,7 @@ MIT
 
 For issues and questions:
 - GitHub Issues: [repo-url]
-- Email: support@9lenses.com
+- Email: support@9Vectors.com
 
 ---
 

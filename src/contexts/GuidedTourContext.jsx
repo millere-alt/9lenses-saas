@@ -27,7 +27,7 @@ export const GuidedTourProvider = ({ children }) => {
 
   // Load tour preferences from localStorage
   useEffect(() => {
-    const savedPrefs = localStorage.getItem('9lenses_tour_prefs');
+    const savedPrefs = localStorage.getItem('9Vectors_tour_prefs');
     if (savedPrefs) {
       const prefs = JSON.parse(savedPrefs);
       setHasSeenWelcome(prefs.hasSeenWelcome || false);
@@ -37,9 +37,9 @@ export const GuidedTourProvider = ({ children }) => {
 
   // Save preferences
   const savePreferences = useCallback((prefs) => {
-    const current = JSON.parse(localStorage.getItem('9lenses_tour_prefs') || '{}');
+    const current = JSON.parse(localStorage.getItem('9Vectors_tour_prefs') || '{}');
     const updated = { ...current, ...prefs };
-    localStorage.setItem('9lenses_tour_prefs', JSON.stringify(updated));
+    localStorage.setItem('9Vectors_tour_prefs', JSON.stringify(updated));
   }, []);
 
   // Start a tour

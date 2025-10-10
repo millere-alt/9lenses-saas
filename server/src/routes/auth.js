@@ -66,9 +66,9 @@ router.post('/register',
       // Send verification email
       await sendEmail({
         to: email,
-        subject: 'Verify your 9Lenses account',
+        subject: 'Verify your 9Vectors account',
         html: `
-          <h1>Welcome to 9Lenses!</h1>
+          <h1>Welcome to 9Vectors!</h1>
           <p>Please verify your email by clicking the link below:</p>
           <a href="${process.env.FRONTEND_URL}/verify-email?token=${user.emailVerifyToken}">Verify Email</a>
         `
@@ -214,7 +214,7 @@ router.post('/forgot-password',
 
       await sendEmail({
         to: email,
-        subject: 'Reset your 9Lenses password',
+        subject: 'Reset your 9Vectors password',
         html: `
           <h1>Password Reset Request</h1>
           <p>Click the link below to reset your password:</p>

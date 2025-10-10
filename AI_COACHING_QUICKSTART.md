@@ -1,10 +1,10 @@
 # 🚀 AI Coaching Quick Start Guide
 
-Get your 9Lenses AI Coach up and running in 5 minutes!
+Get your 9Vectors AI Coach up and running in 5 minutes!
 
 ## ✅ What's Already Installed
 
-The AI coaching system is now fully integrated into your 9Lenses SaaS application:
+The AI coaching system is now fully integrated into your 9Vectors SaaS application:
 
 ✅ Anthropic SDK installed (`@anthropic-ai/sdk`)
 ✅ AI Agent service created
@@ -91,7 +91,7 @@ import CoachingTrigger from './components/CoachingTrigger';
 ### Test 1: Open the Widget
 1. Go to any page
 2. Click the AI coach button (bottom-right)
-3. Type: "Tell me about the 9Lenses framework"
+3. Type: "Tell me about the 9Vectors framework"
 4. ✅ You should get a comprehensive response
 
 ### Test 2: Ask About Assessment

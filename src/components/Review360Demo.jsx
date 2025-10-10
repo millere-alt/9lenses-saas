@@ -232,7 +232,7 @@ const Review360Demo = () => {
                 <h1 className="text-4xl font-display font-bold">360° Review Demo</h1>
               </div>
               <p className="text-xl text-white/90">
-                See how TechVentures Inc. conducted a complete organizational assessment using 9Lenses
+                See how TechVentures Inc. conducted a complete organizational assessment using 9Vectors
               </p>
             </div>
             <button

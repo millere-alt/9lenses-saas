@@ -210,7 +210,7 @@ function AIDashboard() {
             <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Your AI Intelligence Suite</h2>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Leverage cutting-edge AI to transform your 9Lenses assessment into actionable strategic intelligence.
+                Leverage cutting-edge AI to transform your 9Vectors assessment into actionable strategic intelligence.
                 Our AI suite provides predictive insights, risk detection, competitive benchmarking, and personalized recommendations.
               </p>
             </div>
