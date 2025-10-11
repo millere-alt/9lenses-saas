@@ -9,7 +9,7 @@ const AIHelpAgent = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: 'Hi! I\'m your 9Vectors AI Assistant. I can help you with:\n\n• Understanding the 9 Lenses framework\n• Navigating the platform\n• Creating and managing assessments\n• Interpreting results and insights\n• Document analysis features\n• Best practices for strategic planning\n\nWhat would you like to know?',
+      content: 'Hi! I\'m your 9Vectors AI Assistant. I can help you with:\n\n• Understanding the 9 Vectors framework\n• Navigating the platform\n• Creating and managing assessments\n• Interpreting results and insights\n• Document analysis features\n• Best practices for strategic planning\n\nWhat would you like to know?',
       timestamp: new Date()
     }
   ]);
@@ -33,7 +33,7 @@ const AIHelpAgent = () => {
   }, [isOpen, isMinimized]);
 
   const quickQuestions = [
-    'What are the 9 Lenses?',
+    'What are the 9 Vectors?',
     'How do I create an assessment?',
     'Explain the AI Strategy Advisor',
     'How does document analysis work?',

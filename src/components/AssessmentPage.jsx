@@ -102,7 +102,7 @@ const AssessmentPage = ({ onNavigateToHome, onNavigateToDashboard }) => {
           {/* Left Sidebar - Navigation */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-6 border border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">All 9 Lenses</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">All 9 Vectors</h3>
               <div className="space-y-3">
                 {LENSES.map((l, idx) => (
                   <button

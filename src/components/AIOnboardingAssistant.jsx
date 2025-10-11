@@ -332,7 +332,7 @@ const AIOnboardingAssistant = () => {
             className="p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all border-2 border-primary-200 hover:border-primary-400 text-left group"
           >
             <Lightbulb className="w-8 h-8 text-primary-600 mb-2 group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-neutral-900 mb-1">9 Lenses</h3>
+            <h3 className="font-bold text-neutral-900 mb-1">9 Vectors</h3>
             <p className="text-xs text-neutral-600">Deep dive</p>
           </button>
         </div>

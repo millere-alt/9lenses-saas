@@ -333,7 +333,7 @@ const FullSaaSDemo = () => {
     {
       id: 4,
       title: "Step 4: Assessment Results & Scoring",
-      subtitle: "See Your Organization Through 9 Lenses",
+      subtitle: "See Your Organization Through 9 Vectors",
       icon: BarChart3,
       color: "from-purple-600 to-pink-600",
       content: (

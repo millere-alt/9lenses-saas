@@ -32,7 +32,7 @@ const ExplorePage = ({ onNavigateToHome, onNavigateToCEOPortal, onNavigateToMeta
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">CEO Portal</h3>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Executive overview of all 9 Lenses with priority areas and actionable insights
+                Executive overview of all 9 Vectors with priority areas and actionable insights
               </p>
               <div className="flex items-center gap-2 text-salesforce-blue font-semibold">
                 View Portal
@@ -50,7 +50,7 @@ const ExplorePage = ({ onNavigateToHome, onNavigateToCEOPortal, onNavigateToMeta
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Framework Explorer</h3>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Dive deep into 9 Lenses, 44 sub-lenses, and 242+ themes for comprehensive analysis
+                Dive deep into 9 Vectors, 44 sub-lenses, and 242+ themes for comprehensive analysis
               </p>
               <div className="flex items-center gap-2 text-salesforce-blue font-semibold">
                 Explore Framework

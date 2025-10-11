@@ -199,11 +199,11 @@ function Dashboard() {
           })}
         </div>
 
-        {/* 9 Lenses Breakdown - Interactive Chart */}
+        {/* 9 Vectors Breakdown - Interactive Chart */}
         <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-black bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
-              9 Lenses Breakdown
+              9 Vectors Breakdown
             </h2>
             <button className="group flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-50 to-blue-50 hover:from-emerald-100 hover:to-blue-100 rounded-xl border-2 border-emerald-200 transition-all duration-300">
               <RefreshCw className="w-4 h-4 text-emerald-600 group-hover:rotate-180 transition-transform duration-500" />

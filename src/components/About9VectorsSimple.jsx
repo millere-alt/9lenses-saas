@@ -71,7 +71,7 @@ const About9VectorsSimple = () => {
           </div>
         </div>
 
-        {/* The 9 Lenses Grid */}
+        {/* The 9 Vectors Grid */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
             The 9 Dimensions

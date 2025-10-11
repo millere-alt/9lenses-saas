@@ -161,7 +161,7 @@ const EnhancedLandingPage = ({
               </div>
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Framework Explorer</h3>
               <p className="text-gray-700 mb-8 leading-relaxed text-lg">
-                Deep dive into 9 Lenses, 44 sub-lenses, and 242+ themes. Understand the complete assessment framework.
+                Deep dive into 9 Vectors, 44 sub-lenses, and 242+ themes. Understand the complete assessment framework.
               </p>
               <button
                 onClick={onNavigateToMetaStructure}

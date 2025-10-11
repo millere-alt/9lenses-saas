@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BookOpen, Target, Users, DollarSign, Lightbulb, Cog, TrendingUp, MessageSquare, Shield, Building, ChevronDown, ChevronUp, Home, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const LearnNineLenses = () => {
+const LearnNineVectors = () => {
   const [expandedLens, setExpandedLens] = useState(null);
 
   const categories = [
@@ -498,4 +498,4 @@ const LearnNineLenses = () => {
   );
 };
 
-export default LearnNineLenses;
+export default LearnNineVectors;

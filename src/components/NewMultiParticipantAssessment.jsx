@@ -175,7 +175,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
-                    <span><strong>9 Lenses</strong> with 32 sub-lenses and 180+ themes</span>
+                    <span><strong>9 Vectors</strong> with 32 sub-lenses and 180+ themes</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />

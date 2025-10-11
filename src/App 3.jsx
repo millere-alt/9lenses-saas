@@ -16,7 +16,7 @@ import SurveyTakingPage from './components/SurveyTakingPage';
 import CEOPortal from './components/CEOPortal';
 import LaunchAssessment from './components/LaunchAssessment';
 import CEODashboard from './components/CEODashboard';
-import LearnNineLenses from './components/LearnNineLenses';
+import LearnNineVectors from './components/LearnNineVectors';
 import AIOnboardingAssistant from './components/AIOnboardingAssistant';
 import DataSourceManager from './components/DataSourceManager';
 import ExpertIdentificationSystem from './components/ExpertIdentificationSystem';
@@ -35,7 +35,7 @@ function App() {
             {/* Main Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<About9Vectors />} />
-            <Route path="/learn" element={<LearnNineLenses />} />
+            <Route path="/learn" element={<LearnNineVectors />} />
             <Route path="/ai-assistant" element={<AIOnboardingAssistant />} />
             <Route path="/demo" element={<Review360Demo />} />
             <Route path="/complete-demo" element={<CompleteSaaSDemo />} />
