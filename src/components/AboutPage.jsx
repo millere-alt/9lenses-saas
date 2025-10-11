@@ -10,7 +10,7 @@ function AboutPage() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            About 9Vectors
+            About 9Lenses
           </h1>
           <p className="text-2xl text-gray-600">
             A comprehensive framework for business assessment
@@ -20,9 +20,9 @@ function AboutPage() {
         {/* Overview */}
         <div className="mb-16">
           <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is 9Vectors?</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is 9Lenses?</h2>
             <p className="text-xl text-gray-700 leading-relaxed">
-              9Vectors is a comprehensive business assessment framework that evaluates organizations
+              9Lenses is a comprehensive business assessment framework that evaluates organizations
               across <strong>9 critical dimensions</strong>, organized into <strong>3 strategic phases</strong>.
               It combines quantitative scoring (0-9 ratings) with qualitative insights (comments)
               to provide a complete picture of organizational health.
@@ -102,7 +102,7 @@ function AboutPage() {
         {/* How It Works */}
         <div className="mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-10 text-center">
-            How 9Vectors Works
+            How 9Lenses Works
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">

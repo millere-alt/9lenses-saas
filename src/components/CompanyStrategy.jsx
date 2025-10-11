@@ -48,7 +48,7 @@ const CompanyStrategy = () => {
             <Lightbulb className="w-16 h-16 mx-auto mb-6 text-salesforce-blue" />
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Set Your Strategic Direction</h3>
             <p className="text-gray-600 mb-8 text-base max-w-2xl mx-auto">
-              Define your company's vision, mission, and objectives to align your team and guide decision-making across all 9 Vectors.
+              Define your company's vision, mission, and objectives to align your team and guide decision-making across all 9 Lenses.
             </p>
             <button
               onClick={handleEdit}

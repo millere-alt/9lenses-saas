@@ -28,20 +28,20 @@ const StakeholderComparison = ({ data }) => {
     <div>
       {/* Alignment Issues Alert */}
       {alignmentIssues.length > 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-6 mb-8">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="w-6 h-6 text-blue-600 flex-shrink-0" />
+            <AlertTriangle className="w-6 h-6 text-orange-600 flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="text-lg font-bold text-blue-900 mb-2">Alignment Issues Detected</h3>
-              <p className="text-blue-800 mb-4">
+              <h3 className="text-lg font-bold text-orange-900 mb-2">Alignment Issues Detected</h3>
+              <p className="text-orange-800 mb-4">
                 The following lenses show significant divergence (&gt;2 points) between stakeholder groups, indicating potential misalignment:
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {alignmentIssues.map((issue, idx) => (
-                  <div key={idx} className="bg-white rounded p-4 border border-blue-300">
+                  <div key={idx} className="bg-white rounded p-4 border border-orange-300">
                     <div className="font-semibold text-gray-900 mb-1">{issue.lens}</div>
                     <div className="text-sm text-gray-700">
-                      Divergence: <span className="font-bold text-blue-700">{issue.divergence.toFixed(1)}</span> points
+                      Divergence: <span className="font-bold text-orange-700">{issue.divergence.toFixed(1)}</span> points
                     </div>
                     <div className="text-xs text-gray-600 mt-1">
                       Range: {issue.min.toFixed(1)} - {issue.max.toFixed(1)}
@@ -108,7 +108,7 @@ const StakeholderComparison = ({ data }) => {
                 return (
                   <tr
                     key={idx}
-                    className={`border-b border-gray-200 ${hasIssue ? 'bg-blue-50' : ''}`}
+                    className={`border-b border-gray-200 ${hasIssue ? 'bg-orange-50' : ''}`}
                   >
                     <td className="py-3 px-4 font-medium text-gray-900">{lens.lens}</td>
                     {groups.map(group => (
@@ -127,7 +127,7 @@ const StakeholderComparison = ({ data }) => {
                     <td className="text-center py-3 px-4">
                       <span className={`inline-block px-3 py-1 rounded font-semibold ${
                         hasIssue
-                          ? 'bg-blue-100 text-blue-700'
+                          ? 'bg-orange-100 text-orange-700'
                           : 'bg-gray-100 text-gray-700'
                       }`}>
                         {divergence.toFixed(1)}

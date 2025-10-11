@@ -4,8 +4,8 @@ import { LENSES } from '../data/nineLensesSchema';
 
 const definitions = {
   framework: {
-    title: "9Vectors Framework",
-    description: "The 9Vectors framework is a comprehensive business assessment methodology that evaluates organizations across 9 interconnected dimensions, organized into three strategic categories. Each lens provides unique insights into different aspects of organizational performance.",
+    title: "9Lenses Framework",
+    description: "The 9Lenses framework is a comprehensive business assessment methodology that evaluates organizations across 9 interconnected dimensions, organized into three strategic categories. Each lens provides unique insights into different aspects of organizational performance.",
     details: [
       "Three-phase cycle: Social Discovery, Social Design, and Social Assurance",
       "Enables comprehensive stakeholder alignment and gap analysis",
@@ -142,7 +142,7 @@ const MetaStructureExplorer = ({ onNavigateToHome, onNavigateToDashboard }) => {
               </button>
               <div className="h-6 w-px bg-gray-300"></div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">9Vectors Meta-Structure</h1>
+                <h1 className="text-2xl font-bold text-gray-900">9Lenses Meta-Structure</h1>
                 <p className="text-sm text-gray-600">Complete framework hierarchy and definitions</p>
               </div>
             </div>
@@ -164,9 +164,9 @@ const MetaStructureExplorer = ({ onNavigateToHome, onNavigateToDashboard }) => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-3xl font-bold mb-3">9Vectors Meta-Structure Framework</h2>
+              <h2 className="text-3xl font-bold mb-3">9Lenses Meta-Structure Framework</h2>
               <p className="text-blue-100 text-lg mb-4">
-                9 Vectors • 44 Sub-lenses • 242+ Themes
+                9 Lenses • 44 Sub-lenses • 242+ Themes
               </p>
               <p className="text-blue-200">
                 Click to learn about the complete framework methodology
@@ -208,9 +208,9 @@ const MetaStructureExplorer = ({ onNavigateToHome, onNavigateToDashboard }) => {
           })}
         </div>
 
-        {/* All 9 Vectors */}
+        {/* All 9 Lenses */}
         <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">All 9 Vectors in Detail</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">All 9 Lenses in Detail</h2>
 
           <div className="space-y-6">
             {LENSES.map((lens, idx) => {

@@ -159,7 +159,7 @@ const MultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard })
                 <Home className="w-4 h-4" />
                 <span className="font-medium">Home</span>
               </button>
-              <h1 className="text-2xl font-bold text-gray-900">Setup 9Vectors Assessment</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Setup 9Lenses Assessment</h1>
               <div className="w-24"></div>
             </div>
           </div>
@@ -417,7 +417,7 @@ const MultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard })
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">9 Vectors</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-4">9 Lenses</h3>
               <div className="space-y-2">
                 {LENSES.map((l, idx) => (
                   <button

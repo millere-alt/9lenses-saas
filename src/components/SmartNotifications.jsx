@@ -168,7 +168,7 @@ function SmartNotifications({ lensScores, assessmentData }) {
   const getTypeColor = (type) => {
     switch (type) {
       case 'critical': return { bg: 'from-red-500 to-red-600', icon: 'bg-red-100 text-red-600', border: 'border-red-200' };
-      case 'warning': return { bg: 'from-green-500 to-green-600', icon: 'bg-blue-100 text-blue-600', border: 'border-blue-200' };
+      case 'warning': return { bg: 'from-orange-500 to-orange-600', icon: 'bg-orange-100 text-orange-600', border: 'border-orange-200' };
       case 'success': return { bg: 'from-primary-500 to-primary-600', icon: 'bg-primary-100 text-primary-600', border: 'border-primary-200' };
       default: return { bg: 'from-secondary-500 to-secondary-600', icon: 'bg-secondary-100 text-secondary-600', border: 'border-secondary-200' };
     }
@@ -204,7 +204,7 @@ function SmartNotifications({ lensScores, assessmentData }) {
             <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center relative">
               <Bell className="w-8 h-8 text-white" />
               {unreadCount > 0 && (
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                   {unreadCount}
                 </div>
               )}
@@ -234,12 +234,12 @@ function SmartNotifications({ lensScores, assessmentData }) {
           <p className="text-3xl font-bold text-gray-900">{notifications.length}</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 shadow-lg border-2 border-blue-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 shadow-lg border-2 border-orange-200">
           <div className="flex items-center gap-2 mb-2">
-            <AlertTriangle className="w-5 h-5 text-blue-600" />
-            <h4 className="font-semibold text-blue-700 text-sm">Unread</h4>
+            <AlertTriangle className="w-5 h-5 text-orange-600" />
+            <h4 className="font-semibold text-orange-700 text-sm">Unread</h4>
           </div>
-          <p className="text-3xl font-bold text-blue-700">{unreadCount}</p>
+          <p className="text-3xl font-bold text-orange-700">{unreadCount}</p>
         </div>
 
         <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 shadow-lg border-2 border-red-200">
@@ -319,7 +319,7 @@ function SmartNotifications({ lensScores, assessmentData }) {
                         <div className="flex items-center gap-2 mb-1">
                           <h3 className="text-lg font-bold text-gray-900">{notif.title}</h3>
                           {!notif.read && (
-                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
                           )}
                         </div>
                         <div className="flex items-center gap-2 mb-2">

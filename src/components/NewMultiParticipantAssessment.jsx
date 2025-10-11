@@ -41,7 +41,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText('https://9Vectors.app/assessment/abc123');
+    navigator.clipboard.writeText('https://9lenses.app/assessment/abc123');
     setLinkCopied(true);
     setTimeout(() => setLinkCopied(false), 2000);
   };
@@ -124,7 +124,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
           <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Create New Assessment</h2>
-              <p className="text-gray-600">Set up your 9Vectors team evaluation</p>
+              <p className="text-gray-600">Set up your 9Lenses team evaluation</p>
             </div>
 
             <div className="space-y-6">
@@ -175,7 +175,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
-                    <span><strong>9 Vectors</strong> with 32 sub-lenses and 180+ themes</span>
+                    <span><strong>9 Lenses</strong> with 32 sub-lenses and 180+ themes</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
@@ -273,7 +273,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    value="https://9Vectors.app/assessment/abc123"
+                    value="https://9lenses.app/assessment/abc123"
                     readOnly
                     className="flex-1 px-4 py-3 bg-white border-2 border-brand-blue-300 rounded-lg text-gray-700 font-mono text-sm"
                   />

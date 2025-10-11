@@ -16,7 +16,7 @@ function CEODashboard() {
   const quickActions = [
     {
       title: 'Launch New Assessment',
-      description: 'Start a new 9Vectors assessment and invite participants',
+      description: 'Start a new 9Lenses assessment and invite participants',
       icon: PlayCircle,
       gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
       action: () => navigate('/assessment/launch'),
@@ -37,7 +37,7 @@ function CEODashboard() {
     },
     {
       title: 'Browse Resources',
-      description: 'Access 9Vectors books and learning materials',
+      description: 'Access 9Lenses books and learning materials',
       icon: BookOpen,
       gradient: 'from-emerald-400 via-teal-500 to-cyan-600',
       action: () => navigate('/resources'),

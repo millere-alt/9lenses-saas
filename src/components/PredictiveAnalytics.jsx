@@ -64,7 +64,7 @@ function PredictiveAnalytics({ lensScores }) {
         description: `${lensName} is forecasted to decline to ${(currentScore - 0.6).toFixed(1)} without intervention.`,
         action: 'Immediate action required. Review AI Strategy Advisor for recommendations.',
         icon: AlertTriangle,
-        color: 'from-green-500 to-red-600'
+        color: 'from-orange-500 to-red-600'
       });
     } else {
       insights.push({
@@ -100,7 +100,7 @@ function PredictiveAnalytics({ lensScores }) {
           description: `Based on current trends, ${lensName} will reach the 7.0 excellence threshold in approximately ${monthsToTarget} months.`,
           action: `Accelerate improvement initiatives to reach target by ${new Date(new Date().setMonth(new Date().getMonth() + monthsToTarget)).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}.`,
           icon: Target,
-          color: 'from-green-500 to-green-600'
+          color: 'from-orange-500 to-orange-600'
         });
       }
     }
@@ -254,9 +254,9 @@ function PredictiveAnalytics({ lensScores }) {
                   <div className="flex-1">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{insight.title}</h4>
                     <p className="text-gray-700 mb-3 leading-relaxed">{insight.description}</p>
-                    <div className="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-blue-500 p-4 rounded-lg">
+                    <div className="bg-gradient-to-r from-orange-50 to-orange-100 border-l-4 border-orange-500 p-4 rounded-lg">
                       <p className="text-sm font-semibold text-gray-800">
-                        <span className="text-blue-600">Recommended Action:</span> {insight.action}
+                        <span className="text-orange-600">Recommended Action:</span> {insight.action}
                       </p>
                     </div>
                   </div>
@@ -278,12 +278,12 @@ function PredictiveAnalytics({ lensScores }) {
           <p className="text-sm text-gray-600 mt-1">Next 6 months</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border-2 border-blue-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border-2 border-orange-200">
           <div className="flex items-center gap-3 mb-2">
-            <Target className="w-6 h-6 text-blue-600" />
+            <Target className="w-6 h-6 text-orange-600" />
             <h4 className="font-bold text-gray-900">Confidence Level</h4>
           </div>
-          <p className="text-3xl font-bold text-blue-700">{(85 + Math.random() * 10).toFixed(0)}%</p>
+          <p className="text-3xl font-bold text-orange-700">{(85 + Math.random() * 10).toFixed(0)}%</p>
           <p className="text-sm text-gray-600 mt-1">Forecast accuracy</p>
         </div>
 

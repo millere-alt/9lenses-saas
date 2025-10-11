@@ -15,7 +15,7 @@ import { useAICoaching } from '../contexts/AICoachingContext';
 
 /**
  * AI Coach Widget - Floating coaching assistant
- * Provides contextual coaching throughout the 9Vectors application
+ * Provides contextual coaching throughout the 9Lenses application
  */
 const AICoach = ({ position = 'bottom-right', inline = false }) => {
   const {
@@ -175,7 +175,7 @@ const CoachHeader = ({ onClose, onMinimize, onToggleExpand, isExpanded, inline =
       </div>
       <div>
         <h3 className="font-bold text-sm">AI Coach</h3>
-        <p className="text-xs text-white/80">9Vectors Expert</p>
+        <p className="text-xs text-white/80">9Lenses Expert</p>
       </div>
       <Sparkles className="w-4 h-4 text-yellow-300 animate-pulse ml-1" />
     </div>
@@ -221,7 +221,7 @@ const CoachMessages = ({ coachingMessage, isLoading, messagesEndRef }) => (
       <div className="text-center py-8">
         <Lightbulb className="w-12 h-12 text-indigo-300 mx-auto mb-3" />
         <p className="text-gray-600 text-sm">
-          I'm your AI coach for the 9Vectors framework.
+          I'm your AI coach for the 9Lenses framework.
           <br />
           Ask me anything!
         </p>

@@ -5,7 +5,7 @@ function AIAssistant({ assessmentData, lensScores }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! I'm your 9Vectors AI Assistant. I can help you understand your assessment results, provide strategic recommendations, answer questions about specific lenses, and guide you through improvement initiatives. What would you like to know?",
+      content: "Hi! I'm your 9Lenses AI Assistant. I can help you understand your assessment results, provide strategic recommendations, answer questions about specific lenses, and guide you through improvement initiatives. What would you like to know?",
       timestamp: new Date()
     }
   ]);

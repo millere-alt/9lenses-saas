@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { ArrowRight, Plus, X, Send, Info, Upload, Award } from 'lucide-react';
-import PageInstructions from './PageInstructions';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight, Plus, X, Send } from 'lucide-react';
 
 function LaunchAssessment() {
   const navigate = useNavigate();
@@ -71,29 +70,10 @@ function LaunchAssessment() {
       </div>
 
       <div>
-        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 bg-clip-text text-transparent mb-3">
+        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent mb-3">
           Launch New Assessment
         </h1>
-        <p className="text-lg text-gray-600 mb-4">Create and send a 9Vectors assessment to your team</p>
-
-        {/* Quick Guide */}
-        <div className="bg-gradient-to-r from-secondary-50 to-primary-50 border-l-4 border-secondary-500 rounded-lg p-4 max-w-4xl">
-          <div className="flex items-start gap-3">
-            <Info className="w-5 h-5 text-secondary-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-secondary-900 mb-1">Quick Start Guide:</h3>
-              <p className="text-sm text-secondary-800">
-                <span className="font-semibold">1.</span> Name your assessment (e.g., "Q1 2025 Review")
-                <span className="mx-2">•</span>
-                <span className="font-semibold">2.</span> Enter your company name
-                <span className="mx-2">•</span>
-                <span className="font-semibold">3.</span> Add team members with their emails
-                <span className="mx-2">•</span>
-                <span className="font-semibold">4.</span> Click Launch!
-              </p>
-            </div>
-          </div>
-        </div>
+        <p className="text-lg text-gray-600">Create and send a 9Lenses assessment to your team</p>
       </div>
 
       <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-100 p-10 space-y-8">
@@ -195,46 +175,6 @@ function LaunchAssessment() {
           </div>
         </div>
 
-        {/* Advanced Features */}
-        <div className="border-t-2 border-gray-100 pt-8">
-          <h3 className="text-2xl font-bold text-neutral-900 mb-4">Optional: Enhanced Data Collection</h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Link
-              to="/assessment/data-sources"
-              className="group p-6 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl border-2 border-primary-200 hover:border-primary-400 hover:shadow-lg transition-all"
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <Upload className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-neutral-900 mb-1">Add Data Sources</h4>
-                  <p className="text-sm text-neutral-600">
-                    Upload documents, connect databases, or integrate APIs for richer insights
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            <Link
-              to="/assessment/expertise"
-              className="group p-6 bg-gradient-to-br from-green-50 to-primary-50 rounded-xl border-2 border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all"
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-primary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <Award className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-neutral-900 mb-1">Identify Experts</h4>
-                  <p className="text-sm text-neutral-600">
-                    Tag participants as experts in specific lenses for weighted scoring
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-
         <div className="flex justify-end pt-6 border-t-2 border-gray-100">
           <button
             onClick={handleLaunch}
@@ -250,26 +190,6 @@ function LaunchAssessment() {
           </button>
         </div>
       </div>
-
-      {/* Help Instructions */}
-      <PageInstructions
-        title="How to Launch an Assessment"
-        steps={[
-          "Give your assessment a clear name that describes its purpose (e.g., 'Q1 2025 Strategic Review' or 'Annual Performance Assessment')",
-          "Enter your company or organization name",
-          "Add participants by clicking 'Add Person' - you need at least one email address to launch",
-          "For each participant, enter their name (optional), email address (required), and select their role from the dropdown",
-          "Review all information and click 'Launch Assessment' when ready",
-          "Participants will receive an email invitation with a link to complete the assessment"
-        ]}
-        tips={[
-          "Include diverse perspectives: Add participants from different departments and levels",
-          "Choose roles carefully: Role selection helps us weight responses appropriately",
-          "You can add as many participants as needed - just click 'Add Person' for each one",
-          "The description field is optional but helps participants understand the assessment's context",
-          "After launching, you'll be taken to the CEO Dashboard to monitor progress"
-        ]}
-      />
     </div>
   );
 }

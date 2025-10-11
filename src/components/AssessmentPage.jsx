@@ -64,7 +64,7 @@ const AssessmentPage = ({ onNavigateToHome, onNavigateToDashboard }) => {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">9Vectors Assessment & Learning</h1>
+              <h1 className="text-3xl font-bold tracking-tight">9Lenses Assessment & Learning</h1>
               <p className="text-base text-blue-100 mt-1">Quantitative & Qualitative Input Approach</p>
             </div>
             <button
@@ -102,7 +102,7 @@ const AssessmentPage = ({ onNavigateToHome, onNavigateToDashboard }) => {
           {/* Left Sidebar - Navigation */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-6 border border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">All 9 Vectors</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">All 9 Lenses</h3>
               <div className="space-y-3">
                 {LENSES.map((l, idx) => (
                   <button

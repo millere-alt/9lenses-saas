@@ -1,4 +1,4 @@
-// 9Vectors Complete Schema
+// 9Lenses Complete Schema
 export const LENS_CATEGORIES = {
   ASSETS: 'Assets',
   PROCESSES: 'Processes',

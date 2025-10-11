@@ -28,7 +28,7 @@ const Banner = ({ type = 'info', message, onClose, autoClose = false, duration =
       border: 'border-red-400'
     },
     warning: {
-      bg: 'bg-gradient-to-r from-yellow-500 to-green-600',
+      bg: 'bg-gradient-to-r from-yellow-500 to-orange-600',
       icon: AlertTriangle,
       border: 'border-yellow-400'
     },
