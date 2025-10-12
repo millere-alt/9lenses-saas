@@ -77,7 +77,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                 {mode === 'login' ? 'Welcome Back' : 'Get Started'}
               </h2>
               <p className="text-blue-100 text-sm">
-                {mode === 'login' ? 'Sign in to your account' : 'Create your 9Lenses account'}
+                {mode === 'login' ? 'Sign in to your account' : 'Create your 9Vectors account'}
               </p>
             </div>
           </div>

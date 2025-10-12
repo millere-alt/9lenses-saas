@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FileText, FolderOpen, Upload, Search, Filter, Download, Eye, Trash2, Tag, Calendar, BarChart3 } from 'lucide-react';
 import DocumentUpload from './DocumentUpload';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const DocumentManagement = ({ documents: externalDocuments, onDocumentsUpdate }) => {
   const [documents, setDocuments] = useState(externalDocuments || []);

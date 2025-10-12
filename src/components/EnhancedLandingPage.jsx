@@ -30,7 +30,7 @@ const EnhancedLandingPage = ({
                 <span className="text-white font-bold text-xl">9L</span>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">9Lenses</h1>
+                <h1 className="text-2xl font-bold text-gray-900">9Vectors</h1>
                 <p className="text-xs text-gray-500">Business Intelligence Platform</p>
               </div>
             </div>
@@ -198,7 +198,7 @@ const EnhancedLandingPage = ({
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Why 9Lenses?
+              Why 9Vectors?
             </h2>
             <p className="text-2xl text-gray-600">The complete platform for business transformation</p>
           </div>
@@ -252,7 +252,7 @@ const EnhancedLandingPage = ({
             Ready to Transform?
           </h2>
           <p className="text-3xl text-emerald-100 mb-14 max-w-4xl mx-auto font-light">
-            Join organizations worldwide using 9Lenses to drive excellence, alignment, and growth
+            Join organizations worldwide using 9Vectors to drive excellence, alignment, and growth
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
@@ -316,9 +316,9 @@ const EnhancedLandingPage = ({
               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">9L</span>
               </div>
-              <span className="text-2xl font-bold text-white">9Lenses</span>
+              <span className="text-2xl font-bold text-white">9Vectors</span>
             </div>
-            <p className="text-gray-400 text-lg">© 2025 9Lenses. All rights reserved.</p>
+            <p className="text-gray-400 text-lg">© 2025 9Vectors. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -3,7 +3,7 @@ import {
   ArrowRight, Users, Mail, Plus, X, Upload, FileText, Target,
   Send, Copy, Check, ChevronRight, Layers, Save, Download
 } from 'lucide-react';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard }) => {
   const [step, setStep] = useState(1); // 1: Create, 2: Invite, 3: Upload Files
@@ -124,7 +124,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
           <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Create New Assessment</h2>
-              <p className="text-gray-600">Set up your 9Lenses team evaluation</p>
+              <p className="text-gray-600">Set up your 9Vectors team evaluation</p>
             </div>
 
             <div className="space-y-6">

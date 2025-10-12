@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback } from 'react';
 import { aiCoach } from '../services/aiCoachingAgent';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const AICoachingContext = createContext(null);
 

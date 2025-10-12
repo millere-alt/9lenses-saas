@@ -4,7 +4,7 @@ import {
   CheckCircle, Layers, Eye, Download, Share2, Sparkles, BarChart3,
   DollarSign, Users, Shield, Briefcase, Settings, Scale, ChevronRight
 } from 'lucide-react';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const DocumentDissector = () => {
   const [uploadedDocument, setUploadedDocument] = useState(null);

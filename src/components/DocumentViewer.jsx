@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Download, Share2, Tag, FileText, Image as ImageIcon, Code, File } from 'lucide-react';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const DocumentViewer = ({ document, onClose, onUpdateTags }) => {
   const [tags, setTags] = useState(document?.tags || []);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight, Users, Upload, FileText, Plus, X, Home, Save, Send, ChevronDown, ChevronUp } from 'lucide-react';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const MultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard }) => {
   const [assessmentMode, setAssessmentMode] = useState('setup'); // 'setup', 'leader', 'participant'
@@ -159,7 +159,7 @@ const MultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard })
                 <Home className="w-4 h-4" />
                 <span className="font-medium">Home</span>
               </button>
-              <h1 className="text-2xl font-bold text-gray-900">Setup 9Lenses Assessment</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Setup 9Vectors Assessment</h1>
               <div className="w-24"></div>
             </div>
           </div>

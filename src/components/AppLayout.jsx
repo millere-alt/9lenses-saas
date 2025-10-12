@@ -28,7 +28,7 @@ function AppLayout({ children }) {
             <div className="flex items-center space-x-3">
               <button onClick={() => navigate('/')} className="flex items-center space-x-3">
                 <div className="flex flex-col">
-                  <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">9Lenses</h1>
+                  <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">9Vectors</h1>
                   <p className="text-xs text-neutral-700 font-semibold tracking-wide uppercase">Strategic Business Assessment</p>
                 </div>
               </button>
@@ -66,7 +66,7 @@ function AppLayout({ children }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-neutral-600 font-medium">
-              <span className="font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">9Lenses</span> - Transform your business with strategic assessment and data-driven insights
+              <span className="font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">9Vectors</span> - Transform your business with strategic assessment and data-driven insights
             </p>
             <div className="flex items-center space-x-2 text-sm text-neutral-700 bg-emerald-50 px-4 py-2 rounded-full">
               <Info size={16} className="text-emerald-600" />

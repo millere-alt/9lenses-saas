@@ -3,7 +3,7 @@ import {
   Save, Send, ChevronLeft, ChevronRight, Layers, MessageSquare,
   Target, Check, Clock, User, Bot, Sparkles, HelpCircle
 } from 'lucide-react';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 import { useAICoaching } from '../contexts/AICoachingContext';
 import CoachingTrigger, { InlineCoachingCard, CoachingPill } from './CoachingTrigger';
 
@@ -141,7 +141,7 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
             </div>
             <h1 className="text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                9Lenses Assessment
+                9Vectors Assessment
               </span>
             </h1>
             <p className="text-gray-600 text-lg mb-6">
@@ -252,7 +252,7 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
                 <Layers className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-gray-900">9Lenses Assessment</h1>
+                <h1 className="text-lg font-bold text-gray-900">9Vectors Assessment</h1>
                 <p className="text-sm text-gray-600">
                   {completedSubLenses} of {totalSubLenses} completed ({Math.round(progress)}%)
                 </p>

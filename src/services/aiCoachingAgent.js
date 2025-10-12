@@ -7,7 +7,7 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk';
-import { LENSES, LENS_CATEGORIES } from '../data/nineLensesSchema';
+import { LENSES, LENS_CATEGORIES } from '../data/nineVectorsSchema';
 
 // Initialize Anthropic client (will use browser-based proxy in production)
 const getAnthropicClient = () => {

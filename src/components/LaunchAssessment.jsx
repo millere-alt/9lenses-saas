@@ -73,7 +73,7 @@ function LaunchAssessment() {
         <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent mb-3">
           Launch New Assessment
         </h1>
-        <p className="text-lg text-gray-600">Create and send a 9Lenses assessment to your team</p>
+        <p className="text-lg text-gray-600">Create and send a 9Vectors assessment to your team</p>
       </div>
 
       <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-100 p-10 space-y-8">

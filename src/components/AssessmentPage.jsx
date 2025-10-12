@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle, Circle, BookOpen, FileText, MessageSquare, Sliders, Home } from 'lucide-react';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const AssessmentPage = ({ onNavigateToHome, onNavigateToDashboard }) => {
   const [currentLens, setCurrentLens] = useState(0);
@@ -64,7 +64,7 @@ const AssessmentPage = ({ onNavigateToHome, onNavigateToDashboard }) => {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">9Lenses Assessment & Learning</h1>
+              <h1 className="text-3xl font-bold tracking-tight">9Vectors Assessment & Learning</h1>
               <p className="text-base text-blue-100 mt-1">Quantitative & Qualitative Input Approach</p>
             </div>
             <button

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link2, TrendingUp, AlertCircle, CheckCircle, Sparkles, BarChart3, FileText, Target } from 'lucide-react';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const DocumentCorrelation = ({ documents, assessmentData }) => {
   const [selectedDocument, setSelectedDocument] = useState(null);

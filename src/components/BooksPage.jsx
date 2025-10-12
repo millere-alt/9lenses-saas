@@ -4,8 +4,8 @@ import { BookOpen, ExternalLink, Award, TrendingUp, Target, Zap } from 'lucide-r
 function BooksPage() {
   const resources = [
     {
-      title: '9Lenses Framework Guide',
-      description: 'Comprehensive guide to the 9Lenses business assessment framework',
+      title: '9Vectors Framework Guide',
+      description: 'Comprehensive guide to the 9Vectors business assessment framework',
       icon: Target,
       color: 'blue',
       type: 'eBook',
@@ -26,7 +26,7 @@ function BooksPage() {
     },
     {
       title: 'Case Studies & Success Stories',
-      description: 'Real-world examples of successful 9Lenses implementations',
+      description: 'Real-world examples of successful 9Vectors implementations',
       icon: Award,
       color: 'blue',
       type: 'Case Studies',

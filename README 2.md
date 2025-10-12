@@ -1,10 +1,10 @@
-# 9Lenses SaaS Assessment Platform
+# 9Vectors SaaS Assessment Platform
 
-A comprehensive React-based SaaS application for conducting organizational assessments using the 9Lenses framework. This platform enables companies to evaluate their performance across 9 interconnected business dimensions and gain actionable insights.
+A comprehensive React-based SaaS application for conducting organizational assessments using the 9Vectors framework. This platform enables companies to evaluate their performance across 9 interconnected business dimensions and gain actionable insights.
 
-## 🎯 What is 9Lenses?
+## 🎯 What is 9Vectors?
 
-The 9Lenses framework is a comprehensive business assessment methodology that evaluates organizations across 9 interconnected dimensions (lenses), organized into three categories:
+The 9Vectors framework is a comprehensive business assessment methodology that evaluates organizations across 9 interconnected dimensions (lenses), organized into three categories:
 
 ### **Assets** (Social Discovery Phase)
 - **Market**: Market characteristics, competition, customer, positioning, and timing
@@ -35,9 +35,9 @@ The 9Lenses framework is a comprehensive business assessment methodology that ev
 
 ### 🏠 Landing Page
 - **Hero Section**: Professional landing page with gradient design and book showcase
-- **Book Banner**: Featured 9Lenses and Snapshot9 book covers (placeholder gradients, ready for real images)
+- **Book Banner**: Featured 9Vectors and Snapshot9 book covers (placeholder gradients, ready for real images)
 - **Framework Overview**: Clear explanation of the three-phase methodology
-- **Feature Highlights**: Why choose 9Lenses with visual cards
+- **Feature Highlights**: Why choose 9Vectors with visual cards
 - **Quantitative/Qualitative Approach**: Highlighted dual-input methodology in banner
 - **Call-to-Action**: Multiple entry points to assessment and demo dashboard
 
@@ -80,7 +80,7 @@ The 9Lenses framework is a comprehensive business assessment methodology that ev
 - **Document Upload**:
   - File upload capability for each lens/sub-lens
   - Support for multiple document types
-  - Contextual file mapping to 9Lenses meta-structure
+  - Contextual file mapping to 9Vectors meta-structure
   - Visual file management with remove capability
 - **Progress Management**:
   - Real-time progress tracking across all 9 lenses
@@ -185,7 +185,7 @@ See [AI_COACHING_GUIDE.md](AI_COACHING_GUIDE.md) for detailed usage and integrat
 │   ├── services/
 │   │   └── aiCoachingAgent.js               # 🆕 AI agent with Claude integration
 │   ├── data/
-│   │   ├── nineLensesSchema.js             # Complete 9Lenses structure
+│   │   ├── nineLensesSchema.js             # Complete 9Vectors structure
 │   │   └── mockAssessment.js               # Sample assessment data
 │   ├── App.jsx                             # Root component with AI provider
 │   └── main.jsx                            # Entry point
@@ -256,7 +256,7 @@ Edit `src/data/nineLensesSchema.js` to:
 
 ## 🔄 Next Steps for Full Implementation
 
-This is a frontend demonstration of the 9Lenses platform. To build a complete SaaS solution, you would add:
+This is a frontend demonstration of the 9Vectors platform. To build a complete SaaS solution, you would add:
 
 ### Backend Development
 - **API Layer**: RESTful API or GraphQL for data management
@@ -284,7 +284,7 @@ This is a frontend demonstration of the 9Lenses platform. To build a complete Sa
 - **CRM Systems**: Salesforce, HubSpot
 - **Project Management**: Jira, Asana
 
-## 📚 9Lenses Methodology
+## 📚 9Vectors Methodology
 
 The assessment follows a three-phase cycle:
 
@@ -296,16 +296,16 @@ Each phase feeds into the next, creating a continuous improvement loop.
 
 ## 🤝 Contributing
 
-This is a demonstration project based on the 9Lenses framework created by Edwin Miller. For production use, ensure you have appropriate licensing and permissions.
+This is a demonstration project based on the 9Vectors framework created by Edwin Miller. For production use, ensure you have appropriate licensing and permissions.
 
 ## 📄 License
 
-This project is for demonstration purposes. The 9Lenses framework is proprietary.
+This project is for demonstration purposes. The 9Vectors framework is proprietary.
 
 ## 📞 Support
 
-For questions about the 9Lenses methodology or licensing, please contact the framework creators.
+For questions about the 9Vectors methodology or licensing, please contact the framework creators.
 
 ---
 
-**Built with ❤️ using React, TailwindCSS, and the 9Lenses Framework**
+**Built with ❤️ using React, TailwindCSS, and the 9Vectors Framework**

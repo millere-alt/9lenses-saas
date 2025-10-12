@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, Brain, TrendingUp, AlertTriangle, CheckCircle, Target, Zap, FileText, BarChart3 } from 'lucide-react';
-import { LENSES } from '../data/nineLensesSchema';
+import { LENSES } from '../data/nineVectorsSchema';
 
 const AIDocumentAnalysis = ({ document, assessmentData }) => {
   const [analysis, setAnalysis] = useState(null);

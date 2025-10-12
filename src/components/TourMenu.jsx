@@ -36,7 +36,7 @@ const TourMenu = ({ isOpen, onClose }) => {
               <div>
                 <h2 className="text-2xl font-bold">Guided Tours</h2>
                 <p className="text-white/90 text-sm">
-                  Learn about 9Lenses with interactive walkthroughs
+                  Learn about 9Vectors with interactive walkthroughs
                 </p>
               </div>
             </div>
