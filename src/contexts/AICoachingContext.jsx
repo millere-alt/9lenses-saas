@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { createContext, useContext, useState, useCallback } from 'react';
 import { aiCoach } from '../services/aiCoachingAgent';
+import { LENSES } from '../data/nineLensesSchema';
 
 const AICoachingContext = createContext(null);
 
@@ -49,9 +50,7 @@ export const AICoachingProvider = ({ children }) => {
    * Get proactive coaching for a lens
    */
   const getCoachingForLens = useCallback(async (lensId) => {
-    const lens = await import('../data/nineLensesSchema').then(module =>
-      module.LENSES.find(l => l.id === lensId)
-    );
+    const lens = LENSES.find(l => l.id === lensId);
 
     return requestCoaching({
       workflow: 'assessment',
@@ -64,9 +63,7 @@ export const AICoachingProvider = ({ children }) => {
    * Get coaching for a specific theme
    */
   const getCoachingForTheme = useCallback(async (lensId, subLensId, themeName) => {
-    const lens = await import('../data/nineLensesSchema').then(module =>
-      module.LENSES.find(l => l.id === lensId)
-    );
+    const lens = LENSES.find(l => l.id === lensId);
     const subLens = lens?.subLenses.find(sl => sl.id === subLensId);
 
     return requestCoaching({
