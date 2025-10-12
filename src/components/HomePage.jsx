@@ -4,7 +4,6 @@ import {
   ArrowRight, Target, TrendingUp, Zap, CheckCircle, BarChart3,
   Users, FileInput, Sparkles, Grid3x3, Lightbulb, Award, GraduationCap
 } from 'lucide-react';
-import { TourMenuButton } from './TourMenu';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -53,8 +52,6 @@ function HomePage() {
               <span className="text-lg">Launch Assessment</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
-
-            <TourMenuButton className="py-4 px-8 text-lg" />
 
             <button
               onClick={() => navigate('/about')}
