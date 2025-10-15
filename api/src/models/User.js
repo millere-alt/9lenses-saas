@@ -61,7 +61,9 @@ export class User {
       passwordHash
     });
 
-    const created = await createItem(CONTAINER_NAME, user);
+    // Convert to plain object for Cosmos DB
+    const userObj = JSON.parse(JSON.stringify(user));
+    const created = await createItem(CONTAINER_NAME, userObj);
 
     // Remove password hash from returned object
     const { passwordHash: _, ...userWithoutPassword } = created;

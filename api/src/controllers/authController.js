@@ -118,6 +118,11 @@ export async function login(req, res) {
       });
     }
 
+    // Debug: Check if passwordHash exists
+    console.log('User found:', user.email);
+    console.log('Password hash exists:', !!user.passwordHash);
+    console.log('User object keys:', Object.keys(user));
+
     // Verify password
     const isValidPassword = await User.comparePassword(password, user.passwordHash);
     if (!isValidPassword) {

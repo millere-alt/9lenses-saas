@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { authAPI, userAPI } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -12,86 +13,91 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [organization, setOrganization] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is already logged in (from localStorage)
-    const savedUser = localStorage.getItem('9lenses_user');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-    setLoading(false);
+    // Check if user is already logged in
+    const checkAuth = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await userAPI.getMe();
+          setUser(response.data.user);
+          setOrganization(response.data.organization);
+        } catch (error) {
+          console.error('Auth check failed:', error);
+          // Clear invalid token
+          localStorage.removeItem('token');
+          localStorage.removeItem('9lenses_user');
+        }
+      }
+      setLoading(false);
+    };
+
+    checkAuth();
   }, []);
 
   const login = async (email, password) => {
-    // Simulate API call
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Check against demo credentials or stored users
-        const storedUsers = JSON.parse(localStorage.getItem('9lenses_users') || '[]');
-        const foundUser = storedUsers.find(u => u.email === email && u.password === password);
+    try {
+      const response = await authAPI.login({ email, password });
+      const { user, organization, token } = response.data;
 
-        if (foundUser || (email === 'demo@9lenses.com' && password === 'demo123')) {
-          const userData = foundUser || {
-            id: '1',
-            email: 'demo@9lenses.com',
-            name: 'Demo User',
-            role: 'admin',
-            company: 'Demo Company',
-            createdAt: new Date().toISOString()
-          };
+      // Store token
+      localStorage.setItem('token', token);
+      localStorage.setItem('9lenses_user', JSON.stringify(user));
 
-          setUser(userData);
-          localStorage.setItem('9lenses_user', JSON.stringify(userData));
-          resolve(userData);
-        } else {
-          reject(new Error('Invalid email or password'));
-        }
-      }, 800);
-    });
+      setUser(user);
+      setOrganization(organization);
+
+      return user;
+    } catch (error) {
+      console.error('Login failed:', error);
+      throw new Error(error.message || 'Login failed');
+    }
   };
 
   const signup = async (name, email, password, company) => {
-    // Simulate API call
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const storedUsers = JSON.parse(localStorage.getItem('9lenses_users') || '[]');
+    try {
+      // Parse full name into first and last name
+      const nameParts = name.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
 
-        // Check if user already exists
-        if (storedUsers.find(u => u.email === email)) {
-          reject(new Error('User already exists with this email'));
-          return;
-        }
+      const response = await authAPI.register({
+        email,
+        password,
+        firstName,
+        lastName,
+        organizationName: company
+      });
 
-        const newUser = {
-          id: Date.now().toString(),
-          email,
-          password,
-          name,
-          company,
-          role: 'user',
-          createdAt: new Date().toISOString()
-        };
+      const { user, organization, token } = response.data;
 
-        storedUsers.push(newUser);
-        localStorage.setItem('9lenses_users', JSON.stringify(storedUsers));
+      // Store token
+      localStorage.setItem('token', token);
+      localStorage.setItem('9lenses_user', JSON.stringify(user));
 
-        const { password: _, ...userWithoutPassword } = newUser;
-        setUser(userWithoutPassword);
-        localStorage.setItem('9lenses_user', JSON.stringify(userWithoutPassword));
+      setUser(user);
+      setOrganization(organization);
 
-        resolve(userWithoutPassword);
-      }, 800);
-    });
+      return user;
+    } catch (error) {
+      console.error('Signup failed:', error);
+      throw new Error(error.message || 'Signup failed');
+    }
   };
 
   const logout = () => {
     setUser(null);
+    setOrganization(null);
+    localStorage.removeItem('token');
     localStorage.removeItem('9lenses_user');
   };
 
   const value = {
     user,
+    organization,
     login,
     signup,
     logout,
