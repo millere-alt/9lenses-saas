@@ -65,16 +65,16 @@ function AppLayout({ children }) {
                   <div className="relative">
                     <button
                       onClick={() => setShowUserMenu(!showUserMenu)}
-                      className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition-colors border border-emerald-200"
+                      className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-orange-50 hover:bg-orange-100 transition-colors border border-orange-200 shadow-sm hover:shadow-md"
                     >
-                      <div className="w-8 h-8 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-sm">
                         <User size={16} className="text-white" />
                       </div>
                       <div className="text-left hidden md:block">
                         <div className="text-sm font-semibold text-neutral-900">
                           {user.profile?.firstName || user.email?.split('@')[0]}
                         </div>
-                        <div className="text-xs text-neutral-600">
+                        <div className="text-xs text-orange-600 font-medium">
                           {organization?.subscription?.plan || 'Free'} Plan
                         </div>
                       </div>
@@ -96,9 +96,9 @@ function AppLayout({ children }) {
                             setShowUserMenu(false);
                             navigate('/billing');
                           }}
-                          className="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-emerald-50 flex items-center space-x-2"
+                          className="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-orange-50 flex items-center space-x-2 transition-colors"
                         >
-                          <CreditCard size={16} className="text-emerald-600" />
+                          <CreditCard size={16} className="text-orange-600" />
                           <span>Billing & Subscription</span>
                         </button>
 
@@ -107,9 +107,9 @@ function AppLayout({ children }) {
                             setShowUserMenu(false);
                             navigate('/pricing');
                           }}
-                          className="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-emerald-50 flex items-center space-x-2"
+                          className="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-orange-50 flex items-center space-x-2 transition-colors"
                         >
-                          <BarChart3 size={16} className="text-emerald-600" />
+                          <BarChart3 size={16} className="text-orange-600" />
                           <span>Upgrade Plan</span>
                         </button>
 
@@ -129,18 +129,18 @@ function AppLayout({ children }) {
                     )}
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-3">
                     <button
                       onClick={() => navigate('/pricing')}
-                      className="px-4 py-2 text-sm font-medium text-emerald-700 hover:text-emerald-800 transition-colors"
+                      className="px-4 py-2 text-sm font-medium text-neutral-700 hover:text-orange-600 transition-colors"
                     >
                       Pricing
                     </button>
                     <button
                       onClick={login}
-                      className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                      className="group flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                     >
-                      <LogIn size={18} />
+                      <LogIn size={18} className="group-hover:scale-110 transition-transform" />
                       <span>Sign In</span>
                     </button>
                   </div>
