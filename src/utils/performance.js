@@ -16,10 +16,8 @@ export const measurePerformance = (fn, label = 'Function') => {
       const result = await fn(...args);
       const duration = performance.now() - startTime;
 
-      console.log(`⏱️ ${label} took ${duration.toFixed(2)}ms`);
-
-      // Log slow operations (> 1 second)
-      if (duration > 1000) {
+      // Log slow operations (> 1 second) in development only
+      if (duration > 1000 && import.meta.env.DEV) {
         console.warn(`⚠️ Slow operation detected: ${label} (${duration.toFixed(2)}ms)`);
       }
 
@@ -45,7 +43,6 @@ export const memoize = (fn, keyGenerator = JSON.stringify) => {
     const key = keyGenerator(args);
 
     if (cache.has(key)) {
-      console.log(`📦 Cache hit for: ${key.substring(0, 50)}...`);
       return cache.get(key);
     }
 
@@ -158,10 +155,13 @@ export class RenderTracker {
       this.renderCount++;
       this.totalTime += duration;
 
-      console.log(
-        `🎨 ${this.componentName} render #${this.renderCount}: ${duration.toFixed(2)}ms ` +
-        `(avg: ${(this.totalTime / this.renderCount).toFixed(2)}ms)`
-      );
+      // Only log in development mode
+      if (import.meta.env.DEV) {
+        console.log(
+          `🎨 ${this.componentName} render #${this.renderCount}: ${duration.toFixed(2)}ms ` +
+          `(avg: ${(this.totalTime / this.renderCount).toFixed(2)}ms)`
+        );
+      }
 
       this.startTime = null;
     }

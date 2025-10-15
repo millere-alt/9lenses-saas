@@ -377,7 +377,6 @@ async function seedMarchexData() {
         year: 2024,
         fiscalYear: 2024
       },
-      createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
 

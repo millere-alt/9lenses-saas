@@ -42,7 +42,6 @@ api.interceptors.request.use(
       const cached = cache.get(cacheKey);
 
       if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-        console.log(`Cache hit: ${cacheKey}`);
         config.adapter = () => Promise.resolve({
           data: cached.data,
           status: 200,
@@ -64,10 +63,6 @@ api.interceptors.request.use(
 // Response interceptor - enhanced error handling and caching
 api.interceptors.response.use(
   (response) => {
-    // Calculate request duration
-    const duration = new Date() - response.config.metadata.startTime;
-    console.log(`Request completed in ${duration}ms: ${response.config.url}`);
-
     // Cache successful GET requests
     if (response.config.method === 'get' && response.config.cache !== false) {
       const cacheKey = `${response.config.url}${JSON.stringify(response.config.params || {})}`;
@@ -113,8 +108,6 @@ api.interceptors.response.use(
 
       // Exponential backoff
       const delay = Math.min(1000 * Math.pow(2, config._retry), 10000);
-      console.log(`Retrying request (attempt ${config._retry}/${MAX_RETRIES}) after ${delay}ms`);
-
       await new Promise(resolve => setTimeout(resolve, delay));
       return api(config);
     }
@@ -136,7 +129,6 @@ api.interceptors.response.use(
 // Clear cache utility
 export const clearCache = () => {
   cache.clear();
-  console.log('API cache cleared');
 };
 
 // Auth API

@@ -92,9 +92,7 @@ export const compareAssessmentToBenchmark = asyncHandler(async (req, res) => {
   }
 
   // Compare results
-  const comparison = Benchmark.compareToB
-
-enchmark(assessment.results, benchmark);
+  const comparison = Benchmark.compareToBenchmark(assessment.results, benchmark);
 
   res.json({
     assessment: {
