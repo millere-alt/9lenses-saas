@@ -30,3 +30,11 @@ dist-ssr
 
 # Nested repository
 9lenses-saas/
+
+# Azure
+*.zip
+*.log
+.azure/*.log
+
+# Deployment artifacts
+deployment/
