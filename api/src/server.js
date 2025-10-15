@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import { initializeDatabase } from './config/database.js';
 import authRoutes from './routes/auth.js';
+import stripeRoutes from './routes/stripe.js';
 
 // Load environment variables
 dotenv.config();
@@ -59,6 +60,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes);
+app.use('/api/stripe', stripeRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

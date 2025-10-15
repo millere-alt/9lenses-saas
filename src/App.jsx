@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+// Uncomment to use Auth0:
+// import { Auth0ProviderWithConfig } from './contexts/Auth0Context';
 import AppLayout from './components/AppLayout';
 
 // Pages
@@ -25,6 +27,8 @@ import CompleteSaaSDemo from './components/CompleteSaaSDemo';
 import FullSaaSDemo from './components/FullSaaSDemo';
 import DocumentHub from './components/DocumentHub';
 import DocumentDissector from './components/DocumentDissector';
+import BillingPage from './components/BillingPage';
+import PricingPlans from './components/PricingPlans';
 
 function App() {
   return (
@@ -60,6 +64,12 @@ function App() {
             {/* Document Management Routes */}
             <Route path="/documents" element={<DocumentHub />} />
             <Route path="/documents/dissect" element={<DocumentDissector />} />
+
+            {/* Billing Routes */}
+            <Route path="/billing" element={<BillingPage />} />
+            <Route path="/billing/success" element={<BillingPage />} />
+            <Route path="/billing/canceled" element={<BillingPage />} />
+            <Route path="/pricing" element={<PricingPlans />} />
 
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
