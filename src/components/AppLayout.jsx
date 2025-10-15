@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, LayoutDashboard, PlayCircle, BarChart3, Upload, BookOpen, Info, Lightbulb, LogIn, LogOut, User, CreditCard, ChevronDown } from 'lucide-react';
-import { useAzureAdB2c } from '../contexts/AzureAdB2cContext';
+import { useAuth0Extended } from '../contexts/Auth0Context';
 
 function AppLayout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, organization, login, logout, loading } = useAzureAdB2c();
+  const { user, organization, login, logout, loading } = useAuth0Extended();
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const navigation = [

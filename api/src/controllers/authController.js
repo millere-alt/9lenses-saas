@@ -2,6 +2,7 @@ import { User } from '../models/User.js';
 import { Organization } from '../models/Organization.js';
 import { generateToken } from '../middleware/auth.js';
 import { body, validationResult } from 'express-validator';
+import { createItem } from '../config/database.js';
 
 /**
  * Validation rules for registration
@@ -194,4 +195,117 @@ export async function logout(req, res) {
   res.json({
     message: 'Logout successful'
   });
+}
+
+/**
+ * Sync Auth0 user with Cosmos DB
+ * This endpoint is called after Auth0 authentication
+ */
+export async function syncAuth0User(req, res) {
+  try {
+    const { email, auth0Id, name, picture } = req.body;
+
+    if (!email || !auth0Id) {
+      return res.status(400).json({
+        error: 'Missing required fields',
+        message: 'email and auth0Id are required'
+      });
+    }
+
+    // Check if user already exists by email
+    let user = await User.findByEmail(email);
+    let organization;
+
+    if (user) {
+      // User exists, update Auth0 info if needed
+      if (!user.auth0Id || user.auth0Id !== auth0Id) {
+        user = await User.update(user.id, user.organizationId, {
+          auth0Id,
+          'profile.avatar': picture || user.profile?.avatar,
+          'metadata.lastLogin': new Date().toISOString(),
+          'metadata.loginCount': (user.metadata?.loginCount || 0) + 1
+        });
+      } else {
+        // Just update last login
+        await User.updateLastLogin(user.id, user.organizationId);
+        user = await User.findById(user.id, user.organizationId);
+      }
+
+      // Get organization
+      organization = await Organization.findById(user.organizationId);
+    } else {
+      // New user - create organization and user
+      const nameParts = name ? name.split(' ') : email.split('@')[0].split('.');
+      const firstName = nameParts[0] || 'User';
+      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
+      // Extract organization name from email domain
+      const emailDomain = email.split('@')[1];
+      const orgName = emailDomain.split('.')[0].charAt(0).toUpperCase() +
+                     emailDomain.split('.')[0].slice(1);
+
+      // Create organization
+      organization = await Organization.create({
+        name: orgName,
+        ownerEmail: email,
+        plan: 'free'
+      });
+
+      // Create user (without password since Auth0 handles authentication)
+      const userObj = {
+        id: `user_${auth0Id}`,
+        type: 'user',
+        organizationId: organization.id,
+        email,
+        auth0Id,
+        passwordHash: null, // No password needed for Auth0 users
+        profile: {
+          firstName,
+          lastName,
+          role: 'owner',
+          avatar: picture
+        },
+        permissions: {
+          canCreateAssessments: true,
+          canViewReports: true,
+          canManageTeam: true,
+          canManageBilling: true
+        },
+        status: 'active',
+        metadata: {
+          lastLogin: new Date().toISOString(),
+          loginCount: 1,
+          timezone: 'UTC',
+          locale: 'en-US'
+        },
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      const createdUser = await createItem(process.env.COSMOS_CONTAINER_USERS || 'users', userObj);
+      const { passwordHash: _, ...userWithoutPassword } = createdUser;
+      user = userWithoutPassword;
+
+      // Update organization with owner ID
+      await Organization.update(organization.id, {
+        'metadata.ownerId': user.id
+      });
+    }
+
+    // Generate JWT token for API access
+    const token = generateToken(user);
+
+    res.json({
+      message: 'User synced successfully',
+      user,
+      organization,
+      token
+    });
+  } catch (error) {
+    console.error('Auth0 sync error:', error);
+    res.status(500).json({
+      error: 'Failed to sync user',
+      message: error.message
+    });
+  }
 }

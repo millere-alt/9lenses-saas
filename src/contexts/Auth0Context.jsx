@@ -34,7 +34,7 @@ export const Auth0ExtendedProvider = ({ children }) => {
 
           // Sync with backend - get or create user in our database
           try {
-            const response = await authAPI.login({
+            const response = await authAPI.syncAuth0({
               email: auth0.user.email,
               auth0Id: auth0.user.sub,
               name: auth0.user.name,
@@ -43,23 +43,13 @@ export const Auth0ExtendedProvider = ({ children }) => {
 
             setUser(response.data.user);
             setOrganization(response.data.organization);
-          } catch (error) {
-            // If user doesn't exist in our DB, create them
-            if (error.status === 404 || error.status === 401) {
-              const response = await authAPI.register({
-                email: auth0.user.email,
-                auth0Id: auth0.user.sub,
-                firstName: auth0.user.given_name || auth0.user.name?.split(' ')[0] || '',
-                lastName: auth0.user.family_name || auth0.user.name?.split(' ').slice(1).join(' ') || '',
-                organizationName: auth0.user.email?.split('@')[1]?.split('.')[0] || 'My Organization',
-                picture: auth0.user.picture
-              });
 
-              setUser(response.data.user);
-              setOrganization(response.data.organization);
-            } else {
-              console.error('Failed to sync with backend:', error);
+            // Store token from backend
+            if (response.data.token) {
+              localStorage.setItem('token', response.data.token);
             }
+          } catch (error) {
+            console.error('Failed to sync with backend:', error);
           }
         }
       } catch (error) {
