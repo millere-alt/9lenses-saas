@@ -41,6 +41,14 @@ export async function initializeDatabase() {
       {
         id: process.env.COSMOS_CONTAINER_ASSESSMENTS || 'assessments',
         partitionKey: '/organizationId'
+      },
+      {
+        id: 'invitations',
+        partitionKey: '/organizationId'
+      },
+      {
+        id: 'benchmarks',
+        partitionKey: '/id'
       }
     ];
 
