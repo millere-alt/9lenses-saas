@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, LayoutDashboard, PlayCircle, BarChart3, Upload, BookOpen, Info, Lightbulb } from 'lucide-react';
+import { Home, LayoutDashboard, PlayCircle, BarChart3, Upload, BookOpen, Info, Lightbulb, LogIn, LogOut, User, CreditCard, ChevronDown } from 'lucide-react';
+import { useAzureAdB2c } from '../contexts/AzureAdB2cContext';
 
 function AppLayout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, organization, login, logout, loading } = useAzureAdB2c();
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const navigation = [
     { label: 'Home', href: '/', icon: Home },
@@ -53,10 +56,108 @@ function AppLayout({ children }) {
                   );
                 })}
               </nav>
+
+              {/* Authentication Section */}
+              <div className="flex items-center space-x-3 ml-4 pl-4 border-l border-neutral-200">
+                {loading ? (
+                  <div className="px-4 py-2 text-sm text-neutral-500">Loading...</div>
+                ) : user ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowUserMenu(!showUserMenu)}
+                      className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition-colors border border-emerald-200"
+                    >
+                      <div className="w-8 h-8 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-full flex items-center justify-center">
+                        <User size={16} className="text-white" />
+                      </div>
+                      <div className="text-left hidden md:block">
+                        <div className="text-sm font-semibold text-neutral-900">
+                          {user.profile?.firstName || user.email?.split('@')[0]}
+                        </div>
+                        <div className="text-xs text-neutral-600">
+                          {organization?.subscription?.plan || 'Free'} Plan
+                        </div>
+                      </div>
+                      <ChevronDown size={16} className="text-neutral-600" />
+                    </button>
+
+                    {/* User Dropdown Menu */}
+                    {showUserMenu && (
+                      <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-neutral-200 py-2 z-50">
+                        <div className="px-4 py-3 border-b border-neutral-100">
+                          <div className="text-sm font-semibold text-neutral-900">
+                            {user.profile?.firstName} {user.profile?.lastName}
+                          </div>
+                          <div className="text-xs text-neutral-600">{user.email}</div>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            setShowUserMenu(false);
+                            navigate('/billing');
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-emerald-50 flex items-center space-x-2"
+                        >
+                          <CreditCard size={16} className="text-emerald-600" />
+                          <span>Billing & Subscription</span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setShowUserMenu(false);
+                            navigate('/pricing');
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-emerald-50 flex items-center space-x-2"
+                        >
+                          <BarChart3 size={16} className="text-emerald-600" />
+                          <span>Upgrade Plan</span>
+                        </button>
+
+                        <div className="border-t border-neutral-100 mt-2 pt-2">
+                          <button
+                            onClick={async () => {
+                              setShowUserMenu(false);
+                              await logout();
+                            }}
+                            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
+                          >
+                            <LogOut size={16} />
+                            <span>Sign Out</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => navigate('/pricing')}
+                      className="px-4 py-2 text-sm font-medium text-emerald-700 hover:text-emerald-800 transition-colors"
+                    >
+                      Pricing
+                    </button>
+                    <button
+                      onClick={login}
+                      className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                    >
+                      <LogIn size={18} />
+                      <span>Sign In</span>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </header>
+
+      {/* Click outside to close menu */}
+      {showUserMenu && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setShowUserMenu(false)}
+        />
+      )}
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>

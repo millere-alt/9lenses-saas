@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-// Uncomment to use Auth0:
-// import { Auth0ProviderWithConfig } from './contexts/Auth0Context';
+// Using Azure AD B2C for authentication
+import { AzureAdB2cProvider } from './contexts/AzureAdB2cContext';
+// Fallback to local auth if Azure AD B2C not configured:
+// import { AuthProvider } from './contexts/AuthContext';
 import AppLayout from './components/AppLayout';
 
 // Pages
@@ -32,7 +33,7 @@ import PricingPlans from './components/PricingPlans';
 
 function App() {
   return (
-    <AuthProvider>
+    <AzureAdB2cProvider>
       <Router>
         <AppLayout>
           <Routes>
@@ -76,7 +77,7 @@ function App() {
           </Routes>
         </AppLayout>
       </Router>
-    </AuthProvider>
+    </AzureAdB2cProvider>
   );
 }
 
