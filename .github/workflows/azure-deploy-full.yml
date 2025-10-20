@@ -1,0 +1,165 @@
+name: Deploy 9Vectors to Azure (Full Stack)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+  AZURE_FUNCTIONAPP_NAME: '9vectors-api'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'api'
+
+jobs:
+  # Build and Deploy Frontend to Azure Static Web Apps
+  build_and_deploy_frontend:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Frontend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+        env:
+          VITE_API_URL: https://9vectors-api.azurewebsites.net
+          VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
+          VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
+          VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
+          VITE_AUTH0_AUDIENCE: ${{ secrets.VITE_AUTH0_AUDIENCE }}
+          VITE_ENV: production
+
+      - name: Deploy to Azure Static Web Apps
+        id: deploy_frontend
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: 'upload'
+          app_location: 'dist'
+          api_location: ''
+          output_location: ''
+          skip_app_build: true
+
+  # Build and Deploy Backend to Azure Functions
+  build_and_deploy_backend:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    name: Build and Deploy Backend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/package-lock.json'
+
+      - name: Install backend dependencies
+        run: |
+          cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          npm ci --production
+
+      - name: Install Azure Functions Core Tools
+        run: |
+          cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          npm install -g azure-functions-core-tools@4 --unsafe-perm true
+
+      - name: Prepare deployment package
+        run: |
+          cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          # Copy all necessary files
+          mkdir -p deployment-package
+          cp -r src deployment-package/
+          cp -r functions deployment-package/
+          cp -r node_modules deployment-package/
+          cp package.json deployment-package/
+          cp host.json deployment-package/
+
+          # Create deployment zip
+          cd deployment-package
+          zip -r ../deployment.zip .
+
+      - name: Deploy to Azure Functions
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/deployment.zip'
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+
+  # Close Pull Request
+  close_pull_request_frontend:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request
+    steps:
+      - name: Close Pull Request
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: 'close'
+
+  # Post-deployment verification
+  verify_deployment:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: [build_and_deploy_frontend, build_and_deploy_backend]
+    runs-on: ubuntu-latest
+    name: Verify Deployment
+    steps:
+      - name: Wait for deployment to stabilize
+        run: sleep 30
+
+      - name: Check Frontend Health
+        run: |
+          FRONTEND_URL="https://9vectors-web.azurestaticapps.net"
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" $FRONTEND_URL)
+          if [ $HTTP_STATUS -eq 200 ]; then
+            echo "✅ Frontend is healthy (HTTP $HTTP_STATUS)"
+          else
+            echo "⚠️  Frontend returned HTTP $HTTP_STATUS"
+            exit 1
+          fi
+
+      - name: Check Backend Health
+        run: |
+          BACKEND_URL="https://9vectors-api.azurewebsites.net/health"
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" $BACKEND_URL)
+          if [ $HTTP_STATUS -eq 200 ]; then
+            echo "✅ Backend is healthy (HTTP $HTTP_STATUS)"
+          else
+            echo "⚠️  Backend returned HTTP $HTTP_STATUS"
+            exit 1
+          fi
+
+      - name: Deployment Summary
+        run: |
+          echo "========================================="
+          echo "✅ Deployment Complete!"
+          echo "========================================="
+          echo ""
+          echo "Frontend: https://9vectors-web.azurestaticapps.net"
+          echo "Backend API: https://9vectors-api.azurewebsites.net"
+          echo ""
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "========================================="

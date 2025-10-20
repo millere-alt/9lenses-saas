@@ -6,16 +6,26 @@ This folder contains all automation scripts and documentation for deploying 9vec
 
 | File | Purpose |
 |------|---------|
-| **QUICKSTART.md** | 🚀 Fast deployment guide (start here!) |
-| **AZURE_SETUP.md** | 📖 Complete setup documentation |
+| **DEPLOYMENT_GUIDE.md** | 📖 Complete deployment documentation (NEW) |
+| **deploy-full-infrastructure.sh** | 🚀 Full stack deployment script (NEW) |
+| **setup-secrets.sh** | 🔐 Automated GitHub secrets configuration (NEW) |
+| **QUICKSTART.md** | 🚀 Fast deployment guide |
+| **AZURE_SETUP.md** | 📖 Legacy setup documentation |
 | **DNS_MIGRATION_GUIDE.md** | 🌐 GoDaddy to Azure DNS migration |
-| **deploy-azure-infrastructure.sh** | ⚙️ Automated infrastructure setup script |
+| **deploy-azure-infrastructure.sh** | ⚙️ Legacy infrastructure setup script |
 | **verify-deployment.sh** | ✅ Deployment verification script |
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Updated for Functions + Static Web Apps)
 
-New to this setup? Follow these steps:
+**New simplified deployment process:**
 
+1. **Deploy Infrastructure**: `./deploy-full-infrastructure.sh`
+2. **Configure Secrets**: `./setup-secrets.sh`
+3. **Push to Deploy**: `git push origin main`
+
+**Complete documentation:** [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+
+**Legacy deployment** (single web app):
 1. **Read**: [QUICKSTART.md](./QUICKSTART.md) - 30-minute deployment guide
 2. **Run**: `./deploy-azure-infrastructure.sh` - Create Azure resources
 3. **Configure**: Add GitHub secrets for CI/CD

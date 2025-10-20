@@ -1,0 +1,9 @@
+*.js.map
+*.ts.map
+.git*
+.vscode
+local.settings.json
+test
+tsconfig.json
+.DS_Store
+node_modules/@azure/functions
