@@ -18,22 +18,22 @@ const Banner = ({ type = 'info', message, onClose, autoClose = false, duration =
 
   const styles = {
     success: {
-      bg: 'bg-gradient-to-r from-emerald-500 to-teal-600',
+      bg: 'bg-blue-600',
       icon: CheckCircle,
-      border: 'border-emerald-400'
+      border: 'border-blue-500'
     },
     error: {
-      bg: 'bg-gradient-to-r from-red-500 to-rose-600',
+      bg: 'bg-red-600',
       icon: AlertCircle,
-      border: 'border-red-400'
+      border: 'border-red-500'
     },
     warning: {
-      bg: 'bg-gradient-to-r from-yellow-500 to-orange-600',
+      bg: 'bg-yellow-600',
       icon: AlertTriangle,
-      border: 'border-yellow-400'
+      border: 'border-yellow-500'
     },
     info: {
-      bg: 'bg-gradient-to-r from-blue-500 to-indigo-600',
+      bg: 'bg-blue-500',
       icon: Info,
       border: 'border-blue-400'
     }
@@ -43,11 +43,11 @@ const Banner = ({ type = 'info', message, onClose, autoClose = false, duration =
   const Icon = style.icon;
 
   return (
-    <div className={`${style.bg} text-white py-3 px-6 shadow-lg border-b-2 ${style.border} animate-slideDown`}>
+    <div className={`${style.bg} text-white py-2 px-4 shadow-sm border-l-4 ${style.border}`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Icon className="w-5 h-5" />
-          <p className="font-medium">{message}</p>
+        <div className="flex items-center gap-2">
+          <Icon className="w-4 h-4 flex-shrink-0" />
+          <p className="text-sm font-medium">{message}</p>
         </div>
         {onClose && (
           <button
@@ -55,9 +55,10 @@ const Banner = ({ type = 'info', message, onClose, autoClose = false, duration =
               setIsVisible(false);
               onClose();
             }}
-            className="p-1 hover:bg-white/20 rounded-lg transition-colors"
+            className="p-1 hover:bg-white/10 rounded transition-colors flex-shrink-0"
+            aria-label="Close banner"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         )}
       </div>
