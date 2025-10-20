@@ -12,7 +12,7 @@ on:
 
 env:
   NODE_VERSION: '20'
-  AZURE_FUNCTIONAPP_NAME: 'snapshot9-functions'
+  AZURE_FUNCTIONAPP_NAME: '9vectors-api'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'api'
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
       - name: Build frontend
         run: npm run build
         env:
-          VITE_API_URL: https://snapshot9-functions.azurewebsites.net
+          VITE_API_URL: https://9vectors-api.azurewebsites.net
           VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
           VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
           VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
@@ -142,7 +142,7 @@ jobs:
 
       - name: Check Backend Health
         run: |
-          BACKEND_URL="https://snapshot9-functions.azurewebsites.net/health"
+          BACKEND_URL="https://9vectors-api.azurewebsites.net/health"
           HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" $BACKEND_URL)
           if [ $HTTP_STATUS -eq 200 ]; then
             echo "✅ Backend is healthy (HTTP $HTTP_STATUS)"
@@ -157,8 +157,8 @@ jobs:
           echo "✅ Deployment Complete!"
           echo "========================================="
           echo ""
-          echo "Frontend: https://calm-hill-09a9fec0f.3.azurestaticapps.net"
-          echo "Backend API: https://snapshot9-functions.azurewebsites.net"
+          echo "Frontend: https://www.9vectors.com"
+          echo "Backend API: https://9vectors-api.azurewebsites.net"
           echo ""
           echo "Commit: ${{ github.sha }}"
           echo "Branch: ${{ github.ref_name }}"
