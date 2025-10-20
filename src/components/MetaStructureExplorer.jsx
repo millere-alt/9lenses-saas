@@ -213,7 +213,7 @@ const MetaStructureExplorer = ({ onNavigateToHome, onNavigateToDashboard }) => {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">All 9 Lenses in Detail</h2>
 
           <div className="space-y-6">
-            {LENSES.map((lens, idx) => {
+            {LENSES.map((lens, _idx) => {
               const isExpanded = expandedLens === lens.id;
               const lensDefinition = definitions.lenses[lens.id];
 

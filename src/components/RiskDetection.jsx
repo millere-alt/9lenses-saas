@@ -263,7 +263,7 @@ function RiskDetection({ lensScores, assessmentData }) {
             <p className="text-gray-600">Your organization is performing well in this category.</p>
           </div>
         ) : (
-          filteredRisks.map((risk, idx) => {
+          filteredRisks.map((risk, _idx) => {
             const colors = getSeverityColor(risk.severity);
             return (
               <div key={risk.id} className="bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100 hover:shadow-xl transition-shadow">

@@ -12,7 +12,6 @@ const DocumentCorrelation = ({ documents, assessmentData }) => {
 
     // Find matching lens/sublens from document categorization
     const matchingLens = LENSES.find(l => l.name === doc.lens);
-    const matchingSubLens = matchingLens?.subLenses.find(sl => sl.name === doc.subLens);
 
     // Get assessment scores for this area
     const lensScore = assessmentData?.lensScores?.find(ls => ls.lensName === doc.lens);

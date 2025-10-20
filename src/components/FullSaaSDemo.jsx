@@ -7,7 +7,6 @@ import {
 
 const FullSaaSDemo = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const steps = [
     {

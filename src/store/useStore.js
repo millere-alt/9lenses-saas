@@ -73,7 +73,7 @@ export const useAssessmentStore = create((set) => ({
 }));
 
 // Notification Store
-export const useNotificationStore = create((set, get) => ({
+export const useNotificationStore = create((set, _get) => ({
   notifications: [],
   unreadCount: 0,
 

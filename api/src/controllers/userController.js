@@ -57,7 +57,6 @@ export const updateCurrentUser = asyncHandler(async (req, res) => {
  */
 export const getUserById = asyncHandler(async (req, res) => {
   const { userId } = req.params;
-  const requesterId = req.user.id;
   const organizationId = req.user.organizationId;
 
   // Users can only view users in their own organization

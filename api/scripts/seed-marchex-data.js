@@ -1,4 +1,4 @@
-import { initializeDatabase, createItem, updateItem, queryItems } from '../src/config/database.js';
+import { initializeDatabase, createItem, updateItem } from '../src/config/database.js';
 import { v4 as uuidv4 } from 'uuid';
 import dotenv from 'dotenv';
 

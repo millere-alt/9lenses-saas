@@ -46,13 +46,13 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
     }
 
     if (doc.documentType === 'marketing') {
-      return `Marketing plan analysis indicates a comprehensive approach to market engagement. With your Market lens at ${assessment?.lensScores?.find(l => l.lensName === 'Market')?.score || 0}/10, this document provides crucial insights into customer acquisition and brand development strategies.`;
+      return `Marketing plan analysis indicates a comprehensive approach to market engagement. With your Market lens at ${assessmentData?.lensScores?.find(l => l.lensName === 'Market')?.score || 0}/10, this document provides crucial insights into customer acquisition and brand development strategies.`;
     }
 
     return `AI analysis of this ${doc.documentType} document reveals critical insights related to ${doc.lens}. Current assessment score: ${score}/10.`;
   };
 
-  const generateKeyInsights = (doc, lensScore) => {
+  const generateKeyInsights = (doc, _lensScore) => {
     const insights = [];
 
     if (doc.documentType === 'financial') {
@@ -195,7 +195,7 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
     return risks;
   };
 
-  const generateOpportunities = (doc, lensScore) => {
+  const generateOpportunities = (doc, _lensScore) => {
     const opportunities = [];
 
     opportunities.push('Leverage document insights to improve assessment scores');
@@ -215,7 +215,7 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
     return opportunities;
   };
 
-  const generateActionItems = (doc, lensScore) => {
+  const generateActionItems = (doc, _lensScore) => {
     return [
       {
         action: `Review ${doc.lens} assessment responses`,

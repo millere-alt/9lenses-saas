@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { CheckCircle, Circle, Calendar, Users, DollarSign, Target, Sparkles, Download, Play, Clock, AlertCircle } from 'lucide-react';
 
-function ActionPlanGenerator({ lensScores }) {
+function ActionPlanGenerator({ _lensScores }) {
   const [generating, setGenerating] = useState(false);
-  const [selectedPriority, setSelectedPriority] = useState('high');
   const [actionPlan, setActionPlan] = useState(null);
 
   const generateActionPlan = () => {

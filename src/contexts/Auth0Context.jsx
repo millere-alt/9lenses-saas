@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Auth0Provider, useAuth0 as useAuth0Hook } from '@auth0/auth0-react';
-import { useNavigate } from 'react-router-dom';
 import { authAPI } from '../services/api';
 
 const Auth0Context = createContext(null);

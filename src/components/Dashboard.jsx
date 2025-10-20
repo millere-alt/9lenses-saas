@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 
 function Dashboard() {
-  const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [activeLens, setActiveLens] = useState(null);
 
@@ -63,13 +62,6 @@ function Dashboard() {
       icon: AlertCircle
     },
   ];
-
-  const getScoreColor = (score) => {
-    if (score >= 7.5) return 'from-emerald-500 to-teal-600';
-    if (score >= 6.5) return 'from-blue-500 to-indigo-600';
-    if (score >= 5.5) return 'from-yellow-400 to-orange-500';
-    return 'from-orange-500 to-red-600';
-  };
 
   const stats = [
     {

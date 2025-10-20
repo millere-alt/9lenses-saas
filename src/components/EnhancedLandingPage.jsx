@@ -17,7 +17,6 @@ const EnhancedLandingPage = ({
   onNavigateToExplore,
   onOpenAuth
 }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">

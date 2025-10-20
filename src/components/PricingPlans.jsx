@@ -3,7 +3,7 @@ import { Check, Loader, CreditCard, Crown, Rocket, Zap } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
 
-const PricingPlans = ({ onClose }) => {
+const PricingPlans = ({ _onClose }) => {
   const { user, organization } = useAuth();
   const [loading, setLoading] = useState(false);
   const [plans, setPlans] = useState(null);

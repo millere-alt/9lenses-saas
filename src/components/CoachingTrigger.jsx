@@ -10,7 +10,6 @@ const CoachingTrigger = ({
   lensId,
   subLensId,
   themeName,
-  workflow = 'assessment',
   variant = 'button', // 'button', 'icon', 'banner'
   label = 'Get AI Coaching',
   autoTrigger = false,

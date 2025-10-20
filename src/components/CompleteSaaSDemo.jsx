@@ -466,7 +466,7 @@ function CompleteSaaSDemo() {
           </div>
         );
 
-      case 'scores':
+      case 'scores': {
         const radarData = currentStepData.data.scores.map(s => ({
           lens: s.lens.split(' ')[0],
           score: s.score,
@@ -522,6 +522,7 @@ function CompleteSaaSDemo() {
             </div>
           </div>
         );
+      }
 
       case 'insights':
         return (

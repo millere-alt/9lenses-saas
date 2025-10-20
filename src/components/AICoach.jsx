@@ -24,8 +24,7 @@ const AICoach = ({ position = 'bottom-right', inline = false }) => {
     isLoading,
     askQuestion,
     hideCoach,
-    showCoach,
-    toggleCoach
+    showCoach
   } = useAICoaching();
 
   const [input, setInput] = useState('');

@@ -88,7 +88,7 @@ export class ExternalServiceError extends APIError {
 /**
  * Global error handler middleware
  */
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err, req, res, _next) => {
   // Log error details
   console.error('Error occurred:', {
     name: err.name,

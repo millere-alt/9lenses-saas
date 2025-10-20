@@ -115,7 +115,7 @@ export class AICoachingAgent {
       userScores,
       currentLens,
       currentSubLens,
-      userQuestion,
+      _userQuestion,
       mode = 'proactive' // 'proactive' or 'reactive'
     } = context;
 

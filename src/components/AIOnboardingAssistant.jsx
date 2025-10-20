@@ -6,8 +6,7 @@ const AIOnboardingAssistant = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [currentStep, setCurrentStep] = useState(0);
-  const [userProfile, setUserProfile] = useState({
+  const [userProfile] = useState({
     role: null,
     experience: null,
     goals: []

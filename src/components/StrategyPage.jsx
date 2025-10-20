@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import CompanyStrategy from './CompanyStrategy';
 
-const StrategyPage = ({ onNavigateToHome }) => {
+const StrategyPage = ({ _onNavigateToHome }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Salesforce Header */}

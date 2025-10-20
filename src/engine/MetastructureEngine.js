@@ -226,13 +226,12 @@ export class CrossLensImpactCalculator {
    * @param {Object} allCurrentScores - Map of all lens scores
    * @returns {Object} Map of expected impacts on all other lenses
    */
-  calculateEcosystemImpact(sourceLens, currentScore, newScore, allCurrentScores) {
+  calculateEcosystemImpact(sourceLens, currentScore, newScore, _allCurrentScores) {
     const deltaScore = newScore - currentScore;
     const impacts = {};
 
     Object.keys(LensInterconnectionMatrix).forEach(targetLens => {
       if (targetLens !== sourceLens) {
-        const targetScore = allCurrentScores[targetLens] || 0;
         impacts[targetLens] = this.calculateImpact(
           sourceLens,
           targetLens,
@@ -530,7 +529,7 @@ export class MetastructureOptimizer {
    * @returns {Array} Ordered sequence of lens improvements
    */
   findOptimalSequence(currentScores, constraints = {}) {
-    const { budget = Infinity, timeHorizon = 12, targetLenses = [] } = constraints;
+    const { budget = Infinity, timeHorizon = 12 } = constraints;
     const sequence = [];
     let remainingBudget = budget;
     let currentState = { ...currentScores };

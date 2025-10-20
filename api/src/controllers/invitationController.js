@@ -40,9 +40,6 @@ export const createInvitation = asyncHandler(async (req, res) => {
     throw new ValidationError('A pending invitation already exists for this email');
   }
 
-  // Get organization details
-  const organization = await Organization.findById(organizationId);
-
   // Create invitation
   const invitation = await Invitation.create({
     organizationId,
