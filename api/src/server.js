@@ -134,7 +134,16 @@ process.on('SIGTERM', () => {
   process.exit(0);
 });
 
-// Start the server
-startServer();
+// Start the server only if running as standalone (not as Azure Function)
+if (process.env.AZURE_FUNCTIONS_ENVIRONMENT !== 'Development' && !process.env.WEBSITE_INSTANCE_ID) {
+  startServer();
+}
 
-export default app;
+// Export factory function for Azure Functions
+export default async function createApp() {
+  await initializeDatabase();
+  return app;
+}
+
+// Also export the raw app for local development
+export { app };

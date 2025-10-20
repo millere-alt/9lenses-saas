@@ -59,7 +59,7 @@ jobs:
           output_location: ''
           skip_app_build: true
 
-  # Build and Deploy Backend to Azure Functions
+  # Build and Deploy Backend to Azure Functions Flex Consumption
   build_and_deploy_backend:
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -75,37 +75,29 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/package-lock.json'
 
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Install backend dependencies
         run: |
           cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           npm ci --production
 
-      - name: Install Azure Functions Core Tools
+      - name: Create deployment package
         run: |
           cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          npm install -g azure-functions-core-tools@4 --unsafe-perm true
+          zip -rq deployment.zip src node_modules package.json host.json
 
-      - name: Prepare deployment package
+      - name: Deploy to Azure Functions (Flex Consumption)
         run: |
           cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          # Copy all necessary files
-          mkdir -p deployment-package
-          cp -r src deployment-package/
-          cp -r functions deployment-package/
-          cp -r node_modules deployment-package/
-          cp package.json deployment-package/
-          cp host.json deployment-package/
-
-          # Create deployment zip
-          cd deployment-package
-          zip -r ../deployment.zip .
-
-      - name: Deploy to Azure Functions
-        uses: Azure/functions-action@v1
-        with:
-          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/deployment.zip'
-          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+          az functionapp deployment source config-zip \
+            --name ${{ env.AZURE_FUNCTIONAPP_NAME }} \
+            --resource-group 9vectors-rg \
+            --src deployment.zip \
+            --build-remote true
 
   # Close Pull Request
   close_pull_request_frontend:
