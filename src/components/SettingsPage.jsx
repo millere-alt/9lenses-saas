@@ -36,7 +36,7 @@ const SettingsPage = () => {
         lastName: formData.lastName
       });
       toast.success('Settings saved successfully!');
-    } catch (_error) {
+    } catch {
       toast.error('Failed to save settings');
     }
   };

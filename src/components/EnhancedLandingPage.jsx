@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ArrowRight, BookOpen, Users, Target, Zap, ClipboardList,
   Grid3x3, LogIn, UserPlus, Menu, X, ExternalLink, FileText,

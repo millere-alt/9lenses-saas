@@ -6,11 +6,6 @@ const AIOnboardingAssistant = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [userProfile] = useState({
-    role: null,
-    experience: null,
-    goals: []
-  });
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {

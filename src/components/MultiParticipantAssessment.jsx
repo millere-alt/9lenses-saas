@@ -133,11 +133,6 @@ const MultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard })
     return (currentPosition / totalSubLenses) * 100;
   };
 
-  const getSliderColor = (value) => {
-    if (value >= 7) return 'from-green-500 to-green-600';
-    if (value >= 4) return 'from-yellow-500 to-yellow-600';
-    return 'from-red-500 to-red-600';
-  };
 
   const getValueColor = (value) => {
     if (value >= 7) return 'text-green-700 bg-green-100';
