@@ -48,8 +48,8 @@ const DocumentViewer = ({ document, onClose, onUpdateTags }) => {
     // Excel/CSV Preview
     if (['xls', 'xlsx', 'csv'].includes(ext)) {
       return (
-        <div className="flex flex-col items-center justify-center h-full bg-green-50">
-          <Code className="w-24 h-24 text-green-600 mb-4" />
+        <div className="flex flex-col items-center justify-center h-full bg-blue-50">
+          <Code className="w-24 h-24 text-blue-600 mb-4" />
           <p className="text-gray-700 font-semibold mb-2">Spreadsheet</p>
           <p className="text-gray-500 text-sm mb-4">Preview shows sample data</p>
           <div className="bg-white p-4 rounded-lg shadow-md max-w-2xl overflow-auto">

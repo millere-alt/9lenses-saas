@@ -47,7 +47,7 @@ const ExportButton = ({ data, type, filename, onExport }) => {
             onClick={() => handleExport('excel')}
             className="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 transition-colors"
           >
-            <Table className="w-4 h-4 text-green-600" />
+            <Table className="w-4 h-4 text-blue-600" />
             <span className="text-gray-700">Export as Excel</span>
           </button>
         </div>

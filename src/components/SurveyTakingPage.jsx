@@ -88,14 +88,14 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
   // Welcome Screen
   if (!isStarted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-brand-green-50 via-white to-brand-blue-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-brand-blue-50 via-white to-brand-blue-50 flex items-center justify-center p-4">
         <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-200">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-brand-green-500 to-brand-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <div className="w-20 h-20 bg-gradient-to-br from-brand-blue-500 to-brand-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
               <Layers className="w-10 h-10 text-white" />
             </div>
             <h1 className="text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-brand-green-600 to-brand-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-blue-600 to-brand-blue-600 bg-clip-text text-transparent">
                 9Vectors Assessment
               </span>
             </h1>
@@ -112,7 +112,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 placeholder="Enter your full name"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-green-500 focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors"
               />
             </div>
 
@@ -123,7 +123,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
               <select
                 value={userRole}
                 onChange={(e) => setUserRole(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-green-500 focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors"
               >
                 <option value="">Select your role...</option>
                 <option value="CEO / Executive">CEO / Executive</option>
@@ -137,22 +137,22 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
               </select>
             </div>
 
-            <div className="bg-gradient-to-br from-brand-green-50 to-brand-blue-50 rounded-xl p-6 border border-brand-green-200">
+            <div className="bg-gradient-to-br from-brand-blue-50 to-brand-blue-50 rounded-xl p-6 border border-brand-blue-200">
               <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                <Target className="w-5 h-5 text-brand-green-600" />
+                <Target className="w-5 h-5 text-brand-blue-600" />
                 What to expect
               </h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-brand-blue-600 flex-shrink-0 mt-0.5" />
                   <span>Rate themes across 9 lenses using a 0-9 slider scale</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-brand-blue-600 flex-shrink-0 mt-0.5" />
                   <span>Add comments to provide context and insights</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-brand-blue-600 flex-shrink-0 mt-0.5" />
                   <span>Save progress and return anytime</span>
                 </li>
                 <li className="flex items-start gap-2">
@@ -165,7 +165,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
             <button
               onClick={() => setIsStarted(true)}
               disabled={!userName || !userRole}
-              className="w-full px-8 py-4 bg-gradient-to-r from-brand-green-500 to-brand-blue-600 text-white rounded-lg font-bold text-lg hover:from-brand-green-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-8 py-4 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-bold text-lg hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Start Assessment
               <ChevronRight className="w-6 h-6" />
@@ -178,12 +178,12 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
 
   // Main Survey Interface
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-brand-green-50 to-brand-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-brand-blue-50 to-brand-blue-50">
       {/* Top Progress Bar */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="h-2 bg-gray-200">
           <div
-            className="h-full bg-gradient-to-r from-brand-green-500 to-brand-blue-600 transition-all duration-300"
+            className="h-full bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -191,7 +191,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-brand-green-500 to-brand-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-brand-blue-500 to-brand-blue-600 rounded-lg flex items-center justify-center shadow-lg">
                 <Layers className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -209,7 +209,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
               </div>
               <button
                 onClick={() => alert('Progress saved!')}
-                className="px-4 py-2 border-2 border-brand-green-500 text-brand-green-700 rounded-lg font-semibold hover:bg-brand-green-50 transition-colors flex items-center gap-2"
+                className="px-4 py-2 border-2 border-brand-blue-500 text-brand-blue-700 rounded-lg font-semibold hover:bg-brand-blue-50 transition-colors flex items-center gap-2"
               >
                 <Save className="w-4 h-4" />
                 <span className="hidden md:inline">Save</span>
@@ -309,7 +309,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
                           <div
                             key={num}
                             className={`w-1 h-1 rounded-full ${
-                              num === score ? 'bg-brand-green-600 w-2 h-2' : 'bg-gray-400'
+                              num === score ? 'bg-brand-blue-600 w-2 h-2' : 'bg-gray-400'
                             }`}
                           />
                         ))}
@@ -317,8 +317,8 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
                     </div>
                     <div className="flex justify-between text-xs text-gray-500 mt-4 px-1">
                       <span className="text-red-600 font-semibold">0 - Critical</span>
-                      <span className="text-yellow-600 font-semibold">4 - Moderate</span>
-                      <span className="text-green-600 font-semibold">9 - Excellent</span>
+                      <span className="text-blue-600 font-semibold">4 - Moderate</span>
+                      <span className="text-blue-600 font-semibold">9 - Excellent</span>
                     </div>
                   </div>
                 </div>
@@ -334,7 +334,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
                     onChange={(e) => handleCommentChange(index, e.target.value)}
                     placeholder="Share your thoughts, examples, or concerns..."
                     rows={3}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-green-500 focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors resize-none"
                   />
                 </div>
               </div>
@@ -357,7 +357,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
            currentSubLensIndex === currentLens.subLenses.length - 1 ? (
             <button
               onClick={handleSubmit}
-              className="px-8 py-3 bg-gradient-to-r from-brand-green-500 to-brand-blue-600 text-white rounded-lg font-bold hover:from-brand-green-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
+              className="px-8 py-3 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-bold hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
             >
               <Send className="w-5 h-5" />
               Submit Assessment
@@ -365,7 +365,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
           ) : (
             <button
               onClick={goToNextSubLens}
-              className="px-8 py-3 bg-gradient-to-r from-brand-green-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-green-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
+              className="px-8 py-3 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
             >
               Next
               <ChevronRight className="w-5 h-5" />
@@ -387,7 +387,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
                 }}
                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                   idx === currentLensIndex
-                    ? 'bg-gradient-to-r from-brand-green-500 to-brand-blue-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >

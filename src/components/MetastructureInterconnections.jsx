@@ -82,7 +82,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-green-600 rounded-2xl p-8 text-white">
+      <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-blue-600 rounded-2xl p-8 text-white">
         <div className="flex items-center gap-3 mb-4">
           <Network className="w-8 h-8" />
           <h2 className="text-3xl font-display font-bold">Metastructure Interconnections</h2>
@@ -191,7 +191,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
             </h3>
           </div>
 
-          <div className="mb-6 p-6 bg-gradient-to-r from-green-50 to-primary-50 rounded-xl border border-blue-200">
+          <div className="mb-6 p-6 bg-gradient-to-r from-blue-50 to-primary-50 rounded-xl border border-blue-200">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-sm font-medium text-neutral-600 mb-1">Selected Lens</p>
@@ -285,10 +285,10 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
             {optimalPath.map((step, index) => (
               <div key={index} className="relative">
                 {index < optimalPath.length - 1 && (
-                  <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gradient-to-b from-primary-400 to-green-400"></div>
+                  <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gradient-to-b from-primary-400 to-blue-400"></div>
                 )}
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary-600 to-green-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary-600 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
                     {index + 1}
                   </div>
                   <div className="flex-1 p-6 bg-gradient-to-r from-neutral-50 to-white rounded-xl border border-neutral-200 hover:border-primary-300 transition-colors">
@@ -318,7 +318,7 @@ const MetastructureInterconnections = ({ lensScores = [] }) => {
             ))}
           </div>
 
-          <div className="mt-8 p-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-green-600 rounded-xl text-white">
+          <div className="mt-8 p-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-blue-600 rounded-xl text-white">
             <h4 className="font-display font-bold text-xl mb-3">Strategic Implementation Roadmap</h4>
             <p className="text-white/90 text-sm mb-4">
               Following this sequence leverages the metastructure's interconnections to create

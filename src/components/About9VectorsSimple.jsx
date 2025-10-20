@@ -51,7 +51,7 @@ const About9VectorsSimple = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
       <div className="max-w-6xl mx-auto px-6 py-12">
 
         {/* Hero Section */}
@@ -65,7 +65,7 @@ const About9VectorsSimple = () => {
           <div className="max-w-3xl mx-auto">
             <p className="text-lg text-gray-700 leading-relaxed">
               Think of 9Vectors as a <span className="font-semibold text-blue-600">health check for your organization</span>.
-              Just like a doctor checks multiple vital signs, 9Vectors evaluates <span className="font-semibold text-green-600">9 critical areas</span> of
+              Just like a doctor checks multiple vital signs, 9Vectors evaluates <span className="font-semibold text-blue-600">9 critical areas</span> of
               your business to show you what's working and what needs attention.
             </p>
           </div>
@@ -86,17 +86,17 @@ const About9VectorsSimple = () => {
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <h3 className={`text-2xl font-bold ${
-                      category.color === 'blue' ? 'text-blue-600' : 'text-green-600'
+                      category.color === 'blue' ? 'text-blue-600' : 'text-blue-600'
                     }`}>
                       {category.category}
                     </h3>
                     <p className="text-gray-500 text-lg">{category.subtitle}</p>
                   </div>
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                    category.color === 'blue' ? 'bg-blue-100' : 'bg-green-100'
+                    category.color === 'blue' ? 'bg-blue-100' : 'bg-blue-100'
                   }`}>
                     <span className={`text-2xl font-bold ${
-                      category.color === 'blue' ? 'text-blue-600' : 'text-green-600'
+                      category.color === 'blue' ? 'text-blue-600' : 'text-blue-600'
                     }`}>
                       {idx + 1}
                     </span>
@@ -112,11 +112,11 @@ const About9VectorsSimple = () => {
                         className={`p-6 rounded-xl border-2 ${
                           category.color === 'blue'
                             ? 'border-blue-200 hover:border-blue-400 bg-blue-50'
-                            : 'border-green-200 hover:border-green-400 bg-green-50'
+                            : 'border-blue-200 hover:border-blue-400 bg-blue-50'
                         } transition-all hover:shadow-md`}
                       >
                         <Icon className={`w-8 h-8 mb-3 ${
-                          category.color === 'blue' ? 'text-blue-600' : 'text-green-600'
+                          category.color === 'blue' ? 'text-blue-600' : 'text-blue-600'
                         }`} />
                         <h4 className="font-semibold text-gray-900 mb-2">{item.name}</h4>
                         <p className="text-sm text-gray-600">{item.description}</p>
@@ -130,7 +130,7 @@ const About9VectorsSimple = () => {
         </div>
 
         {/* How It Works */}
-        <div className="bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl p-12 text-white mb-16">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 rounded-2xl p-12 text-white mb-16">
           <h2 className="text-3xl font-bold text-center mb-12">
             How It Works (4 Simple Steps)
           </h2>
@@ -167,7 +167,7 @@ const About9VectorsSimple = () => {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {benefits.map((benefit, idx) => (
               <div key={idx} className="flex items-start gap-4 bg-white p-6 rounded-xl shadow-md border-2 border-gray-100">
-                <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
                 <p className="text-gray-700 text-lg">{benefit}</p>
               </div>
             ))}
@@ -191,7 +191,7 @@ const About9VectorsSimple = () => {
                   <span className="font-semibold text-blue-600">• Human Capital:</span> High employee turnover was the real issue
                 </li>
                 <li className="text-gray-700">
-                  <span className="font-semibold text-green-600">• Execution:</span> Unclear processes slowed everything down
+                  <span className="font-semibold text-blue-600">• Execution:</span> Unclear processes slowed everything down
                 </li>
                 <li className="text-gray-700">
                   <span className="font-semibold text-blue-600">• Infrastructure:</span> Outdated tools frustrated the team
@@ -225,7 +225,7 @@ const About9VectorsSimple = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl p-12 text-white">
+        <div className="text-center bg-gradient-to-r from-blue-600 to-blue-600 rounded-2xl p-12 text-white">
           <h2 className="text-3xl font-bold mb-4">
             Ready to See the Complete Picture?
           </h2>
@@ -242,7 +242,7 @@ const About9VectorsSimple = () => {
             </button>
             <button
               onClick={() => navigate('/assessment/create')}
-              className="bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-800 transition-colors shadow-lg"
+              className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition-colors shadow-lg"
             >
               Start Your Assessment
             </button>

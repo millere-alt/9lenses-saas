@@ -58,7 +58,7 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
     if (doc.documentType === 'financial') {
       insights.push({
         icon: TrendingUp,
-        color: 'text-green-600',
+        color: 'text-blue-600',
         title: 'Revenue Growth Trajectory',
         description: 'Document shows 15% YoY revenue growth with strong recurring revenue streams'
       });
@@ -88,14 +88,14 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
 
       insights.push({
         icon: Zap,
-        color: 'text-yellow-600',
+        color: 'text-blue-600',
         title: 'Innovation Pipeline',
         description: 'Strong emphasis on R&D with 12% of revenue allocated to innovation'
       });
 
       insights.push({
         icon: CheckCircle,
-        color: 'text-green-600',
+        color: 'text-blue-600',
         title: 'Competitive Differentiation',
         description: 'Clear value proposition with unique market positioning identified'
       });
@@ -111,7 +111,7 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
 
       insights.push({
         icon: Target,
-        color: 'text-green-600',
+        color: 'text-blue-600',
         title: 'Customer Acquisition',
         description: 'CAC trending down 23% while customer lifetime value increases'
       });
@@ -362,16 +362,16 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
             {/* Recommendations */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                <Target className="w-6 h-6 mr-2 text-green-600" />
+                <Target className="w-6 h-6 mr-2 text-blue-600" />
                 Recommendations
               </h3>
               <div className="space-y-4">
                 {analysis.recommendations.map((rec, index) => (
-                  <div key={index} className="p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border-l-4 border-green-500">
+                  <div key={index} className="p-4 bg-gradient-to-r from-blue-50 to-blue-50 rounded-lg border-l-4 border-blue-500">
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-bold text-gray-900">{rec.title}</h4>
                       <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                        rec.priority === 'High' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
+                        rec.priority === 'High' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
                       }`}>
                         {rec.priority} Priority
                       </span>
@@ -406,13 +406,13 @@ const AIDocumentAnalysis = ({ document, assessmentData }) => {
 
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                  <Zap className="w-6 h-6 mr-2 text-yellow-600" />
+                  <Zap className="w-6 h-6 mr-2 text-blue-600" />
                   Opportunities
                 </h3>
                 <ul className="space-y-2">
                   {analysis.opportunities.map((opp, index) => (
                     <li key={index} className="flex items-start text-sm text-gray-700">
-                      <span className="text-green-500 mr-2">▸</span>
+                      <span className="text-blue-500 mr-2">▸</span>
                       {opp}
                     </li>
                   ))}

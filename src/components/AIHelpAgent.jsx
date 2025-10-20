@@ -98,11 +98,11 @@ const AIHelpAgent = () => {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-green-600 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all hover:scale-110 z-50 group"
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-blue-600 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all hover:scale-110 z-50 group"
         aria-label="Open AI Assistant"
       >
         <MessageCircle className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-blue-400 rounded-full animate-pulse" />
         <div className="absolute bottom-full right-0 mb-2 bg-gray-900 text-white text-sm px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
           Ask me anything!
         </div>
@@ -117,7 +117,7 @@ const AIHelpAgent = () => {
       }`}
     >
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
             <Bot className="w-6 h-6" />
@@ -156,7 +156,7 @@ const AIHelpAgent = () => {
                   className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                     message.role === 'user'
                       ? 'bg-blue-600 text-white'
-                      : 'bg-gradient-to-r from-blue-600 to-green-600 text-white'
+                      : 'bg-gradient-to-r from-blue-600 to-blue-600 text-white'
                   }`}
                 >
                   {message.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
@@ -180,7 +180,7 @@ const AIHelpAgent = () => {
 
             {isTyping && (
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-green-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-blue-600 flex items-center justify-center">
                   <Bot className="w-4 h-4 text-white" />
                 </div>
                 <div className="bg-white border border-gray-200 rounded-2xl px-4 py-3 shadow-sm">
@@ -228,7 +228,7 @@ const AIHelpAgent = () => {
               <button
                 onClick={() => handleSendMessage()}
                 disabled={!input.trim() || isTyping}
-                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white p-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white p-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isTyping ? <Loader className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
               </button>

@@ -318,8 +318,8 @@ const DocumentDissector = () => {
                   <div className="font-semibold text-sm">AI-Powered</div>
                   <div className="text-xs text-gray-600">Deep learning analysis</div>
                 </div>
-                <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
-                  <Layers className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+                  <Layers className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                   <div className="font-semibold text-sm">9-Lens Framework</div>
                   <div className="text-xs text-gray-600">Comprehensive coverage</div>
                 </div>
@@ -373,7 +373,7 @@ const DocumentDissector = () => {
                     <div className="text-sm opacity-90">Insights Extracted</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white">
                     <div className="text-4xl font-bold mb-2">{dissectionResults.summary.lensesCovered}/9</div>
                     <div className="text-sm opacity-90">Lenses Covered</div>
                   </div>
@@ -383,7 +383,7 @@ const DocumentDissector = () => {
                     <div className="text-sm opacity-90">Overall Completeness</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white">
                     <div className="text-4xl font-bold mb-2">{dissectionResults.extractionQuality}%</div>
                     <div className="text-sm opacity-90">Extraction Quality</div>
                   </div>
@@ -402,7 +402,7 @@ const DocumentDissector = () => {
                         <span className="text-sm text-gray-600 block mb-2">Strongest Lenses:</span>
                         <div className="flex flex-wrap gap-2">
                           {dissectionResults.summary.strongestLenses.map(lens => (
-                            <span key={lens} className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+                            <span key={lens} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
                               {lens}
                             </span>
                           ))}
@@ -475,7 +475,7 @@ const DocumentDissector = () => {
                                       key={idx}
                                       className={`p-4 rounded-lg border-l-4 ${
                                         item.type === 'strength'
-                                          ? 'bg-green-50 border-green-500'
+                                          ? 'bg-blue-50 border-blue-500'
                                           : item.type === 'gap'
                                             ? 'bg-blue-50 border-blue-500'
                                             : 'bg-blue-50 border-blue-500'
@@ -483,7 +483,7 @@ const DocumentDissector = () => {
                                     >
                                       <div className="flex items-start justify-between">
                                         <div className="flex items-start space-x-2 flex-1">
-                                          {item.type === 'strength' && <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />}
+                                          {item.type === 'strength' && <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />}
                                           {item.type === 'gap' && <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />}
                                           {item.type === 'insight' && <Sparkles className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />}
                                           <span className="text-sm text-gray-800">{item.text}</span>

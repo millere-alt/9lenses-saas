@@ -25,7 +25,7 @@ const EnhancedLandingPage = ({
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-xl">9L</span>
               </div>
               <div>
@@ -55,23 +55,23 @@ const EnhancedLandingPage = ({
       <section className="relative bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800 overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500 rounded-full opacity-20 blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-400 rounded-full opacity-20 blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-emerald-400 rounded-full opacity-10 blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-400 rounded-full opacity-10 blur-3xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 py-24">
           <div className="text-center max-w-5xl mx-auto">
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-6 py-3 rounded-full mb-8 border border-white/30">
-              <Sparkles size={20} className="text-emerald-300" />
+              <Sparkles size={20} className="text-blue-300" />
               <span className="text-white font-semibold text-lg">Enterprise Business Assessment Platform</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tight leading-none">
               Transform Your Business
-              <span className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-400 to-green-300">
+              <span className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-blue-400 to-blue-300">
                 Through 9 Strategic Lenses
               </span>
             </h1>
@@ -86,7 +86,7 @@ const EnhancedLandingPage = ({
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
               <button
                 onClick={onNavigateToMultiAssessment}
-                className="group bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-5 px-12 rounded-2xl shadow-2xl hover:shadow-emerald-500/50 transition-all text-xl flex items-center space-x-3"
+                className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-5 px-12 rounded-2xl shadow-2xl hover:shadow-blue-500/50 transition-all text-xl flex items-center space-x-3"
               >
                 <Users size={28} />
                 <span>Start Free Assessment</span>
@@ -154,8 +154,8 @@ const EnhancedLandingPage = ({
             </div>
 
             {/* Framework Explorer - Green */}
-            <div className="group bg-gradient-to-br from-emerald-50 to-green-100 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all border-2 border-emerald-200 hover:border-emerald-400">
-              <div className="w-20 h-20 bg-gradient-to-br from-emerald-600 to-green-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-xl">
+            <div className="group bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all border-2 border-blue-200 hover:border-blue-400">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-xl">
                 <Grid3x3 className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Framework Explorer</h3>
@@ -164,7 +164,7 @@ const EnhancedLandingPage = ({
               </p>
               <button
                 onClick={onNavigateToMetaStructure}
-                className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl text-lg"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl text-lg"
               >
                 <span>Explore Now</span>
                 <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
@@ -172,8 +172,8 @@ const EnhancedLandingPage = ({
             </div>
 
             {/* Analytics Dashboard - Blue-Green Gradient */}
-            <div className="group bg-gradient-to-br from-blue-50 via-cyan-50 to-emerald-50 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all border-2 border-cyan-200 hover:border-cyan-400">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-600 via-cyan-600 to-emerald-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-xl">
+            <div className="group bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all border-2 border-cyan-200 hover:border-cyan-400">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-600 via-cyan-600 to-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-xl">
                 <TrendingUp className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Analytics Dashboard</h3>
@@ -182,7 +182,7 @@ const EnhancedLandingPage = ({
               </p>
               <button
                 onClick={onNavigateToDashboard}
-                className="w-full bg-gradient-to-r from-blue-600 via-cyan-600 to-emerald-600 hover:from-blue-700 hover:via-cyan-700 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl text-lg"
+                className="w-full bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 hover:from-blue-700 hover:via-cyan-700 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl text-lg"
               >
                 <span>View Dashboard</span>
                 <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
@@ -215,12 +215,12 @@ const EnhancedLandingPage = ({
             </div>
 
             {/* Green Card */}
-            <div className="bg-gradient-to-br from-emerald-600 to-green-600 rounded-3xl p-10 text-center shadow-2xl">
+            <div className="bg-gradient-to-br from-blue-600 to-blue-600 rounded-3xl p-10 text-center shadow-2xl">
               <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
                 <Users className="w-12 h-12 text-white" />
               </div>
               <h3 className="text-3xl font-bold text-white mb-5">Collaborative</h3>
-              <p className="text-emerald-100 leading-relaxed text-xl">
+              <p className="text-blue-100 leading-relaxed text-xl">
                 Unlimited participants ensure every stakeholder voice is heard and aligned toward common goals
               </p>
             </div>
@@ -240,24 +240,24 @@ const EnhancedLandingPage = ({
       </section>
 
       {/* Final CTA - Green Gradient */}
-      <section className="relative bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-800 overflow-hidden py-28">
+      <section className="relative bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800 overflow-hidden py-28">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-400 rounded-full opacity-20 blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-400 rounded-full opacity-20 blur-3xl"></div>
         </div>
 
         <div className="relative max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-6xl md:text-7xl font-bold text-white mb-8">
             Ready to Transform?
           </h2>
-          <p className="text-3xl text-emerald-100 mb-14 max-w-4xl mx-auto font-light">
+          <p className="text-3xl text-blue-100 mb-14 max-w-4xl mx-auto font-light">
             Join organizations worldwide using 9Vectors to drive excellence, alignment, and growth
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <button
               onClick={onNavigateToMultiAssessment}
-              className="group bg-white hover:bg-gray-50 text-emerald-700 font-bold py-6 px-14 rounded-2xl shadow-2xl hover:shadow-white/20 transition-all text-2xl flex items-center justify-center gap-4"
+              className="group bg-white hover:bg-gray-50 text-blue-700 font-bold py-6 px-14 rounded-2xl shadow-2xl hover:shadow-white/20 transition-all text-2xl flex items-center justify-center gap-4"
             >
               <Users size={32} />
               <span>Start Free Assessment</span>
@@ -272,7 +272,7 @@ const EnhancedLandingPage = ({
             </button>
           </div>
 
-          <p className="text-emerald-200 text-lg">No credit card required • Free forever plan available</p>
+          <p className="text-blue-200 text-lg">No credit card required • Free forever plan available</p>
         </div>
       </section>
 
@@ -289,7 +289,7 @@ const EnhancedLandingPage = ({
             </button>
             <button
               onClick={onNavigateToExplore}
-              className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl flex items-center gap-3 text-lg"
+              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl flex items-center gap-3 text-lg"
             >
               <Compass size={24} />
               Explore
@@ -303,7 +303,7 @@ const EnhancedLandingPage = ({
             </button>
             <button
               onClick={onNavigateToAbout}
-              className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl flex items-center gap-3 text-lg"
+              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl flex items-center gap-3 text-lg"
             >
               <Shield size={24} />
               About
@@ -312,7 +312,7 @@ const EnhancedLandingPage = ({
 
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">9L</span>
               </div>
               <span className="text-2xl font-bold text-white">9Vectors</span>

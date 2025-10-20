@@ -3,20 +3,20 @@ import { ChevronRight } from 'lucide-react';
 
 const LensCard = ({ lens, onClick }) => {
   const getScoreColor = (score) => {
-    if (score >= 7) return 'bg-green-500';
-    if (score >= 4) return 'bg-yellow-500';
+    if (score >= 7) return 'bg-blue-500';
+    if (score >= 4) return 'bg-blue-500';
     return 'bg-red-500';
   };
 
   const getScoreTextColor = (score) => {
-    if (score >= 7) return 'text-green-700';
-    if (score >= 4) return 'text-yellow-700';
+    if (score >= 7) return 'text-blue-700';
+    if (score >= 4) return 'text-blue-700';
     return 'text-red-700';
   };
 
   const getScoreBgColor = (score) => {
-    if (score >= 7) return 'bg-green-50';
-    if (score >= 4) return 'bg-yellow-50';
+    if (score >= 7) return 'bg-blue-50';
+    if (score >= 4) return 'bg-blue-50';
     return 'bg-red-50';
   };
 

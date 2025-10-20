@@ -106,8 +106,8 @@ const BillingPage = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Check className="w-10 h-10 text-green-600" />
+          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Check className="w-10 h-10 text-blue-600" />
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Subscription Activated!</h2>
           <p className="text-gray-600 mb-6">
@@ -151,9 +151,9 @@ const BillingPage = () => {
 
       {showCanceled && (
         <div className="max-w-7xl mx-auto px-4 pt-6">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 text-yellow-600" />
-            <p className="text-yellow-800">Checkout was canceled. You can try again anytime.</p>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3">
+            <AlertCircle className="w-5 h-5 text-blue-600" />
+            <p className="text-blue-800">Checkout was canceled. You can try again anytime.</p>
           </div>
         </div>
       )}
@@ -184,7 +184,7 @@ const BillingPage = () => {
                   <p className="text-sm text-gray-600 mb-1">Status</p>
                   <div className="flex items-center gap-2">
                     <div className={`w-2 h-2 rounded-full ${
-                      subscription?.status === 'active' ? 'bg-green-500' : 'bg-gray-400'
+                      subscription?.status === 'active' ? 'bg-blue-500' : 'bg-gray-400'
                     }`} />
                     <p className="text-lg font-semibold capitalize">
                       {subscription?.status || 'Free'}

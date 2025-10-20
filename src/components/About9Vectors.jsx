@@ -23,8 +23,8 @@ function About9Vectors() {
       description: 'The foundational resources that power your business',
       icon: Target,
       color: 'emerald',
-      gradient: 'from-emerald-400 via-emerald-500 to-teal-500',
-      bgGradient: 'from-emerald-50 to-teal-50',
+      gradient: 'from-blue-400 via-blue-500 to-blue-500',
+      bgGradient: 'from-blue-50 to-blue-50',
       lenses: [
         {
           number: 1,
@@ -54,8 +54,8 @@ function About9Vectors() {
       description: 'How you execute and deliver value',
       icon: Zap,
       color: 'teal',
-      gradient: 'from-teal-400 via-cyan-500 to-blue-500',
-      bgGradient: 'from-teal-50 to-cyan-50',
+      gradient: 'from-blue-400 via-cyan-500 to-blue-500',
+      bgGradient: 'from-blue-50 to-cyan-50',
       lenses: [
         {
           number: 4,
@@ -141,7 +141,7 @@ function About9Vectors() {
       {/* Parallax Background */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <div
-          className="absolute top-20 right-10 w-[500px] h-[500px] bg-gradient-to-br from-emerald-300/30 to-teal-400/30 rounded-full blur-3xl"
+          className="absolute top-20 right-10 w-[500px] h-[500px] bg-gradient-to-br from-blue-300/30 to-blue-400/30 rounded-full blur-3xl"
           style={{ transform: `translateY(${scrollY * 0.2}px)` }}
         />
         <div
@@ -153,19 +153,19 @@ function About9Vectors() {
       <div className="max-w-7xl mx-auto space-y-20">
         {/* Hero Header */}
         <div className="text-center relative">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-50 to-blue-50 px-6 py-3 rounded-full border-2 border-emerald-200 shadow-lg mb-8">
-            <Sparkles size={20} className="text-emerald-600" />
-            <span className="text-sm font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-blue-50 px-6 py-3 rounded-full border-2 border-blue-200 shadow-lg mb-8">
+            <Sparkles size={20} className="text-blue-600" />
+            <span className="text-sm font-bold bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
               The Complete Assessment Framework
             </span>
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-black bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent mb-6 leading-tight">
+          <h1 className="text-6xl md:text-7xl font-black bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600 bg-clip-text text-transparent mb-6 leading-tight">
             About 9Vectors
           </h1>
           <p className="text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto font-medium leading-relaxed">
             A comprehensive framework for evaluating organizational health across
-            <span className="block mt-2 bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent font-bold">
+            <span className="block mt-2 bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent font-bold">
               Three Strategic Phases & Nine Critical Lenses
             </span>
           </p>
@@ -285,7 +285,7 @@ function About9Vectors() {
 
         {/* Benefits Section */}
         <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl p-16 shadow-2xl">
-          <h2 className="text-5xl font-black bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-4 text-center">
+          <h2 className="text-5xl font-black bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent mb-4 text-center">
             Why Use 9Vectors?
           </h2>
           <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
@@ -300,10 +300,10 @@ function About9Vectors() {
                   key={index}
                   className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border border-gray-100"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-400 to-blue-500 flex items-center justify-center mb-6 shadow-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center mb-6 shadow-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                     <Icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
                     {benefit.title}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -318,10 +318,10 @@ function About9Vectors() {
         {/* CTA Section */}
         <div className="relative overflow-hidden rounded-3xl shadow-2xl">
           {/* Animated Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-600 to-blue-700" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-600 to-blue-700" />
 
           {/* Animated Orbs */}
-          <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-400 rounded-full opacity-30 blur-3xl animate-pulse" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full opacity-30 blur-3xl animate-pulse" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-400 rounded-full opacity-30 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
           <div className="relative p-16 text-center">
@@ -330,14 +330,14 @@ function About9Vectors() {
             <h2 className="text-5xl font-black text-white mb-6">
               Ready to Transform Your Organization?
             </h2>
-            <p className="text-2xl text-emerald-100 mb-10 max-w-3xl mx-auto">
+            <p className="text-2xl text-blue-100 mb-10 max-w-3xl mx-auto">
               Launch your comprehensive 9Vectors assessment and unlock strategic insights for sustainable excellence
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
                 onClick={() => navigate('/ceo-dashboard')}
-                className="group relative overflow-hidden bg-white text-emerald-700 font-black py-6 px-12 rounded-2xl shadow-2xl hover:shadow-white/50 transition-all duration-500 hover:scale-110 flex items-center justify-center space-x-3 text-xl"
+                className="group relative overflow-hidden bg-white text-blue-700 font-black py-6 px-12 rounded-2xl shadow-2xl hover:shadow-white/50 transition-all duration-500 hover:scale-110 flex items-center justify-center space-x-3 text-xl"
               >
                 <Zap className="w-6 h-6 group-hover:rotate-12 transition-transform" />
                 <span>Start Assessment</span>
@@ -355,15 +355,15 @@ function About9Vectors() {
 
             <div className="mt-12 pt-12 border-t border-white/30 flex items-center justify-center space-x-8 text-white/90">
               <div className="flex items-center space-x-2">
-                <CheckCircle2 className="w-5 h-5 text-emerald-300" />
+                <CheckCircle2 className="w-5 h-5 text-blue-300" />
                 <span>No credit card required</span>
               </div>
               <div className="flex items-center space-x-2">
-                <CheckCircle2 className="w-5 h-5 text-emerald-300" />
+                <CheckCircle2 className="w-5 h-5 text-blue-300" />
                 <span>180+ assessment themes</span>
               </div>
               <div className="flex items-center space-x-2">
-                <CheckCircle2 className="w-5 h-5 text-emerald-300" />
+                <CheckCircle2 className="w-5 h-5 text-blue-300" />
                 <span>Expert support included</span>
               </div>
             </div>

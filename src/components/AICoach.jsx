@@ -99,7 +99,7 @@ const AICoach = ({ position = 'bottom-right', inline = false }) => {
         aria-label="Open AI Coach"
       >
         <Bot className="w-7 h-7" />
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></span>
+        <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full animate-pulse"></span>
         <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
           Ask your AI Coach
         </div>
@@ -176,7 +176,7 @@ const CoachHeader = ({ onClose, onMinimize, onToggleExpand, isExpanded, inline =
         <h3 className="font-bold text-sm">AI Coach</h3>
         <p className="text-xs text-white/80">9Vectors Expert</p>
       </div>
-      <Sparkles className="w-4 h-4 text-yellow-300 animate-pulse ml-1" />
+      <Sparkles className="w-4 h-4 text-blue-300 animate-pulse ml-1" />
     </div>
 
     <div className="flex items-center gap-1">

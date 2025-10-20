@@ -176,7 +176,7 @@ const SettingsPage = () => {
                   <p className="text-gray-600">Manage your subscription and payment methods.</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-blue-500 to-green-500 text-white p-6 rounded-xl">
+                <div className="bg-gradient-to-r from-blue-500 to-blue-500 text-white p-6 rounded-xl">
                   <h3 className="text-lg font-semibold mb-2">Current Plan: {user?.organization?.subscriptionTier || 'FREE'}</h3>
                   <p className="text-blue-100 mb-4">Upgrade to unlock more features</p>
                   <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
@@ -196,7 +196,7 @@ const SettingsPage = () => {
                 <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-4">
                     {theme === 'light' ? (
-                      <Sun className="w-6 h-6 text-yellow-500" />
+                      <Sun className="w-6 h-6 text-blue-500" />
                     ) : (
                       <Moon className="w-6 h-6 text-blue-500" />
                     )}

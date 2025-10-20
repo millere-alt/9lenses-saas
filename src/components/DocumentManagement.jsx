@@ -217,7 +217,7 @@ const DocumentManagement = ({ documents: externalDocuments, onDocumentsUpdate })
                       <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
                         <Eye className="w-5 h-5" />
                       </button>
-                      <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
                         <Download className="w-5 h-5" />
                       </button>
                       <button

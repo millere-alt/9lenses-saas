@@ -76,7 +76,7 @@ const PricingPlans = ({ _onClose }) => {
       case 'professional':
         return 'from-purple-500 to-pink-500';
       case 'enterprise':
-        return 'from-amber-500 to-orange-500';
+        return 'from-blue-500 to-blue-500';
       default:
         return 'from-gray-500 to-gray-600';
     }
@@ -143,7 +143,7 @@ const PricingPlans = ({ _onClose }) => {
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-gray-700">{feature}</span>
                     </li>
                   ))}

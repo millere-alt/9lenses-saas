@@ -28,8 +28,8 @@ const FullSaaSDemo = () => {
             </p>
 
             <div className="grid grid-cols-3 gap-6 mb-12">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
-                <div className="text-4xl font-bold text-green-600 mb-2">10+</div>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
+                <div className="text-4xl font-bold text-blue-600 mb-2">10+</div>
                 <div className="text-sm text-gray-700">Key Features</div>
               </div>
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
@@ -66,26 +66,26 @@ const FullSaaSDemo = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Quick Setup Process</h3>
               <ul className="space-y-4 mb-6">
                 <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+                  <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
                   <div>
                     <strong>Company Profile:</strong> Enter basic information about your organization
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+                  <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
                   <div>
                     <strong>Assessment Type:</strong> Choose from 360° Review, Strategic Planning, or Custom
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+                  <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
                   <div>
                     <strong>Timeframe:</strong> Set duration and milestones for completion
                   </div>
                 </li>
               </ul>
 
-              <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
                 <p className="text-sm text-gray-700">
                   <strong>Pro Tip:</strong> Start with a 360° review to get comprehensive insights
                   across all 9 lenses from multiple stakeholder perspectives.
@@ -125,7 +125,7 @@ const FullSaaSDemo = () => {
       title: "Step 2: Invite Participants",
       subtitle: "Multi-Stakeholder Input for Comprehensive Insights",
       icon: Users,
-      color: "from-green-600 to-emerald-600",
+      color: "from-blue-600 to-blue-600",
       content: (
         <div className="py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -166,7 +166,7 @@ const FullSaaSDemo = () => {
                       <div className="font-semibold">Team Members</div>
                       <div className="text-sm text-gray-600">Day-to-day operations</div>
                     </div>
-                    <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                    <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
                       28 invited
                     </div>
                   </div>
@@ -186,16 +186,16 @@ const FullSaaSDemo = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-xl border-2 border-green-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-50 p-8 rounded-xl border-2 border-blue-200">
               <h4 className="font-bold text-lg mb-4">Participation Rate</h4>
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm font-medium">Overall Response Rate</span>
-                    <span className="text-sm font-bold text-green-600">94%</span>
+                    <span className="text-sm font-bold text-blue-600">94%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-3">
-                    <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-3 rounded-full" style={{width: '94%'}}></div>
+                    <div className="bg-gradient-to-r from-blue-500 to-blue-500 h-3 rounded-full" style={{width: '94%'}}></div>
                   </div>
                 </div>
 
@@ -221,7 +221,7 @@ const FullSaaSDemo = () => {
       title: "Step 3: Document Upload & Data Integration",
       subtitle: "Enrich Assessment with Real Business Documents",
       icon: Upload,
-      color: "from-green-600 to-amber-600",
+      color: "from-blue-600 to-blue-600",
       content: (
         <div className="py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -233,13 +233,13 @@ const FullSaaSDemo = () => {
               </p>
 
               <div className="space-y-3">
-                <div className="flex items-center space-x-3 p-3 bg-green-50 border border-green-200 rounded-lg">
-                  <DollarSign className="w-8 h-8 text-green-600" />
+                <div className="flex items-center space-x-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <DollarSign className="w-8 h-8 text-blue-600" />
                   <div className="flex-1">
                     <div className="font-semibold text-sm">Financial Statements</div>
                     <div className="text-xs text-gray-600">P&L by product line • Balance sheet • Cash flow</div>
                   </div>
-                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <CheckCircle className="w-5 h-5 text-blue-600" />
                 </div>
 
                 <div className="flex items-center space-x-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
@@ -271,7 +271,7 @@ const FullSaaSDemo = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-amber-50 p-8 rounded-xl border-2 border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-50 p-8 rounded-xl border-2 border-blue-200">
               <h4 className="font-bold text-lg mb-4">Automatic Categorization</h4>
 
               <div className="bg-white rounded-lg p-6 mb-4">
@@ -286,7 +286,7 @@ const FullSaaSDemo = () => {
                     <span className="font-bold">8 docs</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-green-500 h-2 rounded-full" style={{width: '35%'}}></div>
+                    <div className="bg-blue-500 h-2 rounded-full" style={{width: '35%'}}></div>
                   </div>
 
                   <div className="flex justify-between text-sm mt-3">
@@ -345,12 +345,12 @@ const FullSaaSDemo = () => {
                 <div className="text-sm opacity-90">Overall Score (out of 10)</div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white">
                 <div className="text-5xl font-bold mb-2">2</div>
                 <div className="text-sm opacity-90">Strong Areas (7+ score)</div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-red-600 rounded-xl p-6 text-white">
+              <div className="bg-gradient-to-br from-blue-500 to-red-600 rounded-xl p-6 text-white">
                 <div className="text-5xl font-bold mb-2">4</div>
                 <div className="text-sm opacity-90">Areas for Improvement</div>
               </div>
@@ -361,24 +361,24 @@ const FullSaaSDemo = () => {
             <div>
               <h4 className="font-bold text-lg mb-4">Top Performing Lenses</h4>
               <div className="space-y-3">
-                <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-semibold">People</span>
-                    <span className="text-2xl font-bold text-green-600">7.3</span>
+                    <span className="text-2xl font-bold text-blue-600">7.3</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-green-500 h-2 rounded-full" style={{width: '73%'}}></div>
+                    <div className="bg-blue-500 h-2 rounded-full" style={{width: '73%'}}></div>
                   </div>
                   <p className="text-xs text-gray-600 mt-2">Strong culture and employee characteristics</p>
                 </div>
 
-                <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-semibold">Expectations</span>
-                    <span className="text-2xl font-bold text-green-600">7.1</span>
+                    <span className="text-2xl font-bold text-blue-600">7.1</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-green-500 h-2 rounded-full" style={{width: '71%'}}></div>
+                    <div className="bg-blue-500 h-2 rounded-full" style={{width: '71%'}}></div>
                   </div>
                   <p className="text-xs text-gray-600 mt-2">Well-aligned stakeholder expectations</p>
                 </div>
@@ -462,11 +462,11 @@ const FullSaaSDemo = () => {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-5">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-50 border-2 border-blue-200 rounded-lg p-5">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+                    <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
                     <div>
-                      <h4 className="font-bold text-green-900 mb-2">Strength to Leverage</h4>
+                      <h4 className="font-bold text-blue-900 mb-2">Strength to Leverage</h4>
                       <p className="text-sm text-gray-700 mb-3">
                         Your People lens (7.3) is a key differentiator. Use this cultural strength
                         to attract top talent and accelerate growth initiatives.
@@ -500,10 +500,10 @@ const FullSaaSDemo = () => {
                   <div>
                     <div className="flex justify-between text-sm mb-2">
                       <span>With recommended actions...</span>
-                      <span className="font-bold text-green-600">7.2</span>
+                      <span className="font-bold text-blue-600">7.2</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-3">
-                      <div className="bg-green-500 h-3 rounded-full" style={{width: '72%'}}></div>
+                      <div className="bg-blue-500 h-3 rounded-full" style={{width: '72%'}}></div>
                     </div>
                   </div>
 
@@ -538,7 +538,7 @@ const FullSaaSDemo = () => {
       title: "Step 6: Action Plan Generator",
       subtitle: "90-Day Roadmap for Transformation",
       icon: Target,
-      color: "from-emerald-600 to-teal-600",
+      color: "from-blue-600 to-blue-600",
       content: (
         <div className="py-8">
           <div className="mb-6">
@@ -549,7 +549,7 @@ const FullSaaSDemo = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-red-50 to-green-50 border-2 border-red-200 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-red-50 to-blue-50 border-2 border-red-200 rounded-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-bold text-lg">Days 1-30</h4>
                 <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold">HIGH PRIORITY</span>
@@ -576,14 +576,14 @@ const FullSaaSDemo = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-50 to-amber-50 border-2 border-yellow-200 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-50 border-2 border-blue-200 rounded-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-bold text-lg">Days 31-60</h4>
-                <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">MEDIUM</span>
+                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">MEDIUM</span>
               </div>
 
               <div className="space-y-3">
-                <div className="bg-white rounded-lg p-3 border-l-4 border-yellow-500">
+                <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
                   <div className="font-semibold text-sm mb-1">Process Optimization</div>
                   <div className="text-xs text-gray-600 mb-2">Target: Operations Lens → 6.8+</div>
                   <div className="text-xs">
@@ -592,7 +592,7 @@ const FullSaaSDemo = () => {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg p-3 border-l-4 border-amber-500">
+                <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
                   <div className="font-semibold text-sm mb-1">KPI Dashboard Launch</div>
                   <div className="text-xs text-gray-600 mb-2">Target: Execution Lens → 6.5+</div>
                   <div className="text-xs">
@@ -603,14 +603,14 @@ const FullSaaSDemo = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-50 border-2 border-blue-200 rounded-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-bold text-lg">Days 61-90</h4>
-                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">STRATEGIC</span>
+                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">STRATEGIC</span>
               </div>
 
               <div className="space-y-3">
-                <div className="bg-white rounded-lg p-3 border-l-4 border-green-500">
+                <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
                   <div className="font-semibold text-sm mb-1">Market Expansion Plan</div>
                   <div className="text-xs text-gray-600 mb-2">Target: Market Lens → 7.0+</div>
                   <div className="text-xs">
@@ -619,7 +619,7 @@ const FullSaaSDemo = () => {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg p-3 border-l-4 border-teal-500">
+                <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
                   <div className="font-semibold text-sm mb-1">Culture Amplification</div>
                   <div className="text-xs text-gray-600 mb-2">Target: People Lens → 8.0+</div>
                   <div className="text-xs">
@@ -642,7 +642,7 @@ const FullSaaSDemo = () => {
                     <div className="text-sm text-gray-600">90-Day Budget</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-green-600">$1.2M</div>
+                    <div className="text-2xl font-bold text-blue-600">$1.2M</div>
                     <div className="text-sm text-gray-600">Projected ROI (12mo)</div>
                   </div>
                   <div>
@@ -675,7 +675,7 @@ const FullSaaSDemo = () => {
                 <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
                   <div className="flex justify-between mb-2">
                     <span className="font-semibold">Overall Performance</span>
-                    <span className="text-sm text-green-600 font-bold">Top 35%</span>
+                    <span className="text-sm text-blue-600 font-bold">Top 35%</span>
                   </div>
                   <div className="grid grid-cols-3 gap-3 text-xs">
                     <div>
@@ -688,24 +688,24 @@ const FullSaaSDemo = () => {
                     </div>
                     <div>
                       <div className="text-gray-600">Top Quartile</div>
-                      <div className="text-lg font-bold text-green-600">7.5</div>
+                      <div className="text-lg font-bold text-blue-600">7.5</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-semibold">You Lead In:</span>
-                    <TrendingUp className="w-5 h-5 text-green-600" />
+                    <TrendingUp className="w-5 h-5 text-blue-600" />
                   </div>
                   <ul className="space-y-1 text-sm">
                     <li className="flex justify-between">
                       <span>People & Culture</span>
-                      <span className="font-bold text-green-600">Top 15%</span>
+                      <span className="font-bold text-blue-600">Top 15%</span>
                     </li>
                     <li className="flex justify-between">
                       <span>Expectations Management</span>
-                      <span className="font-bold text-green-600">Top 20%</span>
+                      <span className="font-bold text-blue-600">Top 20%</span>
                     </li>
                   </ul>
                 </div>
@@ -741,7 +741,7 @@ const FullSaaSDemo = () => {
                         <span className="font-bold">7.8 - 8.5</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full" style={{width: '85%'}}></div>
+                        <div className="bg-gradient-to-r from-blue-400 to-blue-600 h-2 rounded-full" style={{width: '85%'}}></div>
                       </div>
                     </div>
 
@@ -772,7 +772,7 @@ const FullSaaSDemo = () => {
                         <span className="font-bold">4.2 - 5.7</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-gradient-to-r from-green-400 to-red-600 h-2 rounded-full" style={{width: '50%'}}></div>
+                        <div className="bg-gradient-to-r from-blue-400 to-red-600 h-2 rounded-full" style={{width: '50%'}}></div>
                       </div>
                     </div>
                   </div>
@@ -812,10 +812,10 @@ const FullSaaSDemo = () => {
                     <div>
                       <div className="flex justify-between text-sm mb-1">
                         <span>90-Day Plan Completion</span>
-                        <span className="font-bold text-green-600">67%</span>
+                        <span className="font-bold text-blue-600">67%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-3">
-                        <div className="bg-gradient-to-r from-green-400 to-green-600 h-3 rounded-full" style={{width: '67%'}}></div>
+                        <div className="bg-gradient-to-r from-blue-400 to-blue-600 h-3 rounded-full" style={{width: '67%'}}></div>
                       </div>
                       <div className="text-xs text-gray-600 mt-1">12 of 18 initiatives completed</div>
                     </div>
@@ -860,7 +860,7 @@ const FullSaaSDemo = () => {
               <h4 className="font-bold text-lg mb-6">Smart Notifications</h4>
 
               <div className="space-y-3">
-                <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+                <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="font-semibold text-sm mb-1">🎉 Milestone Achieved!</div>
@@ -931,7 +931,7 @@ const FullSaaSDemo = () => {
       title: "Ready to Transform Your Organization?",
       subtitle: "Start Your 9Vectors Journey Today",
       icon: Zap,
-      color: "from-green-600 to-red-600",
+      color: "from-blue-600 to-red-600",
       content: (
         <div className="text-center py-12">
           <div className="max-w-4xl mx-auto">
@@ -950,8 +950,8 @@ const FullSaaSDemo = () => {
                 <div className="text-sm text-gray-600">Multi-stakeholder input</div>
               </div>
 
-              <div className="bg-green-50 rounded-xl p-6">
-                <Brain className="w-12 h-12 text-green-600 mx-auto mb-3" />
+              <div className="bg-blue-50 rounded-xl p-6">
+                <Brain className="w-12 h-12 text-blue-600 mx-auto mb-3" />
                 <div className="font-bold text-lg mb-1">AI Analysis</div>
                 <div className="text-sm text-gray-600">Deep insights & predictions</div>
               </div>
@@ -969,7 +969,7 @@ const FullSaaSDemo = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-green-600 to-red-600 rounded-2xl p-12 text-white mb-8">
+            <div className="bg-gradient-to-r from-blue-600 to-red-600 rounded-2xl p-12 text-white mb-8">
               <h3 className="text-3xl font-bold mb-4">Special Launch Offer</h3>
               <p className="text-xl mb-6 opacity-90">
                 First 100 organizations get lifetime access to all premium features
@@ -1080,7 +1080,7 @@ const FullSaaSDemo = () => {
                   index === currentStep
                     ? 'bg-blue-600 w-8'
                     : index < currentStep
-                      ? 'bg-green-500'
+                      ? 'bg-blue-500'
                       : 'bg-gray-300'
                 }`}
                 title={step.title}
@@ -1114,7 +1114,7 @@ const FullSaaSDemo = () => {
                     index === currentStep
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
                       : index < currentStep
-                        ? 'bg-green-50 border-2 border-green-200 hover:border-green-400'
+                        ? 'bg-blue-50 border-2 border-blue-200 hover:border-blue-400'
                         : 'bg-gray-50 border-2 border-gray-200 hover:border-gray-400'
                   }`}
                 >

@@ -79,7 +79,7 @@ function ActionPlanGenerator({ _lensScores }) {
           {
             name: 'Phase 2: Foundation Building (Days 31-60)',
             description: 'Systematic improvements to core processes and capabilities',
-            color: 'from-orange-500 to-orange-600',
+            color: 'from-blue-500 to-blue-600',
             actions: [
               {
                 id: 4,
@@ -201,7 +201,7 @@ function ActionPlanGenerator({ _lensScores }) {
         ],
         keyMetrics: [
           { name: 'Total Investment', value: '$202K', icon: DollarSign, color: 'text-primary-600' },
-          { name: 'Timeline', value: '90 Days', icon: Calendar, color: 'text-orange-600' },
+          { name: 'Timeline', value: '90 Days', icon: Calendar, color: 'text-blue-600' },
           { name: 'Action Items', value: '9 Initiatives', icon: Target, color: 'text-secondary-600' },
           { name: 'Expected ROI', value: '350%', icon: Target, color: 'text-primary-600' }
         ],
@@ -220,8 +220,8 @@ function ActionPlanGenerator({ _lensScores }) {
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'Critical': return 'bg-red-100 text-red-700 border-red-300';
-      case 'High': return 'bg-orange-100 text-orange-700 border-orange-300';
-      case 'Medium-High': return 'bg-yellow-100 text-yellow-700 border-yellow-300';
+      case 'High': return 'bg-blue-100 text-blue-700 border-blue-300';
+      case 'Medium-High': return 'bg-blue-100 text-blue-700 border-blue-300';
       default: return 'bg-blue-100 text-blue-700 border-blue-300';
     }
   };
@@ -229,7 +229,7 @@ function ActionPlanGenerator({ _lensScores }) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-br from-primary-600 via-orange-500 to-secondary-600 rounded-3xl p-8 text-white shadow-2xl">
+      <div className="bg-gradient-to-br from-primary-600 via-blue-500 to-secondary-600 rounded-3xl p-8 text-white shadow-2xl">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
             <Target className="w-8 h-8 text-white" />
@@ -246,7 +246,7 @@ function ActionPlanGenerator({ _lensScores }) {
 
       {!actionPlan && (
         <div className="bg-white rounded-2xl p-12 text-center shadow-lg border-2 border-gray-100">
-          <Target className="w-20 h-20 text-orange-500 mx-auto mb-6" />
+          <Target className="w-20 h-20 text-blue-500 mx-auto mb-6" />
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Generate Your Strategic Action Plan</h3>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Our AI will analyze your 9Vectors assessment results and create a comprehensive 90-day action plan with specific initiatives, timelines, budgets, and success criteria.
@@ -255,7 +255,7 @@ function ActionPlanGenerator({ _lensScores }) {
           <button
             onClick={generateActionPlan}
             disabled={generating}
-            className="group inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+            className="group inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
           >
             {generating ? (
               <>
@@ -380,15 +380,15 @@ function ActionPlanGenerator({ _lensScores }) {
           ))}
 
           {/* Risks & Considerations */}
-          <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 shadow-lg border-2 border-orange-200">
+          <div className="bg-gradient-to-br from-blue-50 to-red-50 rounded-2xl p-8 shadow-lg border-2 border-blue-200">
             <div className="flex items-center gap-3 mb-6">
-              <AlertTriangle className="w-8 h-8 text-orange-600" />
+              <AlertTriangle className="w-8 h-8 text-blue-600" />
               <h3 className="text-2xl font-bold text-gray-900">Risks & Considerations</h3>
             </div>
             <div className="space-y-3">
               {actionPlan.risks.map((risk, idx) => (
                 <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl">
-                  <div className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
+                  <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
                     !
                   </div>
                   <p className="text-gray-700 leading-relaxed">{risk}</p>

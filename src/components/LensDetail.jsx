@@ -108,9 +108,9 @@ const LensDetail = ({ lens, onBack }) => {
 
                 <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
                   subLens.score >= 7
-                    ? 'bg-green-100 text-green-700'
+                    ? 'bg-blue-100 text-blue-700'
                     : subLens.score >= 4
-                    ? 'bg-yellow-100 text-yellow-700'
+                    ? 'bg-blue-100 text-blue-700'
                     : 'bg-red-100 text-red-700'
                 }`}>
                   {getScoreLabel(subLens.score)}
@@ -130,9 +130,9 @@ const LensDetail = ({ lens, onBack }) => {
                 </div>
 
                 {subLens.score < 6 && (
-                  <div className="mt-4 flex items-start gap-2 p-3 bg-orange-50 rounded border-l-4 border-orange-400">
-                    <AlertCircle className="w-4 h-4 text-orange-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-orange-800">
+                  <div className="mt-4 flex items-start gap-2 p-3 bg-blue-50 rounded border-l-4 border-blue-400">
+                    <AlertCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-blue-800">
                       This area requires attention to improve overall {lens.lensName} lens performance.
                     </p>
                   </div>

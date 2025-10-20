@@ -135,8 +135,8 @@ const MultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard })
 
 
   const getValueColor = (value) => {
-    if (value >= 7) return 'text-green-700 bg-green-100';
-    if (value >= 4) return 'text-yellow-700 bg-yellow-100';
+    if (value >= 7) return 'text-blue-700 bg-blue-100';
+    if (value >= 4) return 'text-blue-700 bg-blue-100';
     return 'text-red-700 bg-red-100';
   };
 
@@ -340,7 +340,7 @@ const MultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard })
                     setAssessmentMode('participant');
                     setCurrentParticipant(assessmentData.participants[0]);
                   }}
-                  className="flex-1 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-colors shadow-lg"
+                  className="flex-1 py-4 bg-gradient-to-r from-blue-600 to-blue-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-700 transition-colors shadow-lg"
                 >
                   Start as Participant
                 </button>

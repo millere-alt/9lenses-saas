@@ -109,7 +109,7 @@ const OnboardingTour = () => {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div
-              className="bg-gradient-to-r from-blue-600 to-green-600 h-2 rounded-full transition-all duration-300"
+              className="bg-gradient-to-r from-blue-600 to-blue-600 h-2 rounded-full transition-all duration-300"
               style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
             />
           </div>
@@ -127,7 +127,7 @@ const OnboardingTour = () => {
 
         {/* Visual indicator for current step */}
         {currentStep === 0 && (
-          <div className="mb-8 bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-xl">
+          <div className="mb-8 bg-gradient-to-r from-blue-50 to-blue-50 p-6 rounded-xl">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
                 9L
@@ -153,7 +153,7 @@ const OnboardingTour = () => {
         )}
 
         {currentStep === steps.length - 1 && (
-          <div className="mb-8 bg-gradient-to-r from-blue-600 to-green-600 p-8 rounded-xl text-white text-center">
+          <div className="mb-8 bg-gradient-to-r from-blue-600 to-blue-600 p-8 rounded-xl text-white text-center">
             <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Check className="w-8 h-8" />
             </div>
@@ -178,7 +178,7 @@ const OnboardingTour = () => {
 
           <button
             onClick={handleNext}
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl"
+            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl"
           >
             {currentStepData.action}
             {currentStep < steps.length - 1 && <ArrowRight className="w-5 h-5" />}

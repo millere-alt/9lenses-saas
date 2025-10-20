@@ -65,12 +65,12 @@ function LaunchAssessment() {
     <div className="space-y-8">
       {/* Floating gradient orbs background */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-1/4 w-96 h-96 bg-gradient-to-br from-emerald-300/20 to-teal-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-10 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-300/20 to-blue-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-gradient-to-tr from-blue-300/20 to-cyan-400/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1.5s' }}></div>
       </div>
 
       <div>
-        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent mb-3">
+        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600 bg-clip-text text-transparent mb-3">
           Launch New Assessment
         </h1>
         <p className="text-lg text-gray-600">Create and send a 9Vectors assessment to your team</p>
@@ -90,7 +90,7 @@ function LaunchAssessment() {
                 value={assessmentName}
                 onChange={(e) => setAssessmentName(e.target.value)}
                 placeholder="e.g., Q1 2025 Strategic Review"
-                className="w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-lg font-medium"
+                className="w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-lg font-medium"
               />
             </div>
 
@@ -103,7 +103,7 @@ function LaunchAssessment() {
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 placeholder="Your company name"
-                className="w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-lg font-medium"
+                className="w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-lg font-medium"
               />
             </div>
 
@@ -127,7 +127,7 @@ function LaunchAssessment() {
             <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">Invite Participants</h2>
             <button
               onClick={handleAddParticipant}
-              className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-2xl hover:from-emerald-600 hover:to-teal-600 shadow-lg hover:shadow-xl transition-all hover:scale-105"
+              className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-500 text-white rounded-2xl hover:from-blue-600 hover:to-blue-600 shadow-lg hover:shadow-xl transition-all hover:scale-105"
             >
               <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform" />
               <span className="font-semibold">Add Person</span>
@@ -143,14 +143,14 @@ function LaunchAssessment() {
                     placeholder="Name"
                     value={participant.name}
                     onChange={(e) => handleParticipantChange(index, 'name', e.target.value)}
-                    className="px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium"
+                    className="px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium"
                   />
                   <input
                     type="email"
                     placeholder="Email address *"
                     value={participant.email}
                     onChange={(e) => handleParticipantChange(index, 'email', e.target.value)}
-                    className="px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-medium"
+                    className="px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium"
                   />
                   <select
                     value={participant.role}
@@ -181,7 +181,7 @@ function LaunchAssessment() {
             disabled={!canLaunch}
             className={`group flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg shadow-xl transition-all ${
               canLaunch
-                ? 'bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 text-white hover:from-emerald-700 hover:via-teal-700 hover:to-blue-700 hover:scale-105 hover:shadow-2xl'
+                ? 'bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600 text-white hover:from-blue-700 hover:via-blue-700 hover:to-blue-700 hover:scale-105 hover:shadow-2xl'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >

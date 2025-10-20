@@ -114,8 +114,8 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
   };
 
   const getScoreColor = (score) => {
-    if (score >= 7) return 'text-green-600';
-    if (score >= 4) return 'text-yellow-600';
+    if (score >= 7) return 'text-blue-600';
+    if (score >= 4) return 'text-blue-600';
     return 'text-red-600';
   };
 
@@ -133,14 +133,14 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
   // Welcome Screen with AI Coach Introduction
   if (!isStarted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
         <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-200">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
               <Layers className="w-10 h-10 text-white" />
             </div>
             <h1 className="text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                 9Vectors Assessment
               </span>
             </h1>
@@ -201,11 +201,11 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
               <h4 className="font-semibold mb-3">What to expect:</h4>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <span>9 lenses covering all aspects of your organization</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <span>Rate themes on a 0-9 scale with contextual guidance</span>
                 </li>
                 <li className="flex items-start gap-2">
@@ -223,7 +223,7 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
           <button
             onClick={() => setIsStarted(true)}
             disabled={!userName || !userRole}
-            className="w-full px-8 py-4 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-lg font-bold text-lg hover:from-green-600 hover:to-blue-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-bold text-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Start Assessment
             <ChevronRight className="w-6 h-6" />
@@ -235,12 +235,12 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
 
   // Main Survey Interface with AI Coaching
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-blue-50">
       {/* Top Progress Bar */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
         <div className="h-2 bg-gray-200">
           <div
-            className="h-full bg-gradient-to-r from-green-500 to-blue-600 transition-all duration-300"
+            className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -248,7 +248,7 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
                 <Layers className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -269,7 +269,7 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
               </button>
               <button
                 onClick={() => alert('Progress saved!')}
-                className="px-4 py-2 border-2 border-green-500 text-green-700 rounded-lg font-semibold hover:bg-green-50 transition-colors flex items-center gap-2"
+                className="px-4 py-2 border-2 border-blue-500 text-blue-700 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center gap-2"
               >
                 <Save className="w-4 h-4" />
                 <span className="hidden md:inline">Save</span>
@@ -408,7 +408,7 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
               {currentLensIndex === LENSES.length - 1 && currentSubLensIndex === currentLens.subLenses.length - 1 ? (
                 <button
                   onClick={handleSubmit}
-                  className="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-lg font-bold hover:from-green-600 hover:to-blue-700 transition-all flex items-center gap-2 shadow-lg"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-bold hover:from-blue-600 hover:to-blue-700 transition-all flex items-center gap-2 shadow-lg"
                 >
                   Submit Assessment
                   <Send className="w-5 h-5" />
@@ -416,7 +416,7 @@ const EnhancedSurveyWithCoaching = ({ onNavigateToHome, onComplete }) => {
               ) : (
                 <button
                   onClick={goToNextSubLens}
-                  className="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-lg font-bold hover:from-green-600 hover:to-blue-700 transition-all flex items-center gap-2 shadow-lg"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-bold hover:from-blue-600 hover:to-blue-700 transition-all flex items-center gap-2 shadow-lg"
                 >
                   Next
                   <ChevronRight className="w-5 h-5" />

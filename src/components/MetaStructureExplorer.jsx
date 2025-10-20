@@ -181,7 +181,7 @@ const MetaStructureExplorer = ({ onNavigateToHome, onNavigateToDashboard }) => {
           {['Assets', 'Processes', 'Structures'].map((category, idx) => {
             const categoryData = definitions.categories[category];
             const colors = {
-              Assets: 'from-green-500 to-emerald-600',
+              Assets: 'from-blue-500 to-blue-600',
               Processes: 'from-blue-500 to-indigo-600',
               Structures: 'from-purple-500 to-pink-600'
             };

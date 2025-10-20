@@ -22,7 +22,7 @@ const ErrorPage = ({ code = '404', title, message }) => {
   const Icon = config.icon;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-green-50 to-blue-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100 flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center">
         <div className="bg-white rounded-2xl shadow-2xl p-8 space-y-6">
           <div className="flex justify-center">
@@ -51,7 +51,7 @@ const ErrorPage = ({ code = '404', title, message }) => {
             </button>
             <button
               onClick={() => window.location.reload()}
-              className="flex-1 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               <RefreshCw className="w-5 h-5" />
               Refresh

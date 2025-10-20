@@ -298,7 +298,7 @@ function CompleteSaaSDemo() {
   const getStepColor = (color) => {
     const colors = {
       primary: 'bg-primary-600',
-      green: 'bg-green-600',
+      green: 'bg-blue-600',
       secondary: 'bg-secondary-600'
     };
     return colors[color] || 'bg-primary-600';
@@ -536,7 +536,7 @@ function CompleteSaaSDemo() {
               </h5>
               <div className="space-y-3">
                 {currentStepData.data.topRecommendations.map((rec, idx) => (
-                  <div key={idx} className="bg-gradient-to-r from-primary-50 to-green-50 rounded-lg p-4 border-l-4 border-primary-600">
+                  <div key={idx} className="bg-gradient-to-r from-primary-50 to-blue-50 rounded-lg p-4 border-l-4 border-primary-600">
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <span className={`text-xs font-bold px-2 py-1 rounded ${rec.priority === 'Critical' ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'}`}>
@@ -700,7 +700,7 @@ function CompleteSaaSDemo() {
   return (
     <div className="max-w-7xl mx-auto space-y-8">
       {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-primary-700 via-green-600 to-secondary-700 rounded-3xl p-12 text-white shadow-2xl">
+      <div className="relative overflow-hidden bg-gradient-to-r from-primary-700 via-blue-600 to-secondary-700 rounded-3xl p-12 text-white shadow-2xl">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
         </div>
@@ -724,7 +724,7 @@ function CompleteSaaSDemo() {
         </div>
         <div className="relative w-full h-3 bg-gray-200 rounded-full overflow-hidden mb-6">
           <div
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-600 via-green-600 to-secondary-600 transition-all duration-300"
+            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-600 via-blue-600 to-secondary-600 transition-all duration-300"
             style={{ width: `${((currentStep + 1) / demoSteps.length) * 100}%` }}
           ></div>
           {isPlaying && (
@@ -790,7 +790,7 @@ function CompleteSaaSDemo() {
         {!isPlaying ? (
           <button
             onClick={playDemo}
-            className="bg-gradient-to-r from-primary-600 to-green-600 hover:from-primary-700 hover:to-green-700 text-white font-bold py-3 px-8 rounded-xl flex items-center gap-3 transition-all shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white font-bold py-3 px-8 rounded-xl flex items-center gap-3 transition-all shadow-lg hover:shadow-xl"
           >
             <Play className="w-5 h-5" />
             {currentStep >= demoSteps.length - 1 ? 'Replay Demo' : 'Play Demo'}

@@ -53,17 +53,17 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-brand-green-50 to-brand-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-brand-blue-50 to-brand-blue-50">
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-brand-green-500 to-brand-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-brand-blue-500 to-brand-blue-600 rounded-lg flex items-center justify-center shadow-lg">
                 <Layers className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-brand-green-600 to-brand-blue-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-brand-blue-600 to-brand-blue-600 bg-clip-text text-transparent">
                   Team Assessment
                 </h1>
                 <p className="text-sm text-gray-600">Multi-stakeholder evaluation</p>
@@ -97,7 +97,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                   <div className="flex items-center gap-2">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${
                       step >= s.num
-                        ? 'bg-gradient-to-br from-brand-green-500 to-brand-blue-600 text-white shadow-lg'
+                        ? 'bg-gradient-to-br from-brand-blue-500 to-brand-blue-600 text-white shadow-lg'
                         : 'bg-gray-200 text-gray-500'
                     }`}>
                       {s.num}
@@ -137,7 +137,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                   value={assessmentName}
                   onChange={(e) => setAssessmentName(e.target.value)}
                   placeholder="e.g., Q1 2025 Strategic Review"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-green-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -150,7 +150,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder="Your organization name"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-green-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -163,30 +163,30 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Describe the purpose of this assessment..."
                   rows={4}
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-green-500 focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors resize-none"
                 />
               </div>
 
-              <div className="bg-gradient-to-br from-brand-green-50 to-brand-blue-50 rounded-xl p-6 border border-brand-green-200">
+              <div className="bg-gradient-to-br from-brand-blue-50 to-brand-blue-50 rounded-xl p-6 border border-brand-blue-200">
                 <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-brand-green-600" />
+                  <Target className="w-5 h-5 text-brand-blue-600" />
                   What's included in this assessment?
                 </h3>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
+                    <Check className="w-5 h-5 text-brand-blue-600 flex-shrink-0 mt-0.5" />
                     <span><strong>9 Lenses</strong> with 32 sub-lenses and 180+ themes</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
+                    <Check className="w-5 h-5 text-brand-blue-600 flex-shrink-0 mt-0.5" />
                     <span><strong>Multi-stakeholder surveys</strong> with slider ratings (0-9) and rich comments</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
+                    <Check className="w-5 h-5 text-brand-blue-600 flex-shrink-0 mt-0.5" />
                     <span><strong>Document uploads</strong> organized by lens and sub-lens</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-brand-green-600 flex-shrink-0 mt-0.5" />
+                    <Check className="w-5 h-5 text-brand-blue-600 flex-shrink-0 mt-0.5" />
                     <span><strong>Current vs Future state tracking</strong> for transformation planning</span>
                   </li>
                 </ul>
@@ -202,7 +202,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                 <button
                   onClick={() => setStep(2)}
                   disabled={!assessmentName || !companyName}
-                  className="px-8 py-3 bg-gradient-to-r from-brand-green-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-green-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-8 py-3 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Continue to Invites
                   <ArrowRight className="w-5 h-5" />
@@ -230,14 +230,14 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                         value={invite.email}
                         onChange={(e) => handleInviteChange(index, 'email', e.target.value)}
                         placeholder="email@company.com"
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-green-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors"
                       />
                     </div>
                     <div className="w-48">
                       <select
                         value={invite.role}
                         onChange={(e) => handleInviteChange(index, 'role', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-green-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors"
                       >
                         <option value="">Select role...</option>
                         {roles.map(role => (
@@ -259,13 +259,13 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
 
               <button
                 onClick={handleAddInvite}
-                className="px-6 py-3 border-2 border-dashed border-brand-green-300 text-brand-green-700 rounded-lg font-semibold hover:bg-brand-green-50 transition-colors flex items-center gap-2 w-full justify-center"
+                className="px-6 py-3 border-2 border-dashed border-brand-blue-300 text-brand-blue-700 rounded-lg font-semibold hover:bg-brand-blue-50 transition-colors flex items-center gap-2 w-full justify-center"
               >
                 <Plus className="w-5 h-5" />
                 Add Another Participant
               </button>
 
-              <div className="mt-8 p-6 bg-gradient-to-br from-brand-blue-50 to-brand-teal-50 rounded-xl border border-brand-blue-200">
+              <div className="mt-8 p-6 bg-gradient-to-br from-brand-blue-50 to-brand-blue-50 rounded-xl border border-brand-blue-200">
                 <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                   <Mail className="w-5 h-5 text-brand-blue-600" />
                   Or share this link
@@ -297,7 +297,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                 </button>
                 <button
                   onClick={handleSendInvites}
-                  className="px-8 py-3 bg-gradient-to-r from-brand-green-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-green-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
+                  className="px-8 py-3 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
                 >
                   <Send className="w-5 h-5" />
                   Send Invitations
@@ -327,7 +327,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                     }}
                     className={`p-4 rounded-xl border-2 text-left transition-all ${
                       selectedLens?.id === lens.id
-                        ? 'border-brand-green-500 bg-brand-green-50 shadow-lg'
+                        ? 'border-brand-blue-500 bg-brand-blue-50 shadow-lg'
                         : 'border-gray-200 bg-white hover:border-gray-300'
                     }`}
                   >
@@ -345,7 +345,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
 
               {/* Sub-Lens Selection */}
               {selectedLens && (
-                <div className="bg-gradient-to-br from-gray-50 to-brand-green-50 rounded-xl p-6 mb-6">
+                <div className="bg-gradient-to-br from-gray-50 to-brand-blue-50 rounded-xl p-6 mb-6">
                   <h3 className="font-bold text-gray-900 mb-4">
                     {selectedLens.name} Sub-Lenses
                   </h3>
@@ -370,9 +370,9 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
 
               {/* File Upload Area */}
               {selectedSubLens && (
-                <div className="border-2 border-dashed border-brand-green-300 rounded-xl p-12 bg-gradient-to-br from-brand-green-50 to-brand-blue-50">
+                <div className="border-2 border-dashed border-brand-blue-300 rounded-xl p-12 bg-gradient-to-br from-brand-blue-50 to-brand-blue-50">
                   <div className="text-center">
-                    <Upload className="w-16 h-16 text-brand-green-600 mx-auto mb-4" />
+                    <Upload className="w-16 h-16 text-brand-blue-600 mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       Upload files for: {selectedLens.name} → {selectedSubLens.name}
                     </h3>
@@ -387,7 +387,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                     />
                     <label
                       htmlFor="file-upload"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-green-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-green-600 hover:to-brand-blue-700 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl"
                     >
                       <FileText className="w-5 h-5" />
                       Choose Files
@@ -416,14 +416,14 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => alert('Assessment saved!')}
-                    className="px-6 py-3 border-2 border-brand-green-500 text-brand-green-700 rounded-lg font-semibold hover:bg-brand-green-50 transition-colors flex items-center gap-2"
+                    className="px-6 py-3 border-2 border-brand-blue-500 text-brand-blue-700 rounded-lg font-semibold hover:bg-brand-blue-50 transition-colors flex items-center gap-2"
                   >
                     <Save className="w-5 h-5" />
                     Save Draft
                   </button>
                   <button
                     onClick={onNavigateToDashboard}
-                    className="px-8 py-3 bg-gradient-to-r from-brand-green-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-green-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
+                    className="px-8 py-3 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
                   >
                     <Check className="w-5 h-5" />
                     Complete & View Dashboard
@@ -436,7 +436,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
                 <div className="flex items-center justify-between mb-2">
-                  <Users className="w-8 h-8 text-brand-green-600" />
+                  <Users className="w-8 h-8 text-brand-blue-600" />
                   <span className="text-3xl font-bold text-gray-900">{invites.length}</span>
                 </div>
                 <p className="text-gray-600 font-medium">Invited Participants</p>
@@ -452,7 +452,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
 
               <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
                 <div className="flex items-center justify-between mb-2">
-                  <Target className="w-8 h-8 text-brand-teal-600" />
+                  <Target className="w-8 h-8 text-brand-blue-600" />
                   <span className="text-3xl font-bold text-gray-900">9</span>
                 </div>
                 <p className="text-gray-600 font-medium">Lenses to Assess</p>

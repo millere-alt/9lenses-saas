@@ -257,7 +257,7 @@ const AIOnboardingAssistant = () => {
               </button>
               <div className="h-6 w-px bg-neutral-300"></div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-green-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-blue-600 rounded-lg flex items-center justify-center">
                   <Bot className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -277,7 +277,7 @@ const AIOnboardingAssistant = () => {
       {/* Main Content */}
       <div className="max-w-5xl mx-auto px-6 py-8">
         {/* Welcome Card */}
-        <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-green-600 rounded-2xl p-8 text-white mb-8 shadow-xl">
+        <div className="bg-gradient-to-br from-primary-600 via-secondary-600 to-blue-600 rounded-2xl p-8 text-white mb-8 shadow-xl">
           <div className="flex items-start gap-4">
             <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
               <Bot className="w-8 h-8" />
@@ -340,7 +340,7 @@ const AIOnboardingAssistant = () => {
                 <div className={`max-w-[80%] ${message.type === 'user' ? 'order-2' : 'order-1'}`}>
                   {message.type === 'bot' && (
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-green-600 rounded-lg flex items-center justify-center">
+                      <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-lg flex items-center justify-center">
                         <Bot className="w-5 h-5 text-white" />
                       </div>
                       <span className="text-sm font-semibold text-neutral-700">9Vectors AI</span>
@@ -349,7 +349,7 @@ const AIOnboardingAssistant = () => {
 
                   <div className={`rounded-2xl p-4 ${
                     message.type === 'user'
-                      ? 'bg-gradient-to-r from-primary-600 to-green-600 text-white ml-auto'
+                      ? 'bg-gradient-to-r from-primary-600 to-blue-600 text-white ml-auto'
                       : 'bg-white border-2 border-neutral-200 text-neutral-800'
                   }`}>
                     <div className="whitespace-pre-line leading-relaxed">
@@ -363,7 +363,7 @@ const AIOnboardingAssistant = () => {
                         <button
                           key={idx}
                           onClick={() => handleQuickReply(reply.action, reply.text)}
-                          className="px-4 py-2 bg-gradient-to-r from-primary-500 to-green-500 hover:from-primary-600 hover:to-green-600 text-white rounded-lg text-sm font-medium transition-all hover:shadow-lg flex items-center gap-2"
+                          className="px-4 py-2 bg-gradient-to-r from-primary-500 to-blue-500 hover:from-primary-600 hover:to-blue-600 text-white rounded-lg text-sm font-medium transition-all hover:shadow-lg flex items-center gap-2"
                         >
                           {reply.text}
                           <ArrowRight className="w-3 h-3" />
@@ -389,7 +389,7 @@ const AIOnboardingAssistant = () => {
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-gradient-to-r from-primary-600 to-green-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
               >
                 <Send className="w-5 h-5" />
                 Send

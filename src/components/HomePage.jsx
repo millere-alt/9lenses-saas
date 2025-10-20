@@ -13,17 +13,17 @@ function HomePage() {
       {/* Hero Section */}
       <div className="relative overflow-hidden rounded-3xl mb-12 shadow-2xl">
         {/* Animated gradient background with orange */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-700 via-secondary-600 to-orange-600"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-700 via-secondary-600 to-blue-600"></div>
 
         {/* Floating decorative elements */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full opacity-20 blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-orange-500 rounded-full opacity-20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-500 rounded-full opacity-20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-500 rounded-full opacity-15 blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
 
         <div className="relative text-center py-20 px-6">
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-orange-300/30">
-            <Sparkles size={16} className="text-orange-200" />
+          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-blue-300/30">
+            <Sparkles size={16} className="text-blue-200" />
             <span className="text-sm text-white font-medium">AI-Powered Business Intelligence</span>
           </div>
 
@@ -31,14 +31,14 @@ function HomePage() {
           <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-4 tracking-tight">
             9Vectors
           </h1>
-          <div className="text-xl md:text-2xl text-teal-100 font-medium mb-8">
+          <div className="text-xl md:text-2xl text-blue-100 font-medium mb-8">
             Transform Your Organization Through Strategic Assessment
           </div>
 
           {/* Value Proposition */}
           <p className="text-lg text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
             Evaluate your business across <span className="font-bold text-primary-200">9 critical dimensions</span> spanning
-            Assets, Processes, and Structures. Get <span className="font-bold text-orange-200">actionable insights</span> powered by data and expert analysis.
+            Assets, Processes, and Structures. Get <span className="font-bold text-blue-200">actionable insights</span> powered by data and expert analysis.
           </p>
 
           {/* CTAs */}
@@ -46,7 +46,7 @@ function HomePage() {
             <button
               onClick={() => navigate('/assessment/launch')}
               data-tour="cta-button"
-              className="group relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 flex items-center space-x-3"
+              className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 flex items-center space-x-3"
             >
               <Zap size={20} className="group-hover:scale-110 transition-transform" />
               <span className="text-lg">Launch Assessment</span>
@@ -65,8 +65,8 @@ function HomePage() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-12 pt-12 border-t border-white/20">
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-300 mb-1">9</div>
-              <div className="text-sm text-orange-100">Critical Lenses</div>
+              <div className="text-4xl font-bold text-blue-300 mb-1">9</div>
+              <div className="text-sm text-blue-100">Critical Lenses</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-primary-300 mb-1">3</div>
@@ -123,9 +123,9 @@ function HomePage() {
 
           {/* Processes - Orange */}
           <div className="group relative" data-tour="processes-section">
-            <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-2xl opacity-25 group-hover:opacity-75 blur transition duration-500"></div>
-            <div className="relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-orange-500">
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl mb-5 shadow-lg">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl opacity-25 group-hover:opacity-75 blur transition duration-500"></div>
+            <div className="relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-blue-500">
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mb-5 shadow-lg">
                 <BarChart3 className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">Processes</h3>
@@ -134,15 +134,15 @@ function HomePage() {
               </p>
               <div className="space-y-2">
                 <div className="flex items-center space-x-2 text-sm text-gray-700">
-                  <CheckCircle size={16} className="text-orange-600" />
+                  <CheckCircle size={16} className="text-blue-600" />
                   <span>Strategy</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-700">
-                  <CheckCircle size={16} className="text-orange-600" />
+                  <CheckCircle size={16} className="text-blue-600" />
                   <span>Sales & Marketing</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-700">
-                  <CheckCircle size={16} className="text-orange-600" />
+                  <CheckCircle size={16} className="text-blue-600" />
                   <span>Operations</span>
                 </div>
               </div>
@@ -209,11 +209,11 @@ function HomePage() {
 
           {/* Step 2 - Orange */}
           <div className="relative">
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-orange-200">
-              <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl mx-auto mb-6 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-blue-200">
+              <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mx-auto mb-6 shadow-lg">
                 <Users className="text-white" size={32} />
               </div>
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-orange-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
                 2
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Gather Input</h3>
@@ -242,10 +242,10 @@ function HomePage() {
           {/* Step 4 - Green/Orange Gradient */}
           <div className="relative">
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary-200">
-              <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-600 via-orange-500 to-secondary-600 rounded-2xl mx-auto mb-6 shadow-lg">
+              <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-600 via-blue-500 to-secondary-600 rounded-2xl mx-auto mb-6 shadow-lg">
                 <Lightbulb className="text-white" size={32} />
               </div>
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-primary-600 to-orange-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-primary-600 to-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
                 4
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Get Insights</h3>
@@ -258,10 +258,10 @@ function HomePage() {
       </div>
 
       {/* Final CTA */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-700 via-orange-600 to-secondary-700 p-16 text-center shadow-2xl mb-8">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-700 via-blue-600 to-secondary-700 p-16 text-center shadow-2xl mb-8">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
 
         <div className="relative">
@@ -269,7 +269,7 @@ function HomePage() {
             Ready to Transform Your Organization?
           </h2>
 
-          <p className="text-xl text-orange-100 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
             Join forward-thinking organizations using 9Vectors to drive strategic excellence
             and sustainable growth.
           </p>
@@ -277,9 +277,9 @@ function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={() => navigate('/assessment/launch')}
-              className="group bg-white text-orange-700 font-bold py-5 px-10 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 flex items-center space-x-3 text-lg"
+              className="group bg-white text-blue-700 font-bold py-5 px-10 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 flex items-center space-x-3 text-lg"
             >
-              <Zap size={24} className="group-hover:text-orange-500 transition-colors" />
+              <Zap size={24} className="group-hover:text-blue-500 transition-colors" />
               <span>Start Assessment Now</span>
               <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
             </button>

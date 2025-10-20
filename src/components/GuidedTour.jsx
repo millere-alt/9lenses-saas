@@ -212,7 +212,7 @@ const TourTooltip = ({ step, currentStepIndex, totalSteps, progress, onAction, o
             <h3 className="text-xl font-bold flex items-center gap-2">
               {step.title}
               {step.showAICoach && (
-                <Sparkles className="w-5 h-5 text-yellow-300 animate-pulse" />
+                <Sparkles className="w-5 h-5 text-blue-300 animate-pulse" />
               )}
             </h3>
           </div>

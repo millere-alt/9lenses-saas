@@ -243,13 +243,13 @@ const AssessmentPage = ({ onNavigateToHome, onNavigateToDashboard }) => {
                           <div className="font-bold text-red-900">0-3: Weak</div>
                           <div className="text-red-700 text-xs">Needs immediate attention</div>
                         </div>
-                        <div className="bg-yellow-100 p-3 rounded border border-yellow-300">
-                          <div className="font-bold text-yellow-900">4-6: Moderate</div>
-                          <div className="text-yellow-700 text-xs">Room for improvement</div>
+                        <div className="bg-blue-100 p-3 rounded border border-blue-300">
+                          <div className="font-bold text-blue-900">4-6: Moderate</div>
+                          <div className="text-blue-700 text-xs">Room for improvement</div>
                         </div>
-                        <div className="bg-green-100 p-3 rounded border border-green-300">
-                          <div className="font-bold text-green-900">7-9: Strong</div>
-                          <div className="text-green-700 text-xs">Performing well</div>
+                        <div className="bg-blue-100 p-3 rounded border border-blue-300">
+                          <div className="font-bold text-blue-900">7-9: Strong</div>
+                          <div className="text-blue-700 text-xs">Performing well</div>
                         </div>
                       </div>
                       <p className="mt-3">
@@ -283,9 +283,9 @@ const AssessmentPage = ({ onNavigateToHome, onNavigateToDashboard }) => {
                                 className={`flex-1 py-3 px-2 rounded-lg font-bold transition-all ${
                                   response.quantitative === score
                                     ? score >= 7
-                                      ? 'bg-green-500 text-white ring-2 ring-green-600 scale-110'
+                                      ? 'bg-blue-500 text-white ring-2 ring-blue-600 scale-110'
                                       : score >= 4
-                                      ? 'bg-yellow-500 text-white ring-2 ring-yellow-600 scale-110'
+                                      ? 'bg-blue-500 text-white ring-2 ring-blue-600 scale-110'
                                       : 'bg-red-500 text-white ring-2 ring-red-600 scale-110'
                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                 }`}
@@ -314,8 +314,8 @@ const AssessmentPage = ({ onNavigateToHome, onNavigateToDashboard }) => {
                         {response.quantitative !== null && (
                           <div className="mt-3 text-sm text-gray-600">
                             Score: <strong className={`${
-                              response.quantitative >= 7 ? 'text-green-700' :
-                              response.quantitative >= 4 ? 'text-yellow-700' : 'text-red-700'
+                              response.quantitative >= 7 ? 'text-blue-700' :
+                              response.quantitative >= 4 ? 'text-blue-700' : 'text-red-700'
                             }`}>
                               {response.quantitative} - {
                                 response.quantitative >= 7 ? 'Strong' :
