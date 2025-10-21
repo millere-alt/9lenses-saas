@@ -138,9 +138,9 @@ function AppLayout({ children }) {
                     </button>
                     <button
                       onClick={login}
-                      className="flex items-center space-x-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-md shadow-sm hover:shadow transition-all"
+                      className="flex items-center space-x-1 px-2.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs rounded-md shadow-sm hover:shadow transition-all whitespace-nowrap"
                     >
-                      <LogIn size={16} />
+                      <LogIn size={14} />
                       <span>Sign In</span>
                     </button>
                   </div>
