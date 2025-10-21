@@ -279,7 +279,7 @@ const LearnNineVectors = () => {
               </div>
             </div>
             <Link
-              to="/assessment"
+              to="/assessment/launch"
               className="px-6 py-2 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all flex items-center gap-2"
             >
               Start Assessment
@@ -485,7 +485,7 @@ const LearnNineVectors = () => {
 
           <div className="mt-12 text-center">
             <Link
-              to="/assessment"
+              to="/assessment/launch"
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all"
             >
               Start Your 9Vectors Assessment

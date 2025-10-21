@@ -81,27 +81,27 @@ function BooksPage() {
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Links</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <a
-            href="#"
-            className="flex items-center gap-2 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <BookOpen className="w-5 h-5 text-blue-600" />
-            <span className="font-medium text-gray-900">Documentation</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-2 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <Award className="w-5 h-5 text-blue-600" />
-            <span className="font-medium text-gray-900">Training Videos</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-2 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <TrendingUp className="w-5 h-5 text-blue-600" />
-            <span className="font-medium text-gray-900">Webinars</span>
-          </a>
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-blue-600" />
+              <span className="font-medium text-gray-900">Documentation</span>
+            </div>
+            <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded">Coming Soon</span>
+          </div>
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2">
+              <Award className="w-5 h-5 text-blue-600" />
+              <span className="font-medium text-gray-900">Training Videos</span>
+            </div>
+            <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded">Coming Soon</span>
+          </div>
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-blue-600" />
+              <span className="font-medium text-gray-900">Webinars</span>
+            </div>
+            <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded">Coming Soon</span>
+          </div>
         </div>
       </div>
     </div>

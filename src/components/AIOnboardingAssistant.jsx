@@ -72,8 +72,8 @@ const AIOnboardingAssistant = () => {
           setTimeout(() => navigate('/assessment/launch'), 1500);
           break;
         case "view-ai-dashboard":
-          addBotMessage("Great choice! The AI Dashboard has powerful features. Let me show you. 🤖");
-          setTimeout(() => navigate('/ai-dashboard'), 1500);
+          addBotMessage("Great choice! The Dashboard has powerful features. Let me show you. 🤖");
+          setTimeout(() => navigate('/dashboard'), 1500);
           break;
         case "learn-more-page":
           addBotMessage("I'll take you to our comprehensive learning page where you can explore all 9 lenses in detail. 📚");
