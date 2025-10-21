@@ -415,7 +415,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                 </button>
                 <div className="flex items-center gap-3">
                   <button
-                    onClick={() => alert('Assessment saved!')}
+                    onClick={() => { const data = { step, assessmentName, companyName, description, invites, selectedLens, selectedSubLens, savedAt: new Date().toISOString() }; localStorage.setItem('assessment-draft-9vectors', JSON.stringify(data)); alert('Draft saved successfully!'); }}
                     className="px-6 py-3 border-2 border-brand-blue-500 text-brand-blue-700 rounded-lg font-semibold hover:bg-brand-blue-50 transition-colors flex items-center gap-2"
                   >
                     <Save className="w-5 h-5" />

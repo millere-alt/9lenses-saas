@@ -54,6 +54,29 @@ const DocumentManagement = ({ documents: externalDocuments, onDocumentsUpdate })
     }
   };
 
+  const handleViewDocument = (doc) => {
+    // Open document in new tab if URL available, otherwise show modal
+    if (doc.url) {
+      window.open(doc.url, '_blank');
+    } else {
+      alert(`Viewing: ${doc.name}\nType: ${doc.documentType}\nSize: ${doc.size}`);
+    }
+  };
+
+  const handleDownloadDocument = (doc) => {
+    // Trigger download
+    if (doc.url) {
+      const element = document.createElement('a');
+      element.href = doc.url;
+      element.download = doc.name || 'document';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    } else {
+      alert('Document URL not available for download');
+    }
+  };
+
   const selectedLensData = LENSES.find(l => l.name === selectedLens);
 
   const filteredDocuments = documents.filter(doc => {
@@ -214,15 +237,24 @@ const DocumentManagement = ({ documents: externalDocuments, onDocumentsUpdate })
                     </div>
 
                     <div className="flex items-center space-x-2">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                      <button
+                        onClick={() => handleViewDocument(doc)}
+                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        title="Preview document"
+                      >
                         <Eye className="w-5 h-5" />
                       </button>
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                      <button
+                        onClick={() => handleDownloadDocument(doc)}
+                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        title="Download document"
+                      >
                         <Download className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => deleteDocument(doc.id)}
                         className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        title="Delete document"
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>

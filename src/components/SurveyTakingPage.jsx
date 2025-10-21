@@ -80,6 +80,25 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
     return 'Weak';
   };
 
+  const handleSaveProgress = () => {
+    try {
+      const surveyData = {
+        userName,
+        userRole,
+        responses,
+        currentLensIndex,
+        currentSubLensIndex,
+        progress,
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem('survey-progress-9vectors', JSON.stringify(surveyData));
+      alert('Progress saved successfully! You can resume later.');
+    } catch (error) {
+      console.error('Failed to save progress:', error);
+      alert('Failed to save progress. Please try again.');
+    }
+  };
+
   const handleSubmit = () => {
     alert(`Thank you! Submitted ${Object.keys(responses).length} responses.`);
     if (onComplete) onComplete();
@@ -208,7 +227,7 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
                 {userName} ({userRole})
               </div>
               <button
-                onClick={() => alert('Progress saved!')}
+                onClick={handleSaveProgress}
                 className="px-4 py-2 border-2 border-brand-blue-500 text-brand-blue-700 rounded-lg font-semibold hover:bg-brand-blue-50 transition-colors flex items-center gap-2"
               >
                 <Save className="w-4 h-4" />
