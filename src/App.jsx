@@ -11,7 +11,6 @@ import About9Vectors from './components/About9Vectors';
 import HowItWorks from './components/HowItWorks';
 import BooksPage from './components/BooksPage';
 import Dashboard from './components/Dashboard';
-import AIDashboard from './components/AIDashboard';
 import NewMultiParticipantAssessment from './components/NewMultiParticipantAssessment';
 import SurveyTakingPage from './components/SurveyTakingPage';
 import CEOPortal from './components/CEOPortal';
@@ -47,7 +46,6 @@ function App() {
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/resources" element={<BooksPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/ai-dashboard" element={<AIDashboard />} />
             <Route path="/ceo-dashboard" element={<CEODashboard />} />
 
             {/* Assessment Routes */}

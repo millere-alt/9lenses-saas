@@ -1,5 +1,5 @@
 import React from 'react';
-import ErrorPage from './ErrorPage';
+import { AlertTriangle, RefreshCw } from 'lucide-react';
 
 /**
  * Enhanced ErrorBoundary component with recovery and error tracking
@@ -50,19 +50,12 @@ class ErrorBoundary extends React.Component {
     });
   };
 
+  handleReload = () => {
+    window.location.reload();
+  };
+
   render() {
     if (this.state.hasError) {
-      // Check if we're in a retry loop (too many errors)
-      if (this.state.errorCount > 3) {
-        return (
-          <ErrorPage
-            code="500"
-            title="Critical Error"
-            message="Multiple errors detected. Please refresh the page or contact support if the issue persists."
-          />
-        );
-      }
-
       // Custom fallback UI if provided
       if (this.props.fallback) {
         return this.props.fallback({
@@ -71,14 +64,47 @@ class ErrorBoundary extends React.Component {
         });
       }
 
-      // Default error page with retry option
+      // Default error UI
+      const isCritical = this.state.errorCount > 3;
+
       return (
-        <ErrorPage
-          code="500"
-          title="Something Went Wrong"
-          message="We're working on fixing this issue. You can try again or refresh the page."
-          onRetry={this.handleReset}
-        />
+        <div className="min-h-screen bg-neutral-50 flex items-center justify-center p-4">
+          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
+            <AlertTriangle className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+            <h1 className="text-2xl font-bold text-neutral-900 mb-2">
+              {isCritical ? 'Critical Error' : 'Something Went Wrong'}
+            </h1>
+            <p className="text-neutral-600 mb-6">
+              {isCritical
+                ? 'Multiple errors detected. Please refresh the page or contact support if the issue persists.'
+                : 'We encountered an unexpected error. You can try again or refresh the page.'}
+            </p>
+
+            {process.env.NODE_ENV === 'development' && this.state.error && (
+              <div className="mb-6 text-left bg-neutral-100 p-4 rounded text-sm overflow-auto max-h-40">
+                <p className="font-mono text-red-600">{this.state.error.toString()}</p>
+              </div>
+            )}
+
+            <div className="flex gap-3 justify-center">
+              {!isCritical && (
+                <button
+                  onClick={this.handleReset}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
+                >
+                  <RefreshCw size={16} />
+                  Try Again
+                </button>
+              )}
+              <button
+                onClick={this.handleReload}
+                className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+              >
+                Refresh Page
+              </button>
+            </div>
+          </div>
+        </div>
       );
     }
 

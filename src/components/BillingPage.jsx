@@ -11,14 +11,14 @@ import {
   ArrowLeft,
   Settings
 } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth0Extended } from '../contexts/Auth0Context';
 import axios from 'axios';
 import PricingPlans from './PricingPlans';
 
 const BillingPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { user, organization } = useAuth();
+  const { user, organization } = useAuth0Extended();
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showSuccess, setShowSuccess] = useState(false);

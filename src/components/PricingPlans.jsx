@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Check, Loader, CreditCard, Crown, Rocket, Zap } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth0Extended } from '../contexts/Auth0Context';
 import axios from 'axios';
 
 const PricingPlans = ({ _onClose }) => {
-  const { user, organization } = useAuth();
+  const { user, organization } = useAuth0Extended();
   const [loading, setLoading] = useState(false);
   const [plans, setPlans] = useState(null);
   const [currentPlan, setCurrentPlan] = useState('free');

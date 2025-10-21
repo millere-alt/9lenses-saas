@@ -1,9 +1,9 @@
 import React from 'react';
 import { X, LogIn, UserPlus, Shield } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth0Extended } from '../contexts/Auth0Context'';
 
 const Auth0Modal = ({ isOpen, onClose, initialMode = 'login' }) => {
-  const { login, signup, isAuthenticated } = useAuth();
+  const { login, signup, isAuthenticated } = useAuth0Extended();
 
   if (!isOpen || isAuthenticated) return null;
 
