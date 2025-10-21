@@ -15,6 +15,48 @@ function Dashboard() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handler functions for interactive buttons
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: '9Vectors Assessment Results',
+        text: `Check out my ${assessmentData.name} results - Overall Score: ${assessmentData.overallScore}/10`,
+        url: window.location.href
+      }).catch(err => console.log('Error sharing:', err));
+    } else {
+      // Fallback: copy link to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
+
+  const handleExportReport = () => {
+    // Generate and download PDF report
+    const reportData = {
+      ...assessmentData,
+      lensScores,
+      insights,
+      exportDate: new Date().toISOString()
+    };
+
+    const dataStr = JSON.stringify(reportData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `9vectors-report-${Date.now()}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleRefreshData = () => {
+    window.location.reload();
+  };
+
+  const handleViewDetails = (insight) => {
+    alert(`Viewing details for: ${insight.title}\n\n${insight.description}`);
+  };
+
   const assessmentData = {
     name: 'Q1 2025 Strategic Review',
     company: 'Acme Corporation',
@@ -131,11 +173,17 @@ function Dashboard() {
             </div>
 
             <div className="flex gap-3">
-              <button className="group flex items-center space-x-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-blue-300 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+              <button
+                onClick={handleShare}
+                className="group flex items-center space-x-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-blue-300 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+              >
                 <Share2 className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors" />
                 <span className="font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">Share</span>
               </button>
-              <button className="group flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <button
+                onClick={handleExportReport}
+                className="group flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
                 <Download className="w-5 h-5 text-white" />
                 <span className="font-semibold text-white">Export Report</span>
               </button>
@@ -186,7 +234,10 @@ function Dashboard() {
             <h2 className="text-3xl font-black bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
               9 Lenses Breakdown
             </h2>
-            <button className="group flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-blue-50 hover:from-blue-100 hover:to-blue-100 rounded-xl border-2 border-blue-200 transition-all duration-300">
+            <button
+              onClick={handleRefreshData}
+              className="group flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-blue-50 hover:from-blue-100 hover:to-blue-100 rounded-xl border-2 border-blue-200 transition-all duration-300"
+            >
               <RefreshCw className="w-4 h-4 text-blue-600 group-hover:rotate-180 transition-transform duration-500" />
               <span className="text-sm font-bold text-blue-700">Refresh Data</span>
             </button>
@@ -317,7 +368,10 @@ function Dashboard() {
                     <p className="text-white/90 leading-relaxed mb-6">{insight.description}</p>
 
                     {/* Action Button */}
-                    <button className="w-full bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-bold py-3 px-6 rounded-xl border-2 border-white/30 hover:border-white/50 transition-all duration-300 flex items-center justify-center space-x-2">
+                    <button
+                      onClick={() => handleViewDetails(insight)}
+                      className="w-full bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-bold py-3 px-6 rounded-xl border-2 border-white/30 hover:border-white/50 transition-all duration-300 flex items-center justify-center space-x-2"
+                    >
                       <span>View Details</span>
                       <ChevronRight className="w-5 h-5" />
                     </button>
