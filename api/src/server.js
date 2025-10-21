@@ -11,6 +11,10 @@ import userRoutes from './routes/users.js';
 import assessmentRoutes from './routes/assessments.js';
 import organizationRoutes from './routes/organizations.js';
 import benchmarkRoutes from './routes/benchmarks.js';
+import documentRoutes from './routes/documents.js';
+import aiRoutes from './routes/ai.js';
+import notificationRoutes from './routes/notifications.js';
+import analyticsRoutes from './routes/analytics.js';
 import {
   errorHandler,
   notFoundHandler,
@@ -41,10 +45,10 @@ if (process.env.NODE_ENV !== 'test') {
 // CORS configuration
 const allowedOrigins = [
   'http://localhost:5173', // Vite default port
-  'http://localhost:3005',
-  process.env.FRONTEND_URL || 'http://localhost:3005',
-  process.env.PRODUCTION_URL || 'https://www.9vectors.com'
-];
+  'http://localhost:3005',  // Local dev port
+  process.env.FRONTEND_URL,
+  process.env.PRODUCTION_URL
+].filter(Boolean); // Remove undefined values
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -95,6 +99,10 @@ app.use('/api/users', userRoutes);
 app.use('/api/assessments', assessmentRoutes);
 app.use('/api/organizations', organizationRoutes);
 app.use('/api/benchmarks', benchmarkRoutes);
+app.use('/api/documents', documentRoutes);
+app.use('/api/ai', aiRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // 404 handler for undefined routes (must come before error handler)
 app.use(notFoundHandler);

@@ -162,9 +162,34 @@ export const assessmentAPI = {
 export const documentAPI = {
   getAll: () => api.get('/documents'),
   getById: (id) => api.get(`/documents/${id}`),
-  upload: (formData) => api.post('/documents', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  }),
+  upload: (formData) => {
+    // Validate file before upload
+    const file = formData.get('file');
+    if (file) {
+      // Check file size (10MB limit)
+      const maxSize = 10 * 1024 * 1024;
+      if (file.size > maxSize) {
+        throw new Error('File size exceeds 10MB limit');
+      }
+
+      // Check file type
+      const allowedTypes = [
+        'application/pdf',
+        'text/plain',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ];
+      if (!allowedTypes.includes(file.type)) {
+        throw new Error('Invalid file type. Allowed types: PDF, TXT, Excel, Word');
+      }
+    }
+
+    return api.post('/documents', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+  },
   delete: (id) => api.delete(`/documents/${id}`)
 };
 

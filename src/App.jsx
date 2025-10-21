@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 // Using Auth0 for authentication (following M13 pattern)
 import { Auth0ProviderWithConfig } from './contexts/Auth0Context';
 import AppLayout from './components/AppLayout';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Pages
 import HomePage from './components/HomePage';
-import AboutPage from './components/AboutPage';
 import About9Vectors from './components/About9Vectors';
 import HowItWorks from './components/HowItWorks';
 import BooksPage from './components/BooksPage';
@@ -31,10 +31,11 @@ import PricingPlans from './components/PricingPlans';
 
 function App() {
   return (
-    <Auth0ProviderWithConfig>
-      <Router>
-        <AppLayout>
-          <Routes>
+    <ErrorBoundary>
+      <Auth0ProviderWithConfig>
+        <Router>
+          <AppLayout>
+            <Routes>
             {/* Main Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<About9Vectors />} />
@@ -73,9 +74,10 @@ function App() {
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </AppLayout>
-      </Router>
-    </Auth0ProviderWithConfig>
+          </AppLayout>
+        </Router>
+      </Auth0ProviderWithConfig>
+    </ErrorBoundary>
   );
 }
 
