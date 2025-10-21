@@ -37,20 +37,20 @@ function AppLayout({ children }) {
               </button>
             </div>
             <div className="flex items-center space-x-4">
-              <nav className="hidden lg:flex space-x-2">
+              <nav className="hidden lg:flex items-center space-x-1">
                 {navigation.map((item) => {
                   const Icon = item.icon;
                   return (
                     <button
                       key={item.href}
                       onClick={() => navigate(item.href)}
-                      className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-md text-sm font-medium transition-colors ${
                         isActive(item.href)
                           ? 'bg-blue-600 text-white'
                           : 'text-neutral-700 hover:bg-blue-50 hover:text-blue-600'
                       }`}
                     >
-                      <Icon size={18} />
+                      <Icon size={16} />
                       <span>{item.label}</span>
                     </button>
                   );
@@ -129,18 +129,18 @@ function AppLayout({ children }) {
                     )}
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2">
                     <button
                       onClick={() => navigate('/pricing')}
-                      className="px-4 py-2 text-sm font-medium text-neutral-700 hover:text-blue-600 transition-colors"
+                      className="px-3 py-1.5 text-sm font-medium text-neutral-700 hover:text-blue-600 transition-colors"
                     >
                       Pricing
                     </button>
                     <button
                       onClick={login}
-                      className="group flex items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                      className="flex items-center space-x-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-md shadow-sm hover:shadow transition-all"
                     >
-                      <LogIn size={18} className="group-hover:scale-110 transition-transform" />
+                      <LogIn size={16} />
                       <span>Sign In</span>
                     </button>
                   </div>
