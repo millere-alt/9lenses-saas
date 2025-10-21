@@ -10,71 +10,66 @@ function HomePage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden rounded-3xl mb-12 shadow-2xl">
-        {/* Animated gradient background with orange */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-700 via-secondary-600 to-blue-600"></div>
+      {/* Hero Section - Compact */}
+      <div className="relative overflow-hidden rounded-lg mb-8 shadow-lg">
+        {/* Simplified gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700"></div>
 
-        {/* Floating decorative elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full opacity-20 blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-500 rounded-full opacity-20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-500 rounded-full opacity-15 blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-
-        <div className="relative text-center py-20 px-6">
+        <div className="relative text-center py-8 px-4">
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-blue-300/30">
-            <Sparkles size={16} className="text-blue-200" />
-            <span className="text-sm text-white font-medium">AI-Powered Business Intelligence</span>
+          <div className="inline-flex items-center space-x-1.5 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full mb-3 border border-blue-300/30">
+            <Sparkles size={12} className="text-blue-200" />
+            <span className="text-xs text-white font-medium">AI-Powered Business Intelligence</span>
           </div>
 
-          {/* Main Heading */}
-          <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-4 tracking-tight">
+          {/* Main Heading - Smaller */}
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
             9Vectors
           </h1>
-          <div className="text-xl md:text-2xl text-blue-100 font-medium mb-8">
+          <div className="text-sm md:text-base text-blue-100 font-medium mb-4">
             Transform Your Organization Through Strategic Assessment
           </div>
 
-          {/* Value Proposition */}
-          <p className="text-lg text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Evaluate your business across <span className="font-bold text-primary-200">9 critical dimensions</span> spanning
-            Assets, Processes, and Structures. Get <span className="font-bold text-blue-200">actionable insights</span> powered by data and expert analysis.
+          {/* Value Proposition - Condensed */}
+          <p className="text-sm text-white/90 max-w-2xl mx-auto mb-5 leading-snug">
+            Evaluate your business across <span className="font-semibold">9 critical dimensions</span> spanning
+            Assets, Processes, and Structures. Get <span className="font-semibold">actionable insights</span> powered by data.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* CTAs - Compact */}
+          <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
             <button
               onClick={() => navigate('/assessment/launch')}
               data-tour="cta-button"
-              className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 flex items-center space-x-3"
+              className="group bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md hover:shadow-lg transition-all flex items-center space-x-2 text-sm"
             >
-              <Zap size={20} className="group-hover:scale-110 transition-transform" />
-              <span className="text-lg">Launch Assessment</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              <Zap size={14} />
+              <span>Launch Assessment</span>
+              <ArrowRight size={14} />
             </button>
 
             <button
               onClick={() => navigate('/about')}
-              className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl border-2 border-white/30 hover:border-white/50 transition-all duration-300 flex items-center space-x-2"
+              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-medium py-2 px-4 rounded-md border border-white/30 hover:border-white/50 transition-all flex items-center space-x-1.5 text-sm"
             >
-              <Target size={20} />
-              <span>Learn About 9Vectors</span>
+              <Target size={14} />
+              <span>Learn More</span>
             </button>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-12 pt-12 border-t border-white/20">
+          {/* Stats - Compact */}
+          <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto mt-6 pt-6 border-t border-white/20">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-300 mb-1">9</div>
-              <div className="text-sm text-blue-100">Critical Lenses</div>
+              <div className="text-2xl font-bold text-blue-300 mb-0.5">9</div>
+              <div className="text-xs text-blue-100">Lenses</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary-300 mb-1">3</div>
-              <div className="text-sm text-primary-100">Core Categories</div>
+              <div className="text-2xl font-bold text-blue-200 mb-0.5">3</div>
+              <div className="text-xs text-blue-100">Categories</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-secondary-300 mb-1">∞</div>
-              <div className="text-sm text-secondary-100">Strategic Insights</div>
+              <div className="text-2xl font-bold text-blue-100 mb-0.5">∞</div>
+              <div className="text-xs text-blue-100">Insights</div>
             </div>
           </div>
         </div>
