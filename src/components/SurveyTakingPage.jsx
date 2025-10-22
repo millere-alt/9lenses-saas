@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Save, Send, ChevronLeft, ChevronRight, Layers, MessageSquare,
@@ -7,6 +7,7 @@ import {
 import { LENSES } from '../data/nineVectorsSchema';
 import { STORAGE_KEYS } from '../constants/appConfig';
 import logger from '../utils/logger';
+import { validateMinResponses, isValidName, isRequired } from '../utils/validation';
 
 const SurveyTakingPage = () => {
   const navigate = useNavigate();
@@ -16,6 +17,27 @@ const SurveyTakingPage = () => {
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState('');
   const [isStarted, setIsStarted] = useState(false);
+
+  // Load saved progress on mount
+  useEffect(() => {
+    try {
+      const savedData = localStorage.getItem(STORAGE_KEYS.SURVEY_PROGRESS);
+      if (savedData) {
+        const parsed = JSON.parse(savedData);
+        setCurrentLensIndex(parsed.currentLensIndex || 0);
+        setCurrentSubLensIndex(parsed.currentSubLensIndex || 0);
+        setResponses(parsed.responses || {});
+        setUserName(parsed.userName || '');
+        setUserRole(parsed.userRole || '');
+        // Auto-start if we have saved progress
+        if (parsed.userName && parsed.userRole) {
+          setIsStarted(true);
+        }
+      }
+    } catch (error) {
+      logger.error('Failed to restore saved progress:', error);
+    }
+  }, []);
 
   const currentLens = LENSES[currentLensIndex];
   const currentSubLens = currentLens.subLenses[currentSubLensIndex];
@@ -105,6 +127,25 @@ const SurveyTakingPage = () => {
 
   const handleSubmit = () => {
     try {
+      // Validate minimum responses
+      const validation = validateMinResponses(responses, totalSubLenses);
+
+      if (!validation.isValid) {
+        const shouldContinue = confirm(
+          `You have completed ${completedSubLenses} out of ${totalSubLenses} questions. ${validation.error}\n\nDo you want to continue anyway?`
+        );
+        if (!shouldContinue) return;
+      }
+
+      // Validate that responses have scores
+      const responsesArray = Object.values(responses);
+      const missingScores = responsesArray.filter(r => r.score === undefined || r.score === null);
+
+      if (missingScores.length > 0) {
+        alert('Some responses are missing scores. Please review your answers.');
+        return;
+      }
+
       alert(`Thank you! Submitted ${Object.keys(responses).length} responses.`);
       // Clear saved progress on successful submit
       localStorage.removeItem(STORAGE_KEYS.SURVEY_PROGRESS);

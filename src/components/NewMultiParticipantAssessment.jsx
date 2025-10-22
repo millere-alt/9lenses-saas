@@ -7,6 +7,7 @@ import {
 import { LENSES } from '../data/nineVectorsSchema';
 import { STORAGE_KEYS, ROLES, API_CONFIG } from '../constants/appConfig';
 import logger from '../utils/logger';
+import { validateEmailList, validateAssessmentName, isValidEmail, isRequired } from '../utils/validation';
 
 const NewMultiParticipantAssessment = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const NewMultiParticipantAssessment = () => {
   const [linkCopied, setLinkCopied] = useState(false);
   const [selectedLens, setSelectedLens] = useState(null);
   const [selectedSubLens, setSelectedSubLens] = useState(null);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const handleAddInvite = () => {
     setInvites([...invites, { email: '', role: '' }]);
@@ -40,9 +42,72 @@ const NewMultiParticipantAssessment = () => {
   };
 
   const handleSendInvites = () => {
+    // Validate all invites
+    const validation = validateEmailList(invites);
+
+    if (!validation.isValid) {
+      alert('Please fix the following errors:\n' + validation.errors.join('\n'));
+      return;
+    }
+
+    // Check that all invites have roles
+    const missingRoles = invites.filter(inv => !inv.role || inv.role.trim() === '');
+    if (missingRoles.length > 0) {
+      alert('Please select a role for all participants');
+      return;
+    }
+
     // In production, this would send emails via backend
     alert(`Sending invites to ${invites.length} participants!`);
     setStep(3);
+  };
+
+  const handleFileUpload = (event) => {
+    const files = Array.from(event.target.files || []);
+    if (files.length === 0) return;
+
+    // Validate file size and type
+    const validFiles = files.filter(file => {
+      const maxSize = 10 * 1024 * 1024; // 10MB
+      if (file.size > maxSize) {
+        alert(`File ${file.name} exceeds 10MB limit`);
+        return false;
+      }
+      return true;
+    });
+
+    const newFiles = validFiles.map(file => ({
+      id: Date.now() + Math.random(),
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      lens: selectedLens,
+      subLens: selectedSubLens,
+      file: file
+    }));
+
+    setUploadedFiles([...uploadedFiles, ...newFiles]);
+  };
+
+  const handleRemoveFile = (fileId) => {
+    setUploadedFiles(uploadedFiles.filter(f => f.id !== fileId));
+  };
+
+  const handleStep1Continue = () => {
+    // Validate assessment name
+    const nameValidation = validateAssessmentName(assessmentName);
+    if (!nameValidation.isValid) {
+      alert(nameValidation.error);
+      return;
+    }
+
+    // Validate company name
+    if (!isRequired(companyName, 2)) {
+      alert('Company name must be at least 2 characters');
+      return;
+    }
+
+    setStep(2);
   };
 
   const handleSaveDraft = () => {
@@ -55,6 +120,7 @@ const NewMultiParticipantAssessment = () => {
         invites,
         selectedLens,
         selectedSubLens,
+        uploadedFiles: uploadedFiles.map(f => ({ name: f.name, size: f.size, lens: f.lens, subLens: f.subLens })),
         savedAt: new Date().toISOString()
       };
       localStorage.setItem(STORAGE_KEYS.ASSESSMENT_DRAFT, JSON.stringify(data));
@@ -213,7 +279,7 @@ const NewMultiParticipantAssessment = () => {
                   Cancel
                 </button>
                 <button
-                  onClick={() => setStep(2)}
+                  onClick={handleStep1Continue}
                   disabled={!assessmentName || !companyName}
                   className="px-8 py-3 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -253,7 +319,7 @@ const NewMultiParticipantAssessment = () => {
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-brand-blue-500 focus:outline-none transition-colors"
                       >
                         <option value="">Select role...</option>
-                        {roles.map(role => (
+                        {ROLES.map(role => (
                           <option key={role} value={role}>{role}</option>
                         ))}
                       </select>
@@ -397,6 +463,8 @@ const NewMultiParticipantAssessment = () => {
                       multiple
                       className="hidden"
                       id="file-upload"
+                      onChange={handleFileUpload}
+                      accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.ppt,.pptx,.txt"
                     />
                     <label
                       htmlFor="file-upload"
@@ -409,6 +477,30 @@ const NewMultiParticipantAssessment = () => {
                       Files will be organized by lens and sub-lens automatically
                     </p>
                   </div>
+
+                  {/* Uploaded Files List */}
+                  {uploadedFiles.length > 0 && selectedLens && (
+                    <div className="mt-6 space-y-2">
+                      <h4 className="text-sm font-semibold text-gray-700 mb-2">Uploaded Files ({uploadedFiles.length})</h4>
+                      {uploadedFiles.filter(f => f.lens === selectedLens).map(file => (
+                        <div key={file.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
+                          <div className="flex items-center gap-3">
+                            <FileText className="w-5 h-5 text-brand-blue-600" />
+                            <div>
+                              <p className="text-sm font-medium text-gray-900">{file.name}</p>
+                              <p className="text-xs text-gray-500">{(file.size / 1024).toFixed(1)} KB</p>
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => handleRemoveFile(file.id)}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <X className="w-5 h-5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
 

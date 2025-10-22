@@ -33,7 +33,7 @@ function CEODashboard() {
       description: 'Upload supporting documents and resources',
       icon: Upload,
       gradient: 'from-blue-500 via-indigo-500 to-violet-500',
-      action: () => navigate('/upload'),
+      action: () => navigate('/documents'),
     },
     {
       title: 'Browse Resources',
