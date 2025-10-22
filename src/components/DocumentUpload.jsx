@@ -37,22 +37,70 @@ const DocumentUpload = ({ onUpload, selectedLens = null, selectedSubLens = null 
   }, [selectedLens, selectedSubLens]);
 
   const handleFiles = (files) => {
-    const processedFiles = files.map(file => ({
-      id: Math.random().toString(36).substr(2, 9),
-      name: file.name,
-      size: file.size,
-      type: file.type,
-      file: file,
-      uploadedAt: new Date().toISOString(),
-      lens: selectedLens,
-      subLens: selectedSubLens,
-      status: 'uploaded'
-    }));
+    const ALLOWED_TYPES = [
+      'application/pdf',
+      'text/plain',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-powerpoint',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'text/csv'
+    ];
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
-    setUploadedFiles(prev => [...prev, ...processedFiles]);
+    const validatedFiles = [];
+    const errors = [];
 
-    if (onUpload) {
-      onUpload(processedFiles);
+    files.forEach(file => {
+      // Validate file size
+      if (file.size > MAX_FILE_SIZE) {
+        errors.push(`${file.name}: File exceeds 10MB limit`);
+        return;
+      }
+
+      // Validate file size is not zero
+      if (file.size === 0) {
+        errors.push(`${file.name}: File is empty`);
+        return;
+      }
+
+      // Validate file type
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        // Also check extension as fallback
+        const extension = file.name.split('.').pop().toLowerCase();
+        const allowedExtensions = ['pdf', 'txt', 'xls', 'xlsx', 'doc', 'docx', 'ppt', 'pptx', 'csv'];
+        if (!allowedExtensions.includes(extension)) {
+          errors.push(`${file.name}: File type not supported. Allowed types: PDF, DOC, XLS, PPT, TXT, CSV`);
+          return;
+        }
+      }
+
+      validatedFiles.push({
+        id: crypto.randomUUID(),
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        file: file,
+        uploadedAt: new Date().toISOString(),
+        lens: selectedLens,
+        subLens: selectedSubLens,
+        status: 'uploaded'
+      });
+    });
+
+    // Show errors if any
+    if (errors.length > 0) {
+      alert('Some files were not uploaded:\n\n' + errors.join('\n'));
+    }
+
+    if (validatedFiles.length > 0) {
+      setUploadedFiles(prev => [...prev, ...validatedFiles]);
+
+      if (onUpload) {
+        onUpload(validatedFiles);
+      }
     }
   };
 

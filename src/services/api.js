@@ -15,9 +15,41 @@ const api = axios.create({
   }
 });
 
-// Simple in-memory cache
-const cache = new Map();
+// LRU Cache implementation
+const MAX_CACHE_SIZE = 50;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const cache = new Map();
+
+// Clean up expired cache entries
+const cleanExpiredCache = () => {
+  const now = Date.now();
+  for (const [key, value] of cache.entries()) {
+    if (now - value.timestamp > CACHE_DURATION) {
+      cache.delete(key);
+    }
+  }
+};
+
+// Add to cache with LRU eviction
+const setCacheEntry = (key, value) => {
+  // Clean expired entries first
+  if (cache.size >= MAX_CACHE_SIZE) {
+    cleanExpiredCache();
+  }
+
+  // If still over limit, remove oldest entry (first in Map)
+  if (cache.size >= MAX_CACHE_SIZE) {
+    const firstKey = cache.keys().next().value;
+    if (firstKey) cache.delete(firstKey);
+  }
+
+  // Delete and re-add to move to end (most recent)
+  cache.delete(key);
+  cache.set(key, value);
+};
+
+// Periodic cleanup (every 5 minutes)
+setInterval(cleanExpiredCache, CACHE_DURATION);
 
 // Retry configuration for failed requests
 const retryableStatuses = [408, 429, 500, 502, 503, 504];
@@ -67,7 +99,7 @@ api.interceptors.response.use(
     // Cache successful GET requests
     if (response.config.method === 'get' && response.config.cache !== false) {
       const cacheKey = `${response.config.url}${JSON.stringify(response.config.params || {})}`;
-      cache.set(cacheKey, {
+      setCacheEntry(cacheKey, {
         data: response.data,
         headers: response.headers,
         timestamp: Date.now()

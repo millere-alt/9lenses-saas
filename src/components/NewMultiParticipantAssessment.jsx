@@ -77,7 +77,7 @@ const NewMultiParticipantAssessment = () => {
     });
 
     const newFiles = validFiles.map(file => ({
-      id: Date.now() + Math.random(),
+      id: crypto.randomUUID(),
       name: file.name,
       size: file.size,
       type: file.type,

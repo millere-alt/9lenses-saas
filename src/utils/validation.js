@@ -67,17 +67,23 @@ export const validateEmailList = (emails, emailKey = 'email') => {
     return { isValid: false, errors: ['At least one email is required'] };
   }
 
-  const emailValues = emailKey ? emails.map(e => e[emailKey]) : emails;
+  // Auto-detect if emails are objects or strings
+  const emailValues = emails.map(e => {
+    if (typeof e === 'string') return e;
+    if (typeof e === 'object' && e !== null) return e[emailKey];
+    return null;
+  });
 
   // Check each email format
   emailValues.forEach((email, index) => {
-    if (!isValidEmail(email)) {
+    if (!email || !isValidEmail(email)) {
       errors.push(`Invalid email format at position ${index + 1}`);
     }
   });
 
-  // Check for duplicates
-  if (!hasNoDuplicates(emailValues)) {
+  // Check for duplicates (only non-empty emails)
+  const validEmails = emailValues.filter(e => e && isValidEmail(e));
+  if (validEmails.length > 0 && !hasNoDuplicates(validEmails)) {
     errors.push('Duplicate emails found');
   }
 

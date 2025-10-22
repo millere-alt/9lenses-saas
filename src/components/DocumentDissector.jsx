@@ -16,7 +16,7 @@ const DocumentDissector = () => {
     const file = e.target.files[0];
     if (file) {
       setUploadedDocument({
-        id: Math.random().toString(36).substr(2, 9),
+        id: crypto.randomUUID(),
         name: file.name,
         size: file.size,
         type: file.type,

@@ -39,7 +39,7 @@ function LaunchAssessment() {
   };
 
   const handleLaunch = () => {
-    const assessmentId = Math.random().toString(36).substring(2, 15);
+    const assessmentId = crypto.randomUUID();
 
     const assessment = {
       id: assessmentId,

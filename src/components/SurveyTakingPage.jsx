@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Save, Send, ChevronLeft, ChevronRight, Layers, MessageSquare,
-  Target, Check, Clock, User
+  Target, Check, Clock, User, AlertCircle
 } from 'lucide-react';
 import { LENSES } from '../data/nineVectorsSchema';
 import { STORAGE_KEYS } from '../constants/appConfig';
 import logger from '../utils/logger';
 import { validateMinResponses, isValidName, isRequired } from '../utils/validation';
+import { safeGetItem, safeSetItem, safeRemoveItem } from '../utils/safeStorage';
 
 const SurveyTakingPage = () => {
   const navigate = useNavigate();
@@ -20,30 +21,45 @@ const SurveyTakingPage = () => {
 
   // Load saved progress on mount
   useEffect(() => {
-    try {
-      const savedData = localStorage.getItem(STORAGE_KEYS.SURVEY_PROGRESS);
-      if (savedData) {
-        const parsed = JSON.parse(savedData);
-        setCurrentLensIndex(parsed.currentLensIndex || 0);
-        setCurrentSubLensIndex(parsed.currentSubLensIndex || 0);
-        setResponses(parsed.responses || {});
-        setUserName(parsed.userName || '');
-        setUserRole(parsed.userRole || '');
-        // Auto-start if we have saved progress
-        if (parsed.userName && parsed.userRole) {
-          setIsStarted(true);
-        }
+    const savedData = safeGetItem(STORAGE_KEYS.SURVEY_PROGRESS, null);
+    if (savedData) {
+      setCurrentLensIndex(savedData.currentLensIndex || 0);
+      setCurrentSubLensIndex(savedData.currentSubLensIndex || 0);
+      setResponses(savedData.responses || {});
+      setUserName(savedData.userName || '');
+      setUserRole(savedData.userRole || '');
+      // Auto-start if we have saved progress
+      if (savedData.userName && savedData.userRole) {
+        setIsStarted(true);
       }
-    } catch (error) {
-      logger.error('Failed to restore saved progress:', error);
     }
   }, []);
 
-  const currentLens = LENSES[currentLensIndex];
-  const currentSubLens = currentLens.subLenses[currentSubLensIndex];
-  const totalSubLenses = LENSES.reduce((sum, lens) => sum + lens.subLenses.length, 0);
+  // Guard against null/undefined data
+  const currentLens = LENSES?.[currentLensIndex];
+  const currentSubLens = currentLens?.subLenses?.[currentSubLensIndex];
+  const totalSubLenses = Math.max(1, LENSES?.reduce((sum, lens) => sum + (lens.subLenses?.length || 0), 0) || 1);
   const completedSubLenses = Object.keys(responses).length;
-  const progress = (completedSubLenses / totalSubLenses) * 100;
+  const progress = totalSubLenses > 0 ? (completedSubLenses / totalSubLenses) * 100 : 0;
+
+  // Error state if data is missing
+  if (!LENSES || LENSES.length === 0 || !currentLens || !currentSubLens) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-brand-blue-50 via-white to-brand-blue-50 flex items-center justify-center p-4">
+        <div className="text-center max-w-md">
+          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Assessment Data Not Available</h2>
+          <p className="text-gray-600 mb-4">Unable to load assessment questions. Please try again later.</p>
+          <button
+            onClick={() => navigate('/')}
+            className="px-6 py-3 bg-brand-blue-600 text-white rounded-lg hover:bg-brand-blue-700 transition-colors"
+          >
+            Return Home
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const getResponseKey = (lensId, subLensId, themeIndex) => {
     return `${lensId}-${subLensId}-${themeIndex}`;
@@ -95,32 +111,35 @@ const SurveyTakingPage = () => {
   };
 
   const getScoreColor = (score) => {
+    if (score === undefined || score === null || isNaN(score)) return 'text-gray-400';
     if (score >= 7) return 'text-score-strong';
     if (score >= 4) return 'text-score-moderate';
     return 'text-score-weak';
   };
 
   const getScoreLabel = (score) => {
+    if (score === undefined || score === null || isNaN(score)) return 'Not rated';
     if (score >= 7) return 'Strong';
     if (score >= 4) return 'Moderate';
     return 'Weak';
   };
 
   const handleSaveProgress = () => {
-    try {
-      const surveyData = {
-        userName,
-        userRole,
-        responses,
-        currentLensIndex,
-        currentSubLensIndex,
-        progress,
-        savedAt: new Date().toISOString()
-      };
-      localStorage.setItem(STORAGE_KEYS.SURVEY_PROGRESS, JSON.stringify(surveyData));
+    const surveyData = {
+      userName,
+      userRole,
+      responses,
+      currentLensIndex,
+      currentSubLensIndex,
+      progress,
+      savedAt: new Date().toISOString()
+    };
+
+    const success = safeSetItem(STORAGE_KEYS.SURVEY_PROGRESS, surveyData);
+
+    if (success) {
       alert('Progress saved successfully! You can resume later.');
-    } catch (error) {
-      logger.error('Failed to save progress:', error);
+    } else {
       alert('Failed to save progress. Please try again.');
     }
   };
@@ -148,7 +167,7 @@ const SurveyTakingPage = () => {
 
       alert(`Thank you! Submitted ${Object.keys(responses).length} responses.`);
       // Clear saved progress on successful submit
-      localStorage.removeItem(STORAGE_KEYS.SURVEY_PROGRESS);
+      safeRemoveItem(STORAGE_KEYS.SURVEY_PROGRESS);
       navigate('/ceo-dashboard');
     } catch (error) {
       logger.error('Failed to submit survey:', error);

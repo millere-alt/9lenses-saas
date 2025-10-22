@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { AlertTriangle, RefreshCw, Mail } from 'lucide-react';
 
 /**
  * Enhanced ErrorBoundary component with recovery and error tracking
@@ -86,7 +86,7 @@ class ErrorBoundary extends React.Component {
               </div>
             )}
 
-            <div className="flex gap-3 justify-center">
+            <div className="flex gap-3 justify-center flex-wrap">
               {!isCritical && (
                 <button
                   onClick={this.handleReset}
@@ -102,6 +102,15 @@ class ErrorBoundary extends React.Component {
               >
                 Refresh Page
               </button>
+              {isCritical && (
+                <a
+                  href="mailto:support@9vectors.com?subject=Critical Error Report"
+                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
+                >
+                  <Mail size={16} />
+                  Contact Support
+                </a>
+              )}
             </div>
           </div>
         </div>
