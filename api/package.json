@@ -19,6 +19,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.67.0",
     "@auth0/auth0-spa-js": "^2.6.0",
     "@azure/cosmos": "^4.0.0",
     "@azure/functions": "^4.8.0",

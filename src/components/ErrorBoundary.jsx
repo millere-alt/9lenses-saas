@@ -1,5 +1,6 @@
 import React from 'react';
 import { AlertTriangle, RefreshCw, Mail } from 'lucide-react';
+import logger from '../utils/logger';
 
 /**
  * Enhanced ErrorBoundary component with recovery and error tracking
@@ -23,7 +24,7 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     // Log error details for debugging
-    console.error('Error caught by ErrorBoundary:', {
+    logger.error('Error caught by ErrorBoundary:', {
       error,
       errorInfo,
       componentStack: errorInfo.componentStack,

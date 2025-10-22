@@ -8,6 +8,7 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import { LENSES, LENS_CATEGORIES } from '../data/nineVectorsSchema';
+import logger from '../utils/logger';
 
 // Initialize Anthropic client (will use browser-based proxy in production)
 const getAnthropicClient = () => {
@@ -15,7 +16,7 @@ const getAnthropicClient = () => {
   const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
 
   if (!apiKey) {
-    console.warn('Anthropic API key not configured. AI coaching will use mock responses.');
+    logger.warn('Anthropic API key not configured. AI coaching will use mock responses.');
     return null;
   }
 
@@ -167,7 +168,7 @@ export class AICoachingAgent {
       };
 
     } catch (error) {
-      console.error('AI Coaching error:', error);
+      logger.error('AI Coaching error:', error);
       return this.getMockResponse(context);
     }
   }

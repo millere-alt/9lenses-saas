@@ -2,6 +2,8 @@
  * Performance Monitoring and Optimization Utilities
  */
 
+import logger from './logger';
+
 /**
  * Measure function execution time
  * @param {Function} fn - Function to measure
@@ -18,13 +20,13 @@ export const measurePerformance = (fn, label = 'Function') => {
 
       // Log slow operations (> 1 second) in development only
       if (duration > 1000 && import.meta.env.DEV) {
-        console.warn(`⚠️ Slow operation detected: ${label} (${duration.toFixed(2)}ms)`);
+        logger.warn(`⚠️ Slow operation detected: ${label} (${duration.toFixed(2)}ms)`);
       }
 
       return result;
     } catch (error) {
       const duration = performance.now() - startTime;
-      console.error(`❌ ${label} failed after ${duration.toFixed(2)}ms:`, error);
+      logger.error(`❌ ${label} failed after ${duration.toFixed(2)}ms:`, error);
       throw error;
     }
   };
@@ -129,7 +131,7 @@ export const lazyLoad = async (importFn, options = {}) => {
 
     return module;
   } catch (error) {
-    console.error('Lazy load failed:', error);
+    logger.error('Lazy load failed:', error);
     throw error;
   }
 };
@@ -157,7 +159,7 @@ export class RenderTracker {
 
       // Only log in development mode
       if (import.meta.env.DEV) {
-        console.log(
+        logger.log(
           `🎨 ${this.componentName} render #${this.renderCount}: ${duration.toFixed(2)}ms ` +
           `(avg: ${(this.totalTime / this.renderCount).toFixed(2)}ms)`
         );
@@ -209,7 +211,7 @@ export const isProduction = () => {
  */
 export const logMetric = (metric, value, metadata = {}) => {
   if (!isProduction()) {
-    console.log(`📊 Metric: ${metric}`, {
+    logger.log(`📊 Metric: ${metric}`, {
       value,
       ...metadata,
       timestamp: new Date().toISOString()

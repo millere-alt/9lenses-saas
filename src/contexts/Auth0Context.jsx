@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Auth0Provider, useAuth0 as useAuth0Hook } from '@auth0/auth0-react';
 import { authAPI } from '../services/api';
+import logger from '../utils/logger';
 
 const Auth0Context = createContext(null);
 
@@ -48,11 +49,11 @@ export const Auth0ExtendedProvider = ({ children }) => {
               localStorage.setItem('token', response.data.token);
             }
           } catch (error) {
-            console.error('Failed to sync with backend:', error);
+            logger.error('Failed to sync with backend:', error);
           }
         }
       } catch (error) {
-        console.error('Auth initialization error:', error);
+        logger.error('Auth initialization error:', error);
       } finally {
         setLoading(false);
       }
@@ -107,7 +108,7 @@ export const Auth0ProviderWithConfig = ({ children }) => {
   const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
 
   if (!domain || !clientId) {
-    console.error('Auth0 configuration missing. Please set VITE_AUTH0_DOMAIN and VITE_AUTH0_CLIENT_ID in your .env file');
+    logger.error('Auth0 configuration missing. Please set VITE_AUTH0_DOMAIN and VITE_AUTH0_CLIENT_ID in your .env file');
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">

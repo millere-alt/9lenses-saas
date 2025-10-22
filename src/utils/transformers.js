@@ -248,7 +248,7 @@ export const parseCSV = (csv) => {
  * @returns {string} - Unique ID
  */
 export const generateId = () => {
-  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  return crypto.randomUUID();
 };
 
 export default {

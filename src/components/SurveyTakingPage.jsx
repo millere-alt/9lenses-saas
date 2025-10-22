@@ -71,7 +71,7 @@ const SurveyTakingPage = () => {
       ...responses,
       [key]: {
         ...responses[key],
-        score: parseInt(score),
+        score: parseInt(score, 10),
         theme: currentSubLens.themes[themeIndex]
       }
     });

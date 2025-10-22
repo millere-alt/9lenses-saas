@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import logger from '../utils/logger';
 
 /**
  * Custom hook for handling async operations with loading and error states
@@ -26,7 +27,7 @@ export function useAsync(asyncFunction, immediate = true) {
       } catch (error) {
         setError(error);
         setStatus('error');
-        console.error('useAsync error:', error);
+        logger.error('useAsync error:', error);
         throw error;
       }
     },

@@ -212,7 +212,7 @@ function Dashboard() {
 
                   {/* Stats */}
                   <p className="text-sm font-semibold text-gray-600 mb-2">{stat.label}</p>
-                  <p className="text-5xl font-black bg-gradient-to-br ${stat.gradient} bg-clip-text text-transparent mb-2">
+                  <p className={`text-5xl font-black bg-gradient-to-br ${stat.gradient} bg-clip-text text-transparent mb-2`}>
                     {stat.value}
                   </p>
                   <p className="text-sm text-gray-500 mb-3">{stat.subtitle}</p>

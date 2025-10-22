@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useCallback } from 'react';
 import { aiCoach } from '../services/aiCoachingAgent';
 import { LENSES } from '../data/nineVectorsSchema';
+import logger from '../utils/logger';
 
 const AICoachingContext = createContext(null);
 
@@ -36,7 +37,7 @@ export const AICoachingProvider = ({ children }) => {
       setIsCoachVisible(true);
       return response;
     } catch (error) {
-      console.error('Coaching request failed:', error);
+      logger.error('Coaching request failed:', error);
       setCoachingMessage({
         message: 'I\'m having trouble connecting right now. Please try again in a moment.',
         type: 'error'
