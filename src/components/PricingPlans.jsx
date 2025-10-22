@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Check, Loader, CreditCard, Crown, Rocket, Zap } from 'lucide-react';
 import { useAuth0Extended } from '../contexts/Auth0Context';
 import axios from 'axios';
+import logger from '../utils/logger';
 
 const PricingPlans = ({ _onClose }) => {
   const { user, organization } = useAuth0Extended();
@@ -21,7 +22,7 @@ const PricingPlans = ({ _onClose }) => {
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/stripe/plans`);
       setPlans(response.data.plans);
     } catch (error) {
-      console.error('Failed to fetch plans:', error);
+      logger.error('Failed to fetch plans:', error);
     }
   };
 
@@ -50,7 +51,7 @@ const PricingPlans = ({ _onClose }) => {
       // Redirect to Stripe Checkout
       window.location.href = response.data.url;
     } catch (error) {
-      console.error('Checkout error:', error);
+      logger.error('Checkout error:', error);
       alert('Failed to start checkout. Please try again.');
       setLoading(false);
     }

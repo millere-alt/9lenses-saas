@@ -1,4 +1,5 @@
 import axios from 'axios';
+import logger from '../utils/logger';
 
 // Configuration
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
@@ -55,7 +56,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error('Request interceptor error:', error);
+    logger.error('Request interceptor error:', error);
     return Promise.reject(error);
   }
 );
@@ -80,7 +81,7 @@ api.interceptors.response.use(
 
     // Handle network errors
     if (!error.response) {
-      console.error('Network error:', error.message);
+      logger.error('Network error:', error);
       return Promise.reject({
         message: 'Network error. Please check your connection.',
         originalError: error
@@ -121,7 +122,7 @@ api.interceptors.response.use(
       originalError: error
     };
 
-    console.error('API Error:', enhancedError);
+    logger.error('API Error:', enhancedError);
     return Promise.reject(enhancedError);
   }
 );

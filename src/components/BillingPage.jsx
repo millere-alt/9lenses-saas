@@ -14,6 +14,7 @@ import {
 import { useAuth0Extended } from '../contexts/Auth0Context';
 import axios from 'axios';
 import PricingPlans from './PricingPlans';
+import logger from '../utils/logger';
 
 const BillingPage = () => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const BillingPage = () => {
       );
       setSubscription(response.data.subscription);
     } catch (error) {
-      console.error('Failed to fetch subscription:', error);
+      logger.error('Failed to fetch subscription:', error);
     } finally {
       setLoading(false);
     }
@@ -78,7 +79,7 @@ const BillingPage = () => {
 
       window.location.href = response.data.url;
     } catch (error) {
-      console.error('Failed to open billing portal:', error);
+      logger.error('Failed to open billing portal:', error);
       alert('Failed to open billing portal. Please try again.');
       setPortalLoading(false);
     }

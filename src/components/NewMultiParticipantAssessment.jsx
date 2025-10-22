@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight, Users, Mail, Plus, X, Upload, FileText, Target,
   Send, Copy, Check, ChevronRight, Layers, Save, Download
 } from 'lucide-react';
 import { LENSES } from '../data/nineVectorsSchema';
+import { STORAGE_KEYS, ROLES, API_CONFIG } from '../constants/appConfig';
+import logger from '../utils/logger';
 
-const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard }) => {
+const NewMultiParticipantAssessment = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1); // 1: Create, 2: Invite, 3: Upload Files
   const [assessmentName, setAssessmentName] = useState('');
   const [companyName, setCompanyName] = useState('');
@@ -14,17 +18,6 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
   const [linkCopied, setLinkCopied] = useState(false);
   const [selectedLens, setSelectedLens] = useState(null);
   const [selectedSubLens, setSelectedSubLens] = useState(null);
-
-  const roles = [
-    'CEO / Executive',
-    'Board Member',
-    'Manager',
-    'Employee',
-    'Customer',
-    'Partner',
-    'Advisor',
-    'Other'
-  ];
 
   const handleAddInvite = () => {
     setInvites([...invites, { email: '', role: '' }]);
@@ -41,7 +34,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText('https://9lenses.app/assessment/abc123');
+    navigator.clipboard.writeText(`${API_CONFIG.ASSESSMENT_LINK}/abc123`);
     setLinkCopied(true);
     setTimeout(() => setLinkCopied(false), 2000);
   };
@@ -50,6 +43,26 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
     // In production, this would send emails via backend
     alert(`Sending invites to ${invites.length} participants!`);
     setStep(3);
+  };
+
+  const handleSaveDraft = () => {
+    try {
+      const data = {
+        step,
+        assessmentName,
+        companyName,
+        description,
+        invites,
+        selectedLens,
+        selectedSubLens,
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem(STORAGE_KEYS.ASSESSMENT_DRAFT, JSON.stringify(data));
+      alert('Draft saved successfully!');
+    } catch (error) {
+      logger.error('Failed to save draft:', error);
+      alert('Failed to save draft. Please try again.');
+    }
   };
 
   return (
@@ -71,13 +84,13 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
             </div>
             <div className="flex items-center gap-3">
               <button
-                onClick={onNavigateToDashboard}
+                onClick={() => navigate('/ceo-dashboard')}
                 className="px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
               >
                 Dashboard
               </button>
               <button
-                onClick={onNavigateToHome}
+                onClick={() => navigate('/')}
                 className="px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
               >
                 Home
@@ -194,7 +207,7 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
 
               <div className="flex justify-between items-center pt-6">
                 <button
-                  onClick={onNavigateToHome}
+                  onClick={() => navigate('/')}
                   className="px-6 py-3 text-gray-600 hover:text-gray-900 font-semibold transition-colors"
                 >
                   Cancel
@@ -415,14 +428,14 @@ const NewMultiParticipantAssessment = ({ onNavigateToHome, onNavigateToDashboard
                 </button>
                 <div className="flex items-center gap-3">
                   <button
-                    onClick={() => { const data = { step, assessmentName, companyName, description, invites, selectedLens, selectedSubLens, savedAt: new Date().toISOString() }; localStorage.setItem('assessment-draft-9vectors', JSON.stringify(data)); alert('Draft saved successfully!'); }}
+                    onClick={handleSaveDraft}
                     className="px-6 py-3 border-2 border-brand-blue-500 text-brand-blue-700 rounded-lg font-semibold hover:bg-brand-blue-50 transition-colors flex items-center gap-2"
                   >
                     <Save className="w-5 h-5" />
                     Save Draft
                   </button>
                   <button
-                    onClick={onNavigateToDashboard}
+                    onClick={() => navigate('/ceo-dashboard')}
                     className="px-8 py-3 bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white rounded-lg font-semibold hover:from-brand-blue-600 hover:to-brand-blue-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl"
                   >
                     <Check className="w-5 h-5" />

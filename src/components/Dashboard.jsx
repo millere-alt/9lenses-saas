@@ -4,6 +4,7 @@ import {
   Sparkles, Target, Zap, ArrowUp, ArrowDown, Download,
   Share2, RefreshCw, ChevronRight, TrendingDown, Activity
 } from 'lucide-react';
+import logger from '../utils/logger';
 
 function Dashboard() {
   const [scrollY, setScrollY] = useState(0);
@@ -22,7 +23,7 @@ function Dashboard() {
         title: '9Vectors Assessment Results',
         text: `Check out my ${assessmentData.name} results - Overall Score: ${assessmentData.overallScore}/10`,
         url: window.location.href
-      }).catch(err => console.log('Error sharing:', err));
+      }).catch(err => logger.error('Error sharing:', err));
     } else {
       // Fallback: copy link to clipboard
       navigator.clipboard.writeText(window.location.href);

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Save, Send, ChevronLeft, ChevronRight, Layers, MessageSquare,
   Target, Check, Clock, User
 } from 'lucide-react';
 import { LENSES } from '../data/nineVectorsSchema';
+import { STORAGE_KEYS } from '../constants/appConfig';
+import logger from '../utils/logger';
 
-const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
+const SurveyTakingPage = () => {
+  const navigate = useNavigate();
   const [currentLensIndex, setCurrentLensIndex] = useState(0);
   const [currentSubLensIndex, setCurrentSubLensIndex] = useState(0);
   const [responses, setResponses] = useState({});
@@ -91,17 +95,24 @@ const SurveyTakingPage = ({ onNavigateToHome, onComplete }) => {
         progress,
         savedAt: new Date().toISOString()
       };
-      localStorage.setItem('survey-progress-9vectors', JSON.stringify(surveyData));
+      localStorage.setItem(STORAGE_KEYS.SURVEY_PROGRESS, JSON.stringify(surveyData));
       alert('Progress saved successfully! You can resume later.');
     } catch (error) {
-      console.error('Failed to save progress:', error);
+      logger.error('Failed to save progress:', error);
       alert('Failed to save progress. Please try again.');
     }
   };
 
   const handleSubmit = () => {
-    alert(`Thank you! Submitted ${Object.keys(responses).length} responses.`);
-    if (onComplete) onComplete();
+    try {
+      alert(`Thank you! Submitted ${Object.keys(responses).length} responses.`);
+      // Clear saved progress on successful submit
+      localStorage.removeItem(STORAGE_KEYS.SURVEY_PROGRESS);
+      navigate('/ceo-dashboard');
+    } catch (error) {
+      logger.error('Failed to submit survey:', error);
+      alert('Failed to submit survey. Please try again.');
+    }
   };
 
   // Welcome Screen

@@ -9,6 +9,8 @@ function BooksPage() {
       icon: Target,
       color: 'blue',
       type: 'eBook',
+      url: '/learn', // Links to Learn page with framework details
+      isExternal: false
     },
     {
       title: 'Snapshot9 Methodology',
@@ -16,6 +18,8 @@ function BooksPage() {
       icon: Zap,
       color: 'blue',
       type: 'eBook',
+      url: '/about', // Links to About page with methodology
+      isExternal: false
     },
     {
       title: 'Strategic Assessment Best Practices',
@@ -23,6 +27,8 @@ function BooksPage() {
       icon: TrendingUp,
       color: 'blue',
       type: 'Guide',
+      url: '/how-it-works', // Links to How It Works page
+      isExternal: false
     },
     {
       title: 'Case Studies & Success Stories',
@@ -30,8 +36,18 @@ function BooksPage() {
       icon: Award,
       color: 'blue',
       type: 'Case Studies',
+      url: '/demo', // Links to demo page
+      isExternal: false
     },
   ];
+
+  const handleResourceClick = (resource) => {
+    if (resource.isExternal) {
+      window.open(resource.url, '_blank', 'noopener,noreferrer');
+    } else {
+      window.location.href = resource.url;
+    }
+  };
 
   const getColorClasses = (color) => {
     return 'bg-blue-100 text-blue-600 border-blue-200';
@@ -52,6 +68,7 @@ function BooksPage() {
             <div
               key={index}
               className="bg-white rounded-lg border border-gray-200 p-6 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer"
+              onClick={() => handleResourceClick(resource)}
             >
               <div className="flex items-start gap-4">
                 <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${getColorClasses(resource.color)}`}>
@@ -65,10 +82,16 @@ function BooksPage() {
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">{resource.description}</p>
-                  <button className="flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700">
+                  <button
+                    className="flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleResourceClick(resource);
+                    }}
+                  >
                     <BookOpen className="w-4 h-4" />
                     View Resource
-                    <ExternalLink className="w-4 h-4" />
+                    {resource.isExternal && <ExternalLink className="w-4 h-4" />}
                   </button>
                 </div>
               </div>

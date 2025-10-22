@@ -3,6 +3,8 @@
  * Provides common functions for API calls, error handling, and data transformation
  */
 
+import logger from './logger';
+
 /**
  * Build query string from object
  * @param {Object} params - Query parameters
@@ -99,7 +101,7 @@ export const retryWithBackoff = async (fn, maxRetries = 3, baseDelay = 1000) => 
 
       if (attempt < maxRetries) {
         const delay = Math.min(baseDelay * Math.pow(2, attempt), 10000);
-        console.log(`Retry attempt ${attempt + 1}/${maxRetries} after ${delay}ms`);
+        logger.log(`Retry attempt ${attempt + 1}/${maxRetries} after ${delay}ms`);
         await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
