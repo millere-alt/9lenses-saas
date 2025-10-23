@@ -1,6 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Auth0Provider, useAuth0 as useAuth0Hook } from '@auth0/auth0-react';
 import { authAPI } from '../services/api';
+import {
+  setTokens,
+  getSession,
+  setSession,
+  clearAllAuthData,
+  migrateLegacyTokens,
+  getRefreshToken
+} from '../services/tokenStorage';
 import logger from '../utils/logger';
 
 const Auth0Context = createContext(null);
@@ -22,15 +30,24 @@ export const Auth0ExtendedProvider = ({ children }) => {
   const [organization, setOrganization] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Initialize from session storage for fast load
+  useEffect(() => {
+    migrateLegacyTokens();
+
+    const cachedSession = getSession();
+    if (cachedSession) {
+      setUser(cachedSession.user);
+      setOrganization(cachedSession.organization);
+      logger.info('Loaded user session from cache');
+    }
+  }, []);
+
   useEffect(() => {
     const initializeAuth = async () => {
       try {
         if (auth0.isAuthenticated && auth0.user) {
           // Get access token from Auth0
           const token = await auth0.getAccessTokenSilently();
-
-          // Store token
-          localStorage.setItem('token', token);
 
           // Sync with backend - get or create user in our database
           try {
@@ -41,13 +58,24 @@ export const Auth0ExtendedProvider = ({ children }) => {
               picture: auth0.user.picture
             });
 
-            setUser(response.data.user);
-            setOrganization(response.data.organization);
+            const userData = response.data.user;
+            const orgData = response.data.organization;
 
-            // Store token from backend
-            if (response.data.token) {
-              localStorage.setItem('token', response.data.token);
+            setUser(userData);
+            setOrganization(orgData);
+
+            // Store tokens from backend (access + refresh)
+            if (response.data.accessToken && response.data.refreshToken) {
+              setTokens(response.data.accessToken, response.data.refreshToken);
             }
+
+            // Store session data for fast access
+            setSession({
+              user: userData,
+              organization: orgData
+            });
+
+            logger.info('Auth0 user synced with backend successfully');
           } catch (error) {
             logger.error('Failed to sync with backend:', error);
           }
@@ -75,14 +103,98 @@ export const Auth0ExtendedProvider = ({ children }) => {
     });
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('9lenses_user');
+  const logout = async () => {
+    // Revoke refresh token on backend
+    const refreshToken = getRefreshToken();
+    if (refreshToken) {
+      try {
+        await authAPI.logout(refreshToken);
+      } catch (error) {
+        logger.error('Failed to revoke refresh token:', error);
+        // Continue with logout even if backend call fails
+      }
+    }
+
+    // Clear all local auth data
+    clearAllAuthData();
     setUser(null);
     setOrganization(null);
-    auth0.logout({
-      returnTo: window.location.origin
-    });
+
+    // Logout from Auth0 (for Auth0 users)
+    if (auth0.isAuthenticated) {
+      auth0.logout({
+        returnTo: window.location.origin
+      });
+    } else {
+      // For email/password users, just redirect to home
+      window.location.href = '/';
+    }
+  };
+
+  // Email/password login (bypasses Auth0)
+  const loginWithEmail = async (email, password) => {
+    try {
+      const response = await authAPI.login({ email, password });
+
+      const userData = response.data.user;
+      const orgData = response.data.organization;
+
+      setUser(userData);
+      setOrganization(orgData);
+
+      // Store tokens
+      if (response.data.accessToken && response.data.refreshToken) {
+        setTokens(response.data.accessToken, response.data.refreshToken);
+      }
+
+      // Store session data
+      setSession({
+        user: userData,
+        organization: orgData
+      });
+
+      logger.info('Email/password login successful');
+      return response.data;
+    } catch (error) {
+      logger.error('Email/password login failed:', error);
+      throw error;
+    }
+  };
+
+  // Email/password registration (bypasses Auth0)
+  const registerWithEmail = async (email, password, firstName, lastName, organizationName) => {
+    try {
+      const response = await authAPI.register({
+        email,
+        password,
+        firstName,
+        lastName,
+        organizationName
+      });
+
+      const userData = response.data.user;
+      const orgData = response.data.organization;
+
+      setUser(userData);
+      setOrganization(orgData);
+
+      // Store tokens
+      if (response.data.accessToken && response.data.refreshToken) {
+        setTokens(response.data.accessToken, response.data.refreshToken);
+      }
+
+      // Store session data
+      setSession({
+        user: userData,
+        organization: orgData
+      });
+
+      logger.info('Email/password registration successful');
+      return response.data;
+    } catch (error) {
+      logger.error('Email/password registration failed:', error);
+      throw error;
+    }
   };
 
   const value = {
@@ -92,6 +204,8 @@ export const Auth0ExtendedProvider = ({ children }) => {
     login,
     signup,
     logout,
+    loginWithEmail,
+    registerWithEmail,
     loading: auth0.isLoading || loading,
     isAuthenticated: auth0.isAuthenticated && !!user
   };

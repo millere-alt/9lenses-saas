@@ -1,10 +1,22 @@
 import axios from 'axios';
 import logger from '../utils/logger';
+import {
+  getAccessToken,
+  getRefreshToken,
+  setTokens,
+  clearAllAuthData,
+  isTokenExpired,
+  setSession
+} from './tokenStorage';
 
 // Configuration
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 const REQUEST_TIMEOUT = 30000; // 30 seconds
 const MAX_RETRIES = 3;
+
+// Track if we're currently refreshing to prevent multiple refresh requests
+let isRefreshing = false;
+let refreshSubscribers = [];
 
 // Create enhanced axios instance
 const api = axios.create({
@@ -54,13 +66,95 @@ setInterval(cleanExpiredCache, CACHE_DURATION);
 // Retry configuration for failed requests
 const retryableStatuses = [408, 429, 500, 502, 503, 504];
 
-// Request interceptor - add auth token and request ID
+/**
+ * Subscribe to token refresh
+ * When refresh completes, all waiting requests will retry with new token
+ */
+const subscribeTokenRefresh = (callback) => {
+  refreshSubscribers.push(callback);
+};
+
+/**
+ * Notify all subscribers that refresh is complete
+ */
+const onTokenRefreshed = (newAccessToken) => {
+  refreshSubscribers.forEach((callback) => callback(newAccessToken));
+  refreshSubscribers = [];
+};
+
+/**
+ * Refresh access token using refresh token
+ */
+const refreshAccessToken = async () => {
+  const refreshToken = getRefreshToken();
+
+  if (!refreshToken) {
+    throw new Error('No refresh token available');
+  }
+
+  try {
+    const response = await axios.post(`${API_URL}/auth/refresh`, {
+      refreshToken
+    });
+
+    const { accessToken, refreshToken: newRefreshToken, user, organization } = response.data;
+
+    // Store new tokens
+    setTokens(accessToken, newRefreshToken);
+
+    // Update session storage
+    if (user && organization) {
+      setSession({ user, organization });
+    }
+
+    return accessToken;
+  } catch (error) {
+    // Refresh failed - clear all auth data and redirect to login
+    clearAllAuthData();
+    window.dispatchEvent(new Event('token-refresh-failed'));
+    throw error;
+  }
+};
+
+// Request interceptor - add auth token, check expiry, and request ID
 api.interceptors.request.use(
-  (config) => {
-    // Add authentication token
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+  async (config) => {
+    // Skip token logic for auth endpoints
+    const isAuthEndpoint = config.url?.includes('/auth/');
+
+    if (!isAuthEndpoint) {
+      // Check if token is expired or will expire soon
+      if (isTokenExpired(60)) {
+        // Token expired or will expire in < 60 seconds
+        if (!isRefreshing) {
+          isRefreshing = true;
+
+          try {
+            const newAccessToken = await refreshAccessToken();
+            isRefreshing = false;
+            onTokenRefreshed(newAccessToken);
+            config.headers.Authorization = `Bearer ${newAccessToken}`;
+          } catch (error) {
+            isRefreshing = false;
+            logger.error('Token refresh failed:', error);
+            return Promise.reject(error);
+          }
+        } else {
+          // Wait for refresh to complete
+          return new Promise((resolve) => {
+            subscribeTokenRefresh((newAccessToken) => {
+              config.headers.Authorization = `Bearer ${newAccessToken}`;
+              resolve(config);
+            });
+          });
+        }
+      } else {
+        // Token is still valid, use it
+        const token = getAccessToken();
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+      }
     }
 
     // Add request ID for tracking
@@ -121,18 +215,57 @@ api.interceptors.response.use(
     }
 
     const { status } = error.response;
+    const errorCode = error.response?.data?.code;
 
     // Handle 401 Unauthorized
     if (status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.dispatchEvent(new Event('unauthorized'));
+      // Check if this is a token expiration issue
+      if (errorCode === 'INVALID_TOKEN' && !config._tokenRetry) {
+        // Try to refresh token and retry request once
+        config._tokenRetry = true;
 
-      // Prevent redirect loop
-      if (!window.location.pathname.includes('login')) {
-        window.location.href = '/';
+        if (!isRefreshing) {
+          isRefreshing = true;
+
+          try {
+            const newAccessToken = await refreshAccessToken();
+            isRefreshing = false;
+            onTokenRefreshed(newAccessToken);
+
+            // Retry the failed request with new token
+            config.headers.Authorization = `Bearer ${newAccessToken}`;
+            return api(config);
+          } catch (refreshError) {
+            isRefreshing = false;
+            clearAllAuthData();
+            window.dispatchEvent(new Event('unauthorized'));
+
+            // Prevent redirect loop
+            if (!window.location.pathname.includes('login')) {
+              window.location.href = '/';
+            }
+            return Promise.reject(refreshError);
+          }
+        } else {
+          // Wait for ongoing refresh to complete, then retry
+          return new Promise((resolve, reject) => {
+            subscribeTokenRefresh((newAccessToken) => {
+              config.headers.Authorization = `Bearer ${newAccessToken}`;
+              api(config).then(resolve).catch(reject);
+            });
+          });
+        }
+      } else {
+        // Not a token issue, or retry failed - clear and redirect
+        clearAllAuthData();
+        window.dispatchEvent(new Event('unauthorized'));
+
+        // Prevent redirect loop
+        if (!window.location.pathname.includes('login')) {
+          window.location.href = '/';
+        }
+        return Promise.reject(error);
       }
-      return Promise.reject(error);
     }
 
     // Implement retry logic
@@ -168,6 +301,9 @@ export const clearCache = () => {
 export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
+  logout: (refreshToken) => api.post('/auth/logout', { refreshToken }),
+  logoutAll: () => api.post('/auth/logout-all'),
+  refreshToken: (refreshToken) => api.post('/auth/refresh', { refreshToken }),
   syncAuth0: (data) => api.post('/auth/sync-auth0', data),
   verifyEmail: (token) => api.post('/auth/verify-email', { token }),
   forgotPassword: (email) => api.post('/auth/forgot-password', { email }),
