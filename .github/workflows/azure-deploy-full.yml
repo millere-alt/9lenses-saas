@@ -93,11 +93,11 @@ jobs:
       - name: Deploy to Azure Functions (Flex Consumption)
         run: |
           cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          zip -rq deployment.zip src node_modules package.json host.json
           az functionapp deployment source config-zip \
             --name ${{ env.AZURE_FUNCTIONAPP_NAME }} \
-            --resource-group 9vectors-rg \
-            --src deployment.zip \
-            --build-remote true
+            --resource-group Snapshot9 \
+            --src deployment.zip
 
   # Close Pull Request
   close_pull_request_frontend:
