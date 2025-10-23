@@ -1,0 +1,90 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                    9VECTORS - QUICK SETUP                        ║
+║                      (15 minutes total)                          ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  TASK 1: ANTHROPIC API KEY (5 min)                              ║
+║  ────────────────────────────────────────────────────────       ║
+║                                                                  ║
+║  □ 1. Go to: https://console.anthropic.com/                     ║
+║  □ 2. Click "API Keys" in sidebar                               ║
+║  □ 3. Copy your key (starts with sk-ant-)                       ║
+║  □ 4. Run this command in terminal:                             ║
+║                                                                  ║
+║      az functionapp config appsettings set \                    ║
+║        --name snapshot9-functions-flex \                        ║
+║        --resource-group Snapshot9 \                             ║
+║        --settings "ANTHROPIC_API_KEY=YOUR_KEY"                  ║
+║                                                                  ║
+║  □ 5. Verify: Should show "ANTHROPIC_API_KEY" in output         ║
+║                                                                  ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  TASK 2: AUTH0 DASHBOARD (10 min)                               ║
+║  ────────────────────────────────────────────────────────       ║
+║                                                                  ║
+║  □ 1. Go to: https://manage.auth0.com/                          ║
+║  □ 2. Click Applications → Applications                         ║
+║  □ 3. Open your 9Vectors app                                    ║
+║  □ 4. Find "Application URIs" section                           ║
+║                                                                  ║
+║  □ 5. Add to "Allowed Callback URLs":                           ║
+║      https://www.snapshot9.com/callback,                        ║
+║      https://red-sand-0b83aa50f.1.azurestaticapps.net/callback  ║
+║                                                                  ║
+║  □ 6. Add to "Allowed Logout URLs":                             ║
+║      https://www.snapshot9.com,                                 ║
+║      https://red-sand-0b83aa50f.1.azurestaticapps.net           ║
+║                                                                  ║
+║  □ 7. Add to "Allowed Web Origins":                             ║
+║      https://www.snapshot9.com,                                 ║
+║      https://red-sand-0b83aa50f.1.azurestaticapps.net           ║
+║                                                                  ║
+║  □ 8. CLICK "SAVE CHANGES" AT BOTTOM!                           ║
+║                                                                  ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  TESTING (5 min)                                                 ║
+║  ────────────────────────────────────────────────────────       ║
+║                                                                  ║
+║  □ Visit: https://www.snapshot9.com                             ║
+║  □ Click "Sign In"                                               ║
+║  □ Log in with Auth0                                             ║
+║  □ Create an assessment                                          ║
+║  □ Test AI coaching                                              ║
+║                                                                  ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  VERIFICATION                                                    ║
+║  ────────────────────────────────────────────────────────       ║
+║                                                                  ║
+║  ✓ Site loads: https://www.snapshot9.com                        ║
+║  ✓ Login works (Auth0 redirect)                                 ║
+║  ✓ AI responds (no "key not configured" error)                  ║
+║  ✓ Dashboard visible after login                                ║
+║                                                                  ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  HELP                                                            ║
+║  ────────────────────────────────────────────────────────       ║
+║                                                                  ║
+║  Detailed Guide: STEP_BY_STEP_GUIDE.md                          ║
+║  Troubleshooting: DEPLOYMENT_COMPLETE.md                        ║
+║  Full Docs: PRODUCTION_SETUP.md                                 ║
+║                                                                  ║
+║  Common Issues:                                                  ║
+║  • Login fails → Check Auth0 "Save Changes" clicked             ║
+║  • AI errors → Verify Anthropic key command ran                 ║
+║  • CORS errors → Clear browser cache                            ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+CURRENT STATUS:
+✓ Frontend: LIVE at https://www.snapshot9.com
+✓ Backend: DEPLOYED and running
+✓ Database: CONFIGURED with 5 containers
+✓ SSL: ENABLED with auto-renewal
+⚠ Anthropic Key: NEEDS YOUR KEY
+⚠ Auth0: NEEDS PRODUCTION URLS
+
+YOU'RE 15 MINUTES AWAY FROM PRODUCTION! 🚀
