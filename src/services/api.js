@@ -307,7 +307,8 @@ export const authAPI = {
   syncAuth0: (data) => api.post('/auth/sync-auth0', data),
   verifyEmail: (token) => api.post('/auth/verify-email', { token }),
   forgotPassword: (email) => api.post('/auth/forgot-password', { email }),
-  resetPassword: (token, password) => api.post('/auth/reset-password', { token, password })
+  resetPassword: (token, password) => api.post('/auth/reset-password', { token, password }),
+  changePassword: (currentPassword, newPassword) => api.post('/auth/change-password', { currentPassword, newPassword })
 };
 
 // User API

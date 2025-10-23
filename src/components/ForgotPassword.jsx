@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Mail, ArrowLeft, Check } from 'lucide-react';
-import { api } from '../services/api';
+import { authAPI } from '../services/api';
 
 /**
  * ForgotPassword Component
@@ -31,7 +31,7 @@ const ForgotPassword = () => {
     setLoading(true);
 
     try {
-      await api.post('/auth/forgot-password', { email });
+      await authAPI.forgotPassword(email);
       setSuccess(true);
       setEmail('');
     } catch (err) {

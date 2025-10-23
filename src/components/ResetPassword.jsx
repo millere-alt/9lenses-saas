@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { Eye, EyeOff, Lock, Check, X, AlertCircle } from 'lucide-react';
-import { api } from '../services/api';
+import { authAPI } from '../services/api';
 
 /**
  * ResetPassword Component
@@ -108,10 +108,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      await api.post('/auth/reset-password', {
-        token,
-        password: formData.password
-      });
+      await authAPI.resetPassword(token, formData.password);
 
       setPageState('success');
 

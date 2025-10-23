@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Lock, Check, X } from 'lucide-react';
-import { api } from '../services/api';
+import { authAPI } from '../services/api';
 
 /**
  * ChangePassword Component
@@ -99,10 +99,10 @@ const ChangePassword = ({ onSuccess }) => {
     setLoading(true);
 
     try {
-      const response = await api.post('/auth/change-password', {
-        currentPassword: formData.currentPassword,
-        newPassword: formData.newPassword
-      });
+      const response = await authAPI.changePassword(
+        formData.currentPassword,
+        formData.newPassword
+      );
 
       setSuccess(true);
       setFormData({
