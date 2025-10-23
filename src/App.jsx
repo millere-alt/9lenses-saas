@@ -28,6 +28,9 @@ import DocumentHub from './components/DocumentHub';
 import DocumentDissector from './components/DocumentDissector';
 import BillingPage from './components/BillingPage';
 import PricingPlans from './components/PricingPlans';
+import ProfilePage from './components/ProfilePage';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 
 function App() {
   return (
@@ -39,6 +42,11 @@ function App() {
             {/* Authentication Routes */}
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<LoginForm />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+
+            {/* User Profile Routes */}
+            <Route path="/profile" element={<ProfilePage />} />
 
             {/* Main Routes */}
             <Route path="/" element={<HomePage />} />

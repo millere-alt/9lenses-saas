@@ -32,6 +32,9 @@ export class User {
     };
     // Refresh token storage (stores hashed tokens)
     this.refreshTokens = data.refreshTokens || [];
+    // Password reset token fields
+    this.passwordResetToken = data.passwordResetToken || null;
+    this.passwordResetExpires = data.passwordResetExpires || null;
     this.createdAt = data.createdAt || new Date().toISOString();
     this.updatedAt = data.updatedAt || new Date().toISOString();
   }
@@ -250,10 +253,137 @@ export class User {
   }
 
   /**
+   * Generate password reset token
+   * @param {string} userId - User ID
+   * @param {string} organizationId - Organization ID
+   * @returns {string} - Reset token (unhashed, to be sent via email)
+   */
+  static async generatePasswordResetToken(userId, organizationId) {
+    const user = await User.findById(userId, organizationId);
+    if (!user) return null;
+
+    // Generate random token (32 bytes = 64 hex characters)
+    const crypto = await import('crypto');
+    const resetToken = crypto.randomBytes(32).toString('hex');
+
+    // Hash the token before storing
+    const hashedToken = await User.hashPassword(resetToken);
+
+    // Token expires in 1 hour
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000).toISOString();
+
+    await User.update(userId, organizationId, {
+      passwordResetToken: hashedToken,
+      passwordResetExpires: expiresAt,
+      updatedAt: new Date().toISOString()
+    });
+
+    // Return unhashed token to be sent via email
+    return resetToken;
+  }
+
+  /**
+   * Find user by password reset token
+   * @param {string} resetToken - Unhashed reset token from email
+   * @returns {Object|null} - User object if token is valid
+   */
+  static async findByResetToken(resetToken) {
+    // Query all users (we need to check hashed tokens)
+    const query = 'SELECT * FROM c WHERE c.type = "user" AND c.passwordResetToken != null AND c.passwordResetExpires != null';
+    const users = await queryItems(CONTAINER_NAME, query);
+
+    // Find user with matching token hash
+    for (const user of users) {
+      // Check if token is expired
+      const expiresAt = new Date(user.passwordResetExpires).getTime();
+      if (Date.now() > expiresAt) {
+        continue;
+      }
+
+      // Compare token with stored hash
+      const isValid = await User.comparePassword(resetToken, user.passwordResetToken);
+      if (isValid) {
+        return user;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Reset password using reset token
+   * @param {string} resetToken - Unhashed reset token from email
+   * @param {string} newPassword - New password
+   * @returns {Object|null} - Updated user object or null if token invalid
+   */
+  static async resetPassword(resetToken, newPassword) {
+    const user = await User.findByResetToken(resetToken);
+    if (!user) return null;
+
+    // Hash new password
+    const passwordHash = await User.hashPassword(newPassword);
+
+    // Update password and clear reset token
+    const updated = await User.update(user.id, user.organizationId, {
+      passwordHash,
+      passwordResetToken: null,
+      passwordResetExpires: null,
+      updatedAt: new Date().toISOString()
+    });
+
+    // Return user without password hash
+    const { passwordHash: _, ...userWithoutPassword } = updated;
+    return userWithoutPassword;
+  }
+
+  /**
+   * Change password (requires current password verification)
+   * @param {string} userId - User ID
+   * @param {string} organizationId - Organization ID
+   * @param {string} currentPassword - Current password for verification
+   * @param {string} newPassword - New password
+   * @returns {Object|null} - Updated user object or null if current password invalid
+   */
+  static async changePassword(userId, organizationId, currentPassword, newPassword) {
+    const user = await User.findById(userId, organizationId);
+    if (!user) return null;
+
+    // Verify current password
+    const isValid = await User.comparePassword(currentPassword, user.passwordHash);
+    if (!isValid) return null;
+
+    // Hash new password
+    const passwordHash = await User.hashPassword(newPassword);
+
+    // Update password
+    const updated = await User.update(userId, organizationId, {
+      passwordHash,
+      updatedAt: new Date().toISOString()
+    });
+
+    // Return user without password hash
+    const { passwordHash: _, ...userWithoutPassword } = updated;
+    return userWithoutPassword;
+  }
+
+  /**
+   * Clear password reset token (cleanup)
+   * @param {string} userId - User ID
+   * @param {string} organizationId - Organization ID
+   */
+  static async clearPasswordResetToken(userId, organizationId) {
+    return User.update(userId, organizationId, {
+      passwordResetToken: null,
+      passwordResetExpires: null,
+      updatedAt: new Date().toISOString()
+    });
+  }
+
+  /**
    * Convert to JSON (without sensitive data)
    */
   toJSON() {
-    const { passwordHash: _, refreshTokens: __, ...user } = this;
+    const { passwordHash: _, refreshTokens: __, passwordResetToken: ___, ...user } = this;
     return user;
   }
 }

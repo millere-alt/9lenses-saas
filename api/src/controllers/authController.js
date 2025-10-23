@@ -9,6 +9,7 @@ import {
 import { hashToken, getTokenExpiration } from '../utils/tokenUtils.js';
 import { body, validationResult } from 'express-validator';
 import { createItem } from '../config/database.js';
+import emailService from '../services/emailService.js';
 
 /**
  * Validation rules for registration
@@ -499,6 +500,212 @@ export async function syncAuth0User(req, res) {
     console.error('Auth0 sync error:', error);
     res.status(500).json({
       error: 'Failed to sync user',
+      message: error.message
+    });
+  }
+}
+
+/**
+ * Validation rules for forgot password
+ */
+export const forgotPasswordValidation = [
+  body('email').isEmail().normalizeEmail().withMessage('Valid email is required')
+];
+
+/**
+ * Request password reset
+ */
+export async function forgotPassword(req, res) {
+  try {
+    // Validate request
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        error: 'Validation failed',
+        details: errors.array()
+      });
+    }
+
+    const { email } = req.body;
+
+    // Find user by email
+    const user = await User.findByEmail(email);
+
+    // Always return success (don't reveal if email exists)
+    // This prevents email enumeration attacks
+    if (!user) {
+      return res.json({
+        message: 'If an account exists with this email, a password reset link has been sent'
+      });
+    }
+
+    // Check if user has a password (Auth0 users don't)
+    if (!user.passwordHash) {
+      return res.json({
+        message: 'If an account exists with this email, a password reset link has been sent'
+      });
+    }
+
+    // Generate reset token
+    const resetToken = await User.generatePasswordResetToken(user.id, user.organizationId);
+
+    // Send password reset email
+    try {
+      await emailService.sendPasswordResetEmail(user, resetToken);
+    } catch (emailError) {
+      console.error('Failed to send password reset email:', emailError);
+      // Don't fail the request if email fails in mock mode
+      if (!emailService.mockMode) {
+        return res.status(500).json({
+          error: 'Failed to send email',
+          message: 'Could not send password reset email. Please try again later.'
+        });
+      }
+    }
+
+    res.json({
+      message: 'If an account exists with this email, a password reset link has been sent'
+    });
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    res.status(500).json({
+      error: 'Request failed',
+      message: error.message
+    });
+  }
+}
+
+/**
+ * Validation rules for reset password
+ */
+export const resetPasswordValidation = [
+  body('token').notEmpty().withMessage('Reset token is required'),
+  body('password')
+    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
+    .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
+    .matches(/[a-z]/).withMessage('Password must contain at least one lowercase letter')
+    .matches(/[0-9]/).withMessage('Password must contain at least one number')
+];
+
+/**
+ * Reset password using reset token
+ */
+export async function resetPassword(req, res) {
+  try {
+    // Validate request
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        error: 'Validation failed',
+        details: errors.array()
+      });
+    }
+
+    const { token, password } = req.body;
+
+    // Reset password using token
+    const user = await User.resetPassword(token, password);
+
+    if (!user) {
+      return res.status(400).json({
+        error: 'Invalid or expired token',
+        message: 'This password reset link is invalid or has expired. Please request a new one.'
+      });
+    }
+
+    // Send confirmation email
+    try {
+      await emailService.sendPasswordChangedEmail(user);
+    } catch (emailError) {
+      console.error('Failed to send password changed email:', emailError);
+      // Don't fail the request if email fails
+    }
+
+    res.json({
+      message: 'Password reset successful',
+      user
+    });
+  } catch (error) {
+    console.error('Reset password error:', error);
+    res.status(500).json({
+      error: 'Password reset failed',
+      message: error.message
+    });
+  }
+}
+
+/**
+ * Validation rules for change password
+ */
+export const changePasswordValidation = [
+  body('currentPassword').notEmpty().withMessage('Current password is required'),
+  body('newPassword')
+    .isLength({ min: 8 }).withMessage('New password must be at least 8 characters')
+    .matches(/[A-Z]/).withMessage('New password must contain at least one uppercase letter')
+    .matches(/[a-z]/).withMessage('New password must contain at least one lowercase letter')
+    .matches(/[0-9]/).withMessage('New password must contain at least one number')
+];
+
+/**
+ * Change password (requires current password)
+ */
+export async function changePassword(req, res) {
+  try {
+    // Validate request
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        error: 'Validation failed',
+        details: errors.array()
+      });
+    }
+
+    const { currentPassword, newPassword } = req.body;
+    const userId = req.user.id;
+    const organizationId = req.user.organizationId;
+
+    // Check if current and new passwords are the same
+    if (currentPassword === newPassword) {
+      return res.status(400).json({
+        error: 'Invalid password',
+        message: 'New password must be different from current password'
+      });
+    }
+
+    // Change password
+    const user = await User.changePassword(
+      userId,
+      organizationId,
+      currentPassword,
+      newPassword
+    );
+
+    if (!user) {
+      return res.status(401).json({
+        error: 'Authentication failed',
+        message: 'Current password is incorrect'
+      });
+    }
+
+    // Send confirmation email
+    try {
+      await emailService.sendPasswordChangedEmail(user);
+    } catch (emailError) {
+      console.error('Failed to send password changed email:', emailError);
+      // Don't fail the request if email fails
+    }
+
+    // Logout from all other devices for security
+    await User.removeAllRefreshTokens(userId, organizationId);
+
+    res.json({
+      message: 'Password changed successfully',
+      user
+    });
+  } catch (error) {
+    console.error('Change password error:', error);
+    res.status(500).json({
+      error: 'Password change failed',
       message: error.message
     });
   }

@@ -77,16 +77,35 @@ npm run func:start
 - `models/` - Cosmos DB data models (User, Organization, Assessment, Invitation, Benchmark)
 - `middleware/` - auth.js (JWT), errorHandler.js, validation.js
 - `config/` - database.js (Cosmos DB initialization)
-- `services/` - Shared service logic
+- `services/` - emailService.js (Azure Communication Services), other shared services
 
 ### Key Patterns
 
 **Authentication Flow**:
-1. User logs in via Auth0
+1. User logs in via Auth0 or email/password
 2. Auth0Context syncs credentials with backend API
 3. Backend creates/updates user in Cosmos DB
 4. Backend returns JWT token
 5. Token stored in localStorage and included in all API requests
+
+**Password Management Flow**:
+- **Forgot Password** (`/forgot-password`):
+  1. User enters email
+  2. Backend generates secure token (hashed in DB)
+  3. Email sent with reset link (1-hour expiry)
+  4. Success message shown (no email enumeration)
+- **Reset Password** (`/reset-password?token=...`):
+  1. Token verified on component mount
+  2. User enters new password with validation
+  3. Backend validates token and updates password
+  4. Confirmation email sent
+  5. User redirected to login
+- **Change Password** (`/profile` → Security tab):
+  1. User must provide current password
+  2. New password validated (8+ chars, uppercase, lowercase, number)
+  3. Backend verifies current password and updates
+  4. All other sessions logged out
+  5. Confirmation email sent
 
 **API Client Architecture** (`src/services/api.js`):
 - Axios instance with custom interceptors
@@ -174,6 +193,11 @@ STRIPE_WEBHOOK_SECRET=whsec_your-webhook-secret
 STRIPE_PRICE_STARTER=price_starter_id
 STRIPE_PRICE_PROFESSIONAL=price_professional_id
 STRIPE_PRICE_ENTERPRISE=price_enterprise_id
+
+# Email Service (Azure Communication Services)
+AZURE_COMMUNICATION_CONNECTION_STRING=endpoint=https://...;accesskey=...
+AZURE_COMMUNICATION_SENDER_EMAIL=noreply@9vectors.com
+FRONTEND_URL=http://localhost:3005  # Used for password reset links
 ```
 
 ## Key Implementation Details

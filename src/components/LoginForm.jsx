@@ -219,6 +219,19 @@ const LoginForm = () => {
               </div>
             </div>
 
+            {/* Forgot Password Link (Login mode only) */}
+            {mode === 'login' && (
+              <div className="flex items-center justify-end">
+                <button
+                  type="button"
+                  onClick={() => navigate('/forgot-password')}
+                  className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  Forgot password?
+                </button>
+              </div>
+            )}
+
             <div>
               <button
                 type="submit"
