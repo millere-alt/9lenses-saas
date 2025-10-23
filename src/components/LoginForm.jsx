@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff } from 'lucide-react';
 import { useAuth0Extended } from '../contexts/Auth0Context';
-import logger from '../utils/logger';
 
 /**
  * LoginForm Component
@@ -24,6 +24,7 @@ const LoginForm = () => {
   // UI state
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   /**
    * Handle email/password login
@@ -35,10 +36,10 @@ const LoginForm = () => {
 
     try {
       await loginWithEmail(email, password);
-      logger.info('Login successful');
+      console.log('Login successful');
       navigate('/dashboard');
     } catch (err) {
-      logger.error('Login failed:', err);
+      console.error('Login failed:', err);
       setError(err.message || err.data?.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
@@ -67,10 +68,10 @@ const LoginForm = () => {
 
     try {
       await registerWithEmail(email, password, firstName, lastName, organizationName);
-      logger.info('Registration successful');
+      console.log('Registration successful');
       navigate('/dashboard');
     } catch (err) {
-      logger.error('Registration failed:', err);
+      console.error('Registration failed:', err);
       setError(err.message || err.data?.message || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
@@ -198,15 +199,24 @@ const LoginForm = () => {
                 } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
                 placeholder="Email address"
               />
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-b-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-                minLength={8}
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="appearance-none rounded-b-md relative block w-full px-3 py-2 pr-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Password"
+                  minLength={8}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </div>
 
             <div>
