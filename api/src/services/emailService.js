@@ -8,14 +8,20 @@ class EmailService {
   constructor() {
     this.connectionString = process.env.AZURE_COMMUNICATION_CONNECTION_STRING;
     this.senderAddress = process.env.AZURE_COMMUNICATION_SENDER_EMAIL || 'noreply@9vectors.com';
-    this.mockMode = !this.connectionString || process.env.NODE_ENV === 'development';
+
+    // Use mock mode only if connection string is missing OR explicitly disabled
+    // Set AZURE_EMAIL_ENABLED=false to force mock mode even with connection string
+    const emailEnabled = process.env.AZURE_EMAIL_ENABLED !== 'false';
+    this.mockMode = !this.connectionString || !emailEnabled;
 
     if (this.mockMode) {
       console.warn('EmailService running in MOCK MODE - no real emails will be sent');
+      console.warn(`Reason: ${!this.connectionString ? 'No connection string' : 'AZURE_EMAIL_ENABLED=false'}`);
       this.client = null;
     } else {
       this.client = new EmailClient(this.connectionString);
       console.log('EmailService initialized with Azure Communication Services');
+      console.log(`Sender address: ${this.senderAddress}`);
     }
   }
 
