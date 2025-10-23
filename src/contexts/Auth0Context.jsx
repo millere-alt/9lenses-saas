@@ -9,7 +9,6 @@ import {
   migrateLegacyTokens,
   getRefreshToken
 } from '../services/tokenStorage';
-import logger from '../utils/logger';
 
 const Auth0Context = createContext(null);
 
@@ -38,7 +37,7 @@ export const Auth0ExtendedProvider = ({ children }) => {
     if (cachedSession) {
       setUser(cachedSession.user);
       setOrganization(cachedSession.organization);
-      logger.info('Loaded user session from cache');
+      console.log('Loaded user session from cache');
     }
   }, []);
 
@@ -75,13 +74,13 @@ export const Auth0ExtendedProvider = ({ children }) => {
               organization: orgData
             });
 
-            logger.info('Auth0 user synced with backend successfully');
+            console.log('Auth0 user synced with backend successfully');
           } catch (error) {
-            logger.error('Failed to sync with backend:', error);
+            console.error('Failed to sync with backend:', error);
           }
         }
       } catch (error) {
-        logger.error('Auth initialization error:', error);
+        console.error('Auth initialization error:', error);
       } finally {
         setLoading(false);
       }
@@ -110,7 +109,7 @@ export const Auth0ExtendedProvider = ({ children }) => {
       try {
         await authAPI.logout(refreshToken);
       } catch (error) {
-        logger.error('Failed to revoke refresh token:', error);
+        console.error('Failed to revoke refresh token:', error);
         // Continue with logout even if backend call fails
       }
     }
@@ -153,10 +152,10 @@ export const Auth0ExtendedProvider = ({ children }) => {
         organization: orgData
       });
 
-      logger.info('Email/password login successful');
+      console.log('Email/password login successful');
       return response.data;
     } catch (error) {
-      logger.error('Email/password login failed:', error);
+      console.error('Email/password login failed:', error);
       throw error;
     }
   };
@@ -189,10 +188,10 @@ export const Auth0ExtendedProvider = ({ children }) => {
         organization: orgData
       });
 
-      logger.info('Email/password registration successful');
+      console.log('Email/password registration successful');
       return response.data;
     } catch (error) {
-      logger.error('Email/password registration failed:', error);
+      console.error('Email/password registration failed:', error);
       throw error;
     }
   };
@@ -222,7 +221,7 @@ export const Auth0ProviderWithConfig = ({ children }) => {
   const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
 
   if (!domain || !clientId) {
-    logger.error('Auth0 configuration missing. Please set VITE_AUTH0_DOMAIN and VITE_AUTH0_CLIENT_ID in your .env file');
+    console.error('Auth0 configuration missing. Please set VITE_AUTH0_DOMAIN and VITE_AUTH0_CLIENT_ID in your .env file');
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
