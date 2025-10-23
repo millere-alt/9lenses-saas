@@ -138,10 +138,13 @@ export async function login(req, res) {
       });
     }
 
-    // Debug: Check if passwordHash exists
-    console.log('User found:', user.email);
-    console.log('Password hash exists:', !!user.passwordHash);
-    console.log('User object keys:', Object.keys(user));
+    // Check if user has a password (not an Auth0/SSO user)
+    if (!user.passwordHash) {
+      return res.status(401).json({
+        error: 'Authentication failed',
+        message: 'This account uses SSO authentication. Please sign in with Auth0.'
+      });
+    }
 
     // Verify password
     const isValidPassword = await User.comparePassword(password, user.passwordHash);
