@@ -11,6 +11,7 @@ import About9Vectors from './components/About9Vectors';
 import HowItWorks from './components/HowItWorks';
 import BooksPage from './components/BooksPage';
 import Dashboard from './components/Dashboard';
+import LoginForm from './components/LoginForm';
 import NewMultiParticipantAssessment from './components/NewMultiParticipantAssessment';
 import SurveyTakingPage from './components/SurveyTakingPage';
 import CEOPortal from './components/CEOPortal';
@@ -35,6 +36,10 @@ function App() {
         <Router>
           <AppLayout>
             <Routes>
+            {/* Authentication Routes */}
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<LoginForm />} />
+
             {/* Main Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<About9Vectors />} />

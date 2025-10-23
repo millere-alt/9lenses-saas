@@ -137,7 +137,7 @@ function AppLayout({ children }) {
                       Pricing
                     </button>
                     <button
-                      onClick={login}
+                      onClick={() => navigate('/login')}
                       className="flex items-center space-x-1 px-2.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs rounded-md shadow-sm hover:shadow transition-all whitespace-nowrap"
                     >
                       <LogIn size={14} />
