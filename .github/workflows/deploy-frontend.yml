@@ -1,0 +1,100 @@
+name: Deploy Frontend to Azure Static Web Apps
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'index.html'
+      - 'vite.config.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy-frontend.yml'
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Frontend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env file
+        run: |
+          cat << EOF > .env
+          VITE_API_URL=${{ secrets.VITE_API_URL }}
+          VITE_AUTH0_DOMAIN=${{ secrets.VITE_AUTH0_DOMAIN }}
+          VITE_AUTH0_CLIENT_ID=${{ secrets.VITE_AUTH0_CLIENT_ID }}
+          VITE_AUTH0_AUDIENCE=${{ secrets.VITE_AUTH0_AUDIENCE }}
+          VITE_AZURE_AD_B2C_TENANT_NAME=${{ secrets.VITE_AZURE_AD_B2C_TENANT_NAME }}
+          VITE_AZURE_AD_B2C_CLIENT_ID=${{ secrets.VITE_AZURE_AD_B2C_CLIENT_ID }}
+          VITE_AZURE_AD_B2C_SIGN_UP_SIGN_IN_POLICY=${{ secrets.VITE_AZURE_AD_B2C_SIGN_UP_SIGN_IN_POLICY }}
+          VITE_AZURE_AD_B2C_RESET_PASSWORD_POLICY=${{ secrets.VITE_AZURE_AD_B2C_RESET_PASSWORD_POLICY }}
+          VITE_AZURE_AD_B2C_EDIT_PROFILE_POLICY=${{ secrets.VITE_AZURE_AD_B2C_EDIT_PROFILE_POLICY }}
+          VITE_ANTHROPIC_API_KEY=${{ secrets.VITE_ANTHROPIC_API_KEY }}
+          VITE_STRIPE_PUBLISHABLE_KEY=${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
+          EOF
+
+      - name: Build frontend
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "Error: dist directory not found"
+            exit 1
+          fi
+          echo "Build artifacts:"
+          ls -la dist/
+
+      - name: Deploy to Azure Static Web Apps
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/"
+          api_location: ""
+          output_location: "dist"
+          skip_app_build: true
+
+      - name: Deployment summary
+        if: success()
+        run: |
+          echo "✅ Frontend deployed successfully to Azure Static Web Apps"
+          echo "🌐 URL: https://www.9vectors.com"
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: "close"

@@ -12,7 +12,7 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/assets/*", "/api/*"]
+    "exclude": ["/assets/*", "/api/*", "/*.js", "/*.css", "/*.png", "/*.jpg", "/*.svg"]
   },
   "responseOverrides": {
     "404": {
@@ -24,11 +24,19 @@
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "SAMEORIGIN",
     "X-XSS-Protection": "1; mode=block",
-    "Referrer-Policy": "strict-origin-when-cross-origin"
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://*.auth0.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.9vectors.com https://*.azurewebsites.net https://*.anthropic.com https://api.stripe.com https://*.auth0.com; frame-src https://js.stripe.com https://*.auth0.com;",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
   },
   "mimeTypes": {
     ".json": "application/json",
     ".woff": "application/font-woff",
-    ".woff2": "application/font-woff2"
+    ".woff2": "application/font-woff2",
+    ".ttf": "font/ttf",
+    ".eot": "application/vnd.ms-fontobject",
+    ".svg": "image/svg+xml"
+  },
+  "platform": {
+    "apiRuntime": "node:20"
   }
 }

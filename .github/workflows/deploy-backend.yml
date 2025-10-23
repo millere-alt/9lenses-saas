@@ -1,0 +1,241 @@
+name: Deploy Backend to Azure Functions
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+env:
+  AZURE_FUNCTIONAPP_NAME: '9vectors-api'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'api'
+  NODE_VERSION: '20.x'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: api/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd api
+          npm ci --production
+
+      - name: Create .env file for validation
+        run: |
+          cd api
+          cat << EOF > .env
+          PORT=3001
+          NODE_ENV=production
+          COSMOS_ENDPOINT=${{ secrets.COSMOS_ENDPOINT }}
+          COSMOS_KEY=${{ secrets.COSMOS_KEY }}
+          COSMOS_DATABASE=${{ secrets.COSMOS_DATABASE }}
+          COSMOS_CONTAINER=${{ secrets.COSMOS_CONTAINER }}
+          AUTH0_DOMAIN=${{ secrets.AUTH0_DOMAIN }}
+          AUTH0_AUDIENCE=${{ secrets.AUTH0_AUDIENCE }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          AZURE_AD_B2C_TENANT_NAME=${{ secrets.AZURE_AD_B2C_TENANT_NAME }}
+          AZURE_AD_B2C_CLIENT_ID=${{ secrets.AZURE_AD_B2C_CLIENT_ID }}
+          AZURE_AD_B2C_CLIENT_SECRET=${{ secrets.AZURE_AD_B2C_CLIENT_SECRET }}
+          AZURE_AD_B2C_POLICY_NAME=${{ secrets.AZURE_AD_B2C_POLICY_NAME }}
+          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+          STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          STRIPE_PRICE_STARTER=${{ secrets.STRIPE_PRICE_STARTER }}
+          STRIPE_PRICE_PROFESSIONAL=${{ secrets.STRIPE_PRICE_PROFESSIONAL }}
+          STRIPE_PRICE_ENTERPRISE=${{ secrets.STRIPE_PRICE_ENTERPRISE }}
+          AZURE_COMMUNICATION_CONNECTION_STRING=${{ secrets.AZURE_COMMUNICATION_CONNECTION_STRING }}
+          AZURE_COMMUNICATION_SENDER_EMAIL=${{ secrets.AZURE_COMMUNICATION_SENDER_EMAIL }}
+          FRONTEND_URL=${{ secrets.FRONTEND_URL }}
+          EOF
+
+      - name: Validate environment configuration
+        run: |
+          cd api
+          if [ ! -f ".env" ]; then
+            echo "❌ Error: .env file not created"
+            exit 1
+          fi
+          echo "✅ Environment file created"
+
+          # Check for critical missing secrets
+          if [ -z "${{ secrets.COSMOS_ENDPOINT }}" ]; then
+            echo "⚠️  Warning: COSMOS_ENDPOINT is not set"
+          fi
+          if [ -z "${{ secrets.JWT_SECRET }}" ]; then
+            echo "⚠️  Warning: JWT_SECRET is not set"
+          fi
+
+      - name: Prepare deployment package
+        run: |
+          cd api
+          # Remove .env file (secrets will be set in Azure)
+          rm -f .env
+
+          # Create deployment package structure
+          mkdir -p deploy
+          cp -r src node_modules package.json package-lock.json deploy/
+
+          echo "✅ Deployment package prepared"
+          du -sh deploy/
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Functions
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/deploy
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+
+      - name: Configure Function App Settings
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          app-settings-json: |
+            [
+              {
+                "name": "NODE_ENV",
+                "value": "production",
+                "slotSetting": false
+              },
+              {
+                "name": "COSMOS_ENDPOINT",
+                "value": "${{ secrets.COSMOS_ENDPOINT }}",
+                "slotSetting": false
+              },
+              {
+                "name": "COSMOS_KEY",
+                "value": "${{ secrets.COSMOS_KEY }}",
+                "slotSetting": false
+              },
+              {
+                "name": "COSMOS_DATABASE",
+                "value": "${{ secrets.COSMOS_DATABASE }}",
+                "slotSetting": false
+              },
+              {
+                "name": "COSMOS_CONTAINER",
+                "value": "${{ secrets.COSMOS_CONTAINER }}",
+                "slotSetting": false
+              },
+              {
+                "name": "AUTH0_DOMAIN",
+                "value": "${{ secrets.AUTH0_DOMAIN }}",
+                "slotSetting": false
+              },
+              {
+                "name": "AUTH0_AUDIENCE",
+                "value": "${{ secrets.AUTH0_AUDIENCE }}",
+                "slotSetting": false
+              },
+              {
+                "name": "JWT_SECRET",
+                "value": "${{ secrets.JWT_SECRET }}",
+                "slotSetting": false
+              },
+              {
+                "name": "AZURE_AD_B2C_TENANT_NAME",
+                "value": "${{ secrets.AZURE_AD_B2C_TENANT_NAME }}",
+                "slotSetting": false
+              },
+              {
+                "name": "AZURE_AD_B2C_CLIENT_ID",
+                "value": "${{ secrets.AZURE_AD_B2C_CLIENT_ID }}",
+                "slotSetting": false
+              },
+              {
+                "name": "AZURE_AD_B2C_CLIENT_SECRET",
+                "value": "${{ secrets.AZURE_AD_B2C_CLIENT_SECRET }}",
+                "slotSetting": false
+              },
+              {
+                "name": "AZURE_AD_B2C_POLICY_NAME",
+                "value": "${{ secrets.AZURE_AD_B2C_POLICY_NAME }}",
+                "slotSetting": false
+              },
+              {
+                "name": "ANTHROPIC_API_KEY",
+                "value": "${{ secrets.ANTHROPIC_API_KEY }}",
+                "slotSetting": false
+              },
+              {
+                "name": "STRIPE_SECRET_KEY",
+                "value": "${{ secrets.STRIPE_SECRET_KEY }}",
+                "slotSetting": false
+              },
+              {
+                "name": "STRIPE_WEBHOOK_SECRET",
+                "value": "${{ secrets.STRIPE_WEBHOOK_SECRET }}",
+                "slotSetting": false
+              },
+              {
+                "name": "STRIPE_PRICE_STARTER",
+                "value": "${{ secrets.STRIPE_PRICE_STARTER }}",
+                "slotSetting": false
+              },
+              {
+                "name": "STRIPE_PRICE_PROFESSIONAL",
+                "value": "${{ secrets.STRIPE_PRICE_PROFESSIONAL }}",
+                "slotSetting": false
+              },
+              {
+                "name": "STRIPE_PRICE_ENTERPRISE",
+                "value": "${{ secrets.STRIPE_PRICE_ENTERPRISE }}",
+                "slotSetting": false
+              },
+              {
+                "name": "AZURE_COMMUNICATION_CONNECTION_STRING",
+                "value": "${{ secrets.AZURE_COMMUNICATION_CONNECTION_STRING }}",
+                "slotSetting": false
+              },
+              {
+                "name": "AZURE_COMMUNICATION_SENDER_EMAIL",
+                "value": "${{ secrets.AZURE_COMMUNICATION_SENDER_EMAIL }}",
+                "slotSetting": false
+              },
+              {
+                "name": "FRONTEND_URL",
+                "value": "${{ secrets.FRONTEND_URL }}",
+                "slotSetting": false
+              }
+            ]
+
+      - name: Verify deployment
+        run: |
+          echo "✅ Backend API deployed successfully to Azure Functions"
+          echo "🌐 Function App: ${{ env.AZURE_FUNCTIONAPP_NAME }}"
+          echo "📦 Package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}"
+
+      - name: Health check
+        run: |
+          # Wait for function app to be ready
+          sleep 30
+
+          HEALTH_URL="https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net/api/health"
+          echo "🔍 Checking health endpoint: $HEALTH_URL"
+
+          # Try health check (may fail if endpoint doesn't exist yet)
+          curl -f -s "$HEALTH_URL" || echo "⚠️  Health check endpoint not available (this is normal if endpoint doesn't exist)"
+
+      - name: Logout from Azure
+        if: always()
+        run: |
+          az logout

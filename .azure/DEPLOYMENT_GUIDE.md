@@ -1,461 +1,791 @@
-# 9Vectors Azure Deployment Guide
+# 9Vectors Deployment Guide
 
-Complete guide for deploying 9Vectors SaaS application to Azure using Static Web Apps and Azure Functions.
+Complete guide for deploying the 9Vectors SaaS platform to production on Azure.
 
-## Architecture Overview
+## Overview
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     9Vectors on Azure                       │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌──────────────────────┐         ┌──────────────────────┐ │
-│  │  Azure Static Web    │         │   Azure Functions    │ │
-│  │       Apps           │────────▶│      (Node 20)       │ │
-│  │  (React Frontend)    │  API    │   Express Wrapper    │ │
-│  └──────────────────────┘         └──────────────────────┘ │
-│                                             │               │
-│                                             │               │
-│                                             ▼               │
-│                                    ┌──────────────────────┐ │
-│                                    │   Azure Cosmos DB    │ │
-│                                    │    (NoSQL)           │ │
-│                                    └──────────────────────┘ │
-│                                                             │
-│  Resource Group: Snapshot9                                 │
-│  Region: East US                                           │
-└─────────────────────────────────────────────────────────────┘
-```
+The 9Vectors platform consists of:
+- **Frontend**: React SPA hosted on Azure Static Web Apps
+- **Backend**: Node.js API running on Azure Functions
+- **Database**: Azure Cosmos DB (NoSQL)
+- **Storage**: Azure Blob Storage (for document uploads)
+- **Email**: Azure Communication Services
+- **CI/CD**: GitHub Actions
+
+## Table of Contents
+
+1. [Prerequisites](#prerequisites)
+2. [Initial Azure Setup](#initial-azure-setup)
+3. [GitHub Repository Configuration](#github-repository-configuration)
+4. [First-Time Deployment](#first-time-deployment)
+5. [Continuous Deployment](#continuous-deployment)
+6. [Environment Configuration](#environment-configuration)
+7. [DNS and Custom Domains](#dns-and-custom-domains)
+8. [Monitoring and Troubleshooting](#monitoring-and-troubleshooting)
+9. [Rollback Procedures](#rollback-procedures)
+10. [Security Checklist](#security-checklist)
 
 ## Prerequisites
 
-1. **Azure CLI** installed and configured
-   ```bash
-   az --version
-   az login
-   ```
+### Required Tools
 
-2. **GitHub Account** with repository access
+- **Azure CLI** (v2.50+): [Install Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- **GitHub CLI** (v2.30+): [Install GitHub CLI](https://cli.github.com/)
+- **Node.js** (v20+): [Install Node.js](https://nodejs.org/)
+- **Git**: [Install Git](https://git-scm.com/)
 
-3. **Node.js 20+** installed locally for testing
+Verify installations:
+```bash
+az --version        # Should show 2.50+
+gh --version        # Should show 2.30+
+node --version      # Should show v20+
+git --version       # Should show 2.30+
+```
 
-4. **Required Secrets:**
-   - Stripe publishable key
-   - Auth0 credentials (domain, client ID, audience)
-   - Azure credentials (will be generated during deployment)
+### Required Access
 
-## Step 1: Deploy Azure Infrastructure
+- **Azure Subscription**: Contributor or Owner role
+- **GitHub Repository**: Admin access
+- **Domain Registrar**: DNS management access (for custom domains)
+- **Auth0 Account**: Admin access (for authentication)
+- **Stripe Account**: Admin access (for payments)
+- **Anthropic Account**: API access (for AI features)
 
-Run the automated deployment script:
+### Authentication Setup
+
+```bash
+# Login to Azure CLI
+az login
+
+# Set default subscription
+az account set --subscription "Your Subscription Name"
+
+# Verify current account
+az account show
+
+# Login to GitHub CLI
+gh auth login
+
+# Verify GitHub authentication
+gh auth status
+```
+
+## Initial Azure Setup
+
+### Step 1: Create Resource Group
+
+```bash
+# Create resource group in your preferred region
+az group create \
+  --name 9vectors-rg \
+  --location eastus
+
+# Verify creation
+az group show --name 9vectors-rg
+```
+
+### Step 2: Create Azure Cosmos DB
+
+```bash
+# Create Cosmos DB account
+az cosmosdb create \
+  --name 9vectors-cosmos \
+  --resource-group 9vectors-rg \
+  --locations regionName=eastus failoverPriority=0 \
+  --default-consistency-level Session \
+  --enable-automatic-failover true
+
+# Create database
+az cosmosdb sql database create \
+  --account-name 9vectors-cosmos \
+  --resource-group 9vectors-rg \
+  --name 9vectors
+
+# Create main container (assessments)
+az cosmosdb sql container create \
+  --account-name 9vectors-cosmos \
+  --resource-group 9vectors-rg \
+  --database-name 9vectors \
+  --name assessments \
+  --partition-key-path "/organizationId" \
+  --throughput 400
+
+# Create additional containers
+for container in users organizations invitations benchmarks; do
+  az cosmosdb sql container create \
+    --account-name 9vectors-cosmos \
+    --resource-group 9vectors-rg \
+    --database-name 9vectors \
+    --name $container \
+    --partition-key-path "/organizationId" \
+    --throughput 400
+done
+
+# Get connection details (save these for later)
+az cosmosdb show \
+  --name 9vectors-cosmos \
+  --resource-group 9vectors-rg \
+  --query "documentEndpoint" -o tsv
+
+az cosmosdb keys list \
+  --name 9vectors-cosmos \
+  --resource-group 9vectors-rg \
+  --query "primaryMasterKey" -o tsv
+```
+
+### Step 3: Create Azure Static Web App
+
+```bash
+# Create Static Web App (frontend)
+az staticwebapp create \
+  --name 9vectors-app \
+  --resource-group 9vectors-rg \
+  --location eastus2 \
+  --sku Standard \
+  --source https://github.com/YOUR-USERNAME/9lenses-saas \
+  --branch main \
+  --app-location "/" \
+  --output-location "dist" \
+  --login-with-github
+
+# Get deployment token
+az staticwebapp secrets list \
+  --name 9vectors-app \
+  --resource-group 9vectors-rg \
+  --query "properties.apiKey" -o tsv
+```
+
+Save the deployment token - you'll need it for GitHub secrets.
+
+### Step 4: Create Azure Function App
+
+```bash
+# Create storage account for Function App
+az storage account create \
+  --name 9vectorsstorage \
+  --resource-group 9vectors-rg \
+  --location eastus \
+  --sku Standard_LRS
+
+# Create Function App
+az functionapp create \
+  --name 9vectors-api \
+  --resource-group 9vectors-rg \
+  --storage-account 9vectorsstorage \
+  --consumption-plan-location eastus \
+  --runtime node \
+  --runtime-version 20 \
+  --functions-version 4 \
+  --os-type Linux
+
+# Get publish profile
+az functionapp deployment list-publishing-profiles \
+  --name 9vectors-api \
+  --resource-group 9vectors-rg \
+  --xml
+```
+
+Save the publish profile - you'll need it for GitHub secrets.
+
+### Step 5: Create Azure Communication Services
+
+```bash
+# Create Communication Services resource
+az communication create \
+  --name 9vectors-communication \
+  --resource-group 9vectors-rg \
+  --location global \
+  --data-location UnitedStates
+
+# Get connection string
+az communication list-key \
+  --name 9vectors-communication \
+  --resource-group 9vectors-rg \
+  --query "primaryConnectionString" -o tsv
+```
+
+### Step 6: Create Azure Blob Storage (for documents)
+
+```bash
+# Create storage account for documents
+az storage account create \
+  --name 9vectorsdocs \
+  --resource-group 9vectors-rg \
+  --location eastus \
+  --sku Standard_LRS \
+  --allow-blob-public-access false
+
+# Create container for document uploads
+az storage container create \
+  --name documents \
+  --account-name 9vectorsdocs \
+  --public-access off
+
+# Get connection string
+az storage account show-connection-string \
+  --name 9vectorsdocs \
+  --resource-group 9vectors-rg \
+  --query "connectionString" -o tsv
+```
+
+## GitHub Repository Configuration
+
+### Step 1: Create Service Principal for GitHub Actions
+
+```bash
+# Run the automated setup script
+cd .azure
+./setup-azure-credentials.sh
+
+# This creates a service principal and saves credentials to:
+# .azure/azure-credentials.json
+```
+
+**Manual creation** (if script fails):
+```bash
+# Get subscription ID
+SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+
+# Create service principal
+az ad sp create-for-rbac \
+  --name "9vectors-github-actions" \
+  --role contributor \
+  --scopes /subscriptions/$SUBSCRIPTION_ID/resourceGroups/9vectors-rg \
+  --sdk-auth
+
+# Save the output JSON to .azure/azure-credentials.json
+```
+
+### Step 2: Configure GitHub Secrets
+
+Use the automated secrets setup script:
 
 ```bash
 cd .azure
-./deploy-full-infrastructure.sh
+./setup-github-secrets.sh
+
+# For dry-run (preview only):
+./setup-github-secrets.sh --dry-run
+
+# To skip confirmation prompt:
+./setup-github-secrets.sh --skip-confirmation
 ```
 
-This script will create:
+**Manual configuration** (if script fails):
 
-- ✅ Azure Static Web App (`9vectors-web`)
-- ✅ Azure Function App (`9vectors-api`)
-- ✅ Azure Cosmos DB Account (`9vectors-cosmos`)
-- ✅ Cosmos DB Database and Containers
-- ✅ Storage Account for Functions
-- ✅ App Service Plan (B1 tier)
+See [GITHUB_SECRETS.md](.azure/GITHUB_SECRETS.md) for complete list of required secrets.
 
-**Expected Duration:** 5-10 minutes
+Minimum required secrets:
+```bash
+# Azure deployment credentials
+gh secret set AZURE_CREDENTIALS < .azure/azure-credentials.json
+gh secret set AZURE_STATIC_WEB_APPS_API_TOKEN --body "<token-from-step-3>"
+gh secret set AZURE_FUNCTIONAPP_PUBLISH_PROFILE --body "<profile-from-step-4>"
 
-### Script Output
+# Database
+gh secret set COSMOS_ENDPOINT --body "<endpoint-from-step-2>"
+gh secret set COSMOS_KEY --body "<key-from-step-2>"
+gh secret set COSMOS_DATABASE --body "9vectors"
+gh secret set COSMOS_CONTAINER --body "assessments"
 
-The script will output important values:
+# Frontend URLs
+gh secret set VITE_API_URL --body "https://9vectors-api.azurewebsites.net/api"
 
+# Generate JWT secret
+JWT_SECRET=$(openssl rand -base64 64)
+gh secret set JWT_SECRET --body "$JWT_SECRET"
 ```
-🔐 GitHub Secrets (save these for CI/CD):
-   AZURE_STATIC_WEB_APPS_API_TOKEN: <token>
-   COSMOS_ENDPOINT: <endpoint>
-   COSMOS_KEY: <key>
+
+For all other secrets, see [GITHUB_SECRETS.md](.azure/GITHUB_SECRETS.md).
+
+### Step 3: Verify GitHub Actions Workflows
+
+Ensure the following workflow files exist:
+- `.github/workflows/deploy-frontend.yml`
+- `.github/workflows/deploy-backend.yml`
+
+Check workflows are valid:
+```bash
+# View workflow files
+cat .github/workflows/deploy-frontend.yml
+cat .github/workflows/deploy-backend.yml
+
+# Verify GitHub recognizes workflows
+gh workflow list
 ```
 
-**IMPORTANT:** Save these values - you'll need them for GitHub secrets!
+## First-Time Deployment
 
-## Step 2: Configure GitHub Secrets
-
-Add the following secrets to your GitHub repository:
-
-Navigate to: `Settings` → `Secrets and variables` → `Actions` → `New repository secret`
-
-### Required Secrets:
-
-| Secret Name | Description | How to Get |
-|------------|-------------|------------|
-| `AZURE_STATIC_WEB_APPS_API_TOKEN` | Static Web App deployment token | From deployment script output |
-| `AZURE_FUNCTIONAPP_PUBLISH_PROFILE` | Function App publish profile | See below |
-| `VITE_STRIPE_PUBLISHABLE_KEY` | Stripe public key | Stripe Dashboard → API Keys |
-| `VITE_AUTH0_DOMAIN` | Auth0 domain | Auth0 Dashboard → Application Settings |
-| `VITE_AUTH0_CLIENT_ID` | Auth0 client ID | Auth0 Dashboard → Application Settings |
-| `VITE_AUTH0_AUDIENCE` | Auth0 API audience | Auth0 Dashboard → API Settings |
-| `COSMOS_ENDPOINT` | Cosmos DB endpoint | From deployment script output |
-| `COSMOS_KEY` | Cosmos DB primary key | From deployment script output |
-
-### Get Function App Publish Profile:
+### Step 1: Deploy Backend First
 
 ```bash
-az functionapp deployment list-publishing-profiles \
-  --name 9vectors-api \
-  --resource-group Snapshot9 \
-  --xml > publish-profile.xml
+# Trigger backend deployment manually
+gh workflow run deploy-backend.yml
+
+# Monitor deployment
+gh run list --workflow=deploy-backend.yml
+gh run view <run-id> --log
 ```
 
-Copy the entire contents of `publish-profile.xml` and add as `AZURE_FUNCTIONAPP_PUBLISH_PROFILE` secret.
+Wait for backend deployment to complete before deploying frontend.
 
-## Step 3: Update Environment Variables
-
-### Frontend (.env)
-
-Update production values:
+### Step 2: Configure Backend Environment Variables
 
 ```bash
-VITE_API_URL=https://9vectors-api.azurewebsites.net
-VITE_ENV=production
-VITE_AUTH0_DOMAIN=<your-auth0-domain>
-VITE_AUTH0_CLIENT_ID=<your-auth0-client-id>
-VITE_AUTH0_AUDIENCE=<your-auth0-audience>
-VITE_STRIPE_PUBLISHABLE_KEY=<your-stripe-key>
-```
-
-### Backend (Azure Function App Settings)
-
-These are automatically configured by the deployment script, but you can verify/update:
-
-```bash
-az functionapp config appsettings list \
-  --name 9vectors-api \
-  --resource-group Snapshot9
-```
-
-Required settings:
-- `COSMOS_ENDPOINT`
-- `COSMOS_KEY`
-- `COSMOS_DATABASE=9vectors`
-- `NODE_ENV=production`
-- `JWT_SECRET` (add this manually for auth)
-
-Add JWT secret:
-
-```bash
+# Set Function App application settings
 az functionapp config appsettings set \
   --name 9vectors-api \
-  --resource-group Snapshot9 \
-  --settings "JWT_SECRET=<generate-secure-random-string>"
-```
+  --resource-group 9vectors-rg \
+  --settings \
+    NODE_ENV=production \
+    COSMOS_ENDPOINT="<your-endpoint>" \
+    COSMOS_KEY="<your-key>" \
+    COSMOS_DATABASE=9vectors \
+    COSMOS_CONTAINER=assessments \
+    JWT_SECRET="<your-jwt-secret>" \
+    AUTH0_DOMAIN="<your-auth0-domain>" \
+    AUTH0_AUDIENCE="<your-auth0-audience>" \
+    FRONTEND_URL="https://www.9vectors.com"
 
-## Step 4: Deploy via GitHub Actions
-
-### Automatic Deployment
-
-Push to `main` branch to trigger deployment:
-
-```bash
-git add .
-git commit -m "Setup Azure deployment"
-git push origin main
-```
-
-### Monitor Deployment
-
-1. Go to GitHub repository → `Actions` tab
-2. Watch the workflow run
-3. Two jobs run in parallel:
-   - `build_and_deploy_frontend`
-   - `build_and_deploy_backend`
-4. Verify deployment with `verify_deployment` job
-
-### Expected Duration
-
-- Frontend build: ~2-3 minutes
-- Backend build: ~3-5 minutes
-- Total: ~5-8 minutes
-
-## Step 5: Verify Deployment
-
-### Check Frontend
-
-```bash
-curl -I https://9vectors-web.azurestaticapps.net
-# Expected: HTTP 200
-```
-
-### Check Backend API
-
-```bash
-curl https://9vectors-api.azurewebsites.net/health
-# Expected: {"status":"ok","timestamp":"...","service":"9Vectors API - Azure Functions"}
-```
-
-### Check Cosmos DB Connection
-
-```bash
-curl https://9vectors-api.azurewebsites.net/api/auth/me
-# Expected: 401 (Unauthorized) - proves API and DB are working
-```
-
-## Step 6: Configure Custom Domain (Optional)
-
-### For Static Web App:
-
-```bash
-az staticwebapp hostname set \
-  --name 9vectors-web \
-  --resource-group Snapshot9 \
-  --hostname www.9vectors.com
-```
-
-### For Function App:
-
-```bash
-az functionapp config hostname add \
-  --webapp-name 9vectors-api \
-  --resource-group Snapshot9 \
-  --hostname api.9vectors.com
-```
-
-### Update DNS:
-
-Add CNAME records:
-- `www.9vectors.com` → `9vectors-web.azurestaticapps.net`
-- `api.9vectors.com` → `9vectors-api.azurewebsites.net`
-
-## Monitoring and Logs
-
-### View Function Logs:
-
-```bash
-az functionapp log tail \
+# Verify settings
+az functionapp config appsettings list \
   --name 9vectors-api \
-  --resource-group Snapshot9
+  --resource-group 9vectors-rg
 ```
 
-### View Static Web App Logs:
+### Step 3: Deploy Frontend
 
 ```bash
-az staticwebapp show \
-  --name 9vectors-web \
-  --resource-group Snapshot9
+# Trigger frontend deployment manually
+gh workflow run deploy-frontend.yml
+
+# Monitor deployment
+gh run list --workflow=deploy-frontend.yml
+gh run view <run-id> --log
 ```
 
-### Application Insights (Recommended):
-
-Enable Application Insights for better monitoring:
+### Step 4: Verify Deployment
 
 ```bash
+# Check frontend
+curl -I https://9vectors-app.azurestaticapps.net
+# Should return HTTP/2 200
+
+# Check backend
+curl https://9vectors-api.azurewebsites.net/api/health
+# Should return {"status":"healthy"}
+```
+
+### Step 5: Test End-to-End
+
+1. Open browser to `https://9vectors-app.azurestaticapps.net`
+2. Open DevTools → Network tab
+3. Register a new user account
+4. Create a test assessment
+5. Verify API calls succeed
+6. Check Cosmos DB for created records:
+   ```bash
+   # Using Azure CLI
+   az cosmosdb sql container show \
+     --account-name 9vectors-cosmos \
+     --resource-group 9vectors-rg \
+     --database-name 9vectors \
+     --name users
+   ```
+
+## Continuous Deployment
+
+Once initial setup is complete, deployments happen automatically via GitHub Actions.
+
+### Automatic Deployment Triggers
+
+**Frontend** (`.github/workflows/deploy-frontend.yml`):
+- Triggers on push to `main` branch when frontend files change:
+  - `src/**`
+  - `public/**`
+  - `index.html`
+  - `vite.config.js`
+  - `package.json`
+- Also triggers on pull request open/update/close
+- Manual trigger via `workflow_dispatch`
+
+**Backend** (`.github/workflows/deploy-backend.yml`):
+- Triggers on push to `main` branch when backend files change:
+  - `api/**`
+- Manual trigger via `workflow_dispatch`
+
+### Manual Deployment
+
+Trigger deployments manually from CLI:
+
+```bash
+# Deploy frontend
+gh workflow run deploy-frontend.yml
+
+# Deploy backend
+gh workflow run deploy-backend.yml
+
+# Deploy both (separate commands)
+gh workflow run deploy-frontend.yml && gh workflow run deploy-backend.yml
+```
+
+Or from GitHub web interface:
+1. Go to repository → Actions
+2. Select workflow (Deploy Frontend or Deploy Backend)
+3. Click "Run workflow"
+4. Select branch `main`
+5. Click "Run workflow"
+
+### Viewing Deployment Status
+
+```bash
+# List recent workflow runs
+gh run list
+
+# View specific run
+gh run view <run-id>
+
+# View logs
+gh run view <run-id> --log
+
+# Watch live logs
+gh run watch <run-id>
+```
+
+### Deployment Notifications
+
+Set up Slack/email notifications for deployment status:
+
+1. Go to repository → Settings → Webhooks
+2. Add webhook URL (Slack webhook or custom endpoint)
+3. Select events: Workflow runs
+4. Save webhook
+
+## Environment Configuration
+
+### Production Environment Variables
+
+All production environment variables are stored as:
+1. **GitHub Secrets**: For CI/CD workflows
+2. **Azure Function App Settings**: For backend runtime
+3. **Build-time variables**: Embedded in frontend build
+
+### Frontend Environment Variables
+
+Updated via GitHub secrets (prefix with `VITE_`):
+- `VITE_API_URL`
+- `VITE_AUTH0_DOMAIN`
+- `VITE_AUTH0_CLIENT_ID`
+- `VITE_AUTH0_AUDIENCE`
+- `VITE_ANTHROPIC_API_KEY`
+- `VITE_STRIPE_PUBLISHABLE_KEY`
+- (See [GITHUB_SECRETS.md](.azure/GITHUB_SECRETS.md) for complete list)
+
+### Backend Environment Variables
+
+Updated via Azure Function App settings:
+```bash
+# Update single setting
+az functionapp config appsettings set \
+  --name 9vectors-api \
+  --resource-group 9vectors-rg \
+  --settings SETTING_NAME=value
+
+# Update multiple settings
+az functionapp config appsettings set \
+  --name 9vectors-api \
+  --resource-group 9vectors-rg \
+  --settings \
+    SETTING1=value1 \
+    SETTING2=value2
+
+# Delete setting
+az functionapp config appsettings delete \
+  --name 9vectors-api \
+  --resource-group 9vectors-rg \
+  --setting-names SETTING_NAME
+```
+
+### Updating Secrets
+
+```bash
+# Update GitHub secret
+gh secret set SECRET_NAME --body "new-value"
+
+# Update multiple secrets from file
+gh secret set SECRET_NAME < secret-file.txt
+
+# List all secrets (values are hidden)
+gh secret list
+
+# Delete secret
+gh secret delete SECRET_NAME
+```
+
+## DNS and Custom Domains
+
+See [DNS_SETUP.md](.azure/DNS_SETUP.md) for complete DNS configuration guide.
+
+**Quick setup**:
+1. Configure DNS records at your registrar
+2. Add custom domain to Azure Static Web App
+3. Add custom domain to Azure Function App
+4. Update environment variables with production URLs
+5. Verify HTTPS/SSL certificates
+
+## Monitoring and Troubleshooting
+
+### Azure Monitor Setup
+
+```bash
+# Enable Application Insights for Function App
 az monitor app-insights component create \
   --app 9vectors-insights \
-  --location eastus \
-  --resource-group Snapshot9
+  --resource-group 9vectors-rg \
+  --location eastus
 
 # Link to Function App
 INSTRUMENTATION_KEY=$(az monitor app-insights component show \
   --app 9vectors-insights \
-  --resource-group Snapshot9 \
+  --resource-group 9vectors-rg \
   --query instrumentationKey -o tsv)
 
 az functionapp config appsettings set \
   --name 9vectors-api \
-  --resource-group Snapshot9 \
-  --settings "APPINSIGHTS_INSTRUMENTATIONKEY=$INSTRUMENTATION_KEY"
+  --resource-group 9vectors-rg \
+  --settings APPINSIGHTS_INSTRUMENTATIONKEY=$INSTRUMENTATION_KEY
 ```
 
-## Troubleshooting
+### Viewing Logs
 
-### Issue: Frontend 500 Error
-
-**Solution:** Check Static Web App build logs in GitHub Actions
-
+**Frontend logs**:
 ```bash
-# View Static Web App details
+# Via Azure Portal
+# Navigate to: Static Web App → Monitoring → Logs
+
+# Via CLI (limited)
 az staticwebapp show \
-  --name 9vectors-web \
-  --resource-group Snapshot9
+  --name 9vectors-app \
+  --resource-group 9vectors-rg
 ```
 
-### Issue: Backend API Not Responding
-
-**Solution:** Check Function App logs
-
+**Backend logs**:
 ```bash
-az functionapp log tail \
+# Stream live logs
+az webapp log tail \
   --name 9vectors-api \
-  --resource-group Snapshot9
+  --resource-group 9vectors-rg
+
+# Download logs
+az webapp log download \
+  --name 9vectors-api \
+  --resource-group 9vectors-rg \
+  --log-file backend-logs.zip
 ```
 
-### Issue: Cosmos DB Connection Error
+### Common Issues
 
-**Solution:** Verify connection string and firewall rules
+#### Deployment Fails with "Unauthorized"
+**Cause**: GitHub Actions doesn't have permissions.
 
+**Solution**:
 ```bash
-# Check Cosmos DB firewall
-az cosmosdb show \
-  --name 9vectors-cosmos \
-  --resource-group Snapshot9 \
-  --query "ipRules"
+# Verify service principal credentials
+cat .azure/azure-credentials.json
+
+# Re-create service principal
+./setup-azure-credentials.sh
+gh secret set AZURE_CREDENTIALS < .azure/azure-credentials.json
+```
+
+#### Frontend Build Fails
+**Cause**: Missing environment variables or build errors.
+
+**Solution**:
+```bash
+# Test build locally
+npm run build
+
+# Check GitHub secrets
+gh secret list
+
+# View workflow logs
+gh run view <run-id> --log
+```
+
+#### Backend Functions Not Working
+**Cause**: Missing environment variables or configuration.
+
+**Solution**:
+```bash
+# Check Function App settings
+az functionapp config appsettings list \
+  --name 9vectors-api \
+  --resource-group 9vectors-rg
+
+# Restart Function App
+az functionapp restart \
+  --name 9vectors-api \
+  --resource-group 9vectors-rg
+
+# Check logs
+az webapp log tail --name 9vectors-api --resource-group 9vectors-rg
+```
+
+#### Database Connection Fails
+**Cause**: Incorrect Cosmos DB credentials or firewall rules.
+
+**Solution**:
+```bash
+# Verify Cosmos DB is accessible
+az cosmosdb show --name 9vectors-cosmos --resource-group 9vectors-rg
+
+# Check firewall rules
+az cosmosdb firewall list --name 9vectors-cosmos --resource-group 9vectors-rg
 
 # Allow Azure services
 az cosmosdb update \
   --name 9vectors-cosmos \
-  --resource-group Snapshot9 \
+  --resource-group 9vectors-rg \
   --enable-virtual-network true
 ```
 
-### Issue: CORS Errors
+## Rollback Procedures
 
-**Solution:** Update Function App CORS settings
+### Rolling Back Frontend
 
 ```bash
-az functionapp cors add \
+# List recent deployments
+gh api repos/:owner/:repo/deployments | jq -r '.[] | "\(.id) \(.ref) \(.created_at)"'
+
+# Revert to previous commit
+git revert HEAD
+git push origin main
+
+# Or redeploy specific commit
+git checkout <commit-hash>
+git push -f origin HEAD:rollback-branch
+gh workflow run deploy-frontend.yml --ref rollback-branch
+```
+
+### Rolling Back Backend
+
+```bash
+# List deployment history
+az functionapp deployment list-publishing-profiles \
   --name 9vectors-api \
-  --resource-group Snapshot9 \
-  --allowed-origins "https://9vectors-web.azurestaticapps.net" "https://www.9vectors.com"
-```
+  --resource-group 9vectors-rg
 
-## Costs Estimation
-
-| Resource | Tier | Monthly Cost (Est.) |
-|----------|------|---------------------|
-| Static Web App | Free | $0 |
-| Function App | B1 | ~$13 |
-| Cosmos DB | 400 RU/s | ~$24 |
-| Storage Account | Standard | ~$1 |
-| **Total** | | **~$38/month** |
-
-### Cost Optimization Tips:
-
-1. **Use Free Tier Static Web Apps** ✅ (Already configured)
-2. **Optimize Cosmos DB RU/s** - Start with 400, scale as needed
-3. **Enable Function App Auto-scale** - Only pay for what you use
-4. **Use Azure DevOps** - Free CI/CD minutes
-
-## Scaling
-
-### Scale Function App:
-
-```bash
-# Scale to 3 instances
-az functionapp plan update \
-  --name 9vectors-plan \
-  --resource-group Snapshot9 \
-  --number-of-workers 3
-
-# Enable auto-scale
-az monitor autoscale create \
-  --resource-group Snapshot9 \
-  --resource 9vectors-plan \
-  --resource-type Microsoft.Web/serverFarms \
-  --name autoscale-9vectors \
-  --min-count 1 \
-  --max-count 10 \
-  --count 1
-```
-
-### Scale Cosmos DB:
-
-```bash
-# Increase to 1000 RU/s
-az cosmosdb sql database throughput update \
-  --account-name 9vectors-cosmos \
-  --resource-group Snapshot9 \
-  --name 9vectors \
-  --throughput 1000
-```
-
-## Backup and Disaster Recovery
-
-### Cosmos DB Backup:
-
-Automatic backups are enabled by default (continuous backup mode).
-
-```bash
-# Verify backup policy
-az cosmosdb show \
-  --name 9vectors-cosmos \
-  --resource-group Snapshot9 \
-  --query backupPolicy
-```
-
-### Restore from Backup:
-
-```bash
-# List available restore timestamps
-az cosmosdb sql database list-restorable \
-  --account-name 9vectors-cosmos \
-  --location eastus
-
-# Restore to point in time
-az cosmosdb restore \
-  --account-name 9vectors-cosmos-restored \
-  --resource-group Snapshot9 \
-  --source-account-name 9vectors-cosmos \
-  --restore-timestamp "2025-10-20T00:00:00Z"
-```
-
-## Security Best Practices
-
-1. ✅ **Enable HTTPS Only** (default)
-2. ✅ **Use Managed Identities** (configure for production)
-3. ✅ **Restrict Cosmos DB Access** (enable IP filtering)
-4. ✅ **Enable Application Insights** (for monitoring)
-5. ✅ **Regular Security Updates** (automated via Dependabot)
-6. ✅ **Secrets in Key Vault** (recommended for production)
-
-### Enable Managed Identity:
-
-```bash
-# Enable system-assigned identity for Function App
-az functionapp identity assign \
+# Swap to previous slot (if using slots)
+az functionapp deployment slot swap \
   --name 9vectors-api \
-  --resource-group Snapshot9
+  --resource-group 9vectors-rg \
+  --slot staging
 
-# Grant Function App access to Cosmos DB
-PRINCIPAL_ID=$(az functionapp identity show \
-  --name 9vectors-api \
-  --resource-group Snapshot9 \
-  --query principalId -o tsv)
-
-az cosmosdb sql role assignment create \
-  --account-name 9vectors-cosmos \
-  --resource-group Snapshot9 \
-  --role-definition-name "Cosmos DB Built-in Data Contributor" \
-  --principal-id $PRINCIPAL_ID \
-  --scope "/"
+# Or redeploy previous version
+git checkout <commit-hash>
+gh workflow run deploy-backend.yml
 ```
 
-## Support and Documentation
+### Emergency Rollback
 
-- **Azure Documentation:** https://docs.microsoft.com/azure
-- **Static Web Apps:** https://docs.microsoft.com/azure/static-web-apps
-- **Azure Functions:** https://docs.microsoft.com/azure/azure-functions
-- **Cosmos DB:** https://docs.microsoft.com/azure/cosmos-db
-
-## Quick Reference Commands
+If deployment causes critical issues:
 
 ```bash
-# View all resources in Snapshot9
-az resource list --resource-group Snapshot9 --output table
+# Stop Function App
+az functionapp stop --name 9vectors-api --resource-group 9vectors-rg
 
-# Restart Function App
-az functionapp restart --name 9vectors-api --resource-group Snapshot9
+# Investigate issue
+az webapp log tail --name 9vectors-api --resource-group 9vectors-rg
 
-# View Function App metrics
-az monitor metrics list \
-  --resource 9vectors-api \
-  --resource-group Snapshot9 \
-  --resource-type Microsoft.Web/sites \
-  --metric "Requests" "ResponseTime"
-
-# Delete all resources (CAUTION!)
-az group delete --name Snapshot9 --yes --no-wait
+# Fix and restart
+az functionapp start --name 9vectors-api --resource-group 9vectors-rg
 ```
+
+## Security Checklist
+
+Before going to production, verify:
+
+### Azure Security
+
+- [ ] Enable Azure AD authentication for Azure Portal access
+- [ ] Configure Cosmos DB firewall rules (allow only Azure services + your IPs)
+- [ ] Enable soft delete for Cosmos DB
+- [ ] Rotate all service principal credentials
+- [ ] Enable Azure Security Center recommendations
+- [ ] Configure diagnostic logs for all resources
+- [ ] Enable Azure DDoS Protection (if budget allows)
+
+### Application Security
+
+- [ ] All secrets stored in GitHub Secrets and Azure Key Vault (not in code)
+- [ ] HTTPS enforced for all endpoints (HTTP redirects to HTTPS)
+- [ ] CORS configured with specific allowed origins (no wildcards)
+- [ ] Content Security Policy headers configured
+- [ ] Rate limiting enabled on API endpoints
+- [ ] Input validation on all API endpoints
+- [ ] SQL injection prevention (parameterized queries)
+- [ ] XSS prevention (output encoding)
+- [ ] CSRF protection for state-changing operations
+
+### Authentication & Authorization
+
+- [ ] Auth0 production tenant configured
+- [ ] JWT secret is strong and rotated regularly
+- [ ] Token expiration configured (e.g., 1 hour)
+- [ ] Refresh token rotation enabled
+- [ ] Multi-factor authentication available
+- [ ] Password strength requirements enforced
+- [ ] Account lockout after failed login attempts
+
+### Data Security
+
+- [ ] Cosmos DB encryption at rest enabled (default)
+- [ ] TLS 1.2+ enforced for all connections
+- [ ] Partition keys properly configured for multi-tenancy
+- [ ] Sensitive data encrypted in database
+- [ ] Backup and disaster recovery configured
+- [ ] Data retention policies defined
+- [ ] GDPR compliance verified (if applicable)
+
+### Monitoring & Alerts
+
+- [ ] Application Insights configured
+- [ ] Log aggregation set up
+- [ ] Error alerts configured (email/Slack)
+- [ ] Performance monitoring enabled
+- [ ] Uptime monitoring configured
+- [ ] Cost alerts set up
+- [ ] Security alerts enabled (Azure Security Center)
+
+## Next Steps
+
+After successful deployment:
+
+1. **Configure Custom Domains**: See [DNS_SETUP.md](.azure/DNS_SETUP.md)
+2. **Set Up Monitoring**: Configure Application Insights dashboards
+3. **Load Testing**: Test application under realistic load
+4. **Disaster Recovery**: Document and test backup/restore procedures
+5. **Documentation**: Update team documentation with production URLs
+6. **User Training**: Train team on production environment
+7. **Marketing**: Update marketing site with production links
+
+## Related Documentation
+
+- [GitHub Secrets Setup](GITHUB_SECRETS.md)
+- [DNS Configuration](DNS_SETUP.md)
+- [Azure Architecture](../docs/README_ARCHITECTURE.md)
+- [Credentials Setup](../docs/README_CREDENTIALS_SETUP.md)
+
+## Support
+
+For deployment issues:
+1. Check workflow logs: `gh run view <run-id> --log`
+2. Check Azure logs: `az webapp log tail --name 9vectors-api --resource-group 9vectors-rg`
+3. Review this guide and related documentation
+4. Check Azure Service Health for outages
+5. Contact Azure support if needed
 
 ---
 
-**Last Updated:** October 2025
-**Version:** 1.0
-**Maintained By:** 9Vectors DevOps Team
+Last Updated: 2025-10-23
