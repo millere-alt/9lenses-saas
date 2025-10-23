@@ -30,6 +30,8 @@ export class User {
       timezone: data.timezone || 'UTC',
       locale: data.locale || 'en-US'
     };
+    // Refresh token storage (stores hashed tokens)
+    this.refreshTokens = data.refreshTokens || [];
     this.createdAt = data.createdAt || new Date().toISOString();
     this.updatedAt = data.updatedAt || new Date().toISOString();
   }
@@ -122,10 +124,136 @@ export class User {
   }
 
   /**
+   * Add refresh token to user
+   * @param {string} tokenHash - Hashed refresh token
+   * @param {string} deviceId - Device identifier
+   * @param {number} expiresAt - Token expiration timestamp
+   */
+  static async addRefreshToken(userId, organizationId, tokenHash, deviceId, expiresAt) {
+    const user = await User.findById(userId, organizationId);
+    if (!user) return null;
+
+    const refreshTokens = user.refreshTokens || [];
+
+    // Add new token
+    refreshTokens.push({
+      tokenHash,
+      deviceId,
+      createdAt: new Date().toISOString(),
+      expiresAt: new Date(expiresAt * 1000).toISOString(),
+      lastUsedAt: new Date().toISOString()
+    });
+
+    // Keep only the last 5 refresh tokens per user (limit active sessions)
+    const limitedTokens = refreshTokens.slice(-5);
+
+    return User.update(userId, organizationId, {
+      refreshTokens: limitedTokens,
+      updatedAt: new Date().toISOString()
+    });
+  }
+
+  /**
+   * Verify refresh token exists and is valid
+   * @param {string} userId - User ID
+   * @param {string} organizationId - Organization ID
+   * @param {string} tokenHash - Hashed refresh token
+   * @returns {boolean} True if token is valid
+   */
+  static async verifyRefreshToken(userId, organizationId, tokenHash) {
+    const user = await User.findById(userId, organizationId);
+    if (!user) return false;
+
+    const refreshTokens = user.refreshTokens || [];
+    const token = refreshTokens.find(t => t.tokenHash === tokenHash);
+
+    if (!token) return false;
+
+    // Check if token is expired
+    const expiresAt = new Date(token.expiresAt).getTime();
+    if (Date.now() > expiresAt) {
+      // Remove expired token
+      await User.removeRefreshToken(userId, organizationId, tokenHash);
+      return false;
+    }
+
+    // Update last used timestamp
+    const updatedTokens = refreshTokens.map(t =>
+      t.tokenHash === tokenHash
+        ? { ...t, lastUsedAt: new Date().toISOString() }
+        : t
+    );
+
+    await User.update(userId, organizationId, {
+      refreshTokens: updatedTokens,
+      updatedAt: new Date().toISOString()
+    });
+
+    return true;
+  }
+
+  /**
+   * Remove specific refresh token (logout from single device)
+   * @param {string} userId - User ID
+   * @param {string} organizationId - Organization ID
+   * @param {string} tokenHash - Hashed refresh token
+   */
+  static async removeRefreshToken(userId, organizationId, tokenHash) {
+    const user = await User.findById(userId, organizationId);
+    if (!user) return null;
+
+    const refreshTokens = (user.refreshTokens || []).filter(
+      t => t.tokenHash !== tokenHash
+    );
+
+    return User.update(userId, organizationId, {
+      refreshTokens,
+      updatedAt: new Date().toISOString()
+    });
+  }
+
+  /**
+   * Remove all refresh tokens (logout from all devices)
+   * @param {string} userId - User ID
+   * @param {string} organizationId - Organization ID
+   */
+  static async removeAllRefreshTokens(userId, organizationId) {
+    return User.update(userId, organizationId, {
+      refreshTokens: [],
+      updatedAt: new Date().toISOString()
+    });
+  }
+
+  /**
+   * Clean up expired refresh tokens
+   * @param {string} userId - User ID
+   * @param {string} organizationId - Organization ID
+   */
+  static async cleanExpiredTokens(userId, organizationId) {
+    const user = await User.findById(userId, organizationId);
+    if (!user) return null;
+
+    const now = Date.now();
+    const validTokens = (user.refreshTokens || []).filter(token => {
+      const expiresAt = new Date(token.expiresAt).getTime();
+      return now < expiresAt;
+    });
+
+    if (validTokens.length !== user.refreshTokens.length) {
+      return User.update(userId, organizationId, {
+        refreshTokens: validTokens,
+        updatedAt: new Date().toISOString()
+      });
+    }
+
+    return user;
+  }
+
+  /**
    * Convert to JSON (without sensitive data)
    */
   toJSON() {
-    const { passwordHash: _, ...user } = this;
+    const { passwordHash: _, refreshTokens: __, ...user } = this;
     return user;
   }
 }

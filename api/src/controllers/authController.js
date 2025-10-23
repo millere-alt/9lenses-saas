@@ -1,6 +1,12 @@
 import { User } from '../models/User.js';
 import { Organization } from '../models/Organization.js';
-import { generateToken } from '../middleware/auth.js';
+import {
+  generateTokenPair,
+  generateAccessToken,
+  verifyRefreshToken,
+  generateDeviceId
+} from '../middleware/auth.js';
+import { hashToken, getTokenExpiration } from '../utils/tokenUtils.js';
 import { body, validationResult } from 'express-validator';
 import { createItem } from '../config/database.js';
 
@@ -76,14 +82,26 @@ export async function register(req, res) {
       'metadata.ownerId': user.id
     });
 
-    // Generate token
-    const token = generateToken(user);
+    // Generate access and refresh tokens
+    const deviceId = generateDeviceId(req);
+    const tokens = generateTokenPair(user, deviceId);
+
+    // Store hashed refresh token in database
+    const refreshTokenExpiry = getTokenExpiration(tokens.refreshToken);
+    await User.addRefreshToken(
+      user.id,
+      user.organizationId,
+      hashToken(tokens.refreshToken),
+      deviceId,
+      refreshTokenExpiry
+    );
 
     res.status(201).json({
       message: 'Registration successful',
       user,
       organization,
-      token
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken
     });
   } catch (error) {
     console.error('Registration error:', error);
@@ -150,14 +168,26 @@ export async function login(req, res) {
     // Remove password hash from user object
     const { passwordHash: _, ...userWithoutPassword } = user;
 
-    // Generate token
-    const token = generateToken(userWithoutPassword);
+    // Generate access and refresh tokens
+    const deviceId = generateDeviceId(req);
+    const tokens = generateTokenPair(userWithoutPassword, deviceId);
+
+    // Store hashed refresh token in database
+    const refreshTokenExpiry = getTokenExpiration(tokens.refreshToken);
+    await User.addRefreshToken(
+      user.id,
+      user.organizationId,
+      hashToken(tokens.refreshToken),
+      deviceId,
+      refreshTokenExpiry
+    );
 
     res.json({
       message: 'Login successful',
       user: userWithoutPassword,
       organization,
-      token
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -189,12 +219,164 @@ export async function getCurrentUser(req, res) {
 }
 
 /**
- * Logout user (client-side token removal)
+ * Refresh access token using refresh token
+ */
+export async function refreshToken(req, res) {
+  try {
+    const { refreshToken: token } = req.body;
+
+    if (!token) {
+      return res.status(400).json({
+        error: 'Refresh token required',
+        message: 'Please provide a refresh token',
+        code: 'NO_REFRESH_TOKEN'
+      });
+    }
+
+    // Verify refresh token JWT signature
+    const decoded = verifyRefreshToken(token);
+    if (!decoded) {
+      return res.status(401).json({
+        error: 'Invalid refresh token',
+        message: 'Refresh token is invalid or expired',
+        code: 'INVALID_REFRESH_TOKEN'
+      });
+    }
+
+    // Check if refresh token exists in database
+    const tokenHash = hashToken(token);
+    const isValid = await User.verifyRefreshToken(
+      decoded.userId,
+      decoded.organizationId,
+      tokenHash
+    );
+
+    if (!isValid) {
+      return res.status(401).json({
+        error: 'Refresh token not found',
+        message: 'Refresh token has been revoked or does not exist',
+        code: 'REFRESH_TOKEN_REVOKED'
+      });
+    }
+
+    // Get user from database
+    const user = await User.findById(decoded.userId, decoded.organizationId);
+    if (!user) {
+      return res.status(401).json({
+        error: 'User not found',
+        message: 'User associated with token does not exist',
+        code: 'USER_NOT_FOUND'
+      });
+    }
+
+    // Check if user is active
+    if (user.status !== 'active') {
+      return res.status(403).json({
+        error: 'Account inactive',
+        message: 'Your account has been deactivated',
+        code: 'ACCOUNT_INACTIVE'
+      });
+    }
+
+    // Remove old refresh token
+    await User.removeRefreshToken(decoded.userId, decoded.organizationId, tokenHash);
+
+    // Generate new token pair (token rotation)
+    const deviceId = decoded.deviceId || generateDeviceId(req);
+    const { passwordHash: _, refreshTokens: __, ...userWithoutSensitiveData } = user;
+    const tokens = generateTokenPair(userWithoutSensitiveData, deviceId);
+
+    // Store new hashed refresh token
+    const refreshTokenExpiry = getTokenExpiration(tokens.refreshToken);
+    await User.addRefreshToken(
+      user.id,
+      user.organizationId,
+      hashToken(tokens.refreshToken),
+      deviceId,
+      refreshTokenExpiry
+    );
+
+    // Get organization for session storage
+    const organization = await Organization.findById(user.organizationId);
+
+    res.json({
+      message: 'Token refreshed successfully',
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+      user: userWithoutSensitiveData,
+      organization
+    });
+  } catch (error) {
+    console.error('Refresh token error:', error);
+    res.status(500).json({
+      error: 'Token refresh failed',
+      message: error.message,
+      code: 'REFRESH_ERROR'
+    });
+  }
+}
+
+/**
+ * Logout user (revoke refresh token for current device)
  */
 export async function logout(req, res) {
-  res.json({
-    message: 'Logout successful'
-  });
+  try {
+    const { refreshToken: token } = req.body;
+
+    if (!token) {
+      // Client-side only logout (no token to revoke)
+      return res.json({
+        message: 'Logout successful'
+      });
+    }
+
+    // Verify and decode refresh token
+    const decoded = verifyRefreshToken(token);
+    if (decoded) {
+      // Remove refresh token from database
+      const tokenHash = hashToken(token);
+      await User.removeRefreshToken(
+        decoded.userId,
+        decoded.organizationId,
+        tokenHash
+      );
+    }
+
+    res.json({
+      message: 'Logout successful'
+    });
+  } catch (error) {
+    console.error('Logout error:', error);
+    // Don't fail logout even if there's an error
+    res.json({
+      message: 'Logout successful'
+    });
+  }
+}
+
+/**
+ * Logout user from all devices (revoke all refresh tokens)
+ */
+export async function logoutAll(req, res) {
+  try {
+    // User is already authenticated by middleware
+    const userId = req.user.id;
+    const organizationId = req.user.organizationId;
+
+    // Remove all refresh tokens
+    await User.removeAllRefreshTokens(userId, organizationId);
+
+    res.json({
+      message: 'Logged out from all devices successfully'
+    });
+  } catch (error) {
+    console.error('Logout all error:', error);
+    res.status(500).json({
+      error: 'Logout failed',
+      message: error.message,
+      code: 'LOGOUT_ALL_ERROR'
+    });
+  }
 }
 
 /**
@@ -292,14 +474,26 @@ export async function syncAuth0User(req, res) {
       });
     }
 
-    // Generate JWT token for API access
-    const token = generateToken(user);
+    // Generate JWT tokens for API access
+    const deviceId = generateDeviceId(req);
+    const tokens = generateTokenPair(user, deviceId);
+
+    // Store hashed refresh token in database
+    const refreshTokenExpiry = getTokenExpiration(tokens.refreshToken);
+    await User.addRefreshToken(
+      user.id,
+      user.organizationId,
+      hashToken(tokens.refreshToken),
+      deviceId,
+      refreshTokenExpiry
+    );
 
     res.json({
       message: 'User synced successfully',
       user,
       organization,
-      token
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken
     });
   } catch (error) {
     console.error('Auth0 sync error:', error);

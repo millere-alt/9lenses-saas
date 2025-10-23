@@ -1,57 +1,57 @@
-import jwt from 'jsonwebtoken';
 import { User } from '../models/User.js';
+import {
+  generateAccessToken,
+  generateRefreshToken,
+  generateTokenPair,
+  verifyAccessToken,
+  verifyRefreshToken,
+  extractTokenFromHeader,
+  generateDeviceId
+} from '../utils/tokenUtils.js';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+// Re-export token generation functions for backward compatibility
+export {
+  generateAccessToken,
+  generateRefreshToken,
+  generateTokenPair,
+  verifyAccessToken,
+  verifyRefreshToken,
+  extractTokenFromHeader,
+  generateDeviceId
+};
 
 /**
- * Generate JWT token for user
+ * Legacy function for backward compatibility
+ * @deprecated Use generateAccessToken or generateTokenPair instead
  */
 export function generateToken(user) {
-  const payload = {
-    userId: user.id,
-    email: user.email,
-    organizationId: user.organizationId,
-    role: user.profile?.role
-  };
-
-  return jwt.sign(payload, JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN || '7d'
-  });
-}
-
-/**
- * Verify JWT token
- */
-export function verifyToken(token) {
-  try {
-    return jwt.verify(token, JWT_SECRET);
-  } catch {
-    return null;
-  }
+  return generateAccessToken(user);
 }
 
 /**
  * Authentication middleware
+ * Verifies access token and attaches user to request
  */
 export async function authenticate(req, res, next) {
   try {
-    // Get token from header
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    // Extract token from Authorization header
+    const token = extractTokenFromHeader(req.headers.authorization);
+
+    if (!token) {
       return res.status(401).json({
         error: 'Authentication required',
-        message: 'No token provided'
+        message: 'No token provided',
+        code: 'NO_TOKEN'
       });
     }
 
-    const token = authHeader.substring(7);
-
-    // Verify token
-    const decoded = verifyToken(token);
+    // Verify access token
+    const decoded = verifyAccessToken(token);
     if (!decoded) {
       return res.status(401).json({
         error: 'Invalid token',
-        message: 'Token is invalid or expired'
+        message: 'Token is invalid or expired',
+        code: 'INVALID_TOKEN'
       });
     }
 
@@ -60,7 +60,8 @@ export async function authenticate(req, res, next) {
     if (!user) {
       return res.status(401).json({
         error: 'User not found',
-        message: 'User associated with token does not exist'
+        message: 'User associated with token does not exist',
+        code: 'USER_NOT_FOUND'
       });
     }
 
@@ -68,7 +69,8 @@ export async function authenticate(req, res, next) {
     if (user.status !== 'active') {
       return res.status(403).json({
         error: 'Account inactive',
-        message: 'Your account has been deactivated'
+        message: 'Your account has been deactivated',
+        code: 'ACCOUNT_INACTIVE'
       });
     }
 
@@ -81,7 +83,8 @@ export async function authenticate(req, res, next) {
     console.error('Authentication error:', error);
     return res.status(500).json({
       error: 'Authentication failed',
-      message: 'An error occurred during authentication'
+      message: 'An error occurred during authentication',
+      code: 'AUTH_ERROR'
     });
   }
 }
