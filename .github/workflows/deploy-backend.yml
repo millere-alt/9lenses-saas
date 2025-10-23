@@ -30,7 +30,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: api/package-lock.json
 
-      - name: Install dependencies (for local validation only)
+      - name: 'Install dependencies (for local validation only)'
         shell: bash
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
