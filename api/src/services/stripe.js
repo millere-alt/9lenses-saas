@@ -4,7 +4,18 @@ import { Organization } from '../models/Organization.js';
 
 dotenv.config();
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+// Initialize Stripe only if API key is provided
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
+  : null;
+
+// Helper to check if Stripe is configured
+const requireStripe = () => {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY in your .env file.');
+  }
+  return stripe;
+};
 
 /**
  * Subscription price mapping
@@ -87,7 +98,8 @@ export const PLANS = {
  * Create Stripe customer
  */
 export async function createCustomer(email, name, organizationId) {
-  const customer = await stripe.customers.create({
+  const stripeClient = requireStripe();
+  const customer = await stripeClient.customers.create({
     email,
     name,
     metadata: {
@@ -101,6 +113,7 @@ export async function createCustomer(email, name, organizationId) {
  * Create checkout session for subscription
  */
 export async function createCheckoutSession(organizationId, plan, userId, email) {
+  const stripeClient = requireStripe();
   const priceId = PRICE_IDS[plan];
 
   if (!priceId) {
@@ -124,7 +137,7 @@ export async function createCheckoutSession(organizationId, plan, userId, email)
   }
 
   // Create checkout session
-  const session = await stripe.checkout.sessions.create({
+  const session = await stripeClient.checkout.sessions.create({
     customer: customerId,
     mode: 'subscription',
     payment_method_types: ['card'],
@@ -150,7 +163,8 @@ export async function createCheckoutSession(organizationId, plan, userId, email)
  * Create billing portal session
  */
 export async function createBillingPortalSession(customerId) {
-  const session = await stripe.billingPortal.sessions.create({
+  const stripeClient = requireStripe();
+  const session = await stripeClient.billingPortal.sessions.create({
     customer: customerId,
     return_url: `${process.env.FRONTEND_URL}/billing`
   });
@@ -162,7 +176,8 @@ export async function createBillingPortalSession(customerId) {
  * Get subscription details
  */
 export async function getSubscription(subscriptionId) {
-  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+  const stripeClient = requireStripe();
+  const subscription = await stripeClient.subscriptions.retrieve(subscriptionId);
   return subscription;
 }
 
@@ -170,7 +185,8 @@ export async function getSubscription(subscriptionId) {
  * Cancel subscription
  */
 export async function cancelSubscription(subscriptionId) {
-  const subscription = await stripe.subscriptions.cancel(subscriptionId);
+  const stripeClient = requireStripe();
+  const subscription = await stripeClient.subscriptions.cancel(subscriptionId);
   return subscription;
 }
 
@@ -178,9 +194,10 @@ export async function cancelSubscription(subscriptionId) {
  * Update subscription
  */
 export async function updateSubscription(subscriptionId, newPriceId) {
-  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+  const stripeClient = requireStripe();
+  const subscription = await stripeClient.subscriptions.retrieve(subscriptionId);
 
-  const updatedSubscription = await stripe.subscriptions.update(subscriptionId, {
+  const updatedSubscription = await stripeClient.subscriptions.update(subscriptionId, {
     items: [
       {
         id: subscription.items.data[0].id,

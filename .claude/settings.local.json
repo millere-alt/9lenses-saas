@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Volumes/crucial/isage/m13-saas-app/src/components/**)",
+      "Read(//Volumes/crucial/isage/m13-saas-app/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

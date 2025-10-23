@@ -9,7 +9,10 @@ import {
 import { Organization } from '../models/Organization.js';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+// Initialize Stripe only if API key is provided
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
+  : null;
 
 /**
  * Get available plans
@@ -160,6 +163,13 @@ export async function cancelCurrentSubscription(req, res) {
  * Handle Stripe webhooks
  */
 export async function handleWebhook(req, res) {
+  if (!stripe) {
+    return res.status(503).json({
+      error: 'Stripe not configured',
+      message: 'Stripe webhooks are not available'
+    });
+  }
+
   const sig = req.headers['stripe-signature'];
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
