@@ -1,5 +1,4 @@
-const { EmailClient } = require('@azure/communication-email');
-const logger = require('../utils/logger');
+import { EmailClient } from '@azure/communication-email';
 
 /**
  * Email Service using Azure Communication Services
@@ -12,11 +11,11 @@ class EmailService {
     this.mockMode = !this.connectionString || process.env.NODE_ENV === 'development';
 
     if (this.mockMode) {
-      logger.warn('EmailService running in MOCK MODE - no real emails will be sent');
+      console.warn('EmailService running in MOCK MODE - no real emails will be sent');
       this.client = null;
     } else {
       this.client = new EmailClient(this.connectionString);
-      logger.info('EmailService initialized with Azure Communication Services');
+      console.log('EmailService initialized with Azure Communication Services');
     }
   }
 
@@ -31,7 +30,7 @@ class EmailService {
    */
   async sendEmail({ to, subject, html, text }) {
     if (this.mockMode) {
-      logger.info('MOCK EMAIL SEND:', { to, subject, htmlLength: html?.length, textLength: text?.length });
+      console.log('MOCK EMAIL SEND:', { to, subject, htmlLength: html?.length, textLength: text?.length });
       return {
         success: true,
         messageId: `mock-${Date.now()}`,
@@ -55,7 +54,7 @@ class EmailService {
       const poller = await this.client.beginSend(message);
       const result = await poller.pollUntilDone();
 
-      logger.info('Email sent successfully', { to, subject, messageId: result.id });
+      console.log('Email sent successfully', { to, subject, messageId: result.id });
 
       return {
         success: true,
@@ -63,7 +62,7 @@ class EmailService {
         mock: false
       };
     } catch (error) {
-      logger.error('Failed to send email', { to, subject, error: error.message });
+      console.error('Failed to send email', { to, subject, error: error.message });
       throw new Error(`Email send failed: ${error.message}`);
     }
   }
@@ -427,4 +426,4 @@ Need help? Contact us at support@9vectors.com
 // Singleton instance
 const emailService = new EmailService();
 
-module.exports = emailService;
+export default emailService;
