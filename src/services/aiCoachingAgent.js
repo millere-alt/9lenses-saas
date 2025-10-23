@@ -4,27 +4,13 @@
  * This agentic AI system provides intelligent coaching across all 9Vectors content and workflows.
  * It understands the full framework (9 lenses, 44 sub-lenses, 242+ themes) and provides
  * contextual guidance, recommendations, and insights based on user interactions and assessment data.
+ *
+ * Uses secure backend API proxy for all AI requests.
  */
 
-import Anthropic from '@anthropic-ai/sdk';
+import { aiAPI } from './api';
 import { LENSES, LENS_CATEGORIES } from '../data/nineVectorsSchema';
 import logger from '../utils/logger';
-
-// Initialize Anthropic client (will use browser-based proxy in production)
-const getAnthropicClient = () => {
-  // In production, this should go through a backend API to protect the API key
-  const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
-
-  if (!apiKey) {
-    logger.warn('Anthropic API key not configured. AI coaching will use mock responses.');
-    return null;
-  }
-
-  return new Anthropic({
-    apiKey,
-    dangerouslyAllowBrowser: true // Only for demo - use backend proxy in production
-  });
-};
 
 /**
  * Build comprehensive context about the 9Vectors framework
@@ -101,8 +87,6 @@ const buildAssessmentContext = (assessmentData, userScores, currentLens, current
  */
 export class AICoachingAgent {
   constructor() {
-    this.client = getAnthropicClient();
-    this.conversationHistory = [];
     this.systemContext = build9VectorsContext();
   }
 
@@ -120,10 +104,6 @@ export class AICoachingAgent {
       mode = 'proactive' // 'proactive' or 'reactive'
     } = context;
 
-    if (!this.client) {
-      return this.getMockResponse(context);
-    }
-
     const assessmentContext = buildAssessmentContext(
       assessmentData,
       userScores,
@@ -132,38 +112,25 @@ export class AICoachingAgent {
     );
 
     const systemPrompt = this.buildSystemPrompt(workflow);
-    const userPrompt = this.buildUserPrompt(context, assessmentContext);
 
     try {
-      const response = await this.client.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 1024,
-        system: systemPrompt,
-        messages: [
-          ...this.conversationHistory,
-          {
-            role: 'user',
-            content: userPrompt
-          }
-        ]
-      });
-
-      const assistantMessage = response.content[0].text;
-
-      // Update conversation history
-      this.conversationHistory.push(
-        { role: 'user', content: userPrompt },
-        { role: 'assistant', content: assistantMessage }
+      // Call backend AI proxy instead of Anthropic directly
+      const response = await aiAPI.coach(
+        {
+          workflow,
+          assessmentContext,
+          currentLens: currentLens?.name,
+          currentSubLens: currentSubLens?.name,
+          mode
+        },
+        workflow,
+        mode,
+        1024
       );
 
-      // Keep conversation history manageable (last 10 exchanges)
-      if (this.conversationHistory.length > 20) {
-        this.conversationHistory = this.conversationHistory.slice(-20);
-      }
-
       return {
-        message: assistantMessage,
-        suggestions: this.extractSuggestions(assistantMessage),
+        message: response.data.message,
+        suggestions: response.data.suggestions || this.extractSuggestions(response.data.message),
         type: mode
       };
 

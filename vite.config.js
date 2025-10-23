@@ -16,7 +16,7 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'auth-vendor': ['@auth0/auth0-react', '@azure/msal-browser', '@azure/msal-react'],
           'ui-vendor': ['lucide-react', 'recharts'],
-          'api-vendor': ['axios', '@anthropic-ai/sdk'],
+          'api-vendor': ['axios'],
         },
       },
     },

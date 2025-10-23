@@ -235,7 +235,13 @@ export const aiAPI = {
   documentAnalysis: (documentText, analysisType) =>
     api.post('/ai/document-analysis', { documentText, analysisType }),
   assistant: (message, conversationHistory) =>
-    api.post('/ai/assistant', { message, conversationHistory })
+    api.post('/ai/assistant', { message, conversationHistory }),
+  chat: (message, context, systemPrompt, maxTokens) =>
+    api.post('/ai/chat', { message, context, systemPrompt, maxTokens }),
+  analyze: (content, analysisType, maxTokens) =>
+    api.post('/ai/analyze', { content, analysisType, maxTokens }),
+  coach: (context, workflow, mode, maxTokens) =>
+    api.post('/ai/coach', { context, workflow, mode, maxTokens })
 };
 
 // Stripe API
