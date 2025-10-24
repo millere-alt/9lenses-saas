@@ -3,10 +3,10 @@
 console.log('[STARTUP] Loading src/index.js');
 
 // Load environment variables
-require('dotenv').config();
+import 'dotenv/config';
 
 // CRITICAL: Start database connection early to reduce cold start latency
-const { initializeDatabase } = require('./config/database.js');
+import { initializeDatabase } from './config/database.js';
 
 console.log('[STARTUP] Starting database connection...');
 
@@ -19,23 +19,23 @@ console.log('[STARTUP] Loading function modules...');
 
 // Load all function modules immediately (they will await connection on first request)
 try {
-  require('./functions/auth');
+  await import('./functions/auth.js');
   console.log('[STARTUP] ✓ Loaded auth functions');
 
-  require('./functions/health');
+  await import('./functions/health.js');
   console.log('[STARTUP] ✓ Loaded health function');
 
   // Additional functions will be loaded here as they are created
-  // require('./functions/assessments');
-  // require('./functions/users');
-  // require('./functions/documents');
-  // require('./functions/organizations');
-  // require('./functions/ai');
-  // require('./functions/stripe');
-  // require('./functions/invitations');
-  // require('./functions/benchmarks');
-  // require('./functions/notifications');
-  // require('./functions/analytics');
+  // await import('./functions/assessments.js');
+  // await import('./functions/users.js');
+  // await import('./functions/documents.js');
+  // await import('./functions/organizations.js');
+  // await import('./functions/ai.js');
+  // await import('./functions/stripe.js');
+  // await import('./functions/invitations.js');
+  // await import('./functions/benchmarks.js');
+  // await import('./functions/notifications.js');
+  // await import('./functions/analytics.js');
 
   console.log('[STARTUP] ✅ All function modules loaded successfully');
 } catch (err) {

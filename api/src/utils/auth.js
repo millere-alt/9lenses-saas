@@ -3,8 +3,8 @@
  * Validates JWT tokens from Authorization header
  */
 
-const jwt = require('jsonwebtoken');
-const { unauthorized } = require('./response');
+import jwt from 'jsonwebtoken';
+import { unauthorized } from './response.js';
 
 /**
  * Validates JWT token from request Authorization header
@@ -106,7 +106,4 @@ async function validateRefreshToken(request) {
   }
 }
 
-module.exports = {
-  validateAuth,
-  validateRefreshToken
-};
+export { validateAuth, validateRefreshToken };

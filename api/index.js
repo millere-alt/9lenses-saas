@@ -11,8 +11,8 @@ console.log('[STARTUP] Environment check:', {
 });
 
 try {
-  console.log('[STARTUP] Requiring ./src/index.js...');
-  require('./src/index.js');
+  console.log('[STARTUP] Importing ./src/index.js...');
+  await import('./src/index.js');
   console.log('[STARTUP] ✅ Successfully loaded src/index.js');
 } catch (err) {
   console.error('[STARTUP] ❌ FATAL ERROR loading src/index.js:', err.message);

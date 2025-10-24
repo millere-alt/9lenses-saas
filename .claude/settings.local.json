@@ -37,7 +37,9 @@
       "Bash(az resource update:*)",
       "Bash(az webapp cors:*)",
       "Bash(\"https://9vectors.ai\")",
-      "Bash(az functionapp log tail:*)"
+      "Bash(az functionapp log tail:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

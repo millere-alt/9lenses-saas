@@ -33,9 +33,4 @@ function debug(message, meta = {}) {
   }
 }
 
-module.exports = {
-  info,
-  warn,
-  error,
-  debug
-};
+export { info, warn, error, debug };

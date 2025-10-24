@@ -3,22 +3,22 @@
  * Handles user registration, login, logout, password reset, and Auth0 sync
  */
 
-const { app } = require('@azure/functions');
-const { success, created, error, badRequest, unauthorized } = require('../utils/response');
-const { getCorsHeaders, handlePreflight } = require('../utils/cors');
-const { validateAuth } = require('../utils/auth');
-const { User } = require('../models/User');
-const { Organization } = require('../models/Organization');
-const {
+import { app } from '@azure/functions';
+import { success, created, error, badRequest, unauthorized } from '../utils/response.js';
+import { getCorsHeaders, handlePreflight } from '../utils/cors.js';
+import { validateAuth } from '../utils/auth.js';
+import { User } from '../models/User.js';
+import { Organization } from '../models/Organization.js';
+import {
   generateTokenPair,
   verifyRefreshToken,
   generateDeviceId
-} = require('../middleware/auth');
-const { hashToken, getTokenExpiration } = require('../utils/tokenUtils');
-const { body, validationResult } = require('express-validator');
-const { createItem } = require('../config/database');
-const emailService = require('../services/emailService');
-const logger = require('../utils/logger');
+} from '../middleware/auth.js';
+import { hashToken, getTokenExpiration } from '../utils/tokenUtils.js';
+import { body, validationResult } from 'express-validator';
+import { createItem } from '../config/database.js';
+import emailService from '../services/emailService.js';
+import * as logger from '../utils/logger.js';
 
 /**
  * Helper function to run express-validator on Azure Functions request

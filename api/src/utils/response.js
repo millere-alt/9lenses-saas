@@ -66,7 +66,7 @@ function validationError(errors) {
   };
 }
 
-module.exports = {
+export {
   success,
   created,
   error,

@@ -3,9 +3,9 @@
  * Provides basic health status and database connectivity check
  */
 
-const { app } = require('@azure/functions');
-const { success, error } = require('../utils/response');
-const { getCorsHeaders, handlePreflight } = require('../utils/cors');
+import { app } from '@azure/functions';
+import { success, error } from '../utils/response.js';
+import { getCorsHeaders, handlePreflight } from '../utils/cors.js';
 
 app.http('health', {
   methods: ['GET', 'OPTIONS'],
@@ -32,7 +32,7 @@ app.http('health', {
 
       // Check database connectivity
       try {
-        const { getContainer } = require('../config/database');
+        const { getContainer } = await import('../config/database.js');
         // Try to get users container - if it exists, database is connected
         const usersContainer = getContainer(process.env.COSMOS_CONTAINER_USERS || 'users');
 

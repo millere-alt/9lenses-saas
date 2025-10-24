@@ -56,9 +56,4 @@ function isOriginAllowed(origin) {
   return ALLOWED_ORIGINS.includes(origin);
 }
 
-module.exports = {
-  ALLOWED_ORIGINS,
-  getCorsHeaders,
-  handlePreflight,
-  isOriginAllowed
-};
+export { ALLOWED_ORIGINS, getCorsHeaders, handlePreflight, isOriginAllowed };
