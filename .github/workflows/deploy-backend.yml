@@ -93,8 +93,16 @@ jobs:
               COSMOS_KEY="${{ secrets.COSMOS_KEY }}" \
               COSMOS_DATABASE="${{ secrets.COSMOS_DATABASE }}" \
               COSMOS_CONTAINER="${{ secrets.COSMOS_CONTAINER }}" \
+              COSMOS_CONTAINER_USERS="${{ secrets.COSMOS_CONTAINER_USERS }}" \
+              COSMOS_CONTAINER_ORGANIZATIONS="${{ secrets.COSMOS_CONTAINER_ORGANIZATIONS }}" \
+              COSMOS_CONTAINER_ASSESSMENTS="${{ secrets.COSMOS_CONTAINER_ASSESSMENTS }}" \
               JWT_SECRET="${{ secrets.JWT_SECRET }}" \
               JWT_REFRESH_SECRET="${{ secrets.JWT_REFRESH_SECRET }}" \
+              AUTH0_DOMAIN="${{ secrets.AUTH0_DOMAIN }}" \
+              AUTH0_AUDIENCE="${{ secrets.AUTH0_AUDIENCE }}" \
+              ANTHROPIC_API_KEY="${{ secrets.ANTHROPIC_API_KEY }}" \
+              STRIPE_SECRET_KEY="${{ secrets.STRIPE_SECRET_KEY }}" \
+              STRIPE_WEBHOOK_SECRET="${{ secrets.STRIPE_WEBHOOK_SECRET }}" \
               AZURE_COMMUNICATION_CONNECTION_STRING="${{ secrets.AZURE_COMMUNICATION_CONNECTION_STRING }}" \
               AZURE_COMMUNICATION_SENDER_EMAIL="${{ secrets.AZURE_COMMUNICATION_SENDER_EMAIL }}" \
               FRONTEND_URL="${{ secrets.FRONTEND_URL }}"
