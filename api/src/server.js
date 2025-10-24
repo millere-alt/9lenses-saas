@@ -47,7 +47,12 @@ const allowedOrigins = [
   'http://localhost:5173', // Vite default port
   'http://localhost:3005',  // Local dev port
   process.env.FRONTEND_URL,
-  process.env.PRODUCTION_URL
+  process.env.PRODUCTION_URL,
+  'https://agreeable-bush-03cb6a40f.2.azurestaticapps.net', // Azure Static Web App
+  'https://www.9vectors.com',
+  'https://9vectors.com',
+  'https://www.9vectors.ai',
+  'https://9vectors.ai'
 ].filter(Boolean); // Remove undefined values
 
 app.use(cors({
