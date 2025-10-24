@@ -37,6 +37,21 @@ async function validateRequest(request, validations) {
   return { body, errors };
 }
 
+/**
+ * Generate device ID for Azure Functions request
+ * Azure Functions doesn't have req.connection, so we create a compatible object
+ */
+function getDeviceIdForAzureFunction(request) {
+  const mockReq = {
+    headers: Object.fromEntries(request.headers.entries()),
+    connection: {
+      remoteAddress: request.headers.get('x-forwarded-for') || 'unknown'
+    },
+    ip: request.headers.get('x-forwarded-for') || 'unknown'
+  };
+  return generateDeviceId(mockReq);
+}
+
 // ==================== REGISTER ====================
 app.http('authRegister', {
   methods: ['POST', 'OPTIONS'],
@@ -113,7 +128,7 @@ app.http('authRegister', {
       });
 
       // Generate access and refresh tokens
-      const deviceId = generateDeviceId({ headers: request.headers });
+      const deviceId = getDeviceIdForAzureFunction(request);
       const tokens = generateTokenPair(user, deviceId);
 
       // Store hashed refresh token in database
@@ -230,7 +245,7 @@ app.http('authLogin', {
       const { passwordHash: _, ...userWithoutPassword } = user;
 
       // Generate access and refresh tokens
-      const deviceId = generateDeviceId({ headers: request.headers });
+      const deviceId = getDeviceIdForAzureFunction(request);
       const tokens = generateTokenPair(userWithoutPassword, deviceId);
 
       // Store hashed refresh token in database
@@ -398,7 +413,7 @@ app.http('authRefresh', {
       await User.removeRefreshToken(decoded.userId, decoded.organizationId, tokenHash);
 
       // Generate new token pair (token rotation)
-      const deviceId = decoded.deviceId || generateDeviceId({ headers: request.headers });
+      const deviceId = decoded.deviceId || getDeviceIdForAzureFunction(request);
       const { passwordHash: _, refreshTokens: __, ...userWithoutSensitiveData } = user;
       const tokens = generateTokenPair(userWithoutSensitiveData, deviceId);
 
@@ -643,7 +658,7 @@ app.http('authSyncAuth0', {
       }
 
       // Generate JWT tokens for API access
-      const deviceId = generateDeviceId({ headers: request.headers });
+      const deviceId = getDeviceIdForAzureFunction(request);
       const tokens = generateTokenPair(user, deviceId);
 
       // Store hashed refresh token in database
