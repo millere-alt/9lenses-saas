@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "func:start": "func start",
+    "func:start": "func start --port 3006",
     "func:build": "echo 'Build complete'",
     "test": "echo \"No tests configured\""
   },

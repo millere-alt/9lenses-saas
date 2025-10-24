@@ -12,5 +12,22 @@
     "id": "Microsoft.Azure.Functions.ExtensionBundle",
     "version": "[4.*, 5.0.0)"
   },
-  "functionTimeout": "00:05:00"
+  "functionTimeout": "00:05:00",
+  "extensions": {
+    "http": {
+      "routePrefix": "api"
+    }
+  },
+  "cors": {
+    "allowedOrigins": [
+      "http://localhost:5173",
+      "http://localhost:3005",
+      "https://agreeable-bush-03cb6a40f.2.azurestaticapps.net",
+      "https://www.9vectors.com",
+      "https://9vectors.com",
+      "https://www.9vectors.ai",
+      "https://9vectors.ai"
+    ],
+    "supportCredentials": true
+  }
 }

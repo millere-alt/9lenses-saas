@@ -25,7 +25,7 @@ function getCorsHeaders(origin) {
   return {
     'Access-Control-Allow-Origin': isAllowed ? (origin || '*') : ALLOWED_ORIGINS[0],
     'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With, X-Request-Id, X-Device-Id',
     'Access-Control-Allow-Credentials': 'true',
     'Access-Control-Max-Age': '600'
   };
@@ -40,7 +40,7 @@ function handlePreflight(request) {
   const origin = request.headers.get('origin');
 
   return {
-    status: 204,
+    status: 200,
     headers: getCorsHeaders(origin),
     body: ''
   };

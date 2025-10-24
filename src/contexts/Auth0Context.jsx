@@ -135,15 +135,17 @@ export const Auth0ExtendedProvider = ({ children }) => {
     try {
       const response = await authAPI.login({ email, password });
 
-      const userData = response.data.user;
-      const orgData = response.data.organization;
+      // Backend wraps response in { success, message, data: { user, organization, tokens } }
+      const responseData = response.data.data || response.data;
+      const userData = responseData.user;
+      const orgData = responseData.organization;
 
       setUser(userData);
       setOrganization(orgData);
 
       // Store tokens
-      if (response.data.accessToken && response.data.refreshToken) {
-        setTokens(response.data.accessToken, response.data.refreshToken);
+      if (responseData.accessToken && responseData.refreshToken) {
+        setTokens(responseData.accessToken, responseData.refreshToken);
       }
 
       // Store session data
@@ -152,8 +154,8 @@ export const Auth0ExtendedProvider = ({ children }) => {
         organization: orgData
       });
 
-      console.log('Email/password login successful');
-      return response.data;
+      console.log('Email/password login successful', { user: userData, org: orgData });
+      return responseData;
     } catch (error) {
       console.error('Email/password login failed:', error);
       throw error;
@@ -171,15 +173,17 @@ export const Auth0ExtendedProvider = ({ children }) => {
         organizationName
       });
 
-      const userData = response.data.user;
-      const orgData = response.data.organization;
+      // Backend wraps response in { success, message, data: { user, organization, tokens } }
+      const responseData = response.data.data || response.data;
+      const userData = responseData.user;
+      const orgData = responseData.organization;
 
       setUser(userData);
       setOrganization(orgData);
 
       // Store tokens
-      if (response.data.accessToken && response.data.refreshToken) {
-        setTokens(response.data.accessToken, response.data.refreshToken);
+      if (responseData.accessToken && responseData.refreshToken) {
+        setTokens(responseData.accessToken, responseData.refreshToken);
       }
 
       // Store session data
@@ -189,7 +193,7 @@ export const Auth0ExtendedProvider = ({ children }) => {
       });
 
       console.log('Email/password registration successful');
-      return response.data;
+      return responseData;
     } catch (error) {
       console.error('Email/password registration failed:', error);
       throw error;
