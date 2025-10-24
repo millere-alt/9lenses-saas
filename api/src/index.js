@@ -1,107 +1,45 @@
-import { app } from '@azure/functions';
-import createExpressApp from './server.js';
+// Import all function modules - Azure Functions v4 Programming Model
 
-// Lazy-initialized Express app
-let expressApp = null;
+console.log('[STARTUP] Loading src/index.js');
 
-async function getExpressApp() {
-  if (!expressApp) {
-    console.log('Initializing Express app...');
-    expressApp = await createExpressApp();
-    console.log('Express app initialized');
-  }
-  return expressApp;
-}
+// Load environment variables
+require('dotenv').config();
 
-// Register HTTP trigger with catch-all routing
-app.http('api', {
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
-  authLevel: 'anonymous',
-  route: '{*proxy}',
-  handler: async (request, context) => {
-    const express = await getExpressApp();
+// CRITICAL: Start database connection early to reduce cold start latency
+const { initializeDatabase } = require('./config/database.js');
 
-    // Extract path from proxy parameter
-    const path = request.params.proxy || '';
-    const queryString = request.query ? '?' + new URLSearchParams(Object.fromEntries(request.query)).toString() : '';
-    const url = `/${path}${queryString}`;
+console.log('[STARTUP] Starting database connection...');
 
-    console.log(`Request: ${request.method} ${url}`);
-
-    return new Promise((resolve) => {
-      const mockReq = {
-        method: request.method,
-        url: url,
-        headers: Object.fromEntries(request.headers.entries()),
-        body: request.body,
-        query: request.query || {},
-        params: request.params || {}
-      };
-
-      let statusCode = 200;
-      const responseHeaders = {};
-      let responseBody = '';
-
-      const mockRes = {
-        statusCode: 200,
-        setHeader(name, value) {
-          responseHeaders[name] = value;
-          return this;
-        },
-        getHeader(name) {
-          return responseHeaders[name];
-        },
-        removeHeader(name) {
-          delete responseHeaders[name];
-          return this;
-        },
-        writeHead(code, headers) {
-          statusCode = code;
-          if (headers) {
-            Object.assign(responseHeaders, headers);
-          }
-          return this;
-        },
-        write(chunk) {
-          responseBody += chunk;
-          return this;
-        },
-        end(data) {
-          if (data) responseBody += data;
-
-          console.log(`Response: ${statusCode} ${responseBody.length} bytes`);
-
-          resolve({
-            status: statusCode,
-            headers: responseHeaders,
-            body: responseBody
-          });
-        },
-        status(code) {
-          statusCode = code;
-          this.statusCode = code;
-          return this;
-        },
-        json(data) {
-          responseHeaders['Content-Type'] = 'application/json';
-          responseBody = JSON.stringify(data);
-          this.end();
-          return this;
-        },
-        send(data) {
-          if (typeof data === 'object') {
-            responseHeaders['Content-Type'] = 'application/json';
-            responseBody = JSON.stringify(data);
-          } else {
-            responseBody = String(data);
-          }
-          this.end();
-          return this;
-        }
-      };
-
-      // Call Express app
-      express(mockReq, mockRes);
-    });
-  }
+// Start connection immediately (don't await, let it run in background)
+initializeDatabase().catch(err => {
+  console.error('[STARTUP] ❌ Failed to establish initial database connection:', err);
 });
+
+console.log('[STARTUP] Loading function modules...');
+
+// Load all function modules immediately (they will await connection on first request)
+try {
+  require('./functions/auth');
+  console.log('[STARTUP] ✓ Loaded auth functions');
+
+  require('./functions/health');
+  console.log('[STARTUP] ✓ Loaded health function');
+
+  // Additional functions will be loaded here as they are created
+  // require('./functions/assessments');
+  // require('./functions/users');
+  // require('./functions/documents');
+  // require('./functions/organizations');
+  // require('./functions/ai');
+  // require('./functions/stripe');
+  // require('./functions/invitations');
+  // require('./functions/benchmarks');
+  // require('./functions/notifications');
+  // require('./functions/analytics');
+
+  console.log('[STARTUP] ✅ All function modules loaded successfully');
+} catch (err) {
+  console.error('[STARTUP] ❌ FATAL ERROR loading function modules:', err.message);
+  console.error('[STARTUP] Stack trace:', err.stack);
+  throw err;
+}

@@ -39,3 +39,4 @@ api/.env
 
 # Deployment artifacts
 deployment/
+.claude/settings.local.json
