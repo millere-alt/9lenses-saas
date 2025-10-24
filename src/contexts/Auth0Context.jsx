@@ -206,7 +206,7 @@ export const Auth0ExtendedProvider = ({ children }) => {
     loginWithEmail,
     registerWithEmail,
     loading: auth0.isLoading || loading,
-    isAuthenticated: auth0.isAuthenticated && !!user
+    isAuthenticated: auth0.isAuthenticated || !!user
   };
 
   return <Auth0Context.Provider value={value}>{children}</Auth0Context.Provider>;

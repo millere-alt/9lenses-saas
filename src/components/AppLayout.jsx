@@ -94,6 +94,17 @@ function AppLayout({ children }) {
                         <button
                           onClick={() => {
                             setShowUserMenu(false);
+                            navigate('/profile');
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-blue-50 flex items-center space-x-2 transition-colors"
+                        >
+                          <User size={16} className="text-blue-600" />
+                          <span>Profile</span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setShowUserMenu(false);
                             navigate('/billing');
                           }}
                           className="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-blue-50 flex items-center space-x-2 transition-colors"
