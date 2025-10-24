@@ -39,7 +39,9 @@
       "Bash(\"https://9vectors.ai\")",
       "Bash(az functionapp log tail:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(gh run watch:*)",
+      "Bash(az cosmosdb sql query:*)"
     ],
     "deny": [],
     "ask": []
