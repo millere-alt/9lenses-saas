@@ -41,7 +41,11 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(gh run watch:*)",
-      "Bash(az cosmosdb sql query:*)"
+      "Bash(az cosmosdb sql query:*)",
+      "Bash(nslookup:*)",
+      "Bash(curl -I https://www.9vectors.ai)",
+      "Bash(curl -I https://9vectors.ai)",
+      "Bash(open https://www.9vectors.ai)"
     ],
     "deny": [],
     "ask": []

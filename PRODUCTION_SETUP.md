@@ -3,23 +3,25 @@
 ## ✅ Completed Configuration
 
 ### Azure Infrastructure
-- **Resource Group**: Snapshot9
-- **Region**: East US
+- **Resource Group**: 9vectors-rg
+- **Region**: East US 2
 
 #### Frontend (Azure Static Web Apps)
-- **Name**: snapshot9-saas
-- **Default URL**: https://red-sand-0b83aa50f.1.azurestaticapps.net
+- **Name**: 9vectors-app
+- **Default URL**: https://agreeable-bush-03cb6a40f.2.azurestaticapps.net
 - **Custom Domains**:
-  - snapshot9.com ✅
-  - www.snapshot9.com ✅
+  - 9vectors.com ✅
+  - www.9vectors.com ✅
+  - 9vectors.ai ✅
+  - www.9vectors.ai ✅
 - **SSL**: Automatically managed by Azure ✅
 
 #### Backend API (Azure Functions)
-- **Name**: snapshot9-functions-flex
-- **URL**: https://snapshot9-functions-flex.azurewebsites.net/api
+- **Name**: 9vectors-api
+- **URL**: https://9vectors-api.azurewebsites.net/api
 - **Runtime**: Node.js 20
-- **Plan**: B1 (Basic)
-- **Health Endpoint**: https://snapshot9-functions-flex.azurewebsites.net/health
+- **Plan**: Flex Consumption
+- **Health Endpoint**: https://9vectors-api.azurewebsites.net/api/health
 
 #### Database (Azure Cosmos DB)
 - **Account**: snapshot9-cosmos
