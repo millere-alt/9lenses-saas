@@ -56,13 +56,28 @@ When given a user story or feature request, you MUST follow this four-phase appr
 
 Only proceed after user validates the plan.
 
-1. **Execute in Logical Order**
+**⚠️ STOP! READ THIS FIRST ⚠️**
+
+**CRITICAL FIRST STEP - CREATE GIT BRANCH**
+
+DO NOT write, edit, or modify ANY code files until you complete this step!
+
+Before writing ANY code, you MUST create a new git branch:
+
+1. **Create Feature Branch** (MANDATORY - DO THIS FIRST!)
+   - Generate a descriptive branch name from the feature (e.g., `feature/add-pdf-export`, `fix/auth-timeout`, `enhancement/dashboard-widget`)
+   - Run: `git checkout -b <branch-name>`
+   - Verify branch creation: `git branch --show-current`
+   - **NEVER proceed with code changes until the branch is created and verified**
+   - Report to user: "Created branch: `<branch-name>`"
+
+2. **Execute in Logical Order**
    - Start with database/infrastructure changes (Azure CLI commands)
    - Then backend API (routes, controllers, models)
    - Then frontend components and services
    - Follow the exact sequence from your validated plan
 
-2. **Adhere to Project Standards** (from CLAUDE.md)
+3. **Adhere to Project Standards** (from CLAUDE.md)
    - Use existing patterns from `src/services/api.js` for API calls
    - Follow authentication patterns from `src/contexts/Auth0Context.jsx`
    - Use Zustand stores for global state (`src/store/useStore.js`)
@@ -70,16 +85,15 @@ Only proceed after user validates the plan.
    - Match coding style of existing components
    - Use TailwindCSS for all styling
    - Follow the 9Vectors framework schema in `src/data/nineVectorsSchema.js`
-   - Always create a new branch in Git for your work
 
-3. **Implement Robust Error Handling**
+4. **Implement Robust Error Handling**
    - Add try-catch blocks for async operations
    - Use error boundaries for React components
    - Return appropriate HTTP status codes from APIs
    - Provide user-friendly error messages
    - Log errors appropriately
 
-4. **Add Authentication & Authorization**
+5. **Add Authentication & Authorization**
    - Protect API routes with `authenticate` middleware
    - Include JWT tokens in API requests via `api.js` client
    - Respect user roles and permissions
@@ -147,12 +161,13 @@ Always verify Azure resources exist before trying to update them.
 ## Critical Rules
 
 1. **NEVER skip the planning phase** - Always create a plan and get user validation
-2. **NEVER skip tests** - Every feature needs unit tests that pass
-3. **ALWAYS follow existing patterns** - Review CLAUDE.md and existing code
-4. **ALWAYS use the API client** - Never make raw axios calls; use `src/services/api.js`
-5. **ALWAYS protect routes** - Backend routes need authentication middleware
-6. **ALWAYS validate partition keys** - Cosmos DB operations require `organizationId`
-7. **NEVER modify core files** without explicit user permission:
+2. **ALWAYS create a git branch BEFORE writing code** - Run `git checkout -b <branch-name>` as the FIRST step of implementation
+3. **NEVER skip tests** - Every feature needs unit tests that pass
+4. **ALWAYS follow existing patterns** - Review CLAUDE.md and existing code
+5. **ALWAYS use the API client** - Never make raw axios calls; use `src/services/api.js`
+6. **ALWAYS protect routes** - Backend routes need authentication middleware
+7. **ALWAYS validate partition keys** - Cosmos DB operations require `organizationId`
+8. **NEVER modify core files** without explicit user permission:
    - `src/data/nineVectorsSchema.js` structure
    - `api/src/middleware/auth.js` JWT logic
    - `api/src/config/database.js` initialization
