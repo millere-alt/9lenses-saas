@@ -45,7 +45,8 @@
       "Bash(nslookup:*)",
       "Bash(curl -I https://www.9vectors.ai)",
       "Bash(curl -I https://9vectors.ai)",
-      "Bash(open https://www.9vectors.ai)"
+      "Bash(open https://www.9vectors.ai)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []
