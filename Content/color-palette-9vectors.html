@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9Vectors Brand Color Palette</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #F5F9FB;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #1E6B8C;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #5A7684;
+      margin-bottom: 3rem;
+      font-size: 1.125rem;
+    }
+    .palette-section {
+      margin-bottom: 3rem;
+    }
+    .palette-section h2 {
+      color: #2C2C2C;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .color-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      border: 2px solid #D4EDF4;
+    }
+    .color-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(30, 107, 140, 0.2);
+    }
+    .color-swatch {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    .color-info {
+      padding: 1.25rem;
+    }
+    .color-name {
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: #1E6B8C;
+      margin-bottom: 0.5rem;
+    }
+    .color-hex {
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      color: #2C2C2C;
+      background: #D4EDF4;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+    .color-hex:hover {
+      background: #A8D8E8;
+    }
+    .color-usage {
+      font-size: 0.875rem;
+      color: #5A7684;
+      line-height: 1.5;
+    }
+    .usage-tag {
+      display: inline-block;
+      background: #D4EDF4;
+      color: #1E6B8C;
+      padding: 0.25rem 0.625rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .book-note {
+      background: #A8D8E8;
+      color: #145570;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 3rem;
+      border-left: 4px solid #F5A623;
+    }
+    .book-note strong {
+      color: #1E6B8C;
+    }
+  </style>
+</head>
+<body>
+  <h1>9Vectors Brand Color Palette</h1>
+  <p class="subtitle">Authentic colors from the 9Vectors book for 9Vectors, Measurement13, and Snapshot9</p>
+
+  <div class="book-note">
+    <strong>Authentic 9Vectors Colors:</strong> This palette is extracted directly from your 9Vectors book, ensuring brand consistency across all platforms. The Light Cyan background, Dark Teal frames, and Amber Orange buttons match the exact colors used in your published materials.
+  </div>
+
+  <!-- Primary Teals -->
+  <div class="palette-section">
+    <h2>Primary Teals (Trust & Depth)</h2>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #1E6B8C;">Dark Teal</div>
+        <div class="color-info">
+          <div class="color-name">Dark Teal</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#1E6B8C')">#1E6B8C</div>
+          <div class="color-usage">Primary brand color from book - headers, dashboard frames, navigation</div>
+          <span class="usage-tag">Headers</span>
+          <span class="usage-tag">Primary</span>
+          <span class="usage-tag">Brand</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #4A9BB8;">Medium Teal</div>
+        <div class="color-info">
+          <div class="color-name">Medium Teal</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#4A9BB8')">#4A9BB8</div>
+          <div class="color-usage">Interactive elements, data visualization, charts</div>
+          <span class="usage-tag">Charts</span>
+          <span class="usage-tag">Interactive</span>
+          <span class="usage-tag">Links</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #145570;">Deep Teal</div>
+        <div class="color-info">
+          <div class="color-name">Deep Teal</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#145570')">#145570</div>
+          <div class="color-usage">Dark accents, overlays, emphasis</div>
+          <span class="usage-tag">Accents</span>
+          <span class="usage-tag">Overlays</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Cyans -->
+  <div class="palette-section">
+    <h2>Primary Cyans (Clarity & Openness)</h2>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #A8D8E8; color: #2C2C2C;">Light Cyan</div>
+        <div class="color-info">
+          <div class="color-name">Light Cyan</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#A8D8E8')">#A8D8E8</div>
+          <div class="color-usage">Signature background color from 9Vectors book cover and interior pages</div>
+          <span class="usage-tag">Backgrounds</span>
+          <span class="usage-tag">Book Color</span>
+          <span class="usage-tag">Primary BG</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #7BC4DD; color: white;">Medium Cyan</div>
+        <div class="color-info">
+          <div class="color-name">Medium Cyan</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#7BC4DD')">#7BC4DD</div>
+          <div class="color-usage">Cards, section backgrounds, secondary surfaces</div>
+          <span class="usage-tag">Cards</span>
+          <span class="usage-tag">Sections</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #D4EDF4; color: #2C2C2C;">Pale Cyan</div>
+        <div class="color-info">
+          <div class="color-name">Pale Cyan</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#D4EDF4')">#D4EDF4</div>
+          <div class="color-usage">Subtle backgrounds, hover states, borders</div>
+          <span class="usage-tag">Subtle BG</span>
+          <span class="usage-tag">Hover</span>
+          <span class="usage-tag">Borders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accent Orange -->
+  <div class="palette-section">
+    <h2>Accent Orange (Energy & Action)</h2>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #F5A623;">Amber Orange</div>
+        <div class="color-info">
+          <div class="color-name">Amber Orange</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#F5A623')">#F5A623</div>
+          <div class="color-usage">Primary CTA buttons and highlights from 9Vectors book UI</div>
+          <span class="usage-tag">CTA</span>
+          <span class="usage-tag">Buttons</span>
+          <span class="usage-tag">Book Color</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #FFB84D;">Light Orange</div>
+        <div class="color-info">
+          <div class="color-name">Light Orange</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#FFB84D')">#FFB84D</div>
+          <div class="color-usage">Hover states, secondary accents</div>
+          <span class="usage-tag">Hover</span>
+          <span class="usage-tag">Secondary</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #E89B0D;">Dark Orange</div>
+        <div class="color-info">
+          <div class="color-name">Dark Orange</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#E89B0D')">#E89B0D</div>
+          <div class="color-usage">Pressed states, strong emphasis</div>
+          <span class="usage-tag">Pressed</span>
+          <span class="usage-tag">Emphasis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Colors -->
+  <div class="palette-section">
+    <h2>Status Colors (From 9Vectors Dashboard)</h2>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #4CAF50;">Success Green</div>
+        <div class="color-info">
+          <div class="color-name">Success Green</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#4CAF50')">#4CAF50</div>
+          <div class="color-usage">High scores, positive indicators, success states</div>
+          <span class="usage-tag">High Score</span>
+          <span class="usage-tag">Positive</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #FFEB3B; color: #2C2C2C;">Warning Yellow</div>
+        <div class="color-info">
+          <div class="color-name">Warning Yellow</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#FFEB3B')">#FFEB3B</div>
+          <div class="color-usage">Medium scores, neutral states, warnings</div>
+          <span class="usage-tag">Medium Score</span>
+          <span class="usage-tag">Warning</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #E74C3C;">Alert Red</div>
+        <div class="color-info">
+          <div class="color-name">Alert Red</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#E74C3C')">#E74C3C</div>
+          <div class="color-usage">Low scores, negative indicators, alerts</div>
+          <span class="usage-tag">Low Score</span>
+          <span class="usage-tag">Alert</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Neutrals -->
+  <div class="palette-section">
+    <h2>Supporting Neutrals</h2>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #2C2C2C;">Charcoal</div>
+        <div class="color-info">
+          <div class="color-name">Charcoal</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#2C2C2C')">#2C2C2C</div>
+          <div class="color-usage">Body text, primary text content</div>
+          <span class="usage-tag">Body Text</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #5A7684;">Slate Teal</div>
+        <div class="color-info">
+          <div class="color-name">Slate Teal</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#5A7684')">#5A7684</div>
+          <div class="color-usage">Secondary text, captions, metadata</div>
+          <span class="usage-tag">Secondary Text</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #F5F9FB; color: #2C2C2C; border: 2px solid #D4EDF4;">Very Light Cyan</div>
+        <div class="color-info">
+          <div class="color-name">Very Light Cyan</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#F5F9FB')">#F5F9FB</div>
+          <div class="color-usage">Page backgrounds, subtle surfaces</div>
+          <span class="usage-tag">Page BG</span>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #A8D8E8; color: #2C2C2C;">White</div>
+        <div class="color-info">
+          <div class="color-name">White</div>
+          <div class="color-hex" onclick="navigator.clipboard.writeText('#FFFFFF')">#FFFFFF</div>
+          <div class="color-usage">Content backgrounds, cards</div>
+          <span class="usage-tag">Content</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: white; padding: 2rem; border-radius: 12px; margin-top: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 2px solid #D4EDF4;">
+    <h2 style="color: #1E6B8C; margin-bottom: 1rem;">Quick Reference</h2>
+    <p style="color: #5A7684; margin-bottom: 1.5rem;">Click any color code to copy to clipboard</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; font-family: 'Courier New', monospace; font-size: 0.875rem; color: #2C2C2C;">
+      <div><strong style="color: #1E6B8C;">Teals:</strong> #1E6B8C, #4A9BB8, #145570</div>
+      <div><strong style="color: #1E6B8C;">Cyans:</strong> #A8D8E8, #7BC4DD, #D4EDF4</div>
+      <div><strong style="color: #1E6B8C;">Orange:</strong> #F5A623, #FFB84D, #E89B0D</div>
+      <div><strong style="color: #1E6B8C;">Status:</strong> #4CAF50, #FFEB3B, #E74C3C</div>
+    </div>
+  </div>
+</body>
+</html>
