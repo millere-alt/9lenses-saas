@@ -47,7 +47,11 @@
       "Bash(curl -I https://9vectors.ai)",
       "Bash(open https://www.9vectors.ai)",
       "Bash(git pull:*)",
-      "Bash(git fetch:*)"
+      "Bash(git fetch:*)",
+      "Bash(az staticwebapp create:*)",
+      "Bash(az staticwebapp secrets list:*)",
+      "Bash(swa deploy:*)",
+      "Bash(az network dns record-set txt add-record:*)"
     ],
     "deny": [],
     "ask": []
